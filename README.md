@@ -3,14 +3,14 @@
 
 ```
 $ sudo apt install npm
-$ sudo npm cache clean -f
-$ sudo npm install -g n
+$ npm cache clean -f
+$ npm install -g n
 $ sudo n 12.13
 ```
 
 ## Yarn
 ```
-$ sudo npm -g install yarn
+$ npm -g install yarn
 ```
 
 ## Typescript React code snippets for Visual Studio Code
