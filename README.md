@@ -15,5 +15,5 @@ $ sudo npm -g install yarn
 
 ## Typescript React code snippets for Visual Studio Code
 ```
-ext install infeng.vscode-react-typescript
+$ ext install infeng.vscode-react-typescript
 ```
