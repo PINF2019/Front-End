@@ -45,6 +45,14 @@ $ choco install nodejs-lts
 $ npm -g install yarn
 ```
 
+### Ant Designer
+```
+$ yarn add antd
+```
+```
+$ npm install antd
+```
+
 ### Typescript React code snippets for Visual Studio Code:
 ```
 Ctrl + P en Visual Studio Code
