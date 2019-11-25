@@ -16,10 +16,18 @@ $ npm -g install yarn
 
 ### Ant Designer
 ```
+$ npm install antd
+```
+```
 $ yarn add antd
 ```
+
+### Formik
 ```
-$ npm install antd
+$ npm install formik
+```
+```
+$ yarn add formik
 ```
 
 ### Typescript React code snippets for Visual Studio Code
@@ -47,10 +55,18 @@ $ npm -g install yarn
 
 ### Ant Designer
 ```
+$ npm install antd
+```
+```
 $ yarn add antd
 ```
+
+### Formik
 ```
-$ npm install antd
+$ npm install formik
+```
+```
+$ yarn add formik
 ```
 
 ### Typescript React code snippets for Visual Studio Code:
