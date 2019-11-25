@@ -14,6 +14,14 @@ $ sudo n 12.13
 $ npm -g install yarn
 ```
 
+### Ant Designer
+```
+$ yarn add antd
+```
+```
+$ npm install antd
+```
+
 ### Typescript React code snippets for Visual Studio Code
 ```
 $ ext install infeng.vscode-react-typescript
