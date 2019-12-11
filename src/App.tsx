@@ -1,15 +1,39 @@
-import React, { Component } from 'react';
-import Button from 'antd/es/button';
-import './App.css';
+import React from 'react'
+import { Route, Switch } from 'react-router-dom'
+import Layout from '@Components/Layout'
+import { Login, Home, Election } from '@Views'
+import routes, { PrivateRoute } from '@Routes'
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <Button type="primary">Button</Button>
-      </div>
-    );
-  }
+const Protected = () => {
+  return (
+    <Layout>
+      <Switch>
+        <Route exact path={routes.base} component={Home} />
+      </Switch>
+    </Layout>
+  )
 }
 
-export default App;
+const Dev = () => {
+  return (
+    <Layout>
+      <Switch>
+        <Route exact path={routes.base} component={Home} />
+        <Route exact path={routes.election} component={Election} />
+      </Switch>
+    </Layout>
+  )
+}
+
+//tiene orden de prioridad el switch ese
+const App = () => {
+  return (
+    <Switch>
+      <Route exact path={routes.login} component={Login} />
+      <Route component={Dev} />
+      <PrivateRoute component={Protected} />
+    </Switch>
+  )
+}
+
+export default App

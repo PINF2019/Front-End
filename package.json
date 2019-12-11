@@ -1,24 +1,25 @@
 {
-  "name": "votuca",
+  "name": "votucaweb",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@types/jest": "24.0.23",
-    "@types/node": "12.12.8",
-    "@types/react": "16.9.11",
-    "@types/react-dom": "16.9.4",
+    "@apollo/client": "^3.0.0-beta.11",
     "antd": "^3.25.2",
+    "formik": "^2.0.6",
+    "formik-antd": "^1.6.0",
+    "jwt-decode": "^2.2.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "react-scripts": "3.2.0",
-    "typescript": "3.7.2",
-    "username": "^5.1.0"
+    "react-router-dom": "^5.1.2",
+    "yup": "^0.27.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "preinstall": "npx use-yarn",
+    "codegen": "graphql-codegen --config codegen.yml",
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
+    "eject": "react-app-rewired eject"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -33,6 +34,67 @@
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-optional-chaining": "^7.7.4",
+    "@commitlint/cli": "^8.2.0",
+    "@commitlint/config-conventional": "^8.2.0",
+    "@graphql-codegen/add": "^1.8.3",
+    "@graphql-codegen/cli": "^1.8.3",
+    "@graphql-codegen/typescript": "^1.8.3",
+    "@graphql-codegen/typescript-operations": "^1.8.3",
+    "@graphql-codegen/typescript-react-apollo": "^1.8.3",
+    "@graphql-codegen/typescript-resolvers": "^1.8.3",
+    "@types/jest": "24.0.23",
+    "@types/jwt-decode": "^2.2.1",
+    "@types/node": "12.12.12",
+    "@types/react": "16.9.12",
+    "@types/react-dom": "16.9.4",
+    "@types/react-router-dom": "^5.1.2",
+    "@types/yup": "^0.26.24",
+    "@typescript-eslint/eslint-plugin": "^2.8.0",
+    "@typescript-eslint/parser": "^2.8.0",
+    "babel-plugin-import": "^1.12.2",
+    "customize-cra": "^0.9.1",
+    "eslint": "^6.7.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-config-prettier": "^6.7.0",
+    "eslint-import-resolver-typescript": "^2.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jest": "^23.0.4",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-react": "^7.16.0",
+    "eslint-plugin-react-hooks": "^2.3.0",
+    "graphql": "^14.5.8",
+    "husky": "^3.1.0",
+    "less": "^3.10.3",
+    "less-loader": "^5.0.0",
+    "lint-staged": "^9.4.3",
+    "prettier": "^1.19.1",
+    "react-app-rewired": "^2.1.5",
+    "react-scripts": "3.2.0",
+    "typescript": "3.7.2"
+  },
+  "engines": {
+    "node": ">=12.13.x",
+    "yarn": ">=1.19.x"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.+(ts|tsx)": [
+      "eslint --fix",
+      "git add"
+    ],
+    "*.+(json|less|md|yml)": [
+      "prettier --write",
+      "git add"
     ]
   }
 }

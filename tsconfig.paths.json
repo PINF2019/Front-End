@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "@Components/*": ["components/*"],
+      "@Generated/*": ["generated/*"],
+      "@Graphql/*": ["graphql/*"],
+      "@Utils/*": ["utils/*"],
+      "@Routes": ["routes"],
+      "@Views": ["views"],
+      "@Assets/*": ["assets/*"]
+    }
+  }
+}
