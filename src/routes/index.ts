@@ -3,7 +3,8 @@ import PrivateRoute from './PrivateRoute'
 const routes = {
   base: '/',
   login: '/login',
-  election: '/election'
+  election: '/election',
+  census: '/census'
 }
 
 export { PrivateRoute }
