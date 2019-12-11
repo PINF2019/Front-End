@@ -1,14 +1,15 @@
 import React from 'react'
 import { Layout, Typography, Icon, Button } from 'antd'
 import './index.less'
-//import logo from '@Assets/logo.png'
-// <img src={logo} />
+import logo from '@Assets/logo.png'
+
 const { Text } = Typography
 
 const Header = () => {
   return (
     //autocorregido el ()
     <Layout.Header className="header">
+      <img src={logo} width="150px"></img>
       <Button type="link" href="./Home">
         Inicio
       </Button>

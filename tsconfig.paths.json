@@ -1,14 +1,14 @@
 {
   "compilerOptions": {
-    "baseUrl": "./src",
+    "baseUrl": "./",
     "paths": {
-      "@Components/*": ["components/*"],
-      "@Generated/*": ["generated/*"],
-      "@Graphql/*": ["graphql/*"],
-      "@Utils/*": ["utils/*"],
-      "@Routes": ["routes"],
-      "@Views": ["views"],
-      "@Assets/*": ["assets/*"]
+      "@Components/*": ["src/components/*"],
+      "@Generated/*": ["src/generated/*"],
+      "@Graphql/*": ["src/graphql/*"],
+      "@Utils/*": ["src/utils/*"],
+      "@Routes": ["src/routes"],
+      "@Views": ["src/views"],
+      "@Assets/*": ["src/assets/*"]
     }
   }
 }

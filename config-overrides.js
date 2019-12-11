@@ -16,10 +16,11 @@ module.exports = override(
   fixBabelImports('formik-antd', {
     libraryName: 'formik-antd',
     libraryDirectory: 'es',
-    style: 'css'
+    style: true
   }),
   addLessLoader({
-    javascriptEnabled: true
+    javascriptEnabled: true,
+    modifyVars: { '@primary-color': '#FFA500', '@secundary-color': '#206489' }
   }),
   addWebpackAlias({
     '@Components': path.resolve(__dirname, 'src/components/'),
