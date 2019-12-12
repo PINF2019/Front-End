@@ -1,24 +1,24 @@
 import React from 'react'
-import { Row, Card } from 'antd'
+import { Row, Card, Button, Col } from 'antd'
+
+type election = {
+  name: string
+  key: number
+  dateInit: Date
+  dateEnd: Date
+}
 
 const ElectionsListItems = () => {
-  const elecs = ['eleccion 1', 'eleccion 2', 'eleccion 3']
+  const elecs = [{ name: 'Eleccion 1', dateInit: new Date(), dateEnd: new Date() },
+  { name: 'Eleccion 2', dateInit: new Date(), dateEnd: new Date()}]
   // Con esto devuelves cada elemento del vector usando la funcion map de los arrays
   return (
     <ul>
       {elecs.map(elec => (
         <Row>
-            <Card style= {{
-                 marginTop: '5%',
-                 borderRadius: '5px',
-                 width: 'max-content',
-                 minWidth: '50%',
-                 marginLeft: 'auto',
-                 marginRight: 'auto',
-                 textAlign: 'center'
-            }}>
-                {elec}
-            </Card>
+          <Button className="boton">
+                {elec.name} {'\t'} {elec.dateInit.toLocaleDateString()} {'-'} {elec.dateEnd.toLocaleDateString()}
+            </Button>
         </Row>
       ))}
     </ul>

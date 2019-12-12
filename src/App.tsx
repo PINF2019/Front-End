@@ -4,6 +4,7 @@ import Layout from '@Components/Layout'
 import { Login, Home, Election, Census } from '@Views'
 import routes, { PrivateRoute } from '@Routes'
 
+
 const Protected = () => {
   return (
     <Layout>
