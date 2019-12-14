@@ -1,5 +1,5 @@
 import React from 'react'
-import { Row, Card, Button, Col } from 'antd'
+import { Icon, Row, Card, Button, Col, Typography } from 'antd'
 
 type election = {
   name: string
@@ -7,6 +7,9 @@ type election = {
   dateInit: Date
   dateEnd: Date
 }
+
+const {Title, Text} = Typography
+
 
 const ElectionsListItems = () => {
   const elecs = [{ name: 'Eleccion 1', dateInit: new Date(), dateEnd: new Date() },
@@ -16,10 +19,22 @@ const ElectionsListItems = () => {
     <ul>
       {elecs.map(elec => (
         <Row>
-          <Button className="boton">
-                {elec.name} {'\t'} {elec.dateInit.toLocaleDateString()} {'-'} {elec.dateEnd.toLocaleDateString()}
-            </Button>
-        </Row>
+         <Button className="boton">
+          <Row className="RowBoton">
+            <Text strong className = "NombreEleccion">
+              {elec.name}
+            </Text>
+
+            <Text className = "FechaEleccion">
+              {elec.dateInit.toLocaleDateString()} {'-'}
+              {elec.dateEnd.toLocaleDateString()}
+            </Text>
+
+            <Icon
+              type="caret-right" className = "Icono"/>
+          </Row>
+        </Button>
+      </Row>
       ))}
     </ul>
   )
