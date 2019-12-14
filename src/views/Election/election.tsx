@@ -1,24 +1,51 @@
 import React from 'react'
-import { Button, Icon } from 'antd'
-
+import { Row, Col, Button, Icon, Typography } from 'antd'
+const { Text } = Typography
 type Props = {
   name: string
-  key: number
   dateInit: Date
   dateEnd: Date
 }
-// por que tengo que especificar el tipo si realmente todo eso
-// esta definido en el back?
-// style={{ background: 'rgba(196, 196, 196, 0.7)' }}
+
 const ElectionButton = (props: Props) => {
   return (
-    <li key={props.key}>
-      <Button>
-        {props.name} {props.dateInit.toISOString()}{' '}
-        {props.dateEnd.toISOString()}
+    <>
+      <Button
+        style={{
+          backgroundColor: '#F0F0F0',
+          marginTop: '2%',
+          minWidth: '32%',
+          minHeight: '70px'
+        }}>
+        <Row
+          style={{
+            width: '100%',
+            display: 'flex',
+            alignContent: 'space-between'
+          }}>
+          <Text strong style={{ marginTop: 'auto', marginBottom: 'auto' }}>
+            {props.name}
+          </Text>
+
+          <Text style={{ textAlign: 'center', margin: 'auto' }}>
+            {props.dateInit.toLocaleDateString()} {'-'}
+            {props.dateEnd.toLocaleDateString()}
+          </Text>
+
+          <Icon
+            type="caret-right"
+            style={{
+              verticalAlign: 'middle',
+              fontSize: '50px',
+              color: '#FFA500',
+              marginLeft: 'auto'
+            }}
+          />
+        </Row>
       </Button>
-      <Icon type="caret-right" style={{ color: '#FFA500' }} />
-    </li>
+
+      <br></br>
+    </>
   )
 }
 export default ElectionButton

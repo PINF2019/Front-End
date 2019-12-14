@@ -1,15 +1,15 @@
 import React from 'react'
-import { Button, Typography } from 'antd'
+import { Row, Col, Button, Typography } from 'antd'
 //import { useElectionNameQuery } from '@Generated/hooks'
 import routes from '@Routes'
 import ElectionButton from './election'
 
-const { Title } = Typography
+const { Text } = Typography
 
 const data = {
   election: [
-    { name: 'four', dateInit: new Date(), dateEnd: new Date() },
-    { name: 'two', dateInit: new Date(), dateEnd: new Date() }
+    { name: 'Elecciones a Rector', dateInit: new Date(), dateEnd: new Date() },
+    { name: 'Elecciones a Delegado', dateInit: new Date(), dateEnd: new Date() }
   ]
 }
 
@@ -19,17 +19,22 @@ const ElectionView = () => {
   //const { data, error } = useElectionNameQuery()
   //if (data) {
   return (
-    <>
-      <Title level={2}>Elecciones pendientes</Title>,
-      {data.election.map((election, index) => (
-        <ElectionButton
-          name={election.name}
-          dateInit={election.dateInit}
-          dateEnd={election.dateEnd}
-          key={index}
-        />
-      ))}
-    </>
+    <Row justify="center" className="body">
+      <Row style={{ marginTop: '3%', marginBottom: '1%' }}>
+        <Text strong style={{ fontSize: '20px' }}>
+          Elecciones pendientes
+        </Text>{' '}
+      </Row>
+      <Row>
+        {data.election.map((election, index) => (
+          <ElectionButton
+            name={election.name}
+            dateInit={election.dateInit}
+            dateEnd={election.dateEnd}
+          />
+        ))}
+      </Row>
+    </Row>
   )
   // }
 

@@ -1,25 +1,43 @@
 import React from 'react'
-import { Layout, Typography, Icon, Button } from 'antd'
+import { Row, Col, Layout, Typography, Button, Avatar } from 'antd'
 import './index.less'
 import logo from '@Assets/logo.png'
-
+import Sidebar from '../Sidebar'
+import { statement } from '@babel/template'
 const { Text } = Typography
 
 const Header = () => {
   return (
     //autocorregido el ()
     <Layout.Header className="header">
-      <img src={logo} width="150px"></img>
-      <Button type="link" href="./Home">
-        Inicio
-      </Button>
-      <Button type="link" href="./Results">
-        Resultados
-      </Button>
-      <Button type="link" href="./Census">
-        Censos
-      </Button>
-      <Icon type="user" style={{ color: '#FFA500' }} />
+      <Row
+        style={{
+          display: 'flex',
+          width: '100%'
+        }}>
+        <Col style={{ marginRight: 'auto' }}>
+          <img src={logo} width="150px"></img>
+        </Col>
+        <Col style={{ marginLeft: 'auto' }}>
+          <Button type="link" href="./">
+            <Text strong>Inicio</Text>
+          </Button>
+          <Button type="link" href="./Results">
+            <Text strong>Resultados</Text>
+          </Button>
+          <Button type="link" href="./Census">
+            <Text strong>Censos</Text>
+          </Button>
+          <Button
+            type="primary"
+            shape="circle"
+            icon="user"
+            size={'small'}
+            style={{ marginLeft: '10px' }}
+            /*onClick={() => Sidebar.toggle()}*/
+          />
+        </Col>
+      </Row>
     </Layout.Header>
   )
 }
