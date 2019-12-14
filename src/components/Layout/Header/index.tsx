@@ -6,7 +6,7 @@ import Sidebar from '../Sidebar'
 import { statement } from '@babel/template'
 const { Text } = Typography
 
-const Header = () => {
+const Header = (props: { onClick: () => void }) => {
   return (
     //autocorregido el ()
     <Layout.Header className="header">
@@ -34,7 +34,7 @@ const Header = () => {
             icon="user"
             size={'small'}
             style={{ marginLeft: '10px' }}
-            /*onClick={() => Sidebar.toggle()}*/
+            onClick={props.onClick}
           />
         </Col>
       </Row>

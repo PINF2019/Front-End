@@ -39,7 +39,7 @@ const LoginForm = () => {
         }
       }}>
       {() => (
-        <Form>
+        <Form style={{ marginTop: '5%' }}>
           <Form.Item name="uid">
             <Input name="uid" autoComplete="username" placeholder="Usuario" />
           </Form.Item>
@@ -51,7 +51,7 @@ const LoginForm = () => {
             />
           </Form.Item>
           <Form.Item name="submit">
-            <Button htmlType="submit" type="primary">
+            <Button htmlType="submit" type="primary" block>
               Iniciar Sesión
             </Button>
           </Form.Item>

@@ -1,7 +1,6 @@
 import React from 'react'
 import { Row, Col, Button, Typography } from 'antd'
 //import { useElectionNameQuery } from '@Generated/hooks'
-import routes from '@Routes'
 import ElectionButton from './election'
 
 const { Text } = Typography

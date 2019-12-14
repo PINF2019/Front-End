@@ -15,7 +15,9 @@ const ElectionButton = (props: Props) => {
           backgroundColor: '#F0F0F0',
           marginTop: '2%',
           minWidth: '32%',
-          minHeight: '70px'
+          minHeight: '63px',
+          borderRadius: '12px',
+          boxShadow: '0px 3px 3px grey'
         }}>
         <Row
           style={{
