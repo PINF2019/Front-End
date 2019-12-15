@@ -1,18 +1,19 @@
 import React from 'react'
 import { Row, Col, Button, Typography } from 'antd'
+import { MenuButton } from '@Views'
 //import { useElectionNameQuery } from '@Generated/hooks'
-import ElectionButton from './election'
 
 const { Text } = Typography
 
 const data = {
-  election: [
-    { name: 'Elecciones a Rector', dateInit: new Date(), dateEnd: new Date() },
-    { name: 'Elecciones a Delegado', dateInit: new Date(), dateEnd: new Date() }
+  data: [
+    { name: 'Gestionar Elección', url: '/' },
+    { name: 'Gestionar Votación', url: '/' },
+    { name: 'Delegar Secretario', url: '/' }
   ]
 }
 
-const ElectionView = () => {
+const MenuAdmin = () => {
   //https://es.reactjs.org/docs/lists-and-keys.html
   // <Header />
   //const { data, error } = useElectionNameQuery()
@@ -21,16 +22,12 @@ const ElectionView = () => {
     <Row justify="center" className="body">
       <Row style={{ marginTop: '3%', marginBottom: '1%' }}>
         <Text strong style={{ fontSize: '20px' }}>
-          Elecciones pendientes
-        </Text>{' '}
+          Seleccione la operación que desee realizar:
+        </Text>
       </Row>
       <Row>
-        {data.election.map((election, index) => (
-          <ElectionButton
-            name={election.name}
-            dateInit={election.dateInit}
-            dateEnd={election.dateEnd}
-          />
+        {data.data.map((data, index) => (
+          <MenuButton name={data.name} url={data.url} />
         ))}
       </Row>
     </Row>
@@ -40,4 +37,4 @@ const ElectionView = () => {
   //return <div>{JSON.stringify(error)}</div>
 }
 
-export default ElectionView
+export default MenuAdmin

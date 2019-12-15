@@ -40,13 +40,13 @@ const PickRole = () => {
                   backgroundColor: '#F0F0F0'
                 }}></Avatar>
               <br></br>
-              <Text strong>Elector</Text>{' '}
+              <Text strong>Elector</Text>
             </div>
           </Col>
           <Col style={{ textAlign: 'center' }}>
             <div
               style={{ cursor: 'pointer' }}
-              onClick={() => history.push('/user')}>
+              onClick={() => history.push('/secretary')}>
               <Avatar
                 shape="square"
                 src={rol1}
@@ -63,7 +63,7 @@ const PickRole = () => {
           <Col style={{ textAlign: 'center' }}>
             <div
               style={{ cursor: 'pointer' }}
-              onClick={() => history.push('/user')}>
+              onClick={() => history.push('/admin')}>
               <Avatar
                 shape="square"
                 src={rol2}

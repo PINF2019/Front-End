@@ -5,12 +5,14 @@ type Props = {
   name: string
   dateInit: Date
   dateEnd: Date
+  url: string
 }
 
 const ElectionButton = (props: Props) => {
   return (
     <>
       <Button
+      href={props.url}
         style={{
           backgroundColor: '#F0F0F0',
           marginTop: '2%',
@@ -22,6 +24,7 @@ const ElectionButton = (props: Props) => {
         <Row
           style={{
             width: '100%',
+            height: '100%',
             display: 'flex',
             alignContent: 'space-between'
           }}>
@@ -37,6 +40,7 @@ const ElectionButton = (props: Props) => {
           <Icon
             type="caret-right"
             style={{
+              marginTop: '1.1%',
               verticalAlign: 'middle',
               fontSize: '50px',
               color: '#FFA500',

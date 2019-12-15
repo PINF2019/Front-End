@@ -1,6 +1,7 @@
 import PrivateRoute from './PrivateRoute'
 
 const routes = {
+  home: '/home',
   base: '/',
   login: '/login',
   election: '/election',
@@ -8,7 +9,14 @@ const routes = {
   admin: '/admin',
   secretary: '/secretary',
   user: '/user',
-  census: '/census'
+  census: '/census',
+  success: '/success', 
+  menuVotacion: '/votacion',
+  menuVotacionS: '/votacion/simple',
+  menuVotacionC: '/votacion/compleja',
+  vSimple: '/votacion/simple/votar',
+  vComplex: '/votacion/complex/votar',
+  
 }
 
 export { PrivateRoute }

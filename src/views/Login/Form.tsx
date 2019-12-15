@@ -51,7 +51,7 @@ const LoginForm = () => {
             />
           </Form.Item>
           <Form.Item name="submit">
-            <Button htmlType="submit" type="primary" block>
+            <Button htmlType="submit" type="primary" block href="/pickrole">
               Iniciar Sesión
             </Button>
           </Form.Item>

@@ -1,11 +1,17 @@
 import Login from './Login'
 import Home from './Home'
-import Election from './Election'
+import Election from './Menu/Election'
 import PickRole from './PickRole'
-import MenuAdmin from './Home/MenuAdmin'
-import MenuSecretary from './Home/MenuSecretary'
-import MenuUser from './Home/MenuUser'
-import Census from './Census'
+import MenuAdmin from './Menu/MenuAdmin'
+import MenuSecretary from './Menu/MenuSecretary'
+import MenuUser from './Menu/MenuUser'
+import MenuButton from './Menu/MenuButton'
+import Census from './Menu/Census'
+import MenuVotacion from './Menu/Votacion'
+import MenuVotacionSimple from './Menu/Votacion/Simple'
+import VotacionSimple from './Votacion/Simple'
+import VotacionCompleja from './Votacion/Compleja'
+import Success from './Success'
 export {
   Login,
   Home,
@@ -14,5 +20,11 @@ export {
   Census,
   MenuAdmin,
   MenuSecretary,
-  MenuUser
+  MenuUser,
+  MenuButton,
+  MenuVotacionSimple,
+  VotacionSimple,
+  VotacionCompleja,
+  Success,
+  MenuVotacion
 }

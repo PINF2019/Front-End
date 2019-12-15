@@ -19,7 +19,7 @@ const Header = (props: { onClick: () => void }) => {
           <img src={logo} width="150px"></img>
         </Col>
         <Col style={{ marginLeft: 'auto' }}>
-          <Button type="link" href="./">
+          <Button type="link" href="/home">
             <Text strong>Inicio</Text>
           </Button>
           <Button type="link" href="./Results">
