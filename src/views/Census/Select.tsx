@@ -1,33 +1,29 @@
 import React from 'react'
 import { Icon, Row, Card, Button, Col, Typography } from 'antd'
+import {useElectionNameQuery} from '@Generated/hooks'
 
-type election = {
-  name: string
-  key: number
-  dateInit: Date
-  dateEnd: Date
-}
+
 
 const {Title, Text} = Typography
 
 
 const ElectionsListItems = () => {
-  const elecs = [{ name: 'Eleccion 1', dateInit: new Date(), dateEnd: new Date() },
-  { name: 'Eleccion 2', dateInit: new Date(), dateEnd: new Date()}]
+  const elecs = useElectionNameQuery()
   // Con esto devuelves cada elemento del vector usando la funcion map de los arrays
+  
   return (
     <ul>
-      {elecs.map(elec => (
+      {elecs.data?.elections.map(elec =>
         <Row>
          <Button className="boton">
           <Row className="RowBoton">
             <Text strong className = "NombreEleccion">
-              {elec.name}
+              {elec.idSecretary}
             </Text>
 
             <Text className = "FechaEleccion">
-              {elec.dateInit.toLocaleDateString()} {'-'}
-              {elec.dateEnd.toLocaleDateString()}
+              {elec.startTime} {'-'}
+              {elec.endTime}
             </Text>
 
             <Icon
@@ -35,7 +31,7 @@ const ElectionsListItems = () => {
           </Row>
         </Button>
       </Row>
-      ))}
+      )}
     </ul>
   )
 }

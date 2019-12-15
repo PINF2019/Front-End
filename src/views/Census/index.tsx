@@ -4,7 +4,6 @@ import ElectionsListItems from './Select'
 import './index.less'
 const {Title, Text} = Typography
 const Census = () => {
-
   return (
     <Row justify= 'center' className = "body">
         <Row className = "text" >
