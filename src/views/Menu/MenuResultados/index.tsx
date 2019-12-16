@@ -6,12 +6,12 @@ const { Text } = Typography
 
 const data = {
   data: [
-    { name: 'Gestionar Usuario', url: '/admin/GestionarUsuarios' },
-    { name: 'Delegar Secretario', url: '/' }
+    { name: 'Elecciones', url: '/resultados/elecciones' },
+    { name: 'Votaciones', url: '/resultados/votaciones' }
   ]
 }
 
-const MenuAdmin = () => {
+const MenuResultados = () => {
   //https://es.reactjs.org/docs/lists-and-keys.html
   // <Header />
   //const { data, error } = useElectionNameQuery()
@@ -35,4 +35,4 @@ const MenuAdmin = () => {
   //return <div>{JSON.stringify(error)}</div>
 }
 
-export default MenuAdmin
+export default MenuResultados

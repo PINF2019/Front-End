@@ -18,6 +18,11 @@ import MenuElecciones from './Menu/MenuElecciones'
 import MenuCrearEleccion from './Menu/MenuCrearEleccion'
 import CrearEleccionPonderada from './Secretary/EleccionPonderada'
 import GenerarEleccionView from './Secretary/ProcesoElectoral'
+import MenuResultados from './Menu/MenuResultados'
+import ResultadosVotaciones from './Menu/MenuResultados/Votaciones'
+import ResultadosElecciones from './Menu/MenuResultados/Elecciones'
+import Estadisticos from './Estadistica'
+import gestionarUsuarios from './admin/GestionarUsuarios'
 export {
   Login,
   Home,
@@ -38,5 +43,10 @@ export {
   MenuElecciones,
   MenuCrearEleccion,
   CrearEleccionPonderada,
-  GenerarEleccionView
+  GenerarEleccionView,
+  MenuResultados,
+  ResultadosElecciones,
+  ResultadosVotaciones,
+  Estadisticos,
+  gestionarUsuarios
 }

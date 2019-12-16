@@ -8,7 +8,7 @@ const { Text } = Typography
 const data = {
   data: [
     { name: 'Consultar censo', url: '/census' },
-    { name: 'Consultar resultados', url: '/' },
+    { name: 'Consultar resultados', url: '/resultados' },
     { name: 'Votación', url: '/votacion' },
     { name: 'Elección', url: '/election' }
   ]

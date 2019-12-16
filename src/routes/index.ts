@@ -19,8 +19,13 @@ const routes = {
   vComplex: '/votacion/compleja/votar',
   menuCrearEleccion: '/secretary/procesoElectoral/crear',
   menuEleccionAdmin: '/secretary/procesoElectoral',
-  crearEleccionP: '/secretary/procesoElectoral/crear/ponderada',
-  crearEleccion: '/secretary/procesoElectoral/crear/unipersonal'
+  crearEleccionP: '/secretary/procesoElectoral/crear/eleccion',
+  crearEleccion: '/secretary/procesoElectoral/crear/unipersonal',
+  menuResultados: '/resultados',
+  resultadosVotacion: '/resultados/votaciones',
+  resultadosEleccion: '/resultados/elecciones',
+  estadisticas: '/resultados/elecciones/estadisticas', //, 'resultados/votaciones/estadisticas'
+  gestionarUsuarios: '/admin/GestionarUsuarios'
 }
 
 export { PrivateRoute }

@@ -1,17 +1,34 @@
 import React from 'react'
 import { Row, Col, Button, Typography } from 'antd'
 import { MenuButton } from '@Views'
+import ElectionButton from '../../Election/election'
 //import { useElectionNameQuery } from '@Generated/hooks'
 const { Text } = Typography
 
 const data = {
   data: [
-    { name: 'Gestionar Usuario', url: '/admin/GestionarUsuarios' },
-    { name: 'Delegar Secretario', url: '/' }
+    {
+      name: 'Elecciones 1',
+      dateInit: new Date(),
+      dateEnd: new Date(),
+      url: '/resultados/elecciones/estadisticas'
+    },
+    {
+      name: 'Elecciones 2',
+      dateInit: new Date(),
+      dateEnd: new Date(),
+      url: '/resultados/elecciones/estadisticas'
+    },
+    {
+      name: 'Elecciones 3',
+      dateInit: new Date(),
+      dateEnd: new Date(),
+      url: '/resultados/elecciones/estadisticas'
+    }
   ]
 }
 
-const MenuAdmin = () => {
+const ResultadosElecciones = () => {
   //https://es.reactjs.org/docs/lists-and-keys.html
   // <Header />
   //const { data, error } = useElectionNameQuery()
@@ -25,7 +42,12 @@ const MenuAdmin = () => {
       </Row>
       <Row>
         {data.data.map((data, index) => (
-          <MenuButton name={data.name} url={data.url} />
+          <ElectionButton
+            name={data.name}
+            dateInit={data.dateInit}
+            dateEnd={data.dateEnd}
+            url={data.url}
+          />
         ))}
       </Row>
     </Row>
@@ -35,4 +57,4 @@ const MenuAdmin = () => {
   //return <div>{JSON.stringify(error)}</div>
 }
 
-export default MenuAdmin
+export default ResultadosElecciones

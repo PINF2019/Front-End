@@ -19,10 +19,15 @@ import {
   Election,
   MenuCrearEleccion,
   MenuElecciones,
-  GenerarEleccionView
+  GenerarEleccionView,
+  MenuResultados,
+  ResultadosElecciones,
+  ResultadosVotaciones
 } from '@Views'
 import routes, { PrivateRoute } from '@Routes'
 import CrearEleccionPonderada from './views/Secretary/EleccionPonderada'
+import Estadisticos from './views/Estadistica'
+import gestionarUsuarios from './views/admin/GestionarUsuarios'
 
 const Protected = () => {
   return (
@@ -81,6 +86,23 @@ const Dev = () => {
           component={MenuVotacionSimple}
         />
         <Route exact path={routes.success} component={Success} />
+        <Route exact path={routes.menuResultados} component={MenuResultados} />
+        <Route
+          exact
+          path={routes.resultadosEleccion}
+          component={ResultadosElecciones}
+        />
+        <Route
+          exact
+          path={routes.resultadosVotacion}
+          component={ResultadosVotaciones}
+        />
+        <Route exact path={routes.estadisticas} component={Estadisticos} />
+        <Route
+          exact
+          path={routes.gestionarUsuarios}
+          component={gestionarUsuarios}
+        />
       </Switch>
     </Layout>
   )
