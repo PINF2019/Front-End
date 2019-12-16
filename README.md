@@ -14,12 +14,19 @@ $ sudo n 12.13
 $ npm -g install yarn
 ```
 
-### Ant Designer
+### Ant Design
 ```
 $ npm install antd
 ```
 ```
 $ yarn add antd
+```
+### Ant Design pro
+```
+$ npm install ant-design-pro
+```
+```
+$ yarn add ant-design-pro
 ```
 
 ### Formik
@@ -53,12 +60,20 @@ $ choco install nodejs-lts
 $ npm -g install yarn
 ```
 
-### Ant Designer
+### Ant Design
 ```
 $ npm install antd
 ```
 ```
 $ yarn add antd
+
+```
+### Ant Design pro
+```
+$ npm install ant-design-pro
+```
+```
+$ yarn add ant-design-pro
 ```
 
 ### Formik
