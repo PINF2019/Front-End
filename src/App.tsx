@@ -4,7 +4,7 @@ import Layout from '@Components/Layout'
 import {
   Login,
   Home,
-  Election,
+  ElectionView,
   PickRole,
   Census,
   MenuAdmin,
@@ -12,11 +12,17 @@ import {
   MenuUser,
   VotacionSimple,
   MenuVotacionSimple,
+  MenuVotacionCompleja,
   VotacionCompleja,
   Success,
-  MenuVotacion
+  MenuVotacion,
+  Election,
+  MenuCrearEleccion,
+  MenuElecciones,
+  GenerarEleccionView
 } from '@Views'
 import routes, { PrivateRoute } from '@Routes'
+import CrearEleccionPonderada from './views/Secretary/EleccionPonderada'
 
 const Protected = () => {
   return (
@@ -31,19 +37,49 @@ const Protected = () => {
 const Dev = () => {
   return (
     <Layout>
-      <Switch> 
-        
+      <Switch>
         <Route exact path={routes.home} component={MenuUser} />
-        <Route exact path={routes.election} component={Election} />
+        <Route exact path={routes.menuElection} component={ElectionView} />
         <Route exact path={routes.pickrole} component={PickRole} />
         <Route exact path={routes.admin} component={MenuAdmin} />
         <Route exact path={routes.secretary} component={MenuSecretary} />
         <Route exact path={routes.user} component={MenuUser} />
         <Route exact path={routes.census} component={Census} />
+        <Route exact path={routes.election} component={Election} />
+        <Route
+          exact
+          path={routes.menuCrearEleccion}
+          component={MenuCrearEleccion}
+        />
+        <Route
+          exact
+          path={routes.menuEleccionAdmin}
+          component={MenuElecciones}
+        />
+        <Route
+          exact
+          path={routes.crearEleccionP}
+          component={CrearEleccionPonderada}
+        />
+        <Route
+          exact
+          path={routes.crearEleccion}
+          component={GenerarEleccionView}
+        />
+
         <Route exact path={routes.menuVotacion} component={MenuVotacion} />
+        <Route
+          exact
+          path={routes.menuVotacionC}
+          component={MenuVotacionCompleja}
+        />
         <Route exact path={routes.vSimple} component={VotacionSimple} />
-        <Route exact path={routes.menuVotacionS} component={MenuVotacionSimple} />
         <Route exact path={routes.vComplex} component={VotacionCompleja} />
+        <Route
+          exact
+          path={routes.menuVotacionS}
+          component={MenuVotacionSimple}
+        />
         <Route exact path={routes.success} component={Success} />
       </Switch>
     </Layout>

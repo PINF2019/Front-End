@@ -1,10 +1,12 @@
-import { Typography, Button, Checkbox, Row, Col } from 'antd'
+import { Layout, Typography, Button, Checkbox, Row, Col } from 'antd'
 import React from 'react'
 import routes from '@Routes'
 import { isAuthTokenExpired } from '@Utils/auth'
 import { Redirect } from 'react-router-dom'
 import { Radio, Input } from 'antd'
 import './index.less'
+import wallpaper from '../.././../assets/Wallpaper2.png'
+
 const { Text } = Typography
 /*type Props = {
 
@@ -47,17 +49,23 @@ const VotacionSimple = (props: any) => {
               textAlign: 'center',
               backgroundColor: '#f7f7f7'
             }}>
-            <Row
-              type="flex"
-              justify="center"
-              //align="middle"
+            <Layout
               style={{
-                marginTop: '25%'
+                height: '100%',
+                backgroundImage: 'url(' + wallpaper + ')'
               }}>
-              <Text strong style={{ fontSize: '30px' }}>
-                Votación <br></br>limpiadoras
-              </Text>
-            </Row>
+              <Row
+                type="flex"
+                justify="center"
+                //align="middle"
+                style={{
+                  marginTop: '25%'
+                }}>
+                <Text strong style={{ fontSize: '30px' }}>
+                  Votación <br></br>limpiadoras
+                </Text>
+              </Row>
+            </Layout>
           </Col>
           <Col
             style={{

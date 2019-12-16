@@ -1,28 +1,35 @@
 import React from 'react'
 import { Row, Col, Button, Typography } from 'antd'
+import { MenuButton } from '@Views'
+import ElectionButton from '../../Election/election'
 //import { useElectionNameQuery } from '@Generated/hooks'
-import ElectionButton from './election'
 
 const { Text } = Typography
 
 const data = {
-  election: [
+  data: [
     {
-      name: 'Elecciones a Rector',
+      name: 'Votacion compleja 1',
       dateInit: new Date(),
       dateEnd: new Date(),
-      url: '/election/vote'
+      url: '/votacion/compleja/votar'
     },
     {
-      name: 'Elecciones a Delegado',
+      name: 'Votacion compleja 2',
       dateInit: new Date(),
       dateEnd: new Date(),
-      url: '/election/vote'
+      url: '/votacion/compleja/votar'
+    },
+    {
+      name: 'Votacion compleja 3',
+      dateInit: new Date(),
+      dateEnd: new Date(),
+      url: '/votacion/compleja/votar'
     }
   ]
 }
 
-const ElectionView = () => {
+const MenuVotacionSimple = () => {
   //https://es.reactjs.org/docs/lists-and-keys.html
   // <Header />
   //const { data, error } = useElectionNameQuery()
@@ -31,16 +38,16 @@ const ElectionView = () => {
     <Row justify="center" className="body">
       <Row style={{ marginTop: '3%', marginBottom: '1%' }}>
         <Text strong style={{ fontSize: '20px' }}>
-          Elecciones pendientes
+          Seleccione la operación que desee realizar:
         </Text>
       </Row>
       <Row>
-        {data.election.map((election, index) => (
+        {data.data.map((data, index) => (
           <ElectionButton
-            name={election.name}
-            dateInit={election.dateInit}
-            dateEnd={election.dateEnd}
-            url={election.url}
+            name={data.name}
+            dateInit={data.dateInit}
+            dateEnd={data.dateEnd}
+            url={data.url}
           />
         ))}
       </Row>
@@ -51,4 +58,4 @@ const ElectionView = () => {
   //return <div>{JSON.stringify(error)}</div>
 }
 
-export default ElectionView
+export default MenuVotacionSimple

@@ -1,19 +1,30 @@
-import { Typography, Button, Checkbox, Row, Col, Layout } from 'antd'
+import { Layout, Typography, Button, Checkbox, Row, Col } from 'antd'
 import React from 'react'
 import routes from '@Routes'
 import { isAuthTokenExpired } from '@Utils/auth'
 import { Redirect } from 'react-router-dom'
 import { Radio, Input } from 'antd'
 import './index.less'
-import wallpaper from '../.././../assets/Wallpaper2.png'
-
+import wallpaper from '../../assets/Wallpaper.png'
+import ElectionButton from './button'
 const { Text } = Typography
 /*type Props = {
 
 }*/
-const VotacionCompleja = (props: any) => {
+const data = [
+  { name: 'Raúl Escribano Corrales' },
+  { name: 'Claudia Soriano' },
+  { name: 'Kevin López Cala' }
+]
+/*
+type Props = {
+  data{
+    name: string
+  }
+}*/
+const Election = (props: any) => {
   if (!isAuthTokenExpired()) {
-    return <Redirect to={routes.vComplex} />
+    return <Redirect to={routes.vSimple} />
   }
   class App extends React.Component {
     state = {
@@ -30,12 +41,6 @@ const VotacionCompleja = (props: any) => {
     }
 
     render() {
-      const radioStyle = {
-        display: 'block',
-        height: '30px',
-        lineHeight: '30px'
-      }
-
       return (
         <Row
           type="flex"
@@ -46,7 +51,8 @@ const VotacionCompleja = (props: any) => {
             style={{
               width: '50%',
               height: '100%',
-              textAlign: 'center'
+              textAlign: 'center',
+              backgroundColor: '#f7f7f7'
             }}>
             <Layout
               style={{
@@ -61,9 +67,9 @@ const VotacionCompleja = (props: any) => {
                   marginTop: '25%'
                 }}>
                 <Text strong style={{ fontSize: '30px' }}>
-                  Votación <br></br>Color del nuevo logo de la ESI
+                  Elecciones <br></br>Delegado de Ing. Informática
                 </Text>
-              </Row>{' '}
+              </Row>
             </Layout>
           </Col>
           <Col
@@ -83,23 +89,9 @@ const VotacionCompleja = (props: any) => {
                     Su voto:
                   </Text>
                   <br></br>
-                  <Button className="button" style={{ marginTop: '5%' }}>
-                    <Radio style={radioStyle} value={1}>
-                      Azul
-                    </Radio>
-                  </Button>
-
-                  <Button className="button">
-                    <Radio style={radioStyle} value={2}>
-                      Verde
-                    </Radio>
-                  </Button>
-
-                  <Button className="button">
-                    <Radio style={radioStyle} value={3}>
-                      Rojo
-                    </Radio>
-                  </Button>
+                  {data.map((candidate, index) => (
+                    <ElectionButton name={candidate.name} index={index} />
+                  ))}
                 </Col>
                 <Row
                   style={{
@@ -135,7 +127,7 @@ const VotacionCompleja = (props: any) => {
   return <App />
 }
 
-export default VotacionCompleja
+export default Election
 /*import React, { Component } from 'react';
 import Button from 'antd/es/button';
 import { withFormik } from 'formik';
