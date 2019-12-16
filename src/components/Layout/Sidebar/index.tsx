@@ -2,7 +2,10 @@ import { Typography, Layout, Row, Col, Avatar } from 'antd'
 
 import React, { Component } from 'react'
 import { string } from 'prop-types'
+import { Icon } from 'antd';
+import { Divider } from 'antd';
 const { Text } = Typography
+const { Footer } = Layout
 
 /*
 import { Layout, Col, Avatar, Typography } from 'antd'
@@ -78,59 +81,82 @@ const Sidebar = (prop: { collapse: boolean }) => {
       collapsible
       collapsedWidth={0}
       trigger={null}
-      width={250}
+      width={300}
       style={{ backgroundColor: '#f0f0f0' }}>
-      <Row>
-        <Col
-          style={{ height: '80%', justifyContent: 'center', marginTop: '15%' }}>
-          <Row
-            style={{
-              marginLeft: '10%',
-              justifyContent: 'center',
-              width: '40%'
-            }}>
-            <Avatar
-              icon="user"
-              size={60}
-              style={{ backgroundColor: '#FFA500' }}></Avatar>
-            <br></br>
-            <br></br>
-            <Text strong style={{ fontSize: '90%' }}>
-              {data.email}
-            </Text>
-            <br></br>
-          </Row>
+      <Col
+        style={{ height: '100%', justifyContent: 'center', marginTop: '15%' }}>
+        <Row
+          style={{
+            marginLeft: '10%',
+            justifyContent: 'center',
+            width: '40%'
+          }}
+        >
+          <Avatar
+            size={90}
+            style={{ backgroundColor: '#FFA500' }}
+          >
+            <Icon type="user" style={{ fontSize: '80px', margin: 'auto' }} />
+          </Avatar>
+        </Row>
+        <Row style={{ paddingTop: '20px' }}>
+          <Text strong style={{ fontSize: '15px', marginLeft: '10%', }}>
+            {data.email}
+          </Text>
+        </Row>
 
-          <Row
-            style={{
-              display: 'flex',
-              justifyContent: 'center',
-              marginTop: '10%'
-            }}>
-            <Col style={{ width: '40%' }}>
+        <Row
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            marginTop: '10%',
+            fontSize: '15px',
+            marginBottom: '100%'
+          }}>
+          <Col style={{ width: '40%', marginLeft: '10%' }}>
+            <Row style={{ paddingBottom: '10px' }}>
               <Text strong>Apellido</Text>
-              <br></br>
+            </Row>
+            <Row style={{ paddingBottom: '10px' }}>
               <Text strong>Nombre</Text>
-              <br></br>
+            </Row>
+            <Row style={{ paddingBottom: '10px' }}>
               <Text strong>NIF/NIE</Text>
-              <br></br>
+            </Row>
+            <Row style={{ paddingBottom: '10px' }}>
               <Text strong>Rol</Text>
-              <br></br>
-            </Col>
-            <Col style={{ width: '40%' }}>
+            </Row>
+          </Col>
+          <Col style={{ width: '50%' }}>
+            <Row style={{ paddingBottom: '10px' }}>
               <Text>{data.secondName}</Text>
-              <br></br>
+            </Row>
+            <Row style={{ paddingBottom: '10px' }}>
               <Text>{data.name}</Text>
-              <br></br>
+            </Row>
+            <Row style={{ paddingBottom: '10px' }}>
               <Text>{data.NIF}</Text>
-              <br></br>
+            </Row>
+            <Row style={{ paddingBottom: '10px' }}>
               <Text>{data.role}</Text>
-              <br></br>
-            </Col>
+            </Row>
+          </Col>
+        </Row>
+
+        <Row align="bottom" style={{ marginTop: '100%' }}>
+          <Row style={{ paddingBottom: '20px', marginLeft: '10%' }}>
+            <Text style={{ color: '#FFA500' }} strong>Ayuda</Text>
           </Row>
-        </Col>
-      </Row>
-    </Layout.Sider>
+          <Row style={{ paddingBottom: '20px', marginLeft: '10%' }}>
+            <Text style={{ color: '#FFA500' }} strong>Contacto</Text>
+          </Row>
+          <Divider />
+          <Row style={{ paddingBottom: '20px', marginBottom: '30px', marginLeft: '10%' }}>
+            <a href="./"><Text style={{ color: '#FC3F32' }} strong>Cerrar Sesión</Text></a>
+          </Row>
+        </Row>
+      </Col>
+    </Layout.Sider >
   )
 }
 

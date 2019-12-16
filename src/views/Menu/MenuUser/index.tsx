@@ -21,12 +21,20 @@ const MenuUser = () => {
   //if (data) {
   return (
     <Row justify="center" className="body">
-      <Row style={{ marginTop: '3%', marginBottom: '1%' }}>
-        <Text strong style={{ fontSize: '20px' }}>
+      <Row
+        type="flex"
+        justify="center"
+        style={{ height: '10vh', paddingTop: '30px' }}
+      >
+        <Text strong style={{ fontSize: '30px', paddingTop: '50px' }}>
           Seleccione la operación que desee realizar:
         </Text>
       </Row>
-      <Row>
+      <Row
+        justify="center"
+        align="middle"
+        style={{ height: '100%', marginTop: '50px'}}
+      >
         {data.data.map((data, index) => (
           <MenuButton name={data.name} url={data.url} />
         ))}

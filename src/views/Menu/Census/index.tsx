@@ -6,12 +6,20 @@ const { Title, Text } = Typography
 const Census = () => {
   return (
     <Row justify="center" className="body">
-      <Row className="text">
-        <Text strong style={{ fontSize: '20px', marginTop: '3%' }}>
+      <Row
+        type="flex"
+        justify="center"
+        style={{ height: '10vh', paddingTop: '30px' }}
+      >
+        <Text strong style={{ fontSize: '30px', paddingTop: '50px' }}>
           Seleccione el censo que quiere conocer
         </Text>
       </Row>
-      <Row>
+      <Row
+        justify="center"
+        align="middle"
+        style={{ height: '100%', marginTop: '50px' }}
+      >
         <ElectionsListItems />
       </Row>
     </Row>

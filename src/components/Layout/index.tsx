@@ -13,13 +13,13 @@ const Layout = ({ children }: LayoutProps) => {
   const [collapse, setCollapse] = useState(true)
   return (
     <AntdLayout className="layout">
-      <Sidebar collapse={collapse} />
       <AntdLayout className="layout-2">
         <Header onClick={() => setCollapse(!collapse)} />
         <AntdLayout.Content className="content">
           <div className="children">{children}</div>
         </AntdLayout.Content>
       </AntdLayout>
+      <Sidebar collapse={collapse} />
     </AntdLayout>
   )
 }
