@@ -7,6 +7,7 @@ import React from 'react'
 import { useHistory } from 'react-router-dom'
 import * as Yup from 'yup'
 import routes from '@Routes'
+import './index.less'
 
 const initialValues = {
   uid: '',
@@ -39,20 +40,25 @@ const LoginForm = () => {
         }
       }}>
       {() => (
-        <Form>
-          <Form.Item name="uid">
-            <Input name="uid" autoComplete="username" placeholder="Usuario" />
+        <Form style={{ marginTop: '5%' }}>
+          <Form.Item name="uid" colon={false} label={<div style={{ color: "#206489", fontSize: '20px' }}>Usuario</div>}>
+            <Input
+              size="large"
+              name="uid"
+              autoComplete="username"
+              placeholder="Usuario" />
           </Form.Item>
-          <Form.Item name="password">
+          <Form.Item name="password" colon={false} label={<div style={{ color: "#206489", fontSize: '20px' }}>Contraseña</div>}>
             <Input.Password
+              size="large"
               name="password"
               autoComplete="current-password"
               placeholder="Contraseña"
             />
           </Form.Item>
           <Form.Item name="submit">
-            <Button htmlType="submit" type="primary">
-              Iniciar Sesión
+            <Button htmlType="submit" type="primary" block href="/pickrole">
+              <div style={{fontSize: '20px'}}>Iniciar Sesión</div>
             </Button>
           </Form.Item>
         </Form>
