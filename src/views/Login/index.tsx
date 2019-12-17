@@ -10,17 +10,19 @@ const { Text } = Typography
 
 const Login = () => {
   if (!isAuthTokenExpired()) {
-    return <Redirect to={routes.base} />
+    return <Redirect to={routes.pickrole} />
   }
+  console.log(isAuthTokenExpired())
 
   return (
-    <Layout style={{
-      backgroundImage: "url(" + Background + ")",
-      height: '100%',
-      backgroundPosition: 'center',
-      backgroundRepeat: 'no-repeat',
-      backgroundSize: 'cover'
-    }}
+    <Layout
+      style={{
+        backgroundImage: 'url(' + Background + ')',
+        height: '100%',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover'
+      }}
     >
       <Row type="flex" style={{ minHeight: '100vh' }}>
         <Col
@@ -43,7 +45,7 @@ const Login = () => {
               paddingBottom: '100px'
             }}
           >
-            <img src={logo} width="300px" ></img>
+            <img src={logo} width="300px" alt="logo" />
           </Row>
           <Row
             style={{
@@ -68,7 +70,8 @@ const Login = () => {
             alignItems: 'center',
             width: '50%',
             backgroundColor: '#ffffff'
-          }}>
+          }}
+        >
           <Card
             bordered={false}
             style={{
@@ -78,15 +81,13 @@ const Login = () => {
               //marginTop: '20%',
               //marginBottom: 'auto'
               backgroundColor: '#f0f0f0'
-            }}>
-            {
-              //Hay un marginTop en el LoginForm porque no queda bien
-            }
+            }}
+          >
             <LoginForm />
           </Card>
         </Col>
       </Row>
-    </Layout >
+    </Layout>
   )
 }
 
