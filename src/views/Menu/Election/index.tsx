@@ -22,6 +22,7 @@ const data = {
   ]
 }
 
+
 const ElectionView = () => {
   //https://es.reactjs.org/docs/lists-and-keys.html
   // <Header />

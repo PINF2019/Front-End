@@ -12,7 +12,6 @@ const data = {
     { name: 'Delegar Secretario', url: '/' }
   ]
 }
-
 const MenuAdmin = () => {
   //https://es.reactjs.org/docs/lists-and-keys.html
   // <Header />

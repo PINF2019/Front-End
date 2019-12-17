@@ -25,7 +25,8 @@ const routes = {
   resultadosVotacion: '/resultados/votaciones',
   resultadosEleccion: '/resultados/elecciones',
   estadisticas: '/resultados/elecciones/estadisticas', //, 'resultados/votaciones/estadisticas'
-  gestionarUsuarios: '/admin/GestionarUsuarios'
+  gestionarUsuarios: '/admin/GestionarUsuarios',
+CensusData: '/census/data'
 }
 
 export { PrivateRoute }

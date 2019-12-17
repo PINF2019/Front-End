@@ -22,7 +22,8 @@ import {
   GenerarEleccionView,
   MenuResultados,
   ResultadosElecciones,
-  ResultadosVotaciones
+  ResultadosVotaciones,
+CensusData
 } from '@Views'
 import routes, { PrivateRoute } from '@Routes'
 import CrearEleccionPonderada from './views/Secretary/EleccionPonderada'
@@ -51,6 +52,7 @@ const Dev = () => {
         <Route exact path={routes.user} component={MenuUser} />
         <Route exact path={routes.census} component={Census} />
         <Route exact path={routes.election} component={Election} />
+        <Route exact path={routes.CensusData} component={CensusData} />
         <Route
           exact
           path={routes.menuCrearEleccion}

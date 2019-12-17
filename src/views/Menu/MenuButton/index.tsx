@@ -11,7 +11,7 @@ const MenuButton = (props: Props) => {
   return (
     <>
       <Button
-      href={props.url}
+        href={props.url}
         style={{
           backgroundColor: '#F0F0F0',
           marginTop: '2%',
@@ -22,13 +22,13 @@ const MenuButton = (props: Props) => {
         }}>
         <Row
           style={{
-            
             width: '100%',
             height: '100%',
             display: 'flex',
             alignContent: 'space-between'
-          }}>
-          <Text strong style={{ marginTop: 'auto', marginBottom: 'auto' }}>
+          }}
+        >
+          <Text strong style={{ marginTop: 'auto', marginBottom: 'auto', fontSize: '20px' }}>
             {props.name}
           </Text>
 
@@ -40,10 +40,11 @@ const MenuButton = (props: Props) => {
               color: '#FFA500',
               marginLeft: 'auto',
               marginTop: '1.1%', //MODIFICAR
+              borderRadius: '50px'
             }}
           />
         </Row>
-       
+
       </Button>
 
       <br></br>

@@ -13,68 +13,73 @@ const PickRole = () => {
       <Row
         type="flex"
         justify="center"
-        style={{ height: '10vh', backgroundColor: '#FFFFFF' }}>
-        <Text strong style={{ fontSize: '20px', marginTop: '3%' }}>
+        style={{ height: '10vh', paddingTop: '30px' }}>
+        <Text strong style={{ fontSize: '30px', paddingTop: '50px' }}>
           Seleccione su rol
         </Text>
       </Row>
       <Row
         type="flex"
         justify="center"
-        //align="middle"
+        align="middle"
+        style={{ height: '70%' }}
       >
         <Row
           type="flex"
           justify="space-between"
-          style={{ marginTop: '7%', width: '50%', backgroundColor: '#FFFFFF' }}>
-          <Col style={{ textAlign: 'center' }}>
-            <div
-              style={{ cursor: 'pointer' }}
-              onClick={() => history.push('/user')}>
+          style={{ paddingTop: '100px', width: '70%' }}
+        >
+          <Col style={{ textAlign: 'center', marginBottom: '30px' }}>
+            <Row style={{ cursor: 'pointer' }} onClick={() => history.push('/user')}>
               <Avatar
                 shape="square"
                 src={rol3}
-                size={150}
+                size={250}
                 style={{
-                  marginBottom: '10%',
-                  backgroundColor: '#F0F0F0'
+                  marginBottom: '20px',
+                  backgroundColor: '#F0F0F0',
+                  padding: '20px',
+                  borderRadius: '20px'
                 }}></Avatar>
-              <br></br>
-              <Text strong>Elector</Text>
-            </div>
+            </Row>
+            <Row>
+              <Text style={{ fontSize: '20px' }} strong>Elector</Text>
+            </Row>
           </Col>
-          <Col style={{ textAlign: 'center' }}>
-            <div
-              style={{ cursor: 'pointer' }}
-              onClick={() => history.push('/secretary')}>
+          <Col style={{ textAlign: 'center', marginBottom: '30px'  }}>
+            <Row style={{ cursor: 'pointer' }} onClick={() => history.push('/secretary')}>
               <Avatar
                 shape="square"
                 src={rol1}
-                size={150}
+                size={250}
                 style={{
-                  marginBottom: '10%',
-                  backgroundColor: '#F0F0F0'
+                  marginBottom: '20px',
+                  backgroundColor: '#F0F0F0',
+                  padding: '20px',
+                  borderRadius: '20px'
                 }}></Avatar>
-              <br></br>
-              <Text strong>Secretario</Text>
-            </div>
+            </Row>
+            <Row>
+              <Text style={{ fontSize: '20px' }} strong>Secretario</Text>
+            </Row>
           </Col>
 
-          <Col style={{ textAlign: 'center' }}>
-            <div
-              style={{ cursor: 'pointer' }}
-              onClick={() => history.push('/admin')}>
+          <Col style={{ textAlign: 'center', marginBottom: '30px'  }}>
+            <Row style={{ cursor: 'pointer' }} onClick={() => history.push('/admin')}>
               <Avatar
                 shape="square"
                 src={rol2}
-                size={150}
+                size={250}
                 style={{
-                  marginBottom: '10%',
-                  backgroundColor: '#F0F0F0'
+                  marginBottom: '20px',
+                  backgroundColor: '#F0F0F0',
+                  padding: '20px',
+                  borderRadius: '20px'
                 }}></Avatar>
-              <br></br>
-              <Text strong>Administrador</Text>
-            </div>
+            </Row>
+            <Row>
+              <Text style={{ fontSize: '20px' }} strong>Administrador</Text>
+            </Row>
           </Col>
         </Row>
       </Row>

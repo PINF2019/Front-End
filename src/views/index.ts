@@ -23,11 +23,13 @@ import ResultadosVotaciones from './Menu/MenuResultados/Votaciones'
 import ResultadosElecciones from './Menu/MenuResultados/Elecciones'
 import Estadisticos from './Estadistica'
 import gestionarUsuarios from './admin/GestionarUsuarios'
+import CensusData from './Menu/CensusData'
 export {
   Login,
   Home,
   Election,
   ElectionView,
+  CensusData,
   PickRole,
   Census,
   MenuAdmin,

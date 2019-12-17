@@ -1,6 +1,7 @@
 query electionName{
     elections{
-        name
+        idSecretary
+        censusFile
         startTime
         endTime
     }

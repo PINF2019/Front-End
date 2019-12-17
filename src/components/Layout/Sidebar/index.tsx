@@ -2,7 +2,10 @@ import { Typography, Layout, Row, Col, Avatar } from 'antd'
 
 import React, { Component } from 'react'
 import { string } from 'prop-types'
+import { Icon } from 'antd';
+import { Divider } from 'antd';
 const { Text } = Typography
+const { Footer } = Layout
 
 /*
 import { Layout, Col, Avatar, Typography } from 'antd'
@@ -78,59 +81,93 @@ const Sidebar = (prop: { collapse: boolean }) => {
       collapsible
       collapsedWidth={0}
       trigger={null}
-      width={250}
-      style={{ backgroundColor: '#f0f0f0' }}>
-      <Row>
-        <Col
-          style={{ height: '80%', justifyContent: 'center', marginTop: '15%' }}>
-          <Row
-            style={{
-              marginLeft: '10%',
-              justifyContent: 'center',
-              width: '40%'
-            }}>
-            <Avatar
-              icon="user"
-              size={60}
-              style={{ backgroundColor: '#FFA500' }}></Avatar>
-            <br></br>
-            <br></br>
-            <Text strong style={{ fontSize: '90%' }}>
-              {data.email}
-            </Text>
-            <br></br>
+      width={300}
+      style={{ backgroundColor: '#f0f0f0', display: 'flex', flex: '1', flexDirection: 'column'}}>
+      <Row
+        type='flex'
+        style={{ justifyContent: 'center', marginTop: '15%', display: 'flex', flex: '1', flexDirection: 'column' }}>
+        <Row
+          type='flex'
+          style={{
+            marginLeft: '10%',
+            justifyContent: 'center',
+            width: '40%',
+            display: 'flex'
+          }}
+        >
+          <Avatar
+            size={90}
+            style={{ backgroundColor: '#FFA500' }}
+          >
+            <Icon type="user" style={{ fontSize: '80px', margin: 'auto' }} />
+          </Avatar>
+        </Row>
+        <Row
+          type='flex'
+          style={{ paddingTop: '20px', display: 'flex'}}>
+          <Text strong style={{ fontSize: '15px', marginLeft: '10%', }}>
+            {data.email}
+          </Text>
+        </Row>
+
+        <Row
+          type='flex'
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            marginTop: '10%',
+            fontSize: '15px',
+            flex: '1'
+          }}>
+          <Col style={{ width: '40%', marginLeft: '10%' }}>
+            <Row style={{ paddingBottom: '10px' }}>
+              <Text strong>Apellido</Text>
+            </Row>
+            <Row style={{ paddingBottom: '10px' }}>
+              <Text strong>Nombre</Text>
+            </Row>
+            <Row style={{ paddingBottom: '10px' }}>
+              <Text strong>NIF/NIE</Text>
+            </Row>
+            <Row style={{ paddingBottom: '10px' }}>
+              <Text strong>Rol</Text>
+            </Row>
+          </Col>
+          <Col style={{ width: '50%' }}>
+            <Row style={{ paddingBottom: '10px' }}>
+              <Text>{data.secondName}</Text>
+            </Row>
+            <Row style={{ paddingBottom: '10px' }}>
+              <Text>{data.name}</Text>
+            </Row>
+            <Row style={{ paddingBottom: '10px' }}>
+              <Text>{data.NIF}</Text>
+            </Row>
+            <Row style={{ paddingBottom: '10px' }}>
+              <Text>{data.role}</Text>
+            </Row>
+          </Col>
+        </Row>
+
+        <Row
+          type='flex'
+          style={{ flexDirection: 'column', display: 'flex' }}
+        >
+          <Row>
+            <Text style={{ color: '#FFA500', marginLeft: '10%' }} strong>Ayuda</Text>
+          </Row>
+          <Row>
+            <Text style={{ color: '#FFA500', marginLeft: '10%' }} strong>Contacto</Text>
           </Row>
 
-          <Row
-            style={{
-              display: 'flex',
-              justifyContent: 'center',
-              marginTop: '10%'
-            }}>
-            <Col style={{ width: '40%' }}>
-              <Text strong>Apellido</Text>
-              <br></br>
-              <Text strong>Nombre</Text>
-              <br></br>
-              <Text strong>NIF/NIE</Text>
-              <br></br>
-              <Text strong>Rol</Text>
-              <br></br>
-            </Col>
-            <Col style={{ width: '40%' }}>
-              <Text>{data.secondName}</Text>
-              <br></br>
-              <Text>{data.name}</Text>
-              <br></br>
-              <Text>{data.NIF}</Text>
-              <br></br>
-              <Text>{data.role}</Text>
-              <br></br>
-            </Col>
+          <Divider />
+
+          <Row>
+            <a href="./" style={{ marginLeft: '10%' }}><Text style={{ color: '#FC3F32' }} strong>Cerrar Sesión</Text></a>
           </Row>
-        </Col>
+        </Row>
       </Row>
-    </Layout.Sider>
+    </Layout.Sider >
   )
 }
 
