@@ -82,14 +82,17 @@ const Sidebar = (prop: { collapse: boolean }) => {
       collapsedWidth={0}
       trigger={null}
       width={300}
-      style={{ backgroundColor: '#f0f0f0' }}>
-      <Col
-        style={{ height: '100%', justifyContent: 'center', marginTop: '15%' }}>
+      style={{ backgroundColor: '#f0f0f0', display: 'flex', flex: '1', flexDirection: 'column'}}>
+      <Row
+        type='flex'
+        style={{ justifyContent: 'center', marginTop: '15%', display: 'flex', flex: '1', flexDirection: 'column' }}>
         <Row
+          type='flex'
           style={{
             marginLeft: '10%',
             justifyContent: 'center',
-            width: '40%'
+            width: '40%',
+            display: 'flex'
           }}
         >
           <Avatar
@@ -99,19 +102,22 @@ const Sidebar = (prop: { collapse: boolean }) => {
             <Icon type="user" style={{ fontSize: '80px', margin: 'auto' }} />
           </Avatar>
         </Row>
-        <Row style={{ paddingTop: '20px' }}>
+        <Row
+          type='flex'
+          style={{ paddingTop: '20px', display: 'flex'}}>
           <Text strong style={{ fontSize: '15px', marginLeft: '10%', }}>
             {data.email}
           </Text>
         </Row>
 
         <Row
+          type='flex'
           style={{
             display: 'flex',
             justifyContent: 'center',
             marginTop: '10%',
             fontSize: '15px',
-            marginBottom: '100%'
+            flex: '1'
           }}>
           <Col style={{ width: '40%', marginLeft: '10%' }}>
             <Row style={{ paddingBottom: '10px' }}>
@@ -143,19 +149,24 @@ const Sidebar = (prop: { collapse: boolean }) => {
           </Col>
         </Row>
 
-        <Row align="bottom" style={{ marginTop: '100%' }}>
-          <Row style={{ paddingBottom: '20px', marginLeft: '10%' }}>
-            <Text style={{ color: '#FFA500' }} strong>Ayuda</Text>
+        <Row
+          type='flex'
+          style={{ flexDirection: 'column', display: 'flex' }}
+        >
+          <Row>
+            <Text style={{ color: '#FFA500', marginLeft: '10%' }} strong>Ayuda</Text>
           </Row>
-          <Row style={{ paddingBottom: '20px', marginLeft: '10%' }}>
-            <Text style={{ color: '#FFA500' }} strong>Contacto</Text>
+          <Row>
+            <Text style={{ color: '#FFA500', marginLeft: '10%' }} strong>Contacto</Text>
           </Row>
+
           <Divider />
-          <Row style={{ paddingBottom: '20px', marginBottom: '30px', marginLeft: '10%' }}>
-            <a href="./"><Text style={{ color: '#FC3F32' }} strong>Cerrar Sesión</Text></a>
+
+          <Row>
+            <a href="./" style={{ marginLeft: '10%' }}><Text style={{ color: '#FC3F32' }} strong>Cerrar Sesión</Text></a>
           </Row>
         </Row>
-      </Col>
+      </Row>
     </Layout.Sider >
   )
 }

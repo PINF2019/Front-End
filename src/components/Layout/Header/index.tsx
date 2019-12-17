@@ -15,12 +15,12 @@ const Header = (props: { onClick: () => void }) => {
         style={{
           display: 'flex',
           width: '100%',
-          marginTop: "15px"
+          flex: '1'
         }}>
-        <Col style={{ marginRight: 'auto' }}>
+        <Col style={{ marginRight: 'auto', display: 'flex' }}>
           <a href="./pickrole"><img src={logo} width="150px"></img></a>
         </Col>
-        <Col style={{ marginLeft: 'auto' }}>
+        <Col style={{ marginLeft: 'auto', display: 'flex' }}>
           <Button type="link" href="/home">
             <Text style={{ fontSize: '20px' }} strong>Inicio</Text>
           </Button>

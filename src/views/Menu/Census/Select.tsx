@@ -28,19 +28,18 @@ const ElectionsListItems = () => {
                 alignContent: 'space-between'
               }}
             >
-              <Text strong style={{ marginTop: 'auto', marginBottom: 'auto', fontSize: '20px' }}>{elec.name}</Text>
+              <Text strong style={{ marginTop: 'auto', marginBottom: 'auto', fontSize: '20px', display: 'flex', flex: '1' }}>{elec.name}</Text>
 
-              <Text style={{ marginTop: 'auto', marginBottom: 'auto', fontSize: '20px' }}>{elec.dateInit.toLocaleDateString()} {'-'}{' '}{elec.dateEnd.toLocaleDateString()}</Text> 
+              <Text style={{ marginTop: 'auto', marginBottom: 'auto', fontSize: '20px', display: 'flex', flex: '1' }}>{elec.dateInit.toLocaleDateString()} {'-'}{' '}{elec.dateEnd.toLocaleDateString()}</Text> 
 
               <Icon
                 type="caret-right"
                 style={{
-                  verticalAlign: 'middle',
                   fontSize: '50px',
                   color: '#FFA500',
-                  marginLeft: 'auto',
                   marginTop: '1.1%', //MODIFICAR
-                  borderRadius: '50px'
+                  borderRadius: '50px',
+                  display: 'flex'
                 }}
               />
             </Row>
