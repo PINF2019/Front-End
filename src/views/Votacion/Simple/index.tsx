@@ -1,17 +1,19 @@
-import { Typography, Button, Checkbox, Row, Col } from 'antd'
+import { Typography, Button, Checkbox, Row, Col, Layout } from 'antd'
 import React from 'react'
 import routes from '@Routes'
 import { isAuthTokenExpired } from '@Utils/auth'
 import { Redirect } from 'react-router-dom'
 import { Radio, Input } from 'antd'
 import './index.less'
+import wallpaper from '../.././../assets/Wallpaper2.png'
+
 const { Text } = Typography
 /*type Props = {
 
 }*/
 const VotacionSimple = (props: any) => {
   if (!isAuthTokenExpired()) {
-    return <Redirect to={routes.vSimple} />
+    return <Redirect to={routes.vComplex} />
   }
   class App extends React.Component {
     state = {
@@ -44,20 +46,25 @@ const VotacionSimple = (props: any) => {
             style={{
               width: '50%',
               height: '100%',
-              textAlign: 'center',
-              backgroundColor: '#f7f7f7'
+              textAlign: 'center'
             }}>
-            <Row
-              type="flex"
-              justify="center"
-              //align="middle"
+            <Layout
               style={{
-                marginTop: '25%'
+                height: '100%',
+                backgroundImage: 'url(' + wallpaper + ')'
               }}>
-              <Text strong style={{ fontSize: '30px' }}>
-                Votación <br></br>limpiadoras
-              </Text>
-            </Row>
+              <Row
+                type="flex"
+                justify="center"
+                //align="middle"
+                style={{
+                  marginTop: '25%'
+                }}>
+                <Text strong style={{ fontSize: '30px' }}>
+                  Votación <br></br>Limpiadoras
+                </Text>
+              </Row>{' '}
+            </Layout>
           </Col>
           <Col
             style={{
@@ -78,13 +85,13 @@ const VotacionSimple = (props: any) => {
                   <br></br>
                   <Button className="button" style={{ marginTop: '5%' }}>
                     <Radio style={radioStyle} value={1}>
-                      A favor
+                      Sí
                     </Radio>
                   </Button>
 
                   <Button className="button">
                     <Radio style={radioStyle} value={2}>
-                      En contra
+                      No
                     </Radio>
                   </Button>
 
