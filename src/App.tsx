@@ -70,11 +70,11 @@ const Dev = () => {
           path={routes.crearEleccionP}
           component={CrearEleccionPonderada}
         />
-        <Route
+        {/* <Route
           exact
           path={routes.crearEleccion}
           component={GenerarEleccionView}
-        />
+        /> */}
         <Route exact path={routes.menuVotacion} component={MenuVotacion} />
         <Route
           exact
@@ -106,6 +106,7 @@ const Dev = () => {
           path={routes.gestionarUsuarios}
           component={gestionarUsuarios}
         />
+        <Route component={NotFound} />
       </Switch>
     </Layout>
   );

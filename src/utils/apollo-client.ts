@@ -7,7 +7,7 @@ import {
 import resolvers from '@Graphql/client/resolvers'
 import { authLink } from './auth'
 
-const httpLink = createHttpLink({ uri: 'http://127.0.0.1:7000/graphql' })
+const httpLink = createHttpLink({ uri: 'http://votuca.krosf.com:7000/graphql' })
 
 const cache = new InMemoryCache()
 
