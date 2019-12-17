@@ -163,7 +163,7 @@ const Sidebar = (prop: { collapse: boolean }) => {
           <Divider />
 
           <Row>
-            <a href="./" style={{ marginLeft: '10%' }}><Text style={{ color: '#FC3F32' }} strong>Cerrar Sesión</Text></a>
+            <a href="/login" style={{ marginLeft: '10%' }}><Text style={{ color: '#FC3F32' }} strong>Cerrar Sesión</Text></a>
           </Row>
         </Row>
       </Row>

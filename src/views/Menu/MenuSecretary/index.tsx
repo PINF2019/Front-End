@@ -7,7 +7,7 @@ const { Text } = Typography
 
 const data = {
   data: [
-    { name: 'Gestionar Elección', url: '/' },
+    { name: 'Gestionar Elección', url: '/secretary/procesoElectoral' },
     { name: 'Gestionar Votación', url: '/' },
     { name: 'Delegar Secretario', url: '/' }
   ]

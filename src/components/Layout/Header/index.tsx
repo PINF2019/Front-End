@@ -18,7 +18,7 @@ const Header = (props: { onClick: () => void }) => {
           flex: '1'
         }}>
         <Col style={{ marginRight: 'auto', display: 'flex' }}>
-          <a href="./pickrole"><img src={logo} width="150px"></img></a>
+          <a href="/pickrole"><img src={logo} width="150px"></img></a>
         </Col>
         <Col style={{ marginLeft: 'auto', display: 'flex' }}>
           <Button type="link" href="/home">

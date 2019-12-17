@@ -11,13 +11,13 @@ const data = {
       name: 'Elecciones a Rector',
       dateInit: new Date(),
       dateEnd: new Date(),
-      url: '/'
+      url: '/election/vote'
     },
     {
       name: 'Elecciones a Delegado',
       dateInit: new Date(),
       dateEnd: new Date(),
-      url: '/'
+      url: '/election/vote'
     }
   ]
 }

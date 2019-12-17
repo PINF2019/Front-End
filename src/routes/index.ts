@@ -4,19 +4,28 @@ const routes = {
   home: '/home',
   base: '/',
   login: '/login',
-  election: '/election',
+  menuElection: '/election',
+  election: '/election/vote',
   pickrole: '/pickrole',
   admin: '/admin',
   secretary: '/secretary',
   user: '/user',
   census: '/census',
-  success: '/success', 
+  success: '/success',
   menuVotacion: '/votacion',
   menuVotacionS: '/votacion/simple',
   menuVotacionC: '/votacion/compleja',
   vSimple: '/votacion/simple/votar',
-  vComplex: '/votacion/complex/votar',
-  CensusData: '/censusdata'
+  vComplex: '/votacion/compleja/votar',
+  menuCrearEleccion: '/secretary/procesoElectoral/crear',
+  menuEleccionAdmin: '/secretary/procesoElectoral',
+  crearEleccionP: '/secretary/procesoElectoral/crear/eleccion',
+  crearEleccion: '/secretary/procesoElectoral/crear/unipersonal',
+  menuResultados: '/resultados',
+  resultadosVotacion: '/resultados/votaciones',
+  resultadosEleccion: '/resultados/elecciones',
+  estadisticas: '/resultados/elecciones/estadisticas', //, 'resultados/votaciones/estadisticas'
+  gestionarUsuarios: '/admin/GestionarUsuarios'
 }
 
 export { PrivateRoute }
