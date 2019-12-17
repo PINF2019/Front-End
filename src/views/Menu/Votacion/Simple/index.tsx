@@ -1,32 +1,32 @@
-import React from 'react'
-import { Row, Col, Button, Typography } from 'antd'
-import { MenuButton } from '@Views'
-import ElectionButton from '../../Election/election'
+import React from "react";
+import { Row, Col, Button, Typography } from "antd";
+import { MenuButton } from "@Views";
+import ElectionButton from "../../Election/election";
 //import { useElectionNameQuery } from '@Generated/hooks'
-const { Text } = Typography
+const { Text } = Typography;
 
 const data = {
   data: [
     {
-      name: 'Votacion 1',
+      name: "Votacion 1",
       dateInit: new Date(),
       dateEnd: new Date(),
-      url: '/votacion/simple/votar'
+      url: "/votacion/simple/votar"
     },
     {
-      name: 'Votacion 2',
+      name: "Votacion 2",
       dateInit: new Date(),
       dateEnd: new Date(),
-      url: '/votacion/simple/votar'
+      url: "/votacion/compleja/votar"
     },
     {
-      name: 'Votacion 3',
+      name: "Votacion 3",
       dateInit: new Date(),
       dateEnd: new Date(),
-      url: '/votacion/simple/votar'
+      url: "/votacion/simple/votar"
     }
   ]
-}
+};
 
 const MenuVotacionSimple = () => {
   //https://es.reactjs.org/docs/lists-and-keys.html
@@ -35,8 +35,8 @@ const MenuVotacionSimple = () => {
   //if (data) {
   return (
     <Row justify="center" className="body">
-      <Row style={{ marginTop: '3%', marginBottom: '1%' }}>
-        <Text strong style={{ fontSize: '20px' }}>
+      <Row style={{ marginTop: "3%", marginBottom: "1%" }}>
+        <Text strong style={{ fontSize: "20px" }}>
           Seleccione la operación que desee realizar:
         </Text>
       </Row>
@@ -51,10 +51,10 @@ const MenuVotacionSimple = () => {
         ))}
       </Row>
     </Row>
-  )
+  );
   // }
 
   //return <div>{JSON.stringify(error)}</div>
-}
+};
 
-export default MenuVotacionSimple
+export default MenuVotacionSimple;

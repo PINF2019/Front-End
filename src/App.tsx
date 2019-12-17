@@ -1,6 +1,6 @@
-import React from 'react'
-import { Route, Switch } from 'react-router-dom'
-import Layout from '@Components/Layout'
+import React from "react";
+import { Route, Switch } from "react-router-dom";
+import Layout from "@Components/Layout";
 import {
   Login,
   Home,
@@ -22,12 +22,14 @@ import {
   GenerarEleccionView,
   MenuResultados,
   ResultadosElecciones,
-  ResultadosVotaciones
-} from '@Views'
-import routes, { PrivateRoute } from '@Routes'
-import CrearEleccionPonderada from './views/Secretary/EleccionPonderada'
-import Estadisticos from './views/Estadistica'
-import gestionarUsuarios from './views/admin/GestionarUsuarios'
+  ResultadosVotaciones,
+  CensusData,
+  NotFound
+} from "@Views";
+import routes, { PrivateRoute } from "@Routes";
+import CrearEleccionPonderada from "./views/Secretary/EleccionPonderada";
+import Estadisticos from "./views/Estadistica";
+import gestionarUsuarios from "./views/admin/GestionarUsuarios";
 
 const Protected = () => {
   return (
@@ -36,8 +38,8 @@ const Protected = () => {
         <Route exact path={routes.base} component={Home} />
       </Switch>
     </Layout>
-  )
-}
+  );
+};
 //Cambiado la ruta base por menu de usuario
 const Dev = () => {
   return (
@@ -51,25 +53,63 @@ const Dev = () => {
         <Route exact path={routes.user} component={MenuUser} />
         <Route exact path={routes.census} component={Census} />
         <Route exact path={routes.election} component={Election} />
-        <Route exact path={routes.menuCrearEleccion} component={MenuCrearEleccion} />
-        <Route exact path={routes.menuEleccionAdmin} component={MenuElecciones} />
-        <Route exact path={routes.crearEleccionP} component={CrearEleccionPonderada} />
-        <Route exact path={routes.crearEleccion} component={GenerarEleccionView} />
+        <Route exact path={routes.censusData} component={CensusData} />
+        <Route exact path={routes.notFound} component={NotFound} />
+        <Route
+          exact
+          path={routes.menuCrearEleccion}
+          component={MenuCrearEleccion}
+        />
+        <Route
+          exact
+          path={routes.menuEleccionAdmin}
+          component={MenuElecciones}
+        />
+        <Route
+          exact
+          path={routes.crearEleccionP}
+          component={CrearEleccionPonderada}
+        />
+        <Route
+          exact
+          path={routes.crearEleccion}
+          component={GenerarEleccionView}
+        />
         <Route exact path={routes.menuVotacion} component={MenuVotacion} />
-        <Route exact path={routes.menuVotacionC} component={MenuVotacionCompleja} />
+        <Route
+          exact
+          path={routes.menuVotacionC}
+          component={MenuVotacionCompleja}
+        />
         <Route exact path={routes.vSimple} component={VotacionSimple} />
         <Route exact path={routes.vComplex} component={VotacionCompleja} />
-        <Route exact path={routes.menuVotacionS} component={MenuVotacionSimple} />
+        <Route
+          exact
+          path={routes.menuVotacionS}
+          component={MenuVotacionSimple}
+        />
         <Route exact path={routes.success} component={Success} />
         <Route exact path={routes.menuResultados} component={MenuResultados} />
-        <Route exact path={routes.resultadosEleccion} component={ResultadosElecciones} />
-        <Route exact path={routes.resultadosVotacion} component={ResultadosVotaciones} />
+        <Route
+          exact
+          path={routes.resultadosEleccion}
+          component={ResultadosElecciones}
+        />
+        <Route
+          exact
+          path={routes.resultadosVotacion}
+          component={ResultadosVotaciones}
+        />
         <Route exact path={routes.estadisticas} component={Estadisticos} />
-        <Route exact path={routes.gestionarUsuarios} component={gestionarUsuarios} />
+        <Route
+          exact
+          path={routes.gestionarUsuarios}
+          component={gestionarUsuarios}
+        />
       </Switch>
     </Layout>
-  )
-}
+  );
+};
 
 //tiene orden de prioridad el switch ese
 const App = () => {
@@ -79,7 +119,7 @@ const App = () => {
       <Route component={Dev} />
       <PrivateRoute component={Protected} />
     </Switch>
-  )
-}
+  );
+};
 
-export default App
+export default App;

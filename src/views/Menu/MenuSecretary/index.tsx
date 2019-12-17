@@ -1,17 +1,17 @@
-import React from 'react'
-import { Row, Col, Button, Typography } from 'antd'
-import { MenuButton } from '@Views'
+import React from "react";
+import { Row, Col, Button, Typography } from "antd";
+import { MenuButton } from "@Views";
 //import { useElectionNameQuery } from '@Generated/hooks'
 
-const { Text } = Typography
+const { Text } = Typography;
 
 const data = {
   data: [
-    { name: 'Gestionar Elección', url: '/secretary/procesoElectoral' },
-    { name: 'Gestionar Votación', url: '/' },
-    { name: 'Delegar Secretario', url: '/' }
+    { name: "Gestionar Elección", url: "/secretary/procesoElectoral" },
+    { name: "Gestionar Votación", url: "/404" },
+    { name: "Delegar Secretario", url: "/404" }
   ]
-}
+};
 
 const MenuAdmin = () => {
   //https://es.reactjs.org/docs/lists-and-keys.html
@@ -20,8 +20,8 @@ const MenuAdmin = () => {
   //if (data) {
   return (
     <Row justify="center" className="body">
-      <Row style={{ marginTop: '3%', marginBottom: '1%' }}>
-        <Text strong style={{ fontSize: '20px' }}>
+      <Row style={{ marginTop: "3%", marginBottom: "1%" }}>
+        <Text strong style={{ fontSize: "20px" }}>
           Seleccione la operación que desee realizar:
         </Text>
       </Row>
@@ -31,10 +31,10 @@ const MenuAdmin = () => {
         ))}
       </Row>
     </Row>
-  )
+  );
   // }
 
   //return <div>{JSON.stringify(error)}</div>
-}
+};
 
-export default MenuAdmin
+export default MenuAdmin;

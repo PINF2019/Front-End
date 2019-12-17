@@ -1,37 +1,37 @@
-import React from 'react'
-import { Row, Col, Button, Typography } from 'antd'
-import { MenuButton } from '@Views'
+import React from "react";
+import { Row, Col, Button, Typography } from "antd";
+import { MenuButton } from "@Views";
 //import { useElectionNameQuery } from '@Generated/hooks'
-const { Text } = Typography
+const { Text } = Typography;
 
 const data = {
-    data: [
-        { name: 'Crear', url: '/secretary/procesoElectoral/crear' },
-        { name: 'Modificar', url: '/secretary/procesoElectoral/modificar' },
-        { name: 'Eliminar', url: '/secretary/procesoElectoral/eliminar' }
-    ]
-}
+  data: [
+    { name: "Crear", url: "/secretary/procesoElectoral/crear" },
+    { name: "Modificar", url: "/404" },
+    { name: "Eliminar", url: "/404" }
+  ]
+};
 
 const MenuElecciones = () => {
-    //const { data, error } = useElectionNameQuery()
-    //if (data) {
-    return (
-        <Row justify="center" className="body">
-            <Row style={{ marginTop: '3%', marginBottom: '1%' }}>
-                <Text strong style={{ fontSize: '20px' }}>
-                    Seleccione la operación que desee realizar:
-                </Text>
-            </Row>
-            <Row>
-                {data.data.map((data, index) => (
-                    <MenuButton name={data.name} url={data.url} />
-                ))}
-            </Row>
-        </Row>
-    )
-    // }
+  //const { data, error } = useElectionNameQuery()
+  //if (data) {
+  return (
+    <Row justify="center" className="body">
+      <Row style={{ marginTop: "3%", marginBottom: "1%" }}>
+        <Text strong style={{ fontSize: "20px" }}>
+          Seleccione la operación que desee realizar:
+        </Text>
+      </Row>
+      <Row>
+        {data.data.map((data, index) => (
+          <MenuButton name={data.name} url={data.url} />
+        ))}
+      </Row>
+    </Row>
+  );
+  // }
 
-    //return <div>{JSON.stringify(error)}</div>
-}
+  //return <div>{JSON.stringify(error)}</div>
+};
 
-export default MenuElecciones
+export default MenuElecciones;
