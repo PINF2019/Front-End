@@ -55,57 +55,25 @@ const Dev = () => {
         <Route exact path={routes.election} component={Election} />
         <Route exact path={routes.censusData} component={CensusData} />
         <Route exact path={routes.notFound} component={NotFound} />
-        <Route
-          exact
-          path={routes.menuCrearEleccion}
-          component={MenuCrearEleccion}
-        />
-        <Route
-          exact
-          path={routes.menuEleccionAdmin}
-          component={MenuElecciones}
-        />
-        <Route
-          exact
-          path={routes.crearEleccionP}
-          component={CrearEleccionPonderada}
-        />
+        <Route exact path={routes.menuCrearEleccion} component={MenuCrearEleccion} />
+        <Route exact path={routes.menuEleccionAdmin} component={MenuElecciones} />
+        <Route exact path={routes.crearEleccionP} component={CrearEleccionPonderada} />
         {/* <Route
           exact
           path={routes.crearEleccion}
           component={GenerarEleccionView}
         /> */}
         <Route exact path={routes.menuVotacion} component={MenuVotacion} />
-        <Route
-          exact
-          path={routes.menuVotacionC}
-          component={MenuVotacionCompleja}
-        />
+        <Route exact path={routes.menuVotacionC} component={MenuVotacionCompleja} />
         <Route exact path={routes.vSimple} component={VotacionSimple} />
         <Route exact path={routes.vComplex} component={VotacionCompleja} />
-        <Route
-          exact
-          path={routes.menuVotacionS}
-          component={MenuVotacionSimple}
-        />
+        <Route exact path={routes.menuVotacionS} component={MenuVotacionSimple} />
         <Route exact path={routes.success} component={Success} />
         <Route exact path={routes.menuResultados} component={MenuResultados} />
-        <Route
-          exact
-          path={routes.resultadosEleccion}
-          component={ResultadosElecciones}
-        />
-        <Route
-          exact
-          path={routes.resultadosVotacion}
-          component={ResultadosVotaciones}
-        />
+        <Route exact path={routes.resultadosEleccion} component={ResultadosElecciones} />
+        <Route exact path={routes.resultadosVotacion} component={ResultadosVotaciones} />
         <Route exact path={routes.estadisticas} component={Estadisticos} />
-        <Route
-          exact
-          path={routes.gestionarUsuarios}
-          component={gestionarUsuarios}
-        />
+        <Route exact path={routes.gestionarUsuarios} component={gestionarUsuarios} />
         <Route component={NotFound} />
       </Switch>
     </Layout>

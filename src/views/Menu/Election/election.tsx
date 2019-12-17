@@ -12,7 +12,7 @@ const ElectionButton = (props: Props) => {
   return (
     <>
       <Button
-      href={props.url}
+        href={props.url}
         style={{
           backgroundColor: '#F0F0F0',
           marginTop: '2%',
@@ -28,11 +28,25 @@ const ElectionButton = (props: Props) => {
             display: 'flex',
             alignContent: 'space-between'
           }}>
-          <Text strong style={{ marginTop: 'auto', marginBottom: 'auto' }}>
+          <Text strong style={{
+            marginTop: 'auto',
+            marginBottom: 'auto',
+            fontSize: '15px',
+            display: 'flex',
+            flex: '1'
+          }}
+          >
             {props.name}
           </Text>
 
-          <Text style={{ textAlign: 'center', margin: 'auto' }}>
+          <Text style={{
+            textAlign: 'center',
+            margin: 'auto',
+            fontSize: '15px',
+            display: 'flex',
+            flex: '1'
+          }}
+          >
             {props.dateInit.toLocaleDateString()} {'-'}
             {props.dateEnd.toLocaleDateString()}
           </Text>
@@ -41,10 +55,10 @@ const ElectionButton = (props: Props) => {
             type="caret-right"
             style={{
               marginTop: '1.1%',
-              verticalAlign: 'middle',
               fontSize: '50px',
-              color: '#FFA500',
-              marginLeft: 'auto'
+              color: 'rgb(255, 165, 0)',
+              marginLeft: 'auto',
+              display: 'flex'
             }}
           />
         </Row>
