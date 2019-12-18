@@ -23,7 +23,7 @@ const data = {
       name: "Votacion 3",
       dateInit: new Date(),
       dateEnd: new Date(),
-      url: "/votacion/simple/votar"
+      url: "/404"
     }
   ]
 };

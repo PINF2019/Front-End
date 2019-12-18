@@ -1,8 +1,8 @@
 import React from 'react'
-import { Row, Card, Button, Col, Icon, Typography } from 'antd'
+import { Divider, Row, Card, Button, Col, Icon, Typography } from 'antd'
 import CensusList from './CensusList'
 
-const {Title, Text} = Typography
+const { Title, Text } = Typography
 
 type Props = {
     name: String
@@ -12,22 +12,59 @@ type Props = {
 
 
 const CensusData = () => {
-    const data = 
-        {name: 'Eleccion 1', dateInit: new Date(), dateEnd: new Date() }
+    const data =
+        { name: 'Eleccion 1', dateInit: new Date(), dateEnd: new Date() }
     return (
-        <Row>
-            <Title><Text>Censo de {data.name}</Text></Title>
-            <Row>
-                <Text style={{ fontSize: '30px', paddingTop: '50px' }}>Secretario:</Text>
-                    <ul>
-                        Apellido1 Apellido2, Nombre
-                    </ul>
-                <Text style={{ fontSize: '30px', paddingTop: '50px' }}>Subsecretario:</Text>
-                    <ul>
-                        Apellido1 Apellido2, Nombre
-                    </ul>
-                <Text style={{ fontSize: '30px', paddingTop: '50px' }}>Votantes:</Text>
-                    <CensusList />
+        <Row
+            style={{
+                height: "100%",
+                backgroundColor: "#ffffff"
+            }}
+        >
+            <Row
+                style={{
+                    height: "100%",
+                    backgroundColor: "#ffffff",
+                    marginLeft: "3%"
+                }}
+            >
+                <Row style={{ marginTop: "4%", marginBottom: "3%", width: "100%" }}>
+                    <Divider
+                        type="vertical"
+                        style={{
+                            height: "3%",
+                            width: "0.2%",
+                            borderRadius: "20%",
+                            backgroundColor: "#FFA500"
+                            //marginLeft: "2%"
+                        }}
+                    >
+                        <Row style={{ width: "500%" }}>
+                            <Text strong style={{ fontSize: "30px" }}>
+                                Censo de {data.name}
+                            </Text>
+                        </Row>
+                    </Divider>
+                </Row>
+                <Row style={{ paddingBottom: "30px" }}>
+                    <Divider
+                        type="vertical"
+                        style={{
+                            height: "3%",
+                            width: "0.2%",
+                            borderRadius: "20%",
+                            backgroundColor: "#FFA500"
+                            //marginLeft: "2%"
+                        }}
+                    >
+                        <Row style={{ width: "500%" }}>
+                            <Text strong style={{ fontSize: "20px", position: "static" }}>
+                                Integrantes <br />
+                            </Text>
+                        </Row>
+                    </Divider>
+                </Row>
+                <CensusList />
             </Row>
         </Row>
     )

@@ -18,13 +18,13 @@ const data = {
       name: "Censo 2",
       dateInit: new Date(),
       dateEnd: new Date(),
-      url: "/census/data"
+      url: "/404"
     },
     {
       name: "Censo 3",
       dateInit: new Date(),
       dateEnd: new Date(),
-      url: "/census/data"
+      url: "/404"
     }
   ]
 };

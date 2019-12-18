@@ -11,19 +11,19 @@ const data = {
             name: 'Votacion 1',
             dateInit: new Date(),
             dateEnd: new Date(),
-            url: '/resultados/votacion/estadisticas'
+            url: '/404'
         },
         {
             name: 'Votacion 2',
             dateInit: new Date(),
             dateEnd: new Date(),
-            url: '/resultados/votacion/estadisticas'
+            url: '/404'
         },
         {
             name: 'Votacion 3',
             dateInit: new Date(),
             dateEnd: new Date(),
-            url: '/resultados/votacion/estadisticas'
+            url: '/404'
         }
     ]
 }

@@ -17,13 +17,13 @@ const data = {
             name: 'Elecciones 2',
             dateInit: new Date(),
             dateEnd: new Date(),
-            url: '/resultados/elecciones/estadisticas'
+            url: '/404'
         },
         {
             name: 'Elecciones 3',
             dateInit: new Date(),
             dateEnd: new Date(),
-            url: '/resultados/elecciones/estadisticas'
+            url: '/404'
         }
     ]
 }

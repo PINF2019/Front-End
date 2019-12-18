@@ -6,7 +6,7 @@ const { Text } = Typography;
 
 const data = {
   data: [
-    { name: "Eleccion", url: "/secretary/procesoElectoral/crear/eleccion" },
+    { name: "Eleccion", url: "/404" },
     { name: "Votacion", url: "/404" }
   ]
 };

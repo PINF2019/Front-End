@@ -8,16 +8,16 @@ const { Text } = Typography
 const data = {
   election: [
     {
-      name: 'Elecciones a Rector',
+      name: 'Elecciones a Delegado',
       dateInit: new Date(),
       dateEnd: new Date(),
       url: '/election/vote'
     },
     {
-      name: 'Elecciones a Delegado',
+      name: 'Elecciones a Rector',
       dateInit: new Date(),
       dateEnd: new Date(),
-      url: '/election/vote'
+      url: '/404'
     }
   ]
 }

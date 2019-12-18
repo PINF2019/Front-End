@@ -12,9 +12,6 @@ const { Text } = Typography;
 
 }*/
 const VotacionSimple = (props: any) => {
-  if (!isAuthTokenExpired()) {
-    return <Redirect to={routes.vSimple} />;
-  }
   class App extends React.Component {
     state = {
       value: 1
@@ -30,12 +27,6 @@ const VotacionSimple = (props: any) => {
     };
 
     render() {
-      const radioStyle = {
-        display: "block",
-        height: "30px",
-        lineHeight: "30px"
-      };
-
       return (
         <Row
           type="flex"
@@ -60,13 +51,15 @@ const VotacionSimple = (props: any) => {
               <Row
                 type="flex"
                 justify="center"
-                //align="middle"
                 style={{
-                  marginTop: "25%"
+                  margin: 'auto',
+                  lineHeight: 'normal'
                 }}
               >
-                <Text strong style={{ fontSize: "30px" }}>
-                  Votación <br></br>limpiadoras
+                <Text strong style={{ fontSize: "40px" }}>
+                  Votación
+                  <br></br>
+                  limpiadoras
                 </Text>
               </Row>
             </Layout>
@@ -83,30 +76,25 @@ const VotacionSimple = (props: any) => {
               align="middle"
               style={{ height: "100%" }}
             >
-              <Radio.Group /*onChange={this.onChange} value={this.state.value hay que poner {props}*/
+              <Radio.Group size="large" style={{ width: "60%", margin: "auto", alignItems: "center" }}/*onChange={this.onChange} value={this.state.value hay que poner {props}*/
               >
                 <Col>
-                  <Text strong style={{ fontSize: "22px" }}>
+                  <Text strong style={{ fontSize: "30px", lineHeight: "100px" }}>
                     Su voto:
                   </Text>
-                  <br></br>
-                  <Button className="button" style={{ marginTop: "5%" }}>
-                    <Radio style={radioStyle} value={1}>
-                      A favor
-                    </Radio>
-                  </Button>
 
-                  <Button className="button">
-                    <Radio style={radioStyle} value={2}>
-                      En contra
-                    </Radio>
-                  </Button>
+                  <Radio className="button" value={1}>
+                    <Text style={{ fontSize: "20px", alignItems: "center" }}>A favor</Text>
+                  </Radio>
 
-                  <Button className="button">
-                    <Radio style={radioStyle} value={3}>
-                      Abstención
-                    </Radio>
-                  </Button>
+                  <Radio className="button" value={2}>
+                    <Text style={{ fontSize: "20px", alignItems: "center" }}>En contra</Text>
+                  </Radio>
+
+                  <Radio className="button" value={3}>
+                    <Text style={{ fontSize: "20px", alignItems: "center" }}>Abstención</Text>
+                  </Radio>
+
                 </Col>
                 <Row
                   style={{
@@ -123,14 +111,14 @@ const VotacionSimple = (props: any) => {
                     }}
                   >
                     <Checkbox onChange={this.validarvoto}>
-                      <Text style={{ color: "#FFFFFF" }}>
+                      <Text style={{ color: "#FFFFFF", fontSize: "15px", width: "40%" }}>
                         Validar mi elección
                       </Text>
                     </Checkbox>
                   </Button>
 
-                  <Button href="/success" type="primary">
-                    Vota!
+                  <Button href="/success" type="primary" style={{ fontSize: "15px", width: "40%" }}>
+                    Votar
                   </Button>
                 </Row>
               </Radio.Group>

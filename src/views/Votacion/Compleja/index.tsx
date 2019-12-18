@@ -12,9 +12,6 @@ const { Text } = Typography
 
 }*/
 const VotacionCompleja = (props: any) => {
-  if (!isAuthTokenExpired()) {
-    return <Redirect to={routes.vComplex} />
-  }
   class App extends React.Component {
     state = {
       value: 1
@@ -30,23 +27,19 @@ const VotacionCompleja = (props: any) => {
     }
 
     render() {
-      const radioStyle = {
-        display: 'block',
-        height: '30px',
-        lineHeight: '30px'
-      }
-
       return (
         <Row
           type="flex"
           justify="center"
           align="middle"
-          style={{ height: '100%' }}>
+          style={{ height: "100%" }}
+        >
           <Col
             style={{
-              width: '50%',
-              height: '100%',
-              textAlign: 'center'
+              width: "50%",
+              height: "100%",
+              textAlign: "center",
+              backgroundColor: "#f7f7f7"
             }}>
             <Layout
               style={{
@@ -58,10 +51,13 @@ const VotacionCompleja = (props: any) => {
                 justify="center"
                 //align="middle"
                 style={{
-                  marginTop: '25%'
+                  margin: 'auto',
+                  lineHeight: 'normal'
                 }}>
-                <Text strong style={{ fontSize: '30px' }}>
-                  Votación <br></br>Color del nuevo logo de la ESI
+                <Text strong style={{ fontSize: '40px' }}>
+                  Votación color del nuevo
+                  <br></br>
+                  logo de la ESI
                 </Text>
               </Row>{' '}
             </Layout>
@@ -76,30 +72,25 @@ const VotacionCompleja = (props: any) => {
               justify="center"
               align="middle"
               style={{ height: '100%' }}>
-              <Radio.Group /*onChange={this.onChange} value={this.state.value hay que poner {props}*/
+              <Radio.Group size="large" style={{ width: "60%", margin: "auto", alignItems: "center" }}/*onChange={this.onChange} value={this.state.value hay que poner {props}*/
               >
                 <Col>
-                  <Text strong style={{ fontSize: '22px' }}>
+                  <Text strong style={{ fontSize: "30px", lineHeight: "100px" }}>
                     Su voto:
                   </Text>
-                  <br></br>
-                  <Button className="button" style={{ marginTop: '5%' }}>
-                    <Radio style={radioStyle} value={1}>
-                      Azul
-                    </Radio>
-                  </Button>
 
-                  <Button className="button">
-                    <Radio style={radioStyle} value={2}>
-                      Verde
-                    </Radio>
-                  </Button>
+                  <Radio className="button" value={1}>
+                    <Text style={{ fontSize: "20px", alignItems: "center" }}>Azul y Blanco</Text>
+                  </Radio>
 
-                  <Button className="button">
-                    <Radio style={radioStyle} value={3}>
-                      Rojo
-                    </Radio>
-                  </Button>
+
+                  <Radio className="button" value={2}>
+                    <Text style={{ fontSize: "20px", alignItems: "center" }}>Verde y Blanco</Text>
+                  </Radio>
+
+                  <Radio className="button" value={3}>
+                    <Text style={{ fontSize: "20px", alignItems: "center" }}>Rojo y Negro</Text>
+                  </Radio>
                 </Col>
                 <Row
                   style={{
@@ -114,14 +105,14 @@ const VotacionCompleja = (props: any) => {
                       marginRight: 'auto'
                     }}>
                     <Checkbox onChange={this.validarvoto}>
-                      <Text style={{ color: '#FFFFFF' }}>
+                      <Text style={{ color: '#FFFFFF', fontSize: "15px", width: "40%" }}>
                         Validar mi elección
                       </Text>
                     </Checkbox>
                   </Button>
 
-                  <Button href="/success" type="primary">
-                    Vota!
+                  <Button href="/success" type="primary" style={{ fontSize: "15px", width: "40%" }}>
+                    Votar
                   </Button>
                 </Row>
               </Radio.Group>

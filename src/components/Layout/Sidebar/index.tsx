@@ -119,7 +119,7 @@ const Sidebar = (prop: { collapse: boolean }) => {
               }}
               style={{ marginLeft: '10%' }}
             >
-              <Text style={{ color: '#FC3F32' }} strong>
+              <Text style={{ color: '#FC3F32', cursor: 'pointer' }}  strong>
                 Cerrar Sesión
               </Text>
             </div>
