@@ -20,7 +20,7 @@ const Success = () => {
           subTitle="Gracias por su participación"
           icon={<Icon type="mail" theme="twoTone" />}
           extra={
-            <Button type="primary" href="/votacion">
+            <Button type="primary" href="/user">
               Aceptar
             </Button>
           }

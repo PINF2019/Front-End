@@ -1,35 +1,44 @@
 import React from 'react'
-import { Button, Typography } from 'antd'
+import ReactDOM from 'react-dom';
+import {
+  Card,
+  Button,
+  Typography,
+  Tabs,
+  Select,
+  InputNumber,
+  DatePicker,
+  Transfer
+} from 'antd'
+import Selector from './select';
 //import { useElectionNameQuery } from '@Generated/hooks'
-import routes from '@Routes'
-import { Select } from 'antd'
-import { Radio } from 'antd'
-import { InputNumber } from 'antd'
-import { TimePicker } from 'antd'
-import moment from 'moment'
-import { DatePicker } from 'antd'
-import { Card, Row } from 'antd'
-
+const { Text } = Typography
+const { TabPane } = Tabs
 const { RangePicker, MonthPicker } = DatePicker
-const { Option } = Select
 const f = new Date()
 const format = 'HH:mm'
+const { Option, OptGroup } = Select
+
+var targetkeys :string[] = [];
+var selectedkeys:any[] = [];
 
 const children: any[] = []
 for (let i = 10; i < 36; i++) {
-  children.push(<Option key={i.toString(36) + i}>{i.toString(36) + i}</Option>)
+  const data = {
+    key: i.toString(),
+    title: `content${i + 1}`,
+    description: `description of content${i + 1}`,
+    chosen: Math.random() * 2 > 1,
+  };
+  if (data.chosen) {
+    targetkeys.push(data.key);
+  }
+  children.push(data);
 }
-
-function handleChange(value: any) {
-  console.log(`selected ${value}`)
-}
-
-function cambiorectificacion(e: any) {
-  console.log(`selected ${e.target.value}`)
-}
-
-function cambioduracion(value: any) {
-  console.log(`selected ${value}`)
+  
+function numerovotaciones(value: any) {
+  console.log(`selected ${value}`);
+  console.log('LAS TARGET LOKO', targetkeys);
 }
 
 function changefecha(value: any, fechas: any) {
@@ -41,57 +50,70 @@ function comprobarinicio(currentDate: any) {
   return f.valueOf() > currentDate.valueOf()
 }
 
-const { Title } = Typography
+
+
+function organo(value:any) {
+
+  console.log('hola');
+  
+}
 
 const GenerarEleccionView = () => {
-  //https://es.reactjs.org/docs/lists-and-keys.html
-  // <Header />
   //const { data, error } = useElectionNameQuery()
   //if (data) {
   return (
     <body>
-      <form>
-        Candidatos:
-        <Select
-          mode="multiple"
-          style={{ width: '50%' }}
-          placeholder="Seleccione los candidatos"
-          defaultValue={[]}
-          onChange={handleChange}>
-          {children}
-        </Select>
-        <br></br>
-        <br></br>
-        Rectificación:
-        <Radio.Group onChange={cambiorectificacion}>
-          <Radio value={1}>Sí</Radio>
-          <Radio value={2}>No</Radio>
-        </Radio.Group>
-        <br></br>
-        <br></br>
-        Votar en más de un grupo:
-        <Radio.Group onChange={cambiorectificacion}>
-          <Radio value={1}>Sí</Radio>
-          <Radio value={2}>No</Radio>
-        </Radio.Group>
-        <br></br>
-        <br></br>
-        Duración:
-        <RangePicker disabledDate={comprobarinicio} onChange={changefecha} />
-        <br></br>
-        <br></br>
-        Número de votaciones realizables:
-        <InputNumber
-          min={1}
-          max={10}
-          placeholder="Introduzca la duración de la votación"
-          onChange={cambioduracion}
-        />
-        <br></br>
-        <br></br>
-        <Button style={{ background: '#206489' }}>Enviar</Button>
-        <Button style={{ background: '#FFA500' }}>Cancelar</Button>
-      </form>
+      <Text strong style={{ fontSize: '25px' }}>
+        Crear elección
+      </Text>
+      <Tabs defaultActiveKey="1">
+        <TabPane tab="Eleccion de representantes" key="1">
+          <form>
+
+          <Select defaultValue="Organo colectivo" 
+          style={{ width: "30%" }} 
+          onChange={organo}
+          >
+            <Option value="PAS">PDVP</Option>
+            <Option value="PDI">PNDVP</Option>
+            <Option value="alumnos">PDINVP</Option>
+            <Option value="alumnos">PAS</Option>
+            <Option value="alumnos">ALU</Option>
+          </Select>
+
+          <br></br>
+          <br></br>
+            <Selector/>
+
+            
+            
+            <br></br>
+            <br></br>
+            <InputNumber
+              min={1}
+              max={10}
+              placeholder="Número máximo de votaciones"
+              onChange={numerovotaciones}
+            />
+            <br></br>
+            <br></br>
+            <Text style={{ fontSize: '20px' }}>Duración:</Text>
+            <br></br>
+            <RangePicker
+              disabledDate={comprobarinicio}
+              onChange={changefecha}
+            />
+            <br></br>
+            <br></br>
+            <Button style={{ background: '#206489',color:'#FFFFFF' }}>Enviar</Button>
+            <Button style={{ background: '#FFA500' }}>Cancelar</Button>
+          </form>
+        </TabPane>
+        <TabPane
+          tab="Elección de cargos unipersonales"
+          disabled
+          key="2"></TabPane>
+      </Tabs>
     </body>
   )
 }

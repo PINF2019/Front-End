@@ -1,97 +1,104 @@
-import { Typography, Button, Checkbox, Row, Col, Layout } from 'antd'
-import React from 'react'
-import routes from '@Routes'
-import { isAuthTokenExpired } from '@Utils/auth'
-import { Redirect } from 'react-router-dom'
-import { Radio, Input } from 'antd'
-import './index.less'
-import wallpaper from '../.././../assets/Wallpaper2.png'
+import { Layout, Typography, Button, Checkbox, Row, Col } from "antd";
+import React from "react";
+import routes from "@Routes";
+import { isAuthTokenExpired } from "@Utils/auth";
+import { Redirect } from "react-router-dom";
+import { Radio, Input } from "antd";
+import "./index.less";
+import wallpaper from "../.././../assets/Wallpaper2.png";
 
-const { Text } = Typography
+const { Text } = Typography;
 /*type Props = {
 
 }*/
 const VotacionSimple = (props: any) => {
   if (!isAuthTokenExpired()) {
-    return <Redirect to={routes.vComplex} />
+    return <Redirect to={routes.vSimple} />;
   }
   class App extends React.Component {
     state = {
       value: 1
-    }
+    };
     validarvoto(e: any) {
-      console.log(`checked = ${e.target.checked}`)
+      console.log(`checked = ${e.target.checked}`);
     }
     onChange = (e: any) => {
-      console.log('radio checked', e.target.value)
+      console.log("radio checked", e.target.value);
       this.setState({
         value: e.target.value
-      })
-    }
+      });
+    };
 
     render() {
       const radioStyle = {
-        display: 'block',
-        height: '30px',
-        lineHeight: '30px'
-      }
+        display: "block",
+        height: "30px",
+        lineHeight: "30px"
+      };
 
       return (
         <Row
           type="flex"
           justify="center"
           align="middle"
-          style={{ height: '100%' }}>
+          style={{ height: "100%" }}
+        >
           <Col
             style={{
-              width: '50%',
-              height: '100%',
-              textAlign: 'center'
-            }}>
+              width: "50%",
+              height: "100%",
+              textAlign: "center",
+              backgroundColor: "#f7f7f7"
+            }}
+          >
             <Layout
               style={{
-                height: '100%',
-                backgroundImage: 'url(' + wallpaper + ')'
-              }}>
+                height: "100%",
+                backgroundImage: "url(" + wallpaper + ")"
+              }}
+            >
               <Row
                 type="flex"
                 justify="center"
                 //align="middle"
                 style={{
-                  marginTop: '25%'
-                }}>
-                <Text strong style={{ fontSize: '30px' }}>
-                  Votación <br></br>Limpiadoras
+                  marginTop: "25%"
+                }}
+              >
+                <Text strong style={{ fontSize: "30px", lineHeight: "100%" }}>
+                  Votación <br></br>limpiadoras
                 </Text>
-              </Row>{' '}
+              </Row>
             </Layout>
           </Col>
           <Col
             style={{
-              width: '50%',
-              height: '100%'
-            }}>
+              width: "50%",
+              height: "100%"
+            }}
+          >
             <Row
               type="flex"
               justify="center"
               align="middle"
-              style={{ height: '100%' }}>
+              style={{ height: "100%" }}
+            >
               <Radio.Group /*onChange={this.onChange} value={this.state.value hay que poner {props}*/
               >
                 <Col>
-                  <Text strong style={{ fontSize: '22px' }}>
+                  <Text strong style={{ fontSize: "22px" }}>
                     Su voto:
                   </Text>
                   <br></br>
-                  <Button className="button" style={{ marginTop: '5%' }}>
+                  <Button className="button" style={{ marginTop: "5%" }}>
                     <Radio style={radioStyle} value={1}>
-                      Sí
+                      A favor
                     </Radio>
                   </Button>
 
                   <Button className="button">
                     <Radio style={radioStyle} value={2}>
-                      No
+                      En contra
                     </Radio>
                   </Button>
 
@@ -103,18 +110,20 @@ const VotacionSimple = (props: any) => {
                 </Col>
                 <Row
                   style={{
-                    display: 'flex',
-                    alignContent: 'space-between',
-                    width: '100%'
-                  }}>
+                    display: "flex",
+                    alignContent: "space-between",
+                    width: "100%"
+                  }}
+                >
                   <Button
                     style={{
-                      backgroundColor: '#206489',
-                      width: '70%',
-                      marginRight: 'auto'
-                    }}>
+                      backgroundColor: "#206489",
+                      width: "70%",
+                      marginRight: "auto"
+                    }}
+                  >
                     <Checkbox onChange={this.validarvoto}>
-                      <Text style={{ color: '#FFFFFF' }}>
+                      <Text style={{ color: "#FFFFFF" }}>
                         Validar mi elección
                       </Text>
                     </Checkbox>
@@ -128,14 +137,14 @@ const VotacionSimple = (props: any) => {
             </Row>
           </Col>
         </Row>
-      )
+      );
     }
   }
 
-  return <App />
-}
+  return <App />;
+};
 
-export default VotacionSimple
+export default VotacionSimple;
 /*import React, { Component } from 'react';
 import Button from 'antd/es/button';
 import { withFormik } from 'formik';
@@ -153,7 +162,7 @@ import routes from '@Routes';
 function cambioduracion(value:any) {
 
   console.log(`selected ${value}`);
-  
+
 }
 
 function handleChange(value:any) {
@@ -163,7 +172,7 @@ function handleChange(value:any) {
 function cambiorectificacion(e:any) {
 
   console.log(`selected ${e.target.value}`);
-  
+
 }
 
 
@@ -180,7 +189,7 @@ const Votacion = (props:any) => {
 
     <form onSubmit={handleSubmit}>
 
-      Rectificación: 
+      Rectificación:
       <Radio.Group onChange={cambiorectificacion}>
        <h2> Elecciones </h2>
        <Radio value={1}>

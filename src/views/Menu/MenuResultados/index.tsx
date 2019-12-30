@@ -5,34 +5,34 @@ import { MenuButton } from '@Views'
 const { Text } = Typography
 
 const data = {
-  data: [
-    { name: 'Elecciones', url: '/resultados/elecciones' },
-    { name: 'Votaciones', url: '/resultados/votaciones' }
-  ]
+    data: [
+        { name: 'Elecciones', url: '/resultados/elecciones' },
+        { name: 'Votaciones', url: '/resultados/votaciones' }
+    ]
 }
 
 const MenuResultados = () => {
-  //https://es.reactjs.org/docs/lists-and-keys.html
-  // <Header />
-  //const { data, error } = useElectionNameQuery()
-  //if (data) {
-  return (
-    <Row justify="center" className="body">
-      <Row style={{ marginTop: '3%', marginBottom: '1%' }}>
-        <Text strong style={{ fontSize: '20px' }}>
-          Seleccione la operación que desee realizar:
+    //https://es.reactjs.org/docs/lists-and-keys.html
+    // <Header />
+    //const { data, error } = useElectionNameQuery()
+    //if (data) {
+    return (
+        <Row justify="center" className="body">
+            <Row style={{ marginTop: '3%', marginBottom: '1%' }}>
+                <Text strong style={{ fontSize: '20px' }}>
+                    Seleccione la operación que desee realizar:
         </Text>
-      </Row>
-      <Row>
-        {data.data.map((data, index) => (
-          <MenuButton name={data.name} url={data.url} />
-        ))}
-      </Row>
-    </Row>
-  )
-  // }
+            </Row>
+            <Row>
+                {data.data.map((data, index) => (
+                    <MenuButton name={data.name} url={data.url} />
+                ))}
+            </Row>
+        </Row>
+    )
+    // }
 
-  //return <div>{JSON.stringify(error)}</div>
+    //return <div>{JSON.stringify(error)}</div>
 }
 
 export default MenuResultados

@@ -1,6 +1,6 @@
-import React from 'react'
-import { Route, Switch } from 'react-router-dom'
-import Layout from '@Components/Layout'
+import React from "react";
+import { Route, Switch } from "react-router-dom";
+import Layout from "@Components/Layout";
 import {
   Login,
   Home,
@@ -23,12 +23,13 @@ import {
   MenuResultados,
   ResultadosElecciones,
   ResultadosVotaciones,
-CensusData
-} from '@Views'
-import routes, { PrivateRoute } from '@Routes'
-import CrearEleccionPonderada from './views/Secretary/EleccionPonderada'
-import Estadisticos from './views/Estadistica'
-import gestionarUsuarios from './views/admin/GestionarUsuarios'
+  CensusData,
+  NotFound
+} from "@Views";
+import routes, { PrivateRoute } from "@Routes";
+import CrearEleccionPonderada from "./views/Secretary/EleccionPonderada";
+import Estadisticos from "./views/Estadistica";
+import gestionarUsuarios from "./views/admin/GestionarUsuarios";
 
 const Protected = () => {
   return (
@@ -37,8 +38,8 @@ const Protected = () => {
         <Route exact path={routes.base} component={Home} />
       </Switch>
     </Layout>
-  )
-}
+  );
+};
 //Cambiado la ruta base por menu de usuario
 const Dev = () => {
   return (
@@ -52,7 +53,8 @@ const Dev = () => {
         <Route exact path={routes.user} component={MenuUser} />
         <Route exact path={routes.census} component={Census} />
         <Route exact path={routes.election} component={Election} />
-        <Route exact path={routes.CensusData} component={CensusData} />
+        <Route exact path={routes.censusData} component={CensusData} />
+        <Route exact path={routes.notFound} component={NotFound} />
         <Route
           exact
           path={routes.menuCrearEleccion}
@@ -73,7 +75,6 @@ const Dev = () => {
           path={routes.crearEleccion}
           component={GenerarEleccionView}
         />
-
         <Route exact path={routes.menuVotacion} component={MenuVotacion} />
         <Route
           exact
@@ -107,8 +108,8 @@ const Dev = () => {
         />
       </Switch>
     </Layout>
-  )
-}
+  );
+};
 
 //tiene orden de prioridad el switch ese
 const App = () => {
@@ -118,7 +119,7 @@ const App = () => {
       <Route component={Dev} />
       <PrivateRoute component={Protected} />
     </Switch>
-  )
-}
+  );
+};
 
-export default App
+export default App;
