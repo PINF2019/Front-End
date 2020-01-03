@@ -3,37 +3,16 @@ import { Row, Col, Button, Typography } from "antd";
 import { MenuButton } from "@Views";
 import "./index.less";
 import ElectionButton from "../Election/election";
+import { useElectionNameQuery } from "@Generated/hooks";
 //import { useElectionNameQuery } from '@Generated/hooks'
 const { Text } = Typography;
-
-const data = {
-  data: [
-    {
-      name: "Censo 1",
-      dateInit: new Date(),
-      dateEnd: new Date(),
-      url: "/census/data"
-    },
-    {
-      name: "Censo 2",
-      dateInit: new Date(),
-      dateEnd: new Date(),
-      url: "/census/data"
-    },
-    {
-      name: "Censo 3",
-      dateInit: new Date(),
-      dateEnd: new Date(),
-      url: "/census/data"
-    }
-  ]
-};
 
 const Census = () => {
   //https://es.reactjs.org/docs/lists-and-keys.html
   // <Header />
   //const { data, error } = useElectionNameQuery()
   //if (data) {
+    const data = useElectionNameQuery();
   return (
     <Row justify="center" className="body">
       <Row style={{ marginTop: "3%", marginBottom: "1%" }}>
@@ -42,12 +21,12 @@ const Census = () => {
         </Text>
       </Row>
       <Row>
-        {data.data.map((data, index) => (
+        {data.data?.elections.map( elec => (  
           <ElectionButton
-            name={data.name}
-            dateInit={data.dateInit}
-            dateEnd={data.dateEnd}
-            url={data.url}
+            name={elec.description}
+            dateInit={new Date(elec.start)}
+            dateEnd={new Date(elec.end)}
+            url={'/census/data'}
           />
         ))}
       </Row>

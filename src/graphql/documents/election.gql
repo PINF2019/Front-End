@@ -1,8 +1,7 @@
 query electionName{
     elections{
-        idSecretary
-        censusFile
-        startTime
-        endTime
+        start
+     	end
+      	description
     }
 }

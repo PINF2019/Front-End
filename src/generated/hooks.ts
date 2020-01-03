@@ -14,33 +14,75 @@ export type Scalars = {
   Float: number;
   /** The javascript `Date` as string. Type represents date and time as the ISO Date string. */
   DateTime: string;
+  /** The `Upload` scalar type represents a file upload. */
+  Upload: any;
+};
+
+export type Candidate = {
+  __typename?: "Candidate";
+  id: Scalars["ID"];
+  firstName: Scalars["String"];
+  lastName: Scalars["String"];
+  about?: Maybe<Scalars["String"]>;
+  image?: Maybe<Scalars["String"]>;
+};
+
+export type CandidateInput = {
+  firstName: Scalars["String"];
+  lastName: Scalars["String"];
+  about?: Maybe<Scalars["String"]>;
+};
+
+export type Census = {
+  __typename?: "Census";
+  id: Scalars["ID"];
+  group: Scalars["String"];
+  date: Scalars["DateTime"];
+  location: Scalars["String"];
+  voters: Array<Voter>;
+};
+
+export type CensusInput = {
+  group: Scalars["String"];
+  date: Scalars["DateTime"];
+  location: Scalars["String"];
+  file: Scalars["String"];
 };
 
 export type Election = {
   __typename?: "Election";
   id: Scalars["ID"];
-  idSecretary: Scalars["String"];
-  censusFile: Scalars["String"];
-  tableMember: Scalars["Int"];
-  startTime: Scalars["DateTime"];
-  endTime: Scalars["DateTime"];
-  correctVote: Scalars["Boolean"];
-  candidate: Array<Scalars["String"]>;
-  electionsAnswers: Array<Scalars["Int"]>;
-  voteOtherGroup: Scalars["Boolean"];
-  nVotes: Scalars["Int"];
-  votesAnswers: Array<Scalars["Int"]>;
+  start: Scalars["DateTime"];
+  end: Scalars["DateTime"];
+  description: Scalars["String"];
+  candidates: Array<Candidate>;
+  results: Array<ElectionResults>;
+  censuses: Array<Census>;
 };
 
 export type ElectionInput = {
-  candidate: Array<Scalars["String"]>;
-  electionsAnswers: Array<Scalars["Int"]>;
-  voteOtherGroup: Scalars["Boolean"];
-  nVotes: Scalars["Int"];
-  votesAnswers: Array<Scalars["Int"]>;
+  start: Scalars["DateTime"];
+  end: Scalars["DateTime"];
+  description: Scalars["String"];
+  censuses: Array<CensusInput>;
+  candidates: Array<CandidateInput>;
+};
+
+export type ElectionResults = {
+  __typename?: "ElectionResults";
+  id: Scalars["ID"];
+  votes: Scalars["Int"];
+  candidate: Candidate;
+  group: Scalars["String"];
+  location: Scalars["String"];
 };
 
 export type ElectoralProcess = Election | Poll;
+
+export type File = {
+  __typename?: "File";
+  name: Scalars["String"];
+};
 
 export type LoginInput = {
   uid: Scalars["String"];
@@ -54,79 +96,106 @@ export type LoginPayload = {
 
 export type Mutation = {
   __typename?: "Mutation";
-  createRole: Role;
   login: LoginPayload;
-  createPoll: Poll;
   createElection: Election;
-};
-
-export type MutationCreateRoleArgs = {
-  input: RoleInput;
+  voteOnElection: Scalars["Boolean"];
+  uploadFile: File;
+  createPoll: Poll;
+  voteOnPoll: Scalars["Boolean"];
 };
 
 export type MutationLoginArgs = {
   input: LoginInput;
 };
 
+export type MutationCreateElectionArgs = {
+  input: ElectionInput;
+};
+
+export type MutationVoteOnElectionArgs = {
+  input: VoteElectionInput;
+};
+
+export type MutationUploadFileArgs = {
+  file: Scalars["Upload"];
+};
+
 export type MutationCreatePollArgs = {
   input: PollInput;
 };
 
-export type MutationCreateElectionArgs = {
-  input: ElectionInput;
+export type MutationVoteOnPollArgs = {
+  input: VotePollInput;
 };
 
 export type Poll = {
   __typename?: "Poll";
   id: Scalars["ID"];
-  idSecretary: Scalars["String"];
-  censusFile: Scalars["String"];
-  tableMember: Scalars["Int"];
-  startTime: Scalars["DateTime"];
-  endTime: Scalars["DateTime"];
-  correctVote: Scalars["Boolean"];
+  start: Scalars["DateTime"];
+  end: Scalars["DateTime"];
+  description: Scalars["String"];
   question: Scalars["String"];
-  answers: Array<Scalars["String"]>;
-  presencial: Scalars["Boolean"];
-  canEdit: Scalars["Boolean"];
-  isSecret: Scalars["Boolean"];
-  votesAnswer: Array<Scalars["Int"]>;
+  options: Array<PollOption>;
+  censuses: Array<Census>;
+  results: Array<PollResults>;
 };
 
 export type PollInput = {
+  start: Scalars["DateTime"];
+  end: Scalars["DateTime"];
+  description: Scalars["String"];
+  censuses: Array<CensusInput>;
   question: Scalars["String"];
-  answers: Array<Scalars["String"]>;
-  presencial: Scalars["Boolean"];
-  canEdit: Scalars["Boolean"];
-  isSecret: Scalars["Boolean"];
-  votesAnswer: Array<Scalars["Int"]>;
+  options: Array<Scalars["String"]>;
+};
+
+export type PollOption = {
+  __typename?: "PollOption";
+  id: Scalars["ID"];
+  text: Scalars["String"];
+};
+
+export type PollResults = {
+  __typename?: "PollResults";
+  id: Scalars["ID"];
+  votes: Scalars["Int"];
+  option: PollOption;
+  group: Scalars["String"];
+  location: Scalars["String"];
 };
 
 export type Query = {
   __typename?: "Query";
-  roles: Array<Role>;
-  role: Role;
   users: Array<User>;
   user: User;
   me: User;
+  candidates: Array<Candidate>;
+  candidate: Candidate;
+  electoralProcesses: Array<ElectoralProcess>;
+  electoralProcess: ElectoralProcess;
+  /** Devuelve aquellos procesos electorales que aún no han sido iniciados */
+  futureElectoralProcesses: Array<ElectoralProcess>;
+  /** Devuelve aquellos procesos electorales que han sido finalizados */
+  pastElectoralProcesses: Array<ElectoralProcess>;
+  elections: Array<Election>;
+  pendingElections: Array<Election>;
+  election: Election;
+  census: Census;
+  censuses: Array<Census>;
   polls: Array<Poll>;
   poll: Poll;
-  elections: Array<Election>;
-  election: Election;
-  electoralprocesses: Array<ElectoralProcess>;
-  electoralprocess: Array<ElectoralProcess>;
   isLoggedIn: Scalars["Boolean"];
-};
-
-export type QueryRoleArgs = {
-  id: Scalars["ID"];
 };
 
 export type QueryUserArgs = {
   id: Scalars["ID"];
 };
 
-export type QueryPollArgs = {
+export type QueryCandidateArgs = {
+  id: Scalars["ID"];
+};
+
+export type QueryElectoralProcessArgs = {
   id: Scalars["ID"];
 };
 
@@ -134,20 +203,24 @@ export type QueryElectionArgs = {
   id: Scalars["ID"];
 };
 
-export type QueryElectoralprocessArgs = {
+export type QueryCensusArgs = {
   id: Scalars["ID"];
 };
 
-export type Role = {
-  __typename?: "Role";
-  id: Scalars["ID"];
-  name: Scalars["String"];
-  users: Array<User>;
+export type QueryCensusesArgs = {
+  skip?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars["Int"]>;
 };
 
-export type RoleInput = {
-  name: Scalars["String"];
+export type QueryPollArgs = {
+  id: Scalars["ID"];
 };
+
+/** All possible roles on app */
+export enum Role {
+  Admin = "ADMIN",
+  Secretary = "SECRETARY"
+}
 
 export type User = {
   __typename?: "User";
@@ -155,7 +228,24 @@ export type User = {
   uid: Scalars["String"];
   firstName: Scalars["String"];
   lastName: Scalars["String"];
-  roles?: Maybe<Array<Role>>;
+  roles: Array<Role>;
+};
+
+export type VoteElectionInput = {
+  candidate: Scalars["ID"];
+  election: Scalars["ID"];
+};
+
+export type VotePollInput = {
+  option: Scalars["ID"];
+  poll: Scalars["ID"];
+};
+
+export type Voter = {
+  __typename?: "Voter";
+  firstName: Scalars["String"];
+  lastName: Scalars["String"];
+  uid: Scalars["String"];
 };
 
 export type ElectionNameQueryVariables = {};
@@ -164,10 +254,9 @@ export type ElectionNameQuery = {
   __typename?: "Query";
   elections: Array<{
     __typename?: "Election";
-    idSecretary: string;
-    censusFile: string;
-    startTime: string;
-    endTime: string;
+    start: string;
+    end: string;
+    description: string;
   }>;
 };
 
@@ -183,10 +272,9 @@ export type LogInMutation = {
 export const ElectionNameDocument = gql`
   query electionName {
     elections {
-      idSecretary
-      censusFile
-      startTime
-      endTime
+      start
+      end
+      description
     }
   }
 `;
