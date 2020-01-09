@@ -1,7 +1,0 @@
-query electionName{
-    elections{
-        start
-     	end
-      	description
-    }
-}

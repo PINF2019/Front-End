@@ -55,26 +55,40 @@ export type Election = {
   start: Scalars["DateTime"];
   end: Scalars["DateTime"];
   description: Scalars["String"];
+  isVoteRectify: Scalars["Boolean"];
   candidates: Array<Candidate>;
   results: Array<ElectionResults>;
   censuses: Array<Census>;
+};
+
+export type ElectionResultsArgs = {
+  filter?: Maybe<ResultsFilter>;
 };
 
 export type ElectionInput = {
   start: Scalars["DateTime"];
   end: Scalars["DateTime"];
   description: Scalars["String"];
+  isVoteRectify: Scalars["Boolean"];
   censuses: Array<CensusInput>;
   candidates: Array<CandidateInput>;
 };
 
 export type ElectionResults = {
   __typename?: "ElectionResults";
-  id: Scalars["ID"];
   votes: Scalars["Int"];
+  group?: Maybe<Scalars["String"]>;
+  location?: Maybe<Scalars["String"]>;
+  genre?: Maybe<Genre>;
   candidate: Candidate;
-  group: Scalars["String"];
-  location: Scalars["String"];
+};
+
+export type ElectionVote = {
+  __typename?: "ElectionVote";
+  id: Scalars["ID"];
+  user: Scalars["ID"];
+  election: Scalars["ID"];
+  candidate: Scalars["ID"];
 };
 
 export type ElectoralProcess = Election | Poll;
@@ -83,6 +97,12 @@ export type File = {
   __typename?: "File";
   name: Scalars["String"];
 };
+
+export enum Genre {
+  Male = "MALE",
+  Female = "FEMALE",
+  Other = "OTHER"
+}
 
 export type LoginInput = {
   uid: Scalars["String"];
@@ -96,12 +116,20 @@ export type LoginPayload = {
 
 export type Mutation = {
   __typename?: "Mutation";
+  modifyUser: User;
   login: LoginPayload;
   createElection: Election;
   voteOnElection: Scalars["Boolean"];
+  modifyElection: Election;
   uploadFile: File;
   createPoll: Poll;
   voteOnPoll: Scalars["Boolean"];
+  modifyPoll: Poll;
+};
+
+export type MutationModifyUserArgs = {
+  input: UserUpdateInput;
+  id: Scalars["ID"];
 };
 
 export type MutationLoginArgs = {
@@ -116,6 +144,11 @@ export type MutationVoteOnElectionArgs = {
   input: VoteElectionInput;
 };
 
+export type MutationModifyElectionArgs = {
+  input: UpdateElectionInput;
+  id: Scalars["ID"];
+};
+
 export type MutationUploadFileArgs = {
   file: Scalars["Upload"];
 };
@@ -128,25 +161,38 @@ export type MutationVoteOnPollArgs = {
   input: VotePollInput;
 };
 
+export type MutationModifyPollArgs = {
+  input: UpdatePollInput;
+  id: Scalars["ID"];
+};
+
 export type Poll = {
   __typename?: "Poll";
   id: Scalars["ID"];
   start: Scalars["DateTime"];
   end: Scalars["DateTime"];
   description: Scalars["String"];
+  isVoteRectify: Scalars["Boolean"];
   question: Scalars["String"];
   options: Array<PollOption>;
+  isRealTime: Scalars["Boolean"];
   censuses: Array<Census>;
   results: Array<PollResults>;
+};
+
+export type PollResultsArgs = {
+  filter?: Maybe<ResultsFilter>;
 };
 
 export type PollInput = {
   start: Scalars["DateTime"];
   end: Scalars["DateTime"];
   description: Scalars["String"];
+  isVoteRectify: Scalars["Boolean"];
   censuses: Array<CensusInput>;
   question: Scalars["String"];
   options: Array<Scalars["String"]>;
+  isRealTime: Scalars["Boolean"];
 };
 
 export type PollOption = {
@@ -159,9 +205,18 @@ export type PollResults = {
   __typename?: "PollResults";
   id: Scalars["ID"];
   votes: Scalars["Int"];
+  group?: Maybe<Scalars["String"]>;
+  location?: Maybe<Scalars["String"]>;
+  genre?: Maybe<Genre>;
   option: PollOption;
-  group: Scalars["String"];
-  location: Scalars["String"];
+};
+
+export type PollVote = {
+  __typename?: "PollVote";
+  id: Scalars["ID"];
+  user: Scalars["String"];
+  poll: Scalars["String"];
+  option: Scalars["String"];
 };
 
 export type Query = {
@@ -169,8 +224,6 @@ export type Query = {
   users: Array<User>;
   user: User;
   me: User;
-  candidates: Array<Candidate>;
-  candidate: Candidate;
   electoralProcesses: Array<ElectoralProcess>;
   electoralProcess: ElectoralProcess;
   /** Devuelve aquellos procesos electorales que aún no han sido iniciados */
@@ -188,10 +241,6 @@ export type Query = {
 };
 
 export type QueryUserArgs = {
-  id: Scalars["ID"];
-};
-
-export type QueryCandidateArgs = {
   id: Scalars["ID"];
 };
 
@@ -216,11 +265,34 @@ export type QueryPollArgs = {
   id: Scalars["ID"];
 };
 
+export type ResultsFilter = {
+  group: Scalars["Boolean"];
+  location: Scalars["Boolean"];
+  genre: Scalars["Boolean"];
+};
+
 /** All possible roles on app */
 export enum Role {
   Admin = "ADMIN",
   Secretary = "SECRETARY"
 }
+
+export type UpdateElectionInput = {
+  start?: Maybe<Scalars["DateTime"]>;
+  end?: Maybe<Scalars["DateTime"]>;
+  description?: Maybe<Scalars["String"]>;
+  censuses?: Maybe<Array<CensusInput>>;
+  candidates?: Maybe<Array<CandidateInput>>;
+};
+
+export type UpdatePollInput = {
+  start?: Maybe<Scalars["DateTime"]>;
+  end?: Maybe<Scalars["DateTime"]>;
+  description?: Maybe<Scalars["String"]>;
+  censuses?: Maybe<Array<CensusInput>>;
+  question?: Maybe<Scalars["String"]>;
+  options?: Maybe<Array<Scalars["String"]>>;
+};
 
 export type User = {
   __typename?: "User";
@@ -229,11 +301,28 @@ export type User = {
   firstName: Scalars["String"];
   lastName: Scalars["String"];
   roles: Array<Role>;
+  genre: Genre;
+};
+
+export type UserInput = {
+  uid: Scalars["String"];
+  password: Scalars["String"];
+  firstName: Scalars["String"];
+  lastName: Scalars["String"];
+  roles?: Maybe<Array<Role>>;
+};
+
+export type UserUpdateInput = {
+  password?: Maybe<Scalars["String"]>;
+  firstName?: Maybe<Scalars["String"]>;
+  lastName?: Maybe<Scalars["String"]>;
+  roles?: Maybe<Array<Role>>;
 };
 
 export type VoteElectionInput = {
   candidate: Scalars["ID"];
   election: Scalars["ID"];
+  rectifiedVote?: Maybe<Scalars["ID"]>;
 };
 
 export type VotePollInput = {
@@ -248,16 +337,37 @@ export type Voter = {
   uid: Scalars["String"];
 };
 
-export type ElectionNameQueryVariables = {};
+export type ElectionsQueryVariables = {};
 
-export type ElectionNameQuery = {
+export type ElectionsQuery = {
   __typename?: "Query";
-  elections: Array<{
+  pendingElections: Array<{
     __typename?: "Election";
     start: string;
     end: string;
     description: string;
+    id: string;
   }>;
+};
+
+export type OptionsQueryVariables = {
+  id: Scalars["ID"];
+};
+
+export type OptionsQuery = {
+  __typename?: "Query";
+  election: {
+    __typename?: "Election";
+    start: string;
+    end: string;
+    description: string;
+    candidates: Array<{
+      __typename?: "Candidate";
+      id: string;
+      firstName: string;
+      lastName: string;
+    }>;
+  };
 };
 
 export type LogInMutationVariables = {
@@ -269,46 +379,87 @@ export type LogInMutation = {
   login: { __typename?: "LoginPayload"; accessToken: string };
 };
 
-export const ElectionNameDocument = gql`
-  query electionName {
-    elections {
+export const ElectionsDocument = gql`
+  query elections {
+    pendingElections {
       start
       end
       description
+      id
     }
   }
 `;
-export function useElectionNameQuery(
+export function useElectionsQuery(
   baseOptions?: ApolloReactHooks.QueryHookOptions<
-    ElectionNameQuery,
-    ElectionNameQueryVariables
+    ElectionsQuery,
+    ElectionsQueryVariables
   >
 ) {
-  return ApolloReactHooks.useQuery<
-    ElectionNameQuery,
-    ElectionNameQueryVariables
-  >(ElectionNameDocument, baseOptions);
+  return ApolloReactHooks.useQuery<ElectionsQuery, ElectionsQueryVariables>(
+    ElectionsDocument,
+    baseOptions
+  );
 }
-export function useElectionNameLazyQuery(
+export function useElectionsLazyQuery(
   baseOptions?: ApolloReactHooks.LazyQueryHookOptions<
-    ElectionNameQuery,
-    ElectionNameQueryVariables
+    ElectionsQuery,
+    ElectionsQueryVariables
   >
 ) {
-  return ApolloReactHooks.useLazyQuery<
-    ElectionNameQuery,
-    ElectionNameQueryVariables
-  >(ElectionNameDocument, baseOptions);
+  return ApolloReactHooks.useLazyQuery<ElectionsQuery, ElectionsQueryVariables>(
+    ElectionsDocument,
+    baseOptions
+  );
 }
-export type ElectionNameQueryHookResult = ReturnType<
-  typeof useElectionNameQuery
+export type ElectionsQueryHookResult = ReturnType<typeof useElectionsQuery>;
+export type ElectionsLazyQueryHookResult = ReturnType<
+  typeof useElectionsLazyQuery
 >;
-export type ElectionNameLazyQueryHookResult = ReturnType<
-  typeof useElectionNameLazyQuery
+export type ElectionsQueryResult = ApolloReactCommon.QueryResult<
+  ElectionsQuery,
+  ElectionsQueryVariables
 >;
-export type ElectionNameQueryResult = ApolloReactCommon.QueryResult<
-  ElectionNameQuery,
-  ElectionNameQueryVariables
+export const OptionsDocument = gql`
+  query options($id: ID!) {
+    election(id: $id) {
+      start
+      end
+      description
+      candidates {
+        id
+        firstName
+        lastName
+      }
+    }
+  }
+`;
+export function useOptionsQuery(
+  baseOptions?: ApolloReactHooks.QueryHookOptions<
+    OptionsQuery,
+    OptionsQueryVariables
+  >
+) {
+  return ApolloReactHooks.useQuery<OptionsQuery, OptionsQueryVariables>(
+    OptionsDocument,
+    baseOptions
+  );
+}
+export function useOptionsLazyQuery(
+  baseOptions?: ApolloReactHooks.LazyQueryHookOptions<
+    OptionsQuery,
+    OptionsQueryVariables
+  >
+) {
+  return ApolloReactHooks.useLazyQuery<OptionsQuery, OptionsQueryVariables>(
+    OptionsDocument,
+    baseOptions
+  );
+}
+export type OptionsQueryHookResult = ReturnType<typeof useOptionsQuery>;
+export type OptionsLazyQueryHookResult = ReturnType<typeof useOptionsLazyQuery>;
+export type OptionsQueryResult = ApolloReactCommon.QueryResult<
+  OptionsQuery,
+  OptionsQueryVariables
 >;
 export const LogInDocument = gql`
   mutation LogIn($input: LoginInput!) {

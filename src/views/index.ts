@@ -1,6 +1,5 @@
 import Login from "./Login";
 import Home from "./Home";
-import ElectionView from "./Menu/Election";
 import Election from "./Election";
 import PickRole from "./PickRole";
 import MenuAdmin from "./Menu/MenuAdmin";
@@ -25,11 +24,11 @@ import Estadisticos from "./Estadistica";
 import gestionarUsuarios from "./admin/GestionarUsuarios";
 import CensusData from "./CensusData";
 import NotFound from "./NotFound";
+import PendantVotation from "./Menu/PendantVotation";
 export {
   Login,
   Home,
   Election,
-  ElectionView,
   PickRole,
   Census,
   MenuAdmin,
@@ -52,5 +51,6 @@ export {
   Estadisticos,
   gestionarUsuarios,
   CensusData,
-  NotFound
+  NotFound,
+  PendantVotation
 };

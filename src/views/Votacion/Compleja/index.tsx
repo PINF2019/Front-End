@@ -6,12 +6,18 @@ import { Redirect } from "react-router-dom";
 import { Radio, Input } from "antd";
 import "./index.less";
 import wallpaper from "../.././../assets/Wallpaper2.png";
+import { useParams } from "react-router-dom";
+
+//  const {id} = useParams();
+//Esto va abajo dentro de la clase
+// Pero estoy ciega y lo pongo aqui porque no me doy cuenta
 
 const { Text } = Typography;
 /*type Props = {
 
 }*/
 const VotacionCompleja = (props: any) => {
+  const {id} = useParams();
   if (!isAuthTokenExpired()) {
     return <Redirect to={routes.vComplex} />;
   }
@@ -95,17 +101,7 @@ const VotacionCompleja = (props: any) => {
                     </Radio>
                   </Button>
 
-                  <Button className="button">
-                    <Radio style={radioStyle} value={2}>
-                      Verde
-                    </Radio>
-                  </Button>
-
-                  <Button className="button">
-                    <Radio style={radioStyle} value={3}>
-                      Rojo
-                    </Radio>
-                  </Button>
+               
                 </Col>
                 <Row
                   style={{

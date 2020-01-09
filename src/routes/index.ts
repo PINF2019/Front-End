@@ -9,10 +9,11 @@ const routes = {
   pickrole: "/pickrole",
   admin: "/admin",
   secretary: "/secretary",
-  user: "/user",
+  //user: "/user",
   census: "/census",
   success: "/success",
   menuVotacion: "/votacion",
+  votaion: "/votacion/:id",
   menuVotacionS: "/votacion/simple",
   menuVotacionC: "/votacion/compleja",
   vSimple: "/votacion/simple/votar",
@@ -27,7 +28,8 @@ const routes = {
   estadisticas: "/resultados/elecciones/estadisticas", //, 'resultados/votaciones/estadisticas'
   gestionarUsuarios: "/admin/GestionarUsuarios",
   censusData: "/census/data",
-  notFound: "/404"
+  notFound: "/404",
+  pendantVotation: "/user"
 };
 
 export { PrivateRoute };

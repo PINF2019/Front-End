@@ -1,0 +1,21 @@
+query elections{
+    pendingElections{
+        start
+      	end
+      	description
+        id
+    }
+}
+
+query options($id: ID!) {
+  election(id: $id) {
+    start
+    end
+    description
+    candidates {
+      id
+      firstName
+      lastName
+    }
+  }
+}
