@@ -7,11 +7,11 @@ const {Title, Text} = Typography
 
 
 const CensusData = () => {
-    const id = useParams();
-    const data = useCensusQuery(id);
+    const {id} = useParams<{id:string}>();
+    const {data} = useCensusQuery({variables: {id}});
     return (
         <Row>
-            <Title><Text>Censo de {data.data?.election.description}</Text></Title>
+            <Title><Text>Censo de {{data}.data?.election.description}</Text></Title>
             <Row>
                 <Text style={{ fontSize: '30px', paddingTop: '50px' }}>Secretario:</Text>
                     <ul>
@@ -23,7 +23,7 @@ const CensusData = () => {
                     </ul>
                 <Text style={{ fontSize: '30px', paddingTop: '50px' }}>Votantes:</Text>
                 <ul>
-                    {data.data?.election.censuses.map(elec => (
+                    {{data}.data?.election.censuses.map(elec => (
                         <Row>
                             <Text>{elec.voters.map}</Text>
                         </Row>
