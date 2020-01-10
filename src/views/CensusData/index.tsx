@@ -1,22 +1,17 @@
 import React from 'react'
 import { Row, Card, Button, Col, Icon, Typography } from 'antd'
-import CensusList from './CensusList'
+import { useParams, useHistory } from "react-router-dom";
+import { useCensusQuery, Census } from '@Generated/hooks';
 
 const {Title, Text} = Typography
 
-type Props = {
-    name: String
-    dateInit: String
-    dateEnd: String
-}
-
 
 const CensusData = () => {
-    const data = 
-        {name: 'Eleccion 1', dateInit: new Date(), dateEnd: new Date() }
+    const id = useParams();
+    const data = useCensusQuery(id);
     return (
         <Row>
-            <Title><Text>Censo de {data.name}</Text></Title>
+            <Title><Text>Censo de {data.data?.election.description}</Text></Title>
             <Row>
                 <Text style={{ fontSize: '30px', paddingTop: '50px' }}>Secretario:</Text>
                     <ul>
@@ -27,7 +22,13 @@ const CensusData = () => {
                         Apellido1 Apellido2, Nombre
                     </ul>
                 <Text style={{ fontSize: '30px', paddingTop: '50px' }}>Votantes:</Text>
-                    <CensusList />
+                <ul>
+                    {data.data?.election.censuses.map(elec => (
+                        <Row>
+                            <Text>{elec.voters.map}</Text>
+                        </Row>
+                    ))}
+                </ul>
             </Row>
         </Row>
     )

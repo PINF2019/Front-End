@@ -370,6 +370,26 @@ export type OptionsQuery = {
   };
 };
 
+export type CensusQueryVariables = {
+  id: Scalars["ID"];
+};
+
+export type CensusQuery = {
+  __typename?: "Query";
+  election: {
+    __typename?: "Election";
+    description: string;
+    censuses: Array<{
+      __typename?: "Census";
+      voters: Array<{
+        __typename?: "Voter";
+        firstName: string;
+        lastName: string;
+      }>;
+    }>;
+  };
+};
+
 export type LogInMutationVariables = {
   input: LoginInput;
 };
@@ -460,6 +480,47 @@ export type OptionsLazyQueryHookResult = ReturnType<typeof useOptionsLazyQuery>;
 export type OptionsQueryResult = ApolloReactCommon.QueryResult<
   OptionsQuery,
   OptionsQueryVariables
+>;
+export const CensusDocument = gql`
+  query census($id: ID!) {
+    election(id: $id) {
+      description
+      censuses {
+        voters {
+          firstName
+          lastName
+        }
+      }
+    }
+  }
+`;
+export function useCensusQuery(
+  baseOptions?: ApolloReactHooks.QueryHookOptions<
+    CensusQuery,
+    CensusQueryVariables
+  >
+) {
+  return ApolloReactHooks.useQuery<CensusQuery, CensusQueryVariables>(
+    CensusDocument,
+    baseOptions
+  );
+}
+export function useCensusLazyQuery(
+  baseOptions?: ApolloReactHooks.LazyQueryHookOptions<
+    CensusQuery,
+    CensusQueryVariables
+  >
+) {
+  return ApolloReactHooks.useLazyQuery<CensusQuery, CensusQueryVariables>(
+    CensusDocument,
+    baseOptions
+  );
+}
+export type CensusQueryHookResult = ReturnType<typeof useCensusQuery>;
+export type CensusLazyQueryHookResult = ReturnType<typeof useCensusLazyQuery>;
+export type CensusQueryResult = ApolloReactCommon.QueryResult<
+  CensusQuery,
+  CensusQueryVariables
 >;
 export const LogInDocument = gql`
   mutation LogIn($input: LoginInput!) {

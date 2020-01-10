@@ -19,3 +19,15 @@ query options($id: ID!) {
     }
   }
 }
+
+query census($id: ID!) {
+  election(id: $id) {
+    description
+    censuses {
+      voters {
+        firstName
+        lastName
+      }
+    }
+  }
+}
