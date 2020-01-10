@@ -1,0 +1,37 @@
+overwrite: true
+hooks:
+  afterOneFileWrite:
+    - prettier --write
+generates:
+  src/generated/hooks.ts:
+    schema:
+      - "http://votuca.krosf.com:7000/graphql"
+      - src/graphql/client/schema.gql
+    documents: "src/graphql/documents/*.gql"
+    plugins:
+      - add: /* THIS IS A GENERATED FILE - DO NOT MODIFY */
+      - add: /* eslint-disable */
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-react-apollo"
+    config:
+      scalars:
+        DateTime: string
+      reactApolloVersion: 3
+      gqlImport: "@apollo/client#gql"
+      apolloReactCommonImportFrom: "@apollo/client"
+      apolloReactHooksImportFrom: "@apollo/client"
+      withHooks: true
+      withHOC: false
+      withComponent: false
+      preResolveTypes: true
+      addDocBlocks: false
+  src/generated/resolvers.ts:
+    schema: src/graphql/client/schema.gql
+    plugins:
+      - add: /* THIS IS A GENERATED FILE - DO NOT MODIFY */
+      - add: /* eslint-disable */
+      - typescript
+      - typescript-resolvers
+    config:
+      contextType: "@Graphql/client/context#ApolloClientContext"

@@ -1,0 +1,35 @@
+
+/*
+const data = {
+  user: {
+    email: 'hola@hola',
+    name: 'name',
+    secondName: 'second Name',
+    NIF: 'NIF',
+    role: 1
+  }
+}
+
+const Sidebar = (/*props: Props*/) => {
+  const [collapsed, setCollapsed] = useState(true)
+  return (
+    <Layout.Sider collapsed={collapsed} style={{ backgroundColor: '#f0f0f0' }}>
+      <Col style={{ height: '30%' }}>
+        <Avatar icon="user"></Avatar>
+        <br></br>
+        <Text>{/*props*/ data.user.email} </Text>
+        <br></br>
+        <Text strong>Apellido</Text>
+        <Text>{/*props*/ data.user.secondName}</Text>
+        <br></br>
+        <Text strong>Nombre</Text> <Text>{/*props*/ data.user.name}</Text>
+        <br></br>
+        <Text strong>NIF/NIE</Text> <Text>{/*props*/ data.user.NIF}</Text>
+        <br></br>
+        <Text strong>Rol</Text> <Text>{/*props*/ data.user.role}</Text>
+        <br></br>
+      </Col>
+    </Layout.Sider>
+  )
+}
+*/
