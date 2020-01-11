@@ -1,56 +1,72 @@
-import Login from "./Login";
+//Raíz
 import Home from "./Home";
+import Login from "./Login";
+import PickRoleAdmin from "./PickRole/Admin"; 
+import PickRoleSecretary from "./PickRole/Secretary"
+import Votacion from "./Votacion";
+import Resultados from "./Resultados";
+import CensusData from "./CensusData";
+
 import Election from "./Election";
-import PickRole from "./PickRole";
+
+//Menu
+import MenuUser from "./Menu/MenuUser"
 import MenuAdmin from "./Menu/MenuAdmin";
 import MenuSecretary from "./Menu/MenuSecretary";
-import MenuUser from "./Menu/MenuUser";
 import MenuButton from "./Menu/MenuButton";
-import Census from "./Menu/Census";
-import MenuVotacion from "./Menu/Votacion";
-import MenuVotacionSimple from "./Menu/Votacion/Simple";
-import VotacionSimple from "./Votacion/Simple";
-import VotacionCompleja from "./Votacion/Compleja";
-import Success from "./Success";
-import MenuVotacionCompleja from "./Menu/Votacion/Compleja";
-import MenuElecciones from "./Menu/MenuElecciones";
 import MenuCrearEleccion from "./Menu/MenuCrearEleccion";
-import CrearEleccionPonderada from "./Secretary/EleccionPonderada";
-import GenerarEleccionView from "./Secretary/ProcesoElectoral";
 import MenuResultados from "./Menu/MenuResultados";
-import ResultadosVotaciones from "./Menu/MenuResultados/Votaciones";
-import ResultadosElecciones from "./Menu/MenuResultados/Elecciones";
-import Estadisticos from "./Estadistica";
+import Census from "./Menu/Census";
+
+//Secretario
+import CrearEleccion from "./Secretary/ProcesoElectoral";
+
+//Admin
 import gestionarUsuarios from "./admin/GestionarUsuarios";
-import CensusData from "./CensusData";
-import NotFound from "./NotFound";
-import PendantVotation from "./Menu/PendantVotation";
+
+// Overlays
+import Success from "./Overlays/VotoRegistrado";
+import NotFound from "./Overlays/NotFound";
+import ProcesoCreadoOverlay from "./Overlays/ProcesoCreado"
+import ProcesoModificadoOverlay from "./Overlays/ProcesoModificado"
+import ProcesoEliminadoOverlay from "./Overlays/ProcesoEliminado"
+import SeguroEliminadoProcesoOverlay from "./Overlays/SeguroEliminadoProceso"
+import SeguroEliminadoUsuarioOverlay from "./Overlays/SeguroEliminadoUsuario"
+import SeguroPublicacionOverlay from "./Overlays/SeguroPublicacion"
+import UsuarioCreadoOverlay from "./Overlays/UsuarioCreado"
+import UsuarioEliminadoOverlay from "./Overlays/UsuarioEliminado"
+import UsuarioModificadoOverlay from "./Overlays/UsuarioModificado"
+import VotoRegistradoOverlay from "./Overlays/VotoRegistrado"
+
 export {
   Login,
   Home,
   Election,
-  PickRole,
+  PickRoleAdmin,
+  PickRoleSecretary,
   Census,
   MenuAdmin,
   MenuSecretary,
   MenuUser,
   MenuButton,
-  MenuVotacionSimple,
-  MenuVotacionCompleja,
-  VotacionSimple,
-  VotacionCompleja,
+  Votacion,
   Success,
-  MenuVotacion,
-  MenuElecciones,
   MenuCrearEleccion,
-  CrearEleccionPonderada,
-  GenerarEleccionView,
+  CrearEleccion,
   MenuResultados,
-  ResultadosElecciones,
-  ResultadosVotaciones,
-  Estadisticos,
+  Resultados,
   gestionarUsuarios,
   CensusData,
   NotFound,
-  PendantVotation
+  ProcesoCreadoOverlay,
+  ProcesoModificadoOverlay,
+  ProcesoEliminadoOverlay,
+  SeguroEliminadoProcesoOverlay,
+  SeguroEliminadoUsuarioOverlay,
+  SeguroPublicacionOverlay,
+  UsuarioCreadoOverlay,
+  UsuarioModificadoOverlay,
+  UsuarioEliminadoOverlay,
+  VotoRegistradoOverlay
+  
 };

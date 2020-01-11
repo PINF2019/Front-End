@@ -4,32 +4,42 @@ const routes = {
   home: "/home",
   base: "/",
   login: "/login",
+  pickroleadmin: "/pickroleadmin",
+  pickrolesecretary: "/pickrolesecretary",
+  votacion: "/votacion/:id",
+  resultados: "/resultados/:id",
+  censusData: "/census/:id",
+  
+  election: "/election/vote", //hay que quitarlo
   menuElection: "/election",
-  election: "/election/vote",
-  pickrole: "/pickrole",
+  
+  
+  user: "/user",
   admin: "/admin",
   secretary: "/secretary",
-  //user: "/user",
-  census: "/census",
-  success: "/success",
-  menuVotacion: "/votacion",
-  votaion: "/votacion/:id",
-  menuVotacionS: "/votacion/simple",
-  menuVotacionC: "/votacion/compleja",
-  vSimple: "/votacion/simple/votar",
-  vComplex: "/votacion/compleja/votar",
-  menuCrearEleccion: "/secretary/procesoElectoral/crear",
-  menuEleccionAdmin: "/secretary/procesoElectoral",
-  crearEleccionP: "/secretary/procesoElectoral/crear/eleccion",
-  crearEleccion: "/secretary/procesoElectoral/crear/unipersonal",
+  menuCrearEleccion: "/secretary/crearProcesoElectoral",
   menuResultados: "/resultados",
-  resultadosVotacion: "/resultados/votaciones",
-  resultadosEleccion: "/resultados/elecciones",
-  estadisticas: "/resultados/elecciones/estadisticas", //, 'resultados/votaciones/estadisticas'
+  menuCensus: "/census",
+
+  crearEleccion: "/secretary/crearProcesoElectoral/eleccion",
+  
   gestionarUsuarios: "/admin/GestionarUsuarios",
-  censusData: "/census/data",
+  
+  success: "/success",
   notFound: "/404",
-  pendantVotation: "/user"
+  //Esto deberian ser pop ups pero por ahora se queda así
+  procesoCreado: "/procesoCreado", 
+  procesoModificado: "/procesoModificado",
+  procesoEliminado: "/procesoEliminado",
+  seguroEliminadoProceso: "/seguroEliminadoProceso",
+  seguroEliminadoUsuario: "/seguroEliminacionUsuario",
+  seguroPublicacion: "/seguroPublicacion",
+  usuarioCreado: "/usuarioCreado",
+  usuarioEliminado: "/usuarioEliminado",
+  usuarioModificado: "/usuarioModificado",
+  votoRegistrado: "/votoRegistrado"
+
+
 };
 
 export { PrivateRoute };

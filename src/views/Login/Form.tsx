@@ -57,7 +57,7 @@ const LoginForm = () => {
             />
           </Form.Item>
           <Form.Item name="submit">
-            <Button htmlType="submit" type="primary" block href="/pickrole">
+            <Button htmlType="submit" type="primary" block href="/pickroleadmin">
               <div style={{fontSize: '20px'}}>Iniciar Sesión</div>
             </Button>
           </Form.Item>

@@ -6,7 +6,7 @@ const { Text } = Typography;
 
 const data = {
   data: [
-    { name: "Eleccion", url: "/secretary/procesoElectoral/crear/eleccion" },
+    { name: "Eleccion", url: "/secretary/crearprocesoElectoral/eleccion" },
     { name: "Votacion", url: "/404" }
   ]
 };
@@ -20,7 +20,7 @@ const MenuCrearEleccion = () => {
     <Row justify="center" className="body">
       <Row style={{ marginTop: "3%", marginBottom: "1%" }}>
         <Text strong style={{ fontSize: "20px" }}>
-          Seleccione la operación que desee realizar:
+          Crear proceso electoral
         </Text>
       </Row>
       <Row>

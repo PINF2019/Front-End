@@ -5,7 +5,7 @@ import { isAuthTokenExpired } from "@Utils/auth";
 import { Redirect } from "react-router-dom";
 import { Radio, Input } from "antd";
 import "./index.less";
-import wallpaper from "../.././../assets/Wallpaper2.png";
+import wallpaper from "../../assets/Wallpaper2.png";
 import { useParams } from "react-router-dom";
 
 //  const {id} = useParams();
@@ -16,10 +16,10 @@ const { Text } = Typography;
 /*type Props = {
 
 }*/
-const VotacionCompleja = (props: any) => {
+const Votacion = (props: any) => {
   const {id} = useParams();
   if (!isAuthTokenExpired()) {
-    return <Redirect to={routes.vComplex} />;
+    return <Redirect to={routes.user} />;
   }
   class App extends React.Component {
     state = {
@@ -139,76 +139,4 @@ const VotacionCompleja = (props: any) => {
   return <App />;
 };
 
-export default VotacionCompleja;
-/*import React, { Component } from 'react';
-import Button from 'antd/es/button';
-import { withFormik } from 'formik';
-import './App.css';
-import { Select } from 'antd';
-import { Radio } from 'antd';
-import { InputNumber } from 'antd';
-import {TimePicker} from 'antd';
-import moment from 'moment';
-import { render } from 'react-dom';
-import { isAuthTokenExpired } from '@Utils/auth';
-import { Redirect } from 'react-router';
-import routes from '@Routes';
-
-function cambioduracion(value:any) {
-
-  console.log(`selected ${value}`);
-
-}
-
-function handleChange(value:any) {
-  console.log(`selected ${value}`);
-}
-
-function cambiorectificacion(e:any) {
-
-  console.log(`selected ${e.target.value}`);
-
-}
-
-
-
-const Votacion = (props:any) => {
-  if (!isAuthTokenExpired()) {
-    return <Redirect to={routes.votacion} />
-  }
-
-  const {
-    handleSubmit,
-  } = props;
-  return(
-
-    <form onSubmit={handleSubmit}>
-
-      Rectificación:
-      <Radio.Group onChange={cambiorectificacion}>
-       <h2> Elecciones </h2>
-       <Radio value={1}>
-         Option A
-       </Radio>
-       <Radio value={2}>
-         Option B
-       </Radio>
-       <Radio value={3}>
-         Option C
-       </Radio>
-       <Button type="primary" >
-         Vota!</Button>
-     </Radio.Group>
-   );
-
-    </form>
-  );
-
-}
-export default withFormik({
-
-  handleSubmit(values, formikBag){
-    console.log(values);
-  },
-
-})(Votacion);*/
+export default Votacion;

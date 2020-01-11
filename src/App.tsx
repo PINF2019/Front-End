@@ -1,35 +1,42 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import Layout from "@Components/Layout";
+import routes, { PrivateRoute } from "@Routes";
+
 import {
   Login,
   Home,
-  PickRole,
+  Election,
+  PickRoleAdmin,
+  PickRoleSecretary,
   Census,
   MenuAdmin,
   MenuSecretary,
   MenuUser,
-  VotacionSimple,
-  MenuVotacionSimple,
-  MenuVotacionCompleja,
-  VotacionCompleja,
+  MenuButton,
+  Votacion,
   Success,
-  MenuVotacion,
-  Election,
   MenuCrearEleccion,
-  MenuElecciones,
-  GenerarEleccionView,
+  CrearEleccion,
   MenuResultados,
-  ResultadosElecciones,
-  ResultadosVotaciones,
+  Resultados,
+  gestionarUsuarios,
   CensusData,
   NotFound,
-  PendantVotation
+  ProcesoCreadoOverlay,
+  ProcesoModificadoOverlay,
+  ProcesoEliminadoOverlay,
+  SeguroEliminadoProcesoOverlay,
+  SeguroEliminadoUsuarioOverlay,
+  SeguroPublicacionOverlay,
+  UsuarioCreadoOverlay,
+  UsuarioModificadoOverlay,
+  UsuarioEliminadoOverlay,
+  VotoRegistradoOverlay
+  
+  
 } from "@Views";
-import routes, { PrivateRoute } from "@Routes";
-import CrearEleccionPonderada from "./views/Secretary/EleccionPonderada";
-import Estadisticos from "./views/Estadistica";
-import gestionarUsuarios from "./views/admin/GestionarUsuarios";
+
 //        <Route exact path={routes.user} component={MenuUser} />
 
 const Protected = () => {
@@ -41,76 +48,71 @@ const Protected = () => {
     </Layout>
   );
 };
-//Cambiado la ruta base por menu de usuario
+
 const Dev = () => {
   return (
     <Layout>
       <Switch>
-        <Route exact path={routes.home} component={MenuUser} />
-        <Route exact path={routes.pickrole} component={PickRole} />
+        <Route exact path={routes.pickroleadmin} component={PickRoleAdmin} />
+        <Route exact path={routes.pickrolesecretary} component={PickRoleSecretary} />
+        <Route exact path={routes.resultados} component={Resultados} />
+        <Route exact path={routes.censusData} component={CensusData} />
+        <Route exact path={routes.votacion} component={Votacion} />
+
+
+
+        <Route exact path={routes.user} component={MenuUser} />
         <Route exact path={routes.admin} component={MenuAdmin} />
         <Route exact path={routes.secretary} component={MenuSecretary} />
-        <Route exact path={routes.census} component={Census} />
-        <Route exact path={routes.election} component={Election} />
-        <Route exact path={routes.censusData} component={CensusData} />
-        <Route exact path={routes.notFound} component={NotFound} />
-        <Route
-          exact
-          path={routes.pendantVotation}
-          component={PendantVotation}
-        />
-
         <Route
           exact
           path={routes.menuCrearEleccion}
           component={MenuCrearEleccion}
         />
-        <Route
-          exact
-          path={routes.menuEleccionAdmin}
-          component={MenuElecciones}
-        />
-        <Route
-          exact
-          path={routes.crearEleccionP}
-          component={CrearEleccionPonderada}
-        />
+        <Route exact path={routes.menuResultados} component={MenuResultados} />
+        <Route exact path={routes.menuCensus} component={Census} />
+
+
+
+        <Route exact path={routes.election} component={Election} />
+        <Route exact path={routes.notFound} component={NotFound} />
+   
+
+
         <Route
           exact
           path={routes.crearEleccion}
-          component={GenerarEleccionView}
-        />
-        <Route exact path={routes.menuVotacion} component={MenuVotacion} />
-        <Route
-          exact
-          path={routes.menuVotacionC}
-          component={MenuVotacionCompleja}
-        />
-        <Route exact path={routes.vSimple} component={VotacionSimple} />
-        <Route exact path={routes.vComplex} component={VotacionCompleja} />
-        <Route
-          exact
-          path={routes.menuVotacionS}
-          component={MenuVotacionSimple}
-        />
-        <Route exact path={routes.success} component={Success} />
-        <Route exact path={routes.menuResultados} component={MenuResultados} />
-        <Route
-          exact
-          path={routes.resultadosEleccion}
-          component={ResultadosElecciones}
-        />
-        <Route
-          exact
-          path={routes.resultadosVotacion}
-          component={ResultadosVotaciones}
-        />
-        <Route exact path={routes.estadisticas} component={Estadisticos} />
-        <Route
+          component={CrearEleccion}
+        /> 
+
+
+
+         <Route
           exact
           path={routes.gestionarUsuarios}
           component={gestionarUsuarios}
         />
+
+
+
+        <Route exact path={routes.success} component={Success} />
+        <Route exact path={routes.notFound} component={NotFound} />
+        <Route exact path={routes.procesoCreado} component={ProcesoCreadoOverlay} />
+        <Route exact path={routes.procesoModificado} component={ProcesoModificadoOverlay} />
+        <Route exact path={routes.procesoEliminado} component={ProcesoEliminadoOverlay} />
+        <Route exact path={routes.seguroEliminadoProceso} component={SeguroEliminadoProcesoOverlay} />
+        <Route exact path={routes.seguroEliminadoUsuario} component={SeguroEliminadoUsuarioOverlay} />
+        <Route exact path={routes.seguroPublicacion} component={SeguroPublicacionOverlay} />
+        <Route exact path={routes.usuarioCreado} component={UsuarioCreadoOverlay} />
+        <Route exact path={routes.usuarioEliminado} component={UsuarioEliminadoOverlay} />
+        <Route exact path={routes.usuarioModificado} component={UsuarioModificadoOverlay} />
+        <Route exact path={routes.votoRegistrado} component={VotoRegistradoOverlay} />
+
+
+
+
+
+       
       </Switch>
     </Layout>
   );

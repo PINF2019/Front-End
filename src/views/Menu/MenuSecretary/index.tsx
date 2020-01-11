@@ -1,28 +1,24 @@
 import React from "react";
 import { Row, Col, Button, Typography } from "antd";
 import { MenuButton } from "@Views";
-//import { useElectionNameQuery } from '@Generated/hooks'
 
 const { Text } = Typography;
 
 const data = {
   data: [
-    { name: "Gestionar Elección", url: "/secretary/procesoElectoral" },
-    { name: "Gestionar Votación", url: "/404" },
-    { name: "Delegar Secretario", url: "/404" }
+    { name: "Crear proceso electoral", url: "/secretary/crearProcesoElectoral" },
+    { name: "Modificar proceso electoral", url: "/404" },
+    { name: "Eliminar proceso electoral", url: "/404" }
   ]
 };
 
 const MenuAdmin = () => {
-  //https://es.reactjs.org/docs/lists-and-keys.html
-  // <Header />
-  //const { data, error } = useElectionNameQuery()
-  //if (data) {
+
   return (
     <Row justify="center" className="body">
       <Row style={{ marginTop: "3%", marginBottom: "1%" }}>
         <Text strong style={{ fontSize: "20px" }}>
-          Seleccione la operación que desee realizar:
+          Gestionar Procesos Electorales
         </Text>
       </Row>
       <Row>
@@ -32,9 +28,7 @@ const MenuAdmin = () => {
       </Row>
     </Row>
   );
-  // }
-
-  //return <div>{JSON.stringify(error)}</div>
+  
 };
 
 export default MenuAdmin;

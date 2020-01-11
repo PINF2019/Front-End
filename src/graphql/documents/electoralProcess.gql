@@ -7,6 +7,21 @@ query elections{
     }
 }
 
+query electoralProcesses{
+  electoralProcesses{
+      __typename
+  ... on Election{
+    id
+    description
+  }
+  ... on Poll{
+    id
+    description
+  }
+  }
+
+}
+
 query options($id: ID!) {
   election(id: $id) {
     start
@@ -28,6 +43,24 @@ query census($id: ID!) {
         firstName
         lastName
       }
+    }
+  }
+}
+
+query PastElectionResults {
+  electoralProcesses(filter: { finished: true, open: false}) {
+    __typename
+    ... on Election {
+      id
+      description
+      start
+      end
+    }
+    ... on Poll {
+      id
+      description
+      start
+      end
     }
   }
 }

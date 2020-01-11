@@ -5,14 +5,12 @@ const { Text } = Typography;
 
 
 type Props = {
-  name: string;
-  dateInit: string;
-  dateEnd: string;
   id: string;
+  name: string;
   href: string;
 };
 
-const ElectionButton = (props: Props) => {
+const ElectionButtonModificar = (props: Props) => {
   const history = useHistory();
 
   return (
@@ -41,13 +39,18 @@ const ElectionButton = (props: Props) => {
             {props.name}
           </Text>
 
-          <Text style={{ textAlign: "center", margin: "auto" }}>
-            {props.dateInit} {"-"}
-            {props.dateEnd}
-          </Text>
-
           <Icon
-            type="caret-right"
+            type="edit"
+            style={{
+              marginTop: "1.1%",
+              verticalAlign: "middle",
+              fontSize: "50px",
+              color: "#FFA500",
+              marginLeft: "auto"
+            }}
+          />
+          <Icon
+            type="vertical-align-top"
             style={{
               marginTop: "1.1%",
               verticalAlign: "middle",
@@ -63,4 +66,4 @@ const ElectionButton = (props: Props) => {
     </>
   );
 };
-export default ElectionButton;
+export default ElectionButtonModificar;
