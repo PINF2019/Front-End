@@ -23,6 +23,10 @@ import CrearEleccion from "./Secretary/ProcesoElectoral";
 
 //Admin
 import gestionarUsuarios from "./admin/GestionarUsuarios";
+import AddUser from './admin/AddUser'
+import ModifyUserTable from './admin/ModifyUserTable'
+import ModifyUser from './admin/ModifyUser'
+import DeleteUserTable from './admin/DeleteUserTable'
 
 // Overlays
 import Success from "./Overlays/VotoRegistrado";
@@ -56,6 +60,10 @@ export {
   MenuResultados,
   Resultados,
   gestionarUsuarios,
+  AddUser,
+  ModifyUserTable,
+  ModifyUser,
+  DeleteUserTable,
   CensusData,
   NotFound,
   ProcesoCreadoOverlay,

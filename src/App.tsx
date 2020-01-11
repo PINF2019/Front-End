@@ -21,6 +21,10 @@ import {
   MenuResultados,
   Resultados,
   gestionarUsuarios,
+  AddUser, 
+  ModifyUserTable, 
+  ModifyUser, 
+  DeleteUserTable,
   CensusData,
   NotFound,
   ProcesoCreadoOverlay,
@@ -87,11 +91,11 @@ const Dev = () => {
 
 
 
-         <Route
-          exact
-          path={routes.gestionarUsuarios}
-          component={gestionarUsuarios}
-        />
+         <Route exact path={routes.gestionarUsuarios} component={gestionarUsuarios}/>
+         <Route exact path={routes.adduser} component={AddUser} />
+         <Route exact path={routes.modifyusertable} component={ModifyUserTable} />
+         <Route exact path={routes.modifyuser} component={ModifyUser} />
+         <Route exact path={routes.deleteusertable} component={DeleteUserTable} />
 
 
 
