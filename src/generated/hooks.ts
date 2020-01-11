@@ -449,6 +449,28 @@ export type CensusQuery = {
   };
 };
 
+export type PastElectionResultsQueryVariables = {};
+
+export type PastElectionResultsQuery = {
+  __typename?: "Query";
+  electoralProcesses: Array<
+    | {
+        __typename: "Election";
+        id: string;
+        description: string;
+        start: string;
+        end: string;
+      }
+    | {
+        __typename: "Poll";
+        id: string;
+        description: string;
+        start: string;
+        end: string;
+      }
+  >;
+};
+
 export type LogInMutationVariables = {
   input: LoginInput;
 };
@@ -627,6 +649,57 @@ export type CensusLazyQueryHookResult = ReturnType<typeof useCensusLazyQuery>;
 export type CensusQueryResult = ApolloReactCommon.QueryResult<
   CensusQuery,
   CensusQueryVariables
+>;
+export const PastElectionResultsDocument = gql`
+  query PastElectionResults {
+    electoralProcesses(finished: true) {
+      __typename
+      ... on Election {
+        id
+        description
+        start
+        end
+      }
+      ... on Poll {
+        id
+        description
+        start
+        end
+      }
+    }
+  }
+`;
+export function usePastElectionResultsQuery(
+  baseOptions?: ApolloReactHooks.QueryHookOptions<
+    PastElectionResultsQuery,
+    PastElectionResultsQueryVariables
+  >
+) {
+  return ApolloReactHooks.useQuery<
+    PastElectionResultsQuery,
+    PastElectionResultsQueryVariables
+  >(PastElectionResultsDocument, baseOptions);
+}
+export function usePastElectionResultsLazyQuery(
+  baseOptions?: ApolloReactHooks.LazyQueryHookOptions<
+    PastElectionResultsQuery,
+    PastElectionResultsQueryVariables
+  >
+) {
+  return ApolloReactHooks.useLazyQuery<
+    PastElectionResultsQuery,
+    PastElectionResultsQueryVariables
+  >(PastElectionResultsDocument, baseOptions);
+}
+export type PastElectionResultsQueryHookResult = ReturnType<
+  typeof usePastElectionResultsQuery
+>;
+export type PastElectionResultsLazyQueryHookResult = ReturnType<
+  typeof usePastElectionResultsLazyQuery
+>;
+export type PastElectionResultsQueryResult = ApolloReactCommon.QueryResult<
+  PastElectionResultsQuery,
+  PastElectionResultsQueryVariables
 >;
 export const LogInDocument = gql`
   mutation LogIn($input: LoginInput!) {

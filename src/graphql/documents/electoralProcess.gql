@@ -48,7 +48,7 @@ query census($id: ID!) {
 }
 
 query PastElectionResults {
-  electoralProcesses(filter: { finished: true, open: false}) {
+  electoralProcesses(finished: true) {
     __typename
     ... on Election {
       id
