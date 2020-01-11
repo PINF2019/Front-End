@@ -58,7 +58,7 @@ function organo(value:any) {
   
 }
 
-const GenerarEleccionView = () => {
+const CrearEleccion = () => {
   //const { data, error } = useElectionNameQuery()
   //if (data) {
   return (
@@ -118,4 +118,4 @@ const GenerarEleccionView = () => {
   )
 }
 
-export default GenerarEleccionView
+export default CrearEleccion

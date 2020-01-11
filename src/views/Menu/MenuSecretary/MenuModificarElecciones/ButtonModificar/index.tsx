@@ -5,13 +5,12 @@ const { Text } = Typography;
 
 
 type Props = {
-  name: string;
-  dateInit: string;
-  dateEnd: string;
   id: string;
+  name: string;
+  href: string;
 };
 
-const CensusButton = (props: Props) => {
+const ElectionButtonModificar = (props: Props) => {
   const history = useHistory();
 
   return (
@@ -26,7 +25,7 @@ const CensusButton = (props: Props) => {
           borderRadius: "12px",
           boxShadow: "0px 3px 3px grey"
         }}
-        onClick={() => history.push(`censusData/${props.id}`)}
+        onClick={() => history.push(`${props.href}/${props.id}`)}
       >
         <Row
           style={{
@@ -40,13 +39,18 @@ const CensusButton = (props: Props) => {
             {props.name}
           </Text>
 
-          <Text style={{ textAlign: "center", margin: "auto" }}>
-            {props.dateInit} {"-"}
-            {props.dateEnd}
-          </Text>
-
           <Icon
-            type="caret-right"
+            type="edit"
+            style={{
+              marginTop: "1.1%",
+              verticalAlign: "middle",
+              fontSize: "50px",
+              color: "#FFA500",
+              marginLeft: "auto"
+            }}
+          />
+          <Icon
+            type="vertical-align-top"
             style={{
               marginTop: "1.1%",
               verticalAlign: "middle",
@@ -62,4 +66,4 @@ const CensusButton = (props: Props) => {
     </>
   );
 };
-export default CensusButton;
+export default ElectionButtonModificar;

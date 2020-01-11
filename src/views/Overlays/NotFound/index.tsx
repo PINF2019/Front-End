@@ -3,7 +3,6 @@ import { Result, Icon, Button, Pagination, Row } from "antd";
 import { isAuthTokenExpired } from "@Utils/auth";
 import { Redirect } from "react-router";
 import routes from "@Routes";
-import { MenuVotacionSimple } from "@Views";
 const NotFound = () => {
   if (!isAuthTokenExpired()) {
     return <Redirect to={routes.success} />;

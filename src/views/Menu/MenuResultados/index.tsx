@@ -1,60 +1,37 @@
+import { usePastElectionResultsQuery } from "@Generated/hooks";
+import { Row, Typography } from "antd";
 import React from "react";
-import { Row, Col, Button, Typography } from "antd";
-import { MenuButton } from "@Views";
-import ElectionButton from "../../Election/election";
-//import { useElectionNameQuery } from '@Generated/hooks'
+import ElectionButton from "../Election/election";
 const { Text } = Typography;
+//la interrogacion comprueba que no sea nulo
+const MenuResultados = () => {
+  const { data, error } = usePastElectionResultsQuery();
+  if (data) {
+    return (
+      <Row justify="center" className="body">
+        <Row style={{ marginTop: "3%", marginBottom: "1%" }}>
+          <Text strong style={{ fontSize: "20px" }}>
+            Votaciones pendientes:
+          </Text>
+        </Row>
+        <Row>
+          {data.electoralProcesses.map(eprocess => /*{
+            if (eprocess.__typename == "ELection") {
 
-const data = {
-  data: [
-    {
-      name: "Elecciones 1",
-      dateInit: " ",
-      dateEnd: " "
-      //url: "/resultados/elecciones/estadisticas"
-    },
-    {
-      name: "Elecciones 2",
-      dateInit: " ",
-      dateEnd: " "
-      //url: "/resultados/elecciones/estadisticas"
-    },
-    {
-      name: "Elecciones 3",
-      dateInit: " ",
-      dateEnd: " "
-      //url: "/resultados/elecciones/estadisticas"
-    }
-  ]
+            }
+          }*/ (
+            <ElectionButton
+              name={eprocess.description}
+              dateInit={eprocess.start}
+              dateEnd={eprocess.end}
+              id={eprocess.id}
+              href={"resultados"}
+            />
+          ))}
+        </Row>
+      </Row>
+    );
+  } else return <div>{JSON.stringify(error)}</div>;
 };
 
-const ResultadosElecciones = () => {
-  //https://es.reactjs.org/docs/lists-and-keys.html
-  // <Header />
-  //const { data, error } = useElectionNameQuery()
-  //if (data) {
-  return (
-    <Row justify="center" className="body">
-      <Row style={{ marginTop: "3%", marginBottom: "1%" }}>
-        <Text strong style={{ fontSize: "20px" }}>
-          Seleccione la operación que desee realizar:
-        </Text>
-      </Row>
-      <Row>
-        {data.data.map((data, index) => (
-          <ElectionButton
-            name={data.name}
-            dateInit={data.dateInit}
-            dateEnd={data.dateEnd}
-            //url={data.url}
-          />
-        ))}
-      </Row>
-    </Row>
-  );
-  // }
-
-  //return <div>{JSON.stringify(error)}</div>
-};
-
-export default ResultadosElecciones;
+export default MenuResultados;

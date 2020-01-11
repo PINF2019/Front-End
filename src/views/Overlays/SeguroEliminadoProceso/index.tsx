@@ -3,8 +3,7 @@ import { Result, Icon, Button, Pagination, Row } from 'antd'
 import { isAuthTokenExpired } from '@Utils/auth'
 import { Redirect } from 'react-router'
 import routes from '@Routes'
-import { MenuVotacionSimple } from '@Views'
-const Success = () => {
+const SeguroEliminadoProcesoOverlay = () => {
   if (!isAuthTokenExpired()) {
     return <Redirect to={routes.success} />
   }
@@ -16,18 +15,19 @@ const Success = () => {
       style={{ height: '100vh' }}>
       <Row style={{ marginTop: '-200px' }}>
         <Result
-          title="Su voto ha sido enviado"
-          subTitle="Gracias por su participación"
+          title="¿Está seguro de que quiere eliminar este proceso electoral?"
           icon={<Icon type="mail" theme="twoTone" />}
-          extra={
+          extra={[
             <Button type="primary" href="/user">
-              Aceptar
-            </Button>
-          }
-          //<a href='/votacion_simple' /a>
+              Cancelar
+            </Button>,
+            <Button href="/user">
+            Publicar
+          </Button>
+          ]}
         />
       </Row>
     </Row>
   )
 }
-export default Success
+export default SeguroEliminadoProcesoOverlay

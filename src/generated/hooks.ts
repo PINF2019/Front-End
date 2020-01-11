@@ -49,6 +49,12 @@ export type CensusInput = {
   file: Scalars["String"];
 };
 
+export type ColegiateBody = {
+  __typename?: "ColegiateBody";
+  id: Scalars["ID"];
+  name: Scalars["String"];
+};
+
 export type Election = {
   __typename?: "Election";
   id: Scalars["ID"];
@@ -92,6 +98,11 @@ export type ElectionVote = {
 };
 
 export type ElectoralProcess = Election | Poll;
+
+export type ElectoralProcessFilter = {
+  open: Scalars["Boolean"];
+  finished: Scalars["Boolean"];
+};
 
 export type File = {
   __typename?: "File";
@@ -226,10 +237,7 @@ export type Query = {
   me: User;
   electoralProcesses: Array<ElectoralProcess>;
   electoralProcess: ElectoralProcess;
-  /** Devuelve aquellos procesos electorales que aún no han sido iniciados */
-  futureElectoralProcesses: Array<ElectoralProcess>;
-  /** Devuelve aquellos procesos electorales que han sido finalizados */
-  pastElectoralProcesses: Array<ElectoralProcess>;
+  pendingElectoralProcesses: Array<ElectoralProcess>;
   elections: Array<Election>;
   pendingElections: Array<Election>;
   election: Election;
@@ -237,11 +245,18 @@ export type Query = {
   censuses: Array<Census>;
   polls: Array<Poll>;
   poll: Poll;
+  pendingPolls: Array<Poll>;
+  colegiateBody: ColegiateBody;
+  collegiateBodies: Array<ColegiateBody>;
   isLoggedIn: Scalars["Boolean"];
 };
 
 export type QueryUserArgs = {
   id: Scalars["ID"];
+};
+
+export type QueryElectoralProcessesArgs = {
+  filter?: Maybe<ElectoralProcessFilter>;
 };
 
 export type QueryElectoralProcessArgs = {
@@ -262,6 +277,10 @@ export type QueryCensusesArgs = {
 };
 
 export type QueryPollArgs = {
+  id: Scalars["ID"];
+};
+
+export type QueryColegiateBodyArgs = {
   id: Scalars["ID"];
 };
 
@@ -350,6 +369,16 @@ export type ElectionsQuery = {
   }>;
 };
 
+export type ElectoralProcessesQueryVariables = {};
+
+export type ElectoralProcessesQuery = {
+  __typename?: "Query";
+  electoralProcesses: Array<
+    | { __typename: "Election"; id: string; description: string }
+    | { __typename: "Poll"; id: string; description: string }
+  >;
+};
+
 export type OptionsQueryVariables = {
   id: Scalars["ID"];
 };
@@ -368,6 +397,28 @@ export type OptionsQuery = {
       lastName: string;
     }>;
   };
+};
+
+export type PastElectionResultsQueryVariables = {};
+
+export type PastElectionResultsQuery = {
+  __typename?: "Query";
+  electoralProcesses: Array<
+    | {
+        __typename: "Election";
+        id: string;
+        description: string;
+        start: string;
+        end: string;
+      }
+    | {
+        __typename: "Poll";
+        id: string;
+        description: string;
+        start: string;
+        end: string;
+      }
+  >;
 };
 
 export type LogInMutationVariables = {
@@ -419,6 +470,53 @@ export type ElectionsQueryResult = ApolloReactCommon.QueryResult<
   ElectionsQuery,
   ElectionsQueryVariables
 >;
+export const ElectoralProcessesDocument = gql`
+  query electoralProcesses {
+    electoralProcesses {
+      __typename
+      ... on Election {
+        id
+        description
+      }
+      ... on Poll {
+        id
+        description
+      }
+    }
+  }
+`;
+export function useElectoralProcessesQuery(
+  baseOptions?: ApolloReactHooks.QueryHookOptions<
+    ElectoralProcessesQuery,
+    ElectoralProcessesQueryVariables
+  >
+) {
+  return ApolloReactHooks.useQuery<
+    ElectoralProcessesQuery,
+    ElectoralProcessesQueryVariables
+  >(ElectoralProcessesDocument, baseOptions);
+}
+export function useElectoralProcessesLazyQuery(
+  baseOptions?: ApolloReactHooks.LazyQueryHookOptions<
+    ElectoralProcessesQuery,
+    ElectoralProcessesQueryVariables
+  >
+) {
+  return ApolloReactHooks.useLazyQuery<
+    ElectoralProcessesQuery,
+    ElectoralProcessesQueryVariables
+  >(ElectoralProcessesDocument, baseOptions);
+}
+export type ElectoralProcessesQueryHookResult = ReturnType<
+  typeof useElectoralProcessesQuery
+>;
+export type ElectoralProcessesLazyQueryHookResult = ReturnType<
+  typeof useElectoralProcessesLazyQuery
+>;
+export type ElectoralProcessesQueryResult = ApolloReactCommon.QueryResult<
+  ElectoralProcessesQuery,
+  ElectoralProcessesQueryVariables
+>;
 export const OptionsDocument = gql`
   query options($id: ID!) {
     election(id: $id) {
@@ -460,6 +558,57 @@ export type OptionsLazyQueryHookResult = ReturnType<typeof useOptionsLazyQuery>;
 export type OptionsQueryResult = ApolloReactCommon.QueryResult<
   OptionsQuery,
   OptionsQueryVariables
+>;
+export const PastElectionResultsDocument = gql`
+  query PastElectionResults {
+    electoralProcesses(filter: { finished: true, open: false }) {
+      __typename
+      ... on Election {
+        id
+        description
+        start
+        end
+      }
+      ... on Poll {
+        id
+        description
+        start
+        end
+      }
+    }
+  }
+`;
+export function usePastElectionResultsQuery(
+  baseOptions?: ApolloReactHooks.QueryHookOptions<
+    PastElectionResultsQuery,
+    PastElectionResultsQueryVariables
+  >
+) {
+  return ApolloReactHooks.useQuery<
+    PastElectionResultsQuery,
+    PastElectionResultsQueryVariables
+  >(PastElectionResultsDocument, baseOptions);
+}
+export function usePastElectionResultsLazyQuery(
+  baseOptions?: ApolloReactHooks.LazyQueryHookOptions<
+    PastElectionResultsQuery,
+    PastElectionResultsQueryVariables
+  >
+) {
+  return ApolloReactHooks.useLazyQuery<
+    PastElectionResultsQuery,
+    PastElectionResultsQueryVariables
+  >(PastElectionResultsDocument, baseOptions);
+}
+export type PastElectionResultsQueryHookResult = ReturnType<
+  typeof usePastElectionResultsQuery
+>;
+export type PastElectionResultsLazyQueryHookResult = ReturnType<
+  typeof usePastElectionResultsLazyQuery
+>;
+export type PastElectionResultsQueryResult = ApolloReactCommon.QueryResult<
+  PastElectionResultsQuery,
+  PastElectionResultsQueryVariables
 >;
 export const LogInDocument = gql`
   mutation LogIn($input: LoginInput!) {

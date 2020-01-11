@@ -22,9 +22,9 @@ type Props = {
   }
 }*/
 const Election = (props: any) => {
-  if (!isAuthTokenExpired()) {
+  /*if (!isAuthTokenExpired()) {
     return <Redirect to={routes.vSimple} />;
-  }
+  }*/
   class App extends React.Component {
     state = {
       value: 1

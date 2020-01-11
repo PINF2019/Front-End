@@ -1,12 +1,11 @@
 import React from 'react'
 import { Button, Typography, Row, Col, Avatar } from 'antd'
-import rol1 from '@Assets/rol1.png'
 import rol2 from '@Assets/secretario1.png'
 import rol3 from '@Assets/usuario1.png'
 import { useHistory } from 'react-router'
 const { Title, Text } = Typography
 
-const PickRole = () => {
+const PickRoleSecretary = () => {
   const history = useHistory()
   return (
     <>
@@ -46,26 +45,10 @@ const PickRole = () => {
               <Text style={{ fontSize: '20px' }} strong>Elector</Text>
             </Row>
           </Col>
-          <Col style={{ textAlign: 'center', marginBottom: '30px'  }}>
-            <Row style={{ cursor: 'pointer' }} onClick={() => history.push('/secretary')}>
-              <Avatar
-                shape="square"
-                src={rol1}
-                size={250}
-                style={{
-                  marginBottom: '20px',
-                  backgroundColor: '#F0F0F0',
-                  padding: '20px',
-                  borderRadius: '20px'
-                }}></Avatar>
-            </Row>
-            <Row>
-              <Text style={{ fontSize: '20px' }} strong>Secretario</Text>
-            </Row>
-          </Col>
+      
 
           <Col style={{ textAlign: 'center', marginBottom: '30px'  }}>
-            <Row style={{ cursor: 'pointer' }} onClick={() => history.push('/admin')}>
+            <Row style={{ cursor: 'pointer' }} onClick={() => history.push('/secretary')}>
               <Avatar
                 shape="square"
                 src={rol2}
@@ -78,7 +61,7 @@ const PickRole = () => {
                 }}></Avatar>
             </Row>
             <Row>
-              <Text style={{ fontSize: '20px' }} strong>Administrador</Text>
+              <Text style={{ fontSize: '20px' }} strong>Secretario</Text>
             </Row>
           </Col>
         </Row>
@@ -87,4 +70,4 @@ const PickRole = () => {
   )
 }
 
-export default PickRole
+export default PickRoleSecretary

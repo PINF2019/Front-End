@@ -93,7 +93,7 @@ const data = [
   { x: "Soriano Roldán, Claudia   ", y: 1800 }
 ];
 
-const Estadisticos = () => {
+const Resultados = () => {
   return (
     <section id="target-pacing">
       <Row
@@ -296,4 +296,4 @@ const Estadisticos = () => {
   );
 };
 
-export default Estadisticos;
+export default Resultados;
