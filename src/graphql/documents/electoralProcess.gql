@@ -35,8 +35,20 @@ query options($id: ID!) {
   }
 }
 
+query census($id: ID!) {
+  election(id: $id) {
+    description
+    censuses {
+      voters {
+        firstName
+        lastName
+      }
+    }
+  }
+}
+
 query PastElectionResults {
-  electoralProcesses(filter:{ finished: true, open:false}) {
+  electoralProcesses(filter: { finished: true, open: false}) {
     __typename
     ... on Election {
       id
