@@ -1,7 +1,7 @@
 import { Avatar, Col, Divider, Icon, Layout, Row, Typography } from 'antd'
 import React from 'react'
 import { removeAuthToken } from '@Utils/auth'
-import { useHistory } from 'react-router-dom'
+import { useHistory, Link } from 'react-router-dom'
 import routes from '@Routes'
 
 const { Text } = Typography
@@ -13,8 +13,14 @@ const data = {
   NIF: '123456789',
   role: 'Elector'
 }
+const response = {
+  file: 'http://releases.ubuntu.com/12.04.5/ubuntu-12.04.5-alternate-amd64.iso',
+};
 
 const Sidebar = (prop: { collapse: boolean }) => {
+
+    
+     
   const history = useHistory()
   return (
     <Layout.Sider
@@ -101,9 +107,10 @@ const Sidebar = (prop: { collapse: boolean }) => {
 
         <Row type="flex" style={{ flexDirection: 'column', display: 'flex' }}>
           <Row>
-            <Text style={{ color: '#FFA500', marginLeft: '10%' }} strong>
+            <a href="https://si.ua.es/es/documentos/documentacion/pdf-s/mozilla12-pdf.pdf"> <Text style={{ color: '#FFA500', marginLeft: '10%' }} strong >
               Ayuda
-            </Text>
+            </Text></a>
+           
           </Row>
           <Row>
             <Text style={{ color: '#FFA500', marginLeft: '10%' }} strong>

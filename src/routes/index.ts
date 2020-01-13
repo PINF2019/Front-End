@@ -22,6 +22,7 @@ const routes = {
   menuCensus: "/census",
 
   crearEleccion: "/secretary/crearProcesoElectoral/eleccion",
+  crearVotacion: "/secretary/crearProcesoElectoral/votacion",
   
   gestionarUsuarios: "/admin/GestionarUsuarios",
   adduser: '/admin/adduser',
