@@ -9,7 +9,7 @@ const MenuUser = () => {
   if (data) {
     return (
       <Row justify="center" className="body">
-        <Row style={{ marginTop: "3%", marginBottom: "1%" }}>
+        <Row className = "layout">
           <Text strong style={{ fontSize: "20px" }}>
             Votaciones pendientes:
           </Text>

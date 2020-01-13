@@ -69,7 +69,7 @@ const Election = (props: any) => {
                   marginTop: "25%"
                 }}
               >
-                <Text strong style={{ fontSize: "30px", lineHeight: "100%" }}>
+                <Text strong style={{ fontSize: "40px", lineHeight: "100%" }}>
                   Elecciones <br></br>Delegado de Ing. Informática
                 </Text>
               </Row>

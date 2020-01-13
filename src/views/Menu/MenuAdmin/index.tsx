@@ -15,7 +15,8 @@ const MenuAdmin = () => {
  
   return (
     <Row justify="center" className="body">
-      <Row style={{ marginTop: "3%", marginBottom: "1%" }}>
+        <Row className = "body2" style={{marginTop: "20%"}}>
+      <Row className="body2">
         <Text strong style={{ fontSize: "20px" }}>
           Gestionar usuarios
         </Text>
@@ -23,7 +24,8 @@ const MenuAdmin = () => {
       <Row>
         {data.data.map((data, index) => (
           <MenuButton name={data.name} url={data.url} />
-        ))}
+          ))}
+      </Row>
       </Row>
     </Row>
   );

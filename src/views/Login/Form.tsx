@@ -1,12 +1,11 @@
 import { useLogInMutation } from '@Generated/hooks'
+import routes from '@Routes'
 import { setAuthToken } from '@Utils/auth'
-import { Button } from 'antd'
 import { Formik } from 'formik'
-import { Form, Input } from 'formik-antd'
+import { Form, Input, SubmitButton } from 'formik-antd'
 import React from 'react'
 import { useHistory } from 'react-router-dom'
 import * as Yup from 'yup'
-import routes from '@Routes'
 import './index.less'
 
 const initialValues = {
@@ -32,23 +31,40 @@ const LoginForm = () => {
           const { data } = await logIn({ variables: { input } })
           if (data) {
             setAuthToken(data.login.accessToken)
-            history.replace(routes.base)
+            console.log({ data, input })
+            history.replace(routes.pickroleadmin)
           }
         } catch {
           const message = 'Usuario o Contraseña Incorrectos'
           actions.setErrors({ uid: message, password: message })
         }
-      }}>
+      }}
+    >
       {() => (
         <Form style={{ marginTop: '5%' }}>
-          <Form.Item name="uid" colon={false} label={<div style={{ color: "#206489", fontSize: '20px' }}>Usuario</div>}>
+          <Form.Item
+            name="uid"
+            colon={false}
+            label={
+              <div style={{ color: '#206489', fontSize: '20px' }}>Usuario</div>
+            }
+          >
             <Input
               size="large"
               name="uid"
               autoComplete="username"
-              placeholder="Usuario" />
+              placeholder="Usuario"
+            />
           </Form.Item>
-          <Form.Item name="password" colon={false} label={<div style={{ color: "#206489", fontSize: '20px' }}>Contraseña</div>}>
+          <Form.Item
+            name="password"
+            colon={false}
+            label={
+              <div style={{ color: '#206489', fontSize: '20px' }}>
+                Contraseña
+              </div>
+            }
+          >
             <Input.Password
               size="large"
               name="password"
@@ -57,9 +73,9 @@ const LoginForm = () => {
             />
           </Form.Item>
           <Form.Item name="submit">
-            <Button htmlType="submit" type="primary" block href="/pickroleadmin">
-              <div style={{fontSize: '20px'}}>Iniciar Sesión</div>
-            </Button>
+            <SubmitButton htmlType="submit" type="primary" block>
+              <div style={{ fontSize: '20px' }}>Iniciar Sesión</div>
+            </SubmitButton>
           </Form.Item>
         </Form>
       )}

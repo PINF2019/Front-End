@@ -46,16 +46,12 @@ export type CensusInput = {
   group: Scalars["String"];
   date: Scalars["DateTime"];
   location: Scalars["String"];
-  file: Scalars["String"];
+  voters: Array<VoterInput>;
 };
 
 export type ColegiateBody = {
   __typename?: "ColegiateBody";
   id: Scalars["ID"];
-  name: Scalars["String"];
-};
-
-export type ColegiateBodyInput = {
   name: Scalars["String"];
 };
 
@@ -65,9 +61,10 @@ export type Election = {
   start: Scalars["DateTime"];
   end: Scalars["DateTime"];
   description: Scalars["String"];
-  isVoteRectify: Scalars["Boolean"];
+  maxVotes: Scalars["Int"];
+  voteWeights: Array<VoteWeight>;
   candidates: Array<Candidate>;
-  results: Array<ElectionResults>;
+  results: ResultsForElection;
   censuses: Array<Census>;
   delegates: Array<User>;
 };
@@ -80,10 +77,11 @@ export type ElectionInput = {
   start: Scalars["DateTime"];
   end: Scalars["DateTime"];
   description: Scalars["String"];
-  isVoteRectify: Scalars["Boolean"];
   censuses: Array<CensusInput>;
-  delegates: Array<UserInput>;
+  delegates: Array<Scalars["ID"]>;
+  maxVotes?: Maybe<Scalars["Int"]>;
   candidates: Array<CandidateInput>;
+  voteWeights?: Maybe<Array<VoteWeightInput>>;
 };
 
 export type ElectionResults = {
@@ -129,6 +127,7 @@ export type LoginPayload = {
 export type Mutation = {
   __typename?: "Mutation";
   modifyUser: User;
+  createUser: User;
   deleteUser: User;
   login: LoginPayload;
   deleteCandidate: Candidate;
@@ -146,6 +145,10 @@ export type Mutation = {
 export type MutationModifyUserArgs = {
   input: UserUpdateInput;
   id: Scalars["ID"];
+};
+
+export type MutationCreateUserArgs = {
+  input: UserInput;
 };
 
 export type MutationDeleteUserArgs = {
@@ -205,12 +208,12 @@ export type Poll = {
   start: Scalars["DateTime"];
   end: Scalars["DateTime"];
   description: Scalars["String"];
-  isVoteRectify: Scalars["Boolean"];
+  maxVotes: Scalars["Int"];
   question: Scalars["String"];
   options: Array<PollOption>;
   isRealTime: Scalars["Boolean"];
   censuses: Array<Census>;
-  results: Array<PollResults>;
+  results: ResultsForPoll;
   delegates: Array<User>;
 };
 
@@ -222,11 +225,11 @@ export type PollInput = {
   start: Scalars["DateTime"];
   end: Scalars["DateTime"];
   description: Scalars["String"];
-  isVoteRectify: Scalars["Boolean"];
   censuses: Array<CensusInput>;
-  delegates: Array<UserInput>;
+  delegates: Array<Scalars["ID"]>;
+  maxVotes?: Maybe<Scalars["Int"]>;
   question: Scalars["String"];
-  options: Array<Scalars["String"]>;
+  options?: Maybe<Array<Scalars["String"]>>;
   isRealTime: Scalars["Boolean"];
 };
 
@@ -315,10 +318,33 @@ export type ResultsFilter = {
   genre: Scalars["Boolean"];
 };
 
+export type ResultsForElection = {
+  __typename?: "ResultsForElection";
+  /** Votantes habilitados */
+  voters: Scalars["Int"];
+  /** Votos Emitidos */
+  votesCast: Scalars["Int"];
+  /** Votos en blanco */
+  whiteVotes: Scalars["Int"];
+  results: Array<ElectionResults>;
+};
+
+export type ResultsForPoll = {
+  __typename?: "ResultsForPoll";
+  /** Votantes habilitados */
+  voters: Scalars["Int"];
+  /** Votos Emitidos */
+  votesCast: Scalars["Int"];
+  /** Votos en blanco */
+  whiteVotes: Scalars["Int"];
+  results: Array<PollResults>;
+};
+
 /** All possible roles on app */
 export enum Role {
   Admin = "ADMIN",
-  Secretary = "SECRETARY"
+  Secretary = "SECRETARY",
+  Voter = "VOTER"
 }
 
 export type UpdateElectionInput = {
@@ -344,20 +370,23 @@ export type User = {
   __typename?: "User";
   id: Scalars["ID"];
   uid: Scalars["String"];
+  dni: Scalars["String"];
   firstName: Scalars["String"];
   lastName: Scalars["String"];
   roles: Array<Role>;
   genre: Genre;
-  colegiateBody: ColegiateBody;
+  colegiateBody?: Maybe<ColegiateBody>;
 };
 
 export type UserInput = {
   uid: Scalars["String"];
+  dni: Scalars["String"];
   password: Scalars["String"];
   firstName: Scalars["String"];
   lastName: Scalars["String"];
   roles?: Maybe<Array<Role>>;
-  collegiateBody: ColegiateBodyInput;
+  collegiateBody?: Maybe<Scalars["ID"]>;
+  genre: Genre;
 };
 
 export type UserUpdateInput = {
@@ -365,17 +394,17 @@ export type UserUpdateInput = {
   firstName?: Maybe<Scalars["String"]>;
   lastName?: Maybe<Scalars["String"]>;
   roles?: Maybe<Array<Role>>;
-  colegiateBody?: Maybe<ColegiateBodyInput>;
+  colegiateBody?: Maybe<Scalars["ID"]>;
+  genre?: Maybe<Genre>;
 };
 
 export type VoteElectionInput = {
-  candidate: Scalars["ID"];
+  candidates: Array<Scalars["ID"]>;
   election: Scalars["ID"];
-  rectifiedVote?: Maybe<Scalars["ID"]>;
 };
 
 export type VotePollInput = {
-  option: Scalars["ID"];
+  options: Array<Scalars["ID"]>;
   poll: Scalars["ID"];
 };
 
@@ -384,6 +413,25 @@ export type Voter = {
   firstName: Scalars["String"];
   lastName: Scalars["String"];
   uid: Scalars["String"];
+  dni: Scalars["String"];
+};
+
+export type VoterInput = {
+  firstName: Scalars["String"];
+  lastName: Scalars["String"];
+  uid: Scalars["String"];
+  dni: Scalars["String"];
+};
+
+export type VoteWeight = {
+  __typename?: "VoteWeight";
+  group: Scalars["String"];
+  weight: Scalars["Float"];
+};
+
+export type VoteWeightInput = {
+  group: Scalars["String"];
+  weight: Scalars["Float"];
 };
 
 export type ElectionsQueryVariables = {};
