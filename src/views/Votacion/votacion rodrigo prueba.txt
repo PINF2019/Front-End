@@ -1,0 +1,151 @@
+import { Typography, Button, Checkbox, Row, Col, Layout } from "antd";
+import React from "react";
+import { Radio, Input } from "antd";
+import "./index.less";
+import {useOptionsQuery, useVotePollMutation} from "@Generated/hooks"
+import wallpaper from "../../assets/Wallpaper2.png";
+import { useParams } from "react-router-dom";
+import { Formik } from 'formik'
+import * as Yup from 'yup'
+import { Form, SubmitButton } from 'formik-antd'
+
+const { Text } = Typography;
+
+const schema = Yup.object().shape({
+  poll: Yup.string().required(),
+  validate: Yup.boolean().oneOf([true]),
+})
+
+const Votacion = (props: any) => {
+  const {id} = useParams();
+  const {id:poll} = useParams<{id:string}>();
+  const {data} = useOptionsQuery({variables:{id:poll}});
+  const [vote] = useVotePollMutation();
+
+
+const radioStyle = {
+  display: "block",
+  height: "30px",
+  lineHeight: "30px"
+};
+
+
+return (
+  <Row
+    type="flex"
+    justify="center"
+    align="middle"
+    style={{ height: "100%" }}
+  >
+    <Col
+      style={{
+        width: "50%",
+        height: "100%",
+        textAlign: "center"
+      }}
+    >
+      <Layout
+        style={{
+          height: "100%",
+          backgroundImage: "url(" + wallpaper + ")"
+        }}
+      >
+        
+      <Row
+          type="flex"
+          justify="center"
+          //align="middle"
+          style={{
+            marginTop: "25%"
+          }}
+        > 
+        <Text strong style={{ fontSize: "30px", lineHeight: "100%" }}>
+            Votación <br></br> {props.name} 
+          </Text>
+        </Row>
+  
+          
+      </Layout>
+    </Col>
+    <Col
+      style={{
+        width: "50%",
+        height: "100%"
+      }}
+    >
+      <Row
+        type="flex"
+        justify="center"
+        align="middle"
+        style={{ height: "100%" }}
+      >
+        <Radio.Group /*onChange={this.onChange} value={this.state.value hay que poner {props}*/
+        >
+          <Col>
+            <Text strong style={{ fontSize: "22px" }}>
+              Su voto:
+            </Text>
+            <br></br>
+            <Formik
+              initialValues={{ poll: undefined, validate: false }}
+              validationSchema={schema}
+              onSubmit={values => {
+                console.log(values)
+            }}
+            > {() => (
+              <Form>
+                <Form.Item name="poll">
+                  <Radio.Group name="poll">
+                  {data?.election.candidates.map((option, index) => (
+                    <Button className="button" style={{ marginTop: "3%" }} onClick ={()=>{}}>
+                      <Row style={{marginTop: "auto"}}>
+                        <Radio style={radioStyle} value={index}>
+                        {option.firstName} {option.lastName}
+                        </Radio>
+                      </Row>
+                    </Button>
+                   ))}
+                   </Radio.Group>
+                </Form.Item>
+                <Button
+              style={{
+                backgroundColor: "#206489",
+                width: "70%",
+                marginRight: "auto"
+              }}
+            >
+              <Checkbox /*onChange={
+                
+                }*/>
+                <Text style={{ color: "#FFFFFF" }}>
+                  Validar mi elección
+                </Text>
+              </Checkbox>
+            </Button>
+
+                <SubmitButton>Votar</SubmitButton>
+              </Form>
+            )}
+          </Formik>
+          </Col>
+          <Row
+            style={{
+              display: "flex",
+              alignContent: "space-between",
+              width: "100%"
+            }}
+          >
+          
+          </Row>
+        </Radio.Group>
+      </Row>
+    </Col>
+  </Row>
+);
+}
+
+
+
+
+
+export default Votacion;

@@ -519,6 +519,12 @@ export type PastElectionResultsQuery = {
   >;
 };
 
+export type VotePollMutationVariables = {
+  input: VotePollInput;
+};
+
+export type VotePollMutation = { __typename?: "Mutation"; voteOnPoll: boolean };
+
 export type LogInMutationVariables = {
   input: LoginInput;
 };
@@ -748,6 +754,34 @@ export type PastElectionResultsLazyQueryHookResult = ReturnType<
 export type PastElectionResultsQueryResult = ApolloReactCommon.QueryResult<
   PastElectionResultsQuery,
   PastElectionResultsQueryVariables
+>;
+export const VotePollDocument = gql`
+  mutation votePoll($input: VotePollInput!) {
+    voteOnPoll(input: $input)
+  }
+`;
+export type VotePollMutationFn = ApolloReactCommon.MutationFunction<
+  VotePollMutation,
+  VotePollMutationVariables
+>;
+export function useVotePollMutation(
+  baseOptions?: ApolloReactHooks.MutationHookOptions<
+    VotePollMutation,
+    VotePollMutationVariables
+  >
+) {
+  return ApolloReactHooks.useMutation<
+    VotePollMutation,
+    VotePollMutationVariables
+  >(VotePollDocument, baseOptions);
+}
+export type VotePollMutationHookResult = ReturnType<typeof useVotePollMutation>;
+export type VotePollMutationResult = ApolloReactCommon.MutationResult<
+  VotePollMutation
+>;
+export type VotePollMutationOptions = ApolloReactCommon.BaseMutationOptions<
+  VotePollMutation,
+  VotePollMutationVariables
 >;
 export const LogInDocument = gql`
   mutation LogIn($input: LoginInput!) {

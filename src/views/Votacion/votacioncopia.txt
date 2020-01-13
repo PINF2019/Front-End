@@ -10,6 +10,9 @@ import { bool, boolean } from "yup";
 
 const { Text } = Typography;
 type Props = {
+  name: string;
+  dateInit: string;
+  dateEnd: string;
   id: string;
 };
 
@@ -42,6 +45,7 @@ const Votacion = (props: any) => {
   const {id:poll} = useParams<{id:string}>();
   const {data} = useOptionsQuery({variables:{id:poll}});
   const [vote] = useVotePollMutation();
+
    
       const radioStyle = {
         display: "block",
@@ -80,7 +84,7 @@ const Votacion = (props: any) => {
                 }}
               > 
               <Text strong style={{ fontSize: "30px", lineHeight: "100%" }}>
-                  Votación <br></br> {data?.election.description.substring(0, 100-3) + '...'} 
+                  Votación <br></br> {props.name} 
                 </Text>
               </Row>
         
@@ -137,16 +141,16 @@ const Votacion = (props: any) => {
                       marginRight: "auto"
                     }}
                   >
-                    <Checkbox /*onChange={
+                    <Checkbox onChange={
                       
-                      }*/>
+                      }>
                       <Text style={{ color: "#FFFFFF" }}>
                         Validar mi elección
                       </Text>
                     </Checkbox>
                   </Button>
 
-                  <Button type="primary" /*disabled = {disabled.state}onClick = {() => votar()}*/>
+                  <Button type="primary" disabled = {disabled.state} onClick = {() => votar()}>
                     Vota!
                   </Button>
                 </Row>
