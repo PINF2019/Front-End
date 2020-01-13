@@ -1,6 +1,7 @@
 import React from "react";
 import { Row, Col, Button, Icon, Typography } from "antd";
 import { useParams, useHistory } from "react-router-dom";
+import "./index.less";
 const { Text } = Typography;
 
 
@@ -17,25 +18,10 @@ const CensusButton = (props: Props) => {
   return (
     <>
       <Button
-        //href={props.url}
-        style={{
-          backgroundColor: "#F0F0F0",
-          marginTop: "2%",
-          minWidth: "32%",
-          minHeight: "63px",
-          borderRadius: "12px",
-          boxShadow: "0px 3px 3px grey"
-        }}
+        className = "button"
         onClick={() => history.push(`censusData/${props.id}`)}
       >
-        <Row
-          style={{
-            width: "100%",
-            height: "100%",
-            display: "flex",
-            alignContent: "space-between"
-          }}
-        >
+        <Row className = "RowCensusButton">
           <Text strong style={{ marginTop: "auto", marginBottom: "auto" }}>
             {props.name}
           </Text>
@@ -48,11 +34,11 @@ const CensusButton = (props: Props) => {
           <Icon
             type="caret-right"
             style={{
-              marginTop: "1.1%",
-              verticalAlign: "middle",
-              fontSize: "50px",
-              color: "#FFA500",
-              marginLeft: "auto"
+              marginTop: '1.1%',
+              verticalAlign: 'middle',
+              fontSize: '50px',
+              color: '#FFA500',
+              marginLeft: 'auto'
             }}
           />
         </Row>
