@@ -4,13 +4,15 @@ import { Table, Divider, Tag, Input, Button, Icon} from 'antd'
 import { Formik, Field } from 'formik'
 import { Form} from 'formik-antd'
 import React from 'react'
-import { useHistory } from 'react-router-dom'
+import { useHistory, BrowserRouter as Router, Route, Link} from 'react-router-dom'
 import * as Yup from 'yup'
 import routes from '@Routes'
 import Highlighter from 'react-highlight-words';
 import ReactDOM from 'react-dom'
+import ModifyUser from '../ModifyUser'
+import ModifyButton from '../ModifyUserTable/ModifyButton'
 
-class App extends React.Component {
+class ModifyUserTable extends React.Component{
   
   state = {
     searchText: '',
@@ -37,7 +39,7 @@ class App extends React.Component {
           size="small"
           style={{ width: 90, marginRight: 8 }}
         >
-          Search
+          Buscar
         </Button>
         <Button onClick={() => this.handleReset(clearFilters)} size="small" style={{ width: 90 }}>
           Reset
@@ -84,6 +86,7 @@ class App extends React.Component {
   };
 
   render(){
+  
   const columns = [
     {
       title: 'NIF/NIE',
@@ -114,17 +117,66 @@ class App extends React.Component {
     {
       title: '',
       key: 'modify',
-      render: (text: React.ReactNode) => <a>Modify</a>,
+      render: (text: React.ReactNode, record: any) => (
+        <ModifyButton 
+      nif={record.nif} 
+      name ={record.name} 
+      lastnames={record.lastnames}
+      sex={record.sex}
+      rol={record.rol}
+      />
+      ),
     },
   ];
+  
   return <Table bordered pagination={false} columns={columns} dataSource={data} />;
 }
-
+  props: any
   searchInput: any
 }
 
-
-
+/*
+const columns = [
+  {
+    title: 'NIF/NIE',
+    dataIndex: 'nif',
+    key: 'nif',
+  },
+  {
+    title: 'Nombre',
+    dataIndex: 'name',
+    key: 'name',
+  },
+  {
+    title: 'Apellidos',
+    dataIndex: 'lastnames',
+    key: 'lastnames',
+  },
+  {
+    title: 'Sexo',
+    dataIndex: 'sex',
+    key: 'sex',
+  },
+  {
+    title: 'Rol',
+    dataIndex: 'rol',
+    key: 'rol',
+  },
+  {
+    title: '',
+    key: 'modify',
+    render: (text: React.ReactNode, record: any) => (
+      <ModifyButton 
+      nif={record.nif} 
+      name ={record.name} 
+      lastnames={record.lastnames}
+      sex={record.sex}
+      rol={record.rol}
+      />
+    ),
+  },
+];
+*/
 const data = [
   {
     key: '1',
@@ -142,7 +194,15 @@ const data = [
     sex: 'Femenino',
     rol: 'Secretario',
   },
-];
+];/*
+const ModifyUserTable = () => {
+  const history = useHistory();
+  return(
+    <Table bordered pagination={false} columns={columns} dataSource={data} />
+  )
+}
+*/
 
-export default App
+export default ModifyUserTable
+
 

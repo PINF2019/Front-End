@@ -37,7 +37,7 @@ class App extends React.Component {
           size="small"
           style={{ width: 90, marginRight: 8 }}
         >
-          Search
+          Buscar
         </Button>
         <Button onClick={() => this.handleReset(clearFilters)} size="small" style={{ width: 90 }}>
           Reset

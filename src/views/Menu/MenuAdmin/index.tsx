@@ -5,9 +5,9 @@ const { Text } = Typography;
 
 const data = {
   data: [
-    { name: "Añadir usuario", url: "/admin/GestionarUsuarios" },
-    { name: "Modificar usuario", url: "/404" },
-    { name : "Eliminar usuario", url: "/404"}
+    { name: "Añadir usuario", url: "/admin/adduser" },
+    { name: "Modificar usuario", url: "/admin/modifyusertable" },
+    { name : "Eliminar usuario", url: "/admin/deleteusertable"}
   ]
 };
 

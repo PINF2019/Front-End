@@ -7,6 +7,7 @@ import React from 'react'
 import { useHistory } from 'react-router-dom'
 import * as Yup from 'yup'
 import routes from '@Routes'
+import { OmitProps } from 'antd/lib/transfer/renderListBody'
 
 const initialValues = {
   uid: '',
@@ -17,11 +18,19 @@ const validationSchema = Yup.object().shape({
   uid: Yup.string().trim().matches(/^u(?:[0-9]{8}|[xyz][0-9]{7})$/, "Formato erroneo.").required()
 })
 
+type Props = {
+  nif: string;
+  name: string;
+  lastnames: string;
+  sex: string;
+  rol: string;
+};
+
 /*Para indicar que input/datos vamos a mandarle al servidor y que nos devuelve usamos "useLogInMutation()", solo hay que crear /src/graphql/documents/<nombre-pag>.gql, login.gql tiene comentarios*/
-const AddUserForm = () => {
+const ModifyUserForm = (props: Props) => {
   const [logIn] = useLogInMutation()
   const history = useHistory()
-
+  
   return (
     <Formik
       initialValues={initialValues}
@@ -45,28 +54,28 @@ const AddUserForm = () => {
         <Form>
           <p>Datos</p>
           <Form.Item name="nif">
-            <p>NIF/NIE <Input name="nif" autoComplete="NIF/NIE" placeholder="NIF/NIE" /></p>
+            <p>NIF/NIE <Input name="nif" value={props.nif} autoComplete="NIF/NIE" placeholder="NIF/NIE" /></p>
           </Form.Item>
           <Form.Item name="name">
-            <p>Nombre<Input name="name" autoComplete="username" placeholder="Nombre" /></p>
+            <p>Nombre<Input name="name" value={props.name} autoComplete="nombre" placeholder="Nombre" /></p>
           </Form.Item>
           <Form.Item name="lastnames">
-            <p>Apellidos<Input name="lastnames" autoComplete="lastnames" placeholder="Apellidos" /></p>
+            <p>Apellidos<Input name="lastnames" value={props.lastnames} autoComplete="lastnames" placeholder="Apellidos" /></p>
           </Form.Item>
           <Form.Item name="sex">
-              <p>Sexo<Field as="select" name="sex">
-              <option value="masculino">Masculino</option>
-              <option value="femenino">Femenino</option>
+              <p>Sexo<Field as="select" value={props.sex} name="sex">
+              <option value="Masculino">Masculino</option>
+              <option value="Femenino">Femenino</option>
             </Field></p>
           </Form.Item>
           <Form.Item name="email">
             <p>Correo electrónico<Input name="email" autoComplete="useremail" placeholder="Correo electrónico" /></p>
           </Form.Item>
           <Form.Item name="rol">
-              <p>Rol<Field as="select" name="rol">
-              <option value="opcion1">opcion1</option>
-              <option value="opcion2">opcion2</option>
-              <option value="opcion3">opcion3</option>
+              <p>Rol<Field as="select" value={props.rol} name="rol">
+              <option value="Elector">Elector</option>
+              <option value="Secretario">Secretario</option>
+              <option value="Administrador">Administrador</option>
             </Field></p>
           </Form.Item>
           <Form.Item name="org">
@@ -100,4 +109,4 @@ const AddUserForm = () => {
   )
 }
 
-export default AddUserForm
+export default ModifyUserForm
