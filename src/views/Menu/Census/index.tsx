@@ -12,22 +12,22 @@ const Census = () => {
   const data = useElectionsQuery();
 
   return (
-    <Row justify="center" className="body">
-      <Row className = "RowTexto">
-        <Text strong className = "textoTitulo">
-          Seleccione que censo quiere conocer:
+    <Row justify="center" className="body" style={{ marginTop: '3%' }}>
+      <Row className="layout" style={{ marginBottom: '10%' }}>
+        <Text strong style={{ fontSize: "30px" }}>
+          Seleccione qué censo quiere conocer
         </Text>
       </Row>
       <Row>
-{
-      data.data?.pendingElections.map( elec => (  
-          <CensusButton
-            name={elec.description}
-            dateInit={elec.start}
-            dateEnd={elec.end}
-            id={elec.id}
-          />
-      ))}
+        {
+          data.data?.pendingElections.map(elec => (
+            <CensusButton
+              name={elec.description}
+              dateInit={elec.start}
+              dateEnd={elec.end}
+              id={elec.id}
+            />
+          ))}
       </Row>
     </Row>
   );
