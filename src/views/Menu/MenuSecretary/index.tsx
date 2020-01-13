@@ -16,6 +16,7 @@ const MenuAdmin = () => {
 
   return (
     <Row justify="center" className="body">
+      <Row className = "body2" style={{marginTop: "20%"}}>
       <Row style={{ marginTop: "3%", marginBottom: "1%" }}>
         <Text strong style={{ fontSize: "20px" }}>
           Gestionar Procesos Electorales
@@ -25,6 +26,7 @@ const MenuAdmin = () => {
         {data.data.map((data, index) => (
           <MenuButton name={data.name} url={data.url} />
         ))}
+      </Row>
       </Row>
     </Row>
   );

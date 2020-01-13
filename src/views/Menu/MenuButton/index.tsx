@@ -15,7 +15,7 @@ const MenuButton = (props: Props) => {
         style={{
           backgroundColor: '#F0F0F0',
           marginTop: '2%',
-          minWidth: '32%',
+          minWidth: '100%',
           minHeight: '63px',
           borderRadius: '12px',
           boxShadow: '0px 3px 3px grey'

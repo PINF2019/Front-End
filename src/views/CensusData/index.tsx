@@ -25,7 +25,7 @@ const CensusData = () => {
                 <ul>
                     {{data}.data?.election.censuses.map(elec => (
                         <Row>
-                            <Text>{elec.voters.map}</Text>
+                            <Text  style={{ fontSize: "15px" }}>{elec.voters.map}</Text>
                         </Row>
                     ))}
                 </ul>
