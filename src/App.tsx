@@ -18,6 +18,7 @@ import {
   Success,
   MenuCrearEleccion,
   CrearEleccion,
+  CrearVotacion,
   MenuResultados,
   Resultados,
   gestionarUsuarios,
@@ -79,7 +80,11 @@ const Protected = () => {
   path={routes.crearEleccion}
   component={CrearEleccion}
 /> 
-
+<Route
+  exact
+  path={routes.crearVotacion}
+  component={CrearVotacion}
+/> 
 
 
  <Route exact path={routes.gestionarUsuarios} component={gestionarUsuarios}/>

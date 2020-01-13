@@ -20,6 +20,7 @@ import Census from "./Menu/Census";
 
 //Secretario
 import CrearEleccion from "./Secretary/ProcesoElectoral";
+import CrearVotacion from "./Secretary/Votación"
 
 //Admin
 import gestionarUsuarios from "./admin/GestionarUsuarios";
@@ -57,6 +58,7 @@ export {
   Success,
   MenuCrearEleccion,
   CrearEleccion,
+  CrearVotacion,
   MenuResultados,
   Resultados,
   gestionarUsuarios,
