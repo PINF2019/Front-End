@@ -10,6 +10,7 @@ type Props = {
   dateInit: string;
   dateEnd: string;
   id: string;
+
 };
 
 const CensusButton = (props: Props) => {
@@ -19,10 +20,10 @@ const CensusButton = (props: Props) => {
     <>
       <Button
         className = "button"
-        onClick={() => history.push(`censusData/${props.id}`)}
+        onClick={() => history.push(`census/${props.id}`)}
       >
         <Row className = "RowCensusButton" >
-          <Text strong style={{ marginTop: "auto", marginBottom: "auto", flexShrink: 1 }}>
+          <Text strong style={{ marginTop: "auto", marginBottom: "auto" }}>
             {((props.name).length > 30) ? (((props.name).substring(0,30-3)) + '...') : props.name}
           </Text>
 
