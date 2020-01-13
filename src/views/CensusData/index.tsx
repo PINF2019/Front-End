@@ -18,16 +18,15 @@ const CensusData = () => {
          <Text>{'\n'}{{data}.data?.election.start.substring(8,10) + '/' + {data}.data?.election.start.substring(5,7) + '/' + {data}.data?.election.start.substring(0,4) + 
          '-' + {data}.data?.election.end.substring(8,10) + '/' + {data}.data?.election.end.substring(5,7) + '/' + {data}.data?.election.end.substring(0,4)}</Text>
         </Card>
-         <Row>
-             <Text style={{ fontSize: '30px', paddingTop: '50px' }}>Secretario:</Text>
+         <Row className = "Rowtext">
+             <Text strong style={{ fontSize: '30px', paddingTop: '50px' }}>Secretarios delegados:</Text>
                  <ul>
-                     Apellido1 Apellido2, Nombre
+                     {{data}.data?.election.delegates.map( del => (
+                         del.lastName, del.firstName
+                     )
+                     )}
                  </ul>
-             <Text style={{ fontSize: '30px', paddingTop: '50px' }}>Subsecretario:</Text>
-                 <ul>
-                     Apellido1 Apellido2, Nombre
-                 </ul>
-             <Text style={{ fontSize: '30px', paddingTop: '50px' }}>Votantes:</Text>
+             <Text strong style={{ fontSize: '30px', paddingTop: '50px' }}>Votantes:</Text>
              <ul>
                  {{data}.data?.election.censuses.map(elec => (
                      <Row>

@@ -46,6 +46,11 @@ query census($id: ID!) {
         lastName
       }
     }
+    delegates {
+      firstName
+      lastName
+      
+    }
   }
 }
 

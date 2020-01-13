@@ -496,6 +496,11 @@ export type CensusQuery = {
         lastName: string;
       }>;
     }>;
+    delegates: Array<{
+      __typename?: "User";
+      firstName: string;
+      lastName: string;
+    }>;
   };
 };
 
@@ -676,6 +681,10 @@ export const CensusDocument = gql`
           firstName
           lastName
         }
+      }
+      delegates {
+        firstName
+        lastName
       }
     }
   }
