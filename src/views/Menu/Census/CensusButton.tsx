@@ -21,14 +21,14 @@ const CensusButton = (props: Props) => {
         className = "button"
         onClick={() => history.push(`censusData/${props.id}`)}
       >
-        <Row className = "RowCensusButton">
-          <Text strong style={{ marginTop: "auto", marginBottom: "auto" }}>
-            {props.name}
+        <Row className = "RowCensusButton" >
+          <Text strong style={{ marginTop: "auto", marginBottom: "auto", flexShrink: 1 }}>
+            {((props.name).length > 30) ? (((props.name).substring(0,30-3)) + '...') : props.name}
           </Text>
 
           <Text style={{ textAlign: "center", margin: "auto" }}>
-            {props.dateInit} {"-"}
-            {props.dateEnd}
+            {props.dateInit.substring(8,10)}{'/'}{props.dateInit.substring(5,7)}{'/'}{props.dateInit.substring(0,4)} {"-"}
+            {props.dateEnd.substring(8,10)}{'/'}{props.dateEnd.substring(5,7)}{'/'}{props.dateEnd.substring(0,4)}
           </Text>
 
           <Icon

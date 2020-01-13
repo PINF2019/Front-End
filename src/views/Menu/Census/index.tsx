@@ -7,29 +7,6 @@ import { useElectionsQuery } from "@Generated/hooks";
 
 const { Text } = Typography;
 
-const datass = {
-  data: [
-    {
-      name: "Censo 1",
-      dateInit: "19-05-2019",
-      dateEnd: "20-01-2020",
-      id: "1"
-    },
-    {
-      name: "Censo 2",
-      dateInit: "20-05-2019",
-      dateEnd: "21-01-2020",
-      id: "2"
-    },
-    {
-      name: "Censo 3",
-      dateInit: "21-05-2019",
-      dateEnd: "22-01-2020",
-      id: "3"
-    }
-  ]
-};
-
 const Census = () => {
 
   const data = useElectionsQuery();
