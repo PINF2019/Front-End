@@ -24,6 +24,10 @@ const routes = {
   crearEleccion: "/secretary/crearProcesoElectoral/eleccion",
   
   gestionarUsuarios: "/admin/GestionarUsuarios",
+  adduser: '/admin/adduser',
+  modifyusertable: '/admin/modifyusertable',
+  modifyuser: '/admin/modifyuser/:nif/:name/:lastnames/:sex/:rol',
+  deleteusertable: '/admin/deleteusertable',
   
   success: "/success",
   notFound: "/404",

@@ -13,8 +13,8 @@ const Census = () => {
 
   return (
     <Row justify="center" className="body">
-      <Row style={{ marginTop: "3%", marginBottom: "1%" }}>
-        <Text strong style={{ fontSize: "20px" }}>
+      <Row className = "RowTexto">
+        <Text strong className = "textoTitulo">
           Seleccione la operación que desee realizar:
         </Text>
       </Row>
