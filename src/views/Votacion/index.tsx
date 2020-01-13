@@ -18,24 +18,9 @@ const { Text } = Typography;
 }*/
 const Votacion = (props: any) => {
   const {id} = useParams();
-  if (!isAuthTokenExpired()) {
-    return <Redirect to={routes.user} />;
-  }
-  class App extends React.Component {
-    state = {
-      value: 1
-    };
-    validarvoto(e: any) {
-      console.log(`checked = ${e.target.checked}`);
-    }
-    onChange = (e: any) => {
-      console.log("radio checked", e.target.value);
-      this.setState({
-        value: e.target.value
-      });
-    };
 
-    render() {
+
+   
       const radioStyle = {
         display: "block",
         height: "30px",
@@ -71,7 +56,7 @@ const Votacion = (props: any) => {
                 }}
               >
                 <Text strong style={{ fontSize: "30px", lineHeight: "100%" }}>
-                  Votación <br></br>Color del nuevo logo de la ESI
+                  Votación <br></br>
                 </Text>
               </Row>{" "}
             </Layout>
@@ -117,7 +102,7 @@ const Votacion = (props: any) => {
                       marginRight: "auto"
                     }}
                   >
-                    <Checkbox onChange={this.validarvoto}>
+                    <Checkbox /*onChange={this.validarvoto}*/>
                       <Text style={{ color: "#FFFFFF" }}>
                         Validar mi elección
                       </Text>
@@ -134,9 +119,9 @@ const Votacion = (props: any) => {
         </Row>
       );
     }
-  }
+  
 
-  return <App />;
-};
+
+
 
 export default Votacion;

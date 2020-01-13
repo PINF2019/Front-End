@@ -15,18 +15,19 @@ const Census = () => {
     <Row justify="center" className="body">
       <Row className = "RowTexto">
         <Text strong className = "textoTitulo">
-          Seleccione la operación que desee realizar:
+          Seleccione que censo quiere conocer:
         </Text>
       </Row>
       <Row>
-      {data.data?.pendingElections.map( elec => (  
+{
+      data.data?.pendingElections.map( elec => (  
           <CensusButton
             name={elec.description}
             dateInit={elec.start}
             dateEnd={elec.end}
             id={elec.id}
           />
-        ))}
+      ))}
       </Row>
     </Row>
   );
