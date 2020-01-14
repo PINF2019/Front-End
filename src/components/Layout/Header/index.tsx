@@ -1,10 +1,7 @@
-import React from "react";
-import { Row, Col, Layout, Typography, Button, Avatar } from "antd";
-import "./index.less";
 import logo from "@Assets/logo.png";
-import Sidebar from "../Sidebar";
-import { statement } from "@babel/template";
-import { Icon } from "antd";
+import { Button, Col, Icon, Layout, Row, Typography } from "antd";
+import React from "react";
+import "./index.less";
 const { Text } = Typography;
 
 const Header = (props: { onClick: () => void }) => {
@@ -19,7 +16,7 @@ const Header = (props: { onClick: () => void }) => {
         }}
       >
         <Col style={{ marginRight: "auto", display: "flex" }}>
-          <a href="/pickroleadmin">
+          <a href="/pickrole">
             <img src={logo} width="150px"></img>
           </a>
         </Col>

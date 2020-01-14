@@ -1,53 +1,51 @@
 //Raíz
+import AddUser from "./admin/AddUser";
+import DeleteUserTable from "./admin/DeleteUserTable";
+//Admin
+import gestionarUsuarios from "./admin/GestionarUsuarios";
+import ModifyUser from "./admin/ModifyUser";
+import ModifyUserTable from "./admin/ModifyUserTable";
+import CensusData from "./CensusData";
+import Election from "./Election";
 import Home from "./Home";
 import Login from "./Login";
-import PickRoleAdmin from "./PickRole/Admin"; 
-import PickRoleSecretary from "./PickRole/Secretary"
-import Votacion from "./Votacion";
-import Resultados from "./Resultados";
-import CensusData from "./CensusData";
-
-import Election from "./Election";
-
-//Menu
-import MenuUser from "./Menu/MenuUser"
+import Logo from "./Logo";
+import Census from "./Menu/Census";
 import MenuAdmin from "./Menu/MenuAdmin";
-import MenuSecretary from "./Menu/MenuSecretary";
 import MenuButton from "./Menu/MenuButton";
 import MenuCrearEleccion from "./Menu/MenuCrearEleccion";
 import MenuResultados from "./Menu/MenuResultados";
-import Census from "./Menu/Census";
-import MenuModificarElecciones from "./Menu/MenuSecretary/MenuModificarElecciones"
-import MenuEliminarElecciones from "./Menu/MenuSecretary/MenuEliminarElecciones"
-
-
+import MenuSecretary from "./Menu/MenuSecretary";
+import MenuEliminarElecciones from "./Menu/MenuSecretary/MenuEliminarElecciones";
+import MenuModificarElecciones from "./Menu/MenuSecretary/MenuModificarElecciones";
+//Menu
+import MenuUser from "./Menu/MenuUser";
+import NotFound from "./Overlays/NotFound";
+import ProcesoCreadoOverlay from "./Overlays/ProcesoCreado";
+import ProcesoEliminadoOverlay from "./Overlays/ProcesoEliminado";
+import ProcesoModificadoOverlay from "./Overlays/ProcesoModificado";
+import SeguroEliminadoProcesoOverlay from "./Overlays/SeguroEliminadoProceso";
+import SeguroEliminadoUsuarioOverlay from "./Overlays/SeguroEliminadoUsuario";
+import SeguroPublicacionOverlay from "./Overlays/SeguroPublicacion";
+import UsuarioCreadoOverlay from "./Overlays/UsuarioCreado";
+import UsuarioEliminadoOverlay from "./Overlays/UsuarioEliminado";
+import UsuarioModificadoOverlay from "./Overlays/UsuarioModificado";
+// Overlays
+import {
+  default as Success,
+  default as VotoRegistradoOverlay
+} from "./Overlays/VotoRegistrado";
+import PickRoleAdmin from "./PickRole/Admin";
+import PickRoleSecretary from "./PickRole/Secretary";
+import Resultados from "./Resultados";
 //Secretario
 import CrearEleccion from "./Secretary/ProcesoElectoral";
-import CrearVotacion from "./Secretary/Votación"
-
-//Admin
-import gestionarUsuarios from "./admin/GestionarUsuarios";
-import AddUser from './admin/AddUser'
-import ModifyUserTable from './admin/ModifyUserTable'
-import ModifyUser from './admin/ModifyUser'
-import DeleteUserTable from './admin/DeleteUserTable'
-
-// Overlays
-import Success from "./Overlays/VotoRegistrado";
-import NotFound from "./Overlays/NotFound";
-import ProcesoCreadoOverlay from "./Overlays/ProcesoCreado"
-import ProcesoModificadoOverlay from "./Overlays/ProcesoModificado"
-import ProcesoEliminadoOverlay from "./Overlays/ProcesoEliminado"
-import SeguroEliminadoProcesoOverlay from "./Overlays/SeguroEliminadoProceso"
-import SeguroEliminadoUsuarioOverlay from "./Overlays/SeguroEliminadoUsuario"
-import SeguroPublicacionOverlay from "./Overlays/SeguroPublicacion"
-import UsuarioCreadoOverlay from "./Overlays/UsuarioCreado"
-import UsuarioEliminadoOverlay from "./Overlays/UsuarioEliminado"
-import UsuarioModificadoOverlay from "./Overlays/UsuarioModificado"
-import VotoRegistradoOverlay from "./Overlays/VotoRegistrado"
+import CrearVotacion from "./Secretary/Votación";
+import Votacion from "./Votacion";
 
 export {
   Login,
+  Logo,
   Home,
   Election,
   PickRoleAdmin,
@@ -83,5 +81,4 @@ export {
   UsuarioModificadoOverlay,
   UsuarioEliminadoOverlay,
   VotoRegistradoOverlay
-  
 };
