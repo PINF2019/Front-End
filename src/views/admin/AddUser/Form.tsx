@@ -25,11 +25,12 @@ const initialValues = {
 
 /*Validacion de los datos del formulario, cadena, quitar espacios, expresion regular, mensaje*/
 const validationSchema = Yup.object().shape({
-  uid: Yup.string().trim().matches(/^u(?:[0-9]{8}|[xyz][0-9]{7})$/, "Formato erroneo.").required(),
-  password: Yup.string().required(),
-  dni: Yup.string().required(),
-  firstName: Yup.string().required(),
-  lastName: Yup.string().required()
+  uid: Yup.string().trim().matches(/^u(?:[0-9]{8}|[xyz][0-9]{7})$/, "Formato erroneo.").required("Usuario requerido."),
+  password: Yup.string().required("Contraseña requerida."),
+  passwordConfirm: Yup.string().oneOf([Yup.ref('password')], "Las contraseñas no coinciden.").required('Repetir contraseña requerida.'),
+  dni: Yup.string().required("NIF/NIE requerido."),
+  firstName: Yup.string().required("Nombre requerido."),
+  lastName: Yup.string().required("Apellidos requerido.")
 })
 
 /*Para indicar que input/datos vamos a mandarle al servidor y que nos devuelve usamos "useLogInMutation()", solo hay que crear /src/graphql/documents/<nombre-pag>.gql, login.gql tiene comentarios*/
@@ -55,7 +56,7 @@ const AddUserForm = () => {
         try {
           const { data } = await createUser({ variables: { input } })
           if (data) {
-            history.replace(routes.base)
+            history.replace(routes.usuarioCreado)
           }
         } catch {
           const message = 'Usuario Incorrectos'
@@ -93,6 +94,9 @@ const AddUserForm = () => {
           <Form.Item name="password">
           <p style={{ fontSize: "20px" }}><strong>Contraseña</strong><Input.Password name="password" autoComplete="current-password" placeholder="Contraseña"/></p>
           </Form.Item>
+          <Form.Item name="passwordConfirm">
+          <p style={{ fontSize: "20px" }}><strong>Repetir Contraseña</strong><Input.Password name="passwordConfirm" autoComplete="current-password" placeholder="Repetir Contraseña"/></p>
+          </Form.Item>
           <Form.Item name="dni">
             <p style={{ fontSize: "20px" }}><strong >NIF/NIE</strong> <Input name="dni" autoComplete="NIF/NIE" placeholder="NIF/NIE" /></p>
           </Form.Item>
@@ -113,9 +117,9 @@ const AddUserForm = () => {
             <p style={{ fontSize: "20px" }}><strong>Correo electrónico</strong> <Input name="email" autoComplete="useremail" placeholder="Correo electrónico" /></p>
               </Form.Item>*/}
           <Form.Item name="roles">
-            <p style={{ fontSize: "20px" }}><strong>Rol</strong><Field as="select" name="roles">
+            <p style={{ fontSize: "20px" }}><strong>Rol</strong><Field as="select" name="roles" >
               <option value='VOTER'>Elector</option>
-              <option value='SECRETARY'>Secretario</option>
+              <option value='SECRETARY' >Secretario</option>
               <option value='ADMIN'>Administrador</option>
             </Field></p>
           </Form.Item>
@@ -131,7 +135,7 @@ const AddUserForm = () => {
             <Button >
               <a href="/admin">Cancelar</a>
             </Button>
-            <SubmitButton htmlType="submit" type="primary" block>
+            <SubmitButton htmlType="submit" type="primary" >
               Añadir usuario
             </SubmitButton>
           </Form.Item>

@@ -177,6 +177,7 @@ const columns = [
       lastnames={record.lastnames}
       sex={record.sex}
       rol={record.rol}
+      colegiateBody={record.colegiateBody}
       />
     ),
   },
@@ -222,11 +223,13 @@ const ModifyUserTable = () => {
   const lastnames = data.users.map((user, index) => (user.lastName))
   const sexes = data.users.map((user, index) => (user.genre))
   const roles = data.users.map((user, index) => (user.roles))
+  const colegiateBodys = data.users.map((user, index) => (user.colegiateBody))
+  
   let array = new Array(data.users.length)
   for (let i=0; i<data.users.length; i++){
     //let rol = ''
     //roles[i].forEach(element => rol = rol + element || ' ')
-    array[i] = {key: i, nif: nifs[i], name: firstNames[i], id: ids[i], lastnames: lastnames[i], sex: sexes[i], rol: roles[i][0]}
+    array[i] = {key: i, nif: nifs[i], name: firstNames[i], id: ids[i], lastnames: lastnames[i], sex: sexes[i], rol: roles[i][0], colegiateBody: colegiateBodys[i]}
   }
   
   
