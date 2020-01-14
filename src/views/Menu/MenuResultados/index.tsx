@@ -1,18 +1,19 @@
 import { usePastElectionResultsQuery } from "@Generated/hooks";
-import { Row, Typography } from "antd";
+import { Row, Typography, Layout } from "antd";
 import React from "react";
 import ElectionButton from "../Election/election";
 const { Text } = Typography;
-//la interrogacion comprueba que no sea nulo
+//la interrogacion comprueba que no sea nulo()
 const MenuResultados = () => {
   const data = usePastElectionResultsQuery();
   
     return (
-      <Row justify="center" className="body">
-        <Row style={{ marginTop: "3%", marginBottom: "1%" }}>
-          <Text strong style={{ fontSize: "20px" }}>
-            Votaciones finalizadas:
-          </Text>
+      <Layout style = {{height: '100%', width: '100%', backgroundColor: '#ffffff', overflow: 'auto'}} >
+      <Row justify="center" className="body" style={{ marginTop: '3%', backgroundColor: 'white' }}>
+      <Row className="layout" style={{ marginBottom: '10%' }}>
+        <Text strong style={{ fontSize: "30px" }}>
+          Votaciones finalizadas
+        </Text>
         </Row>
         <Row>
           {data.data?.electoralProcesses.map(eprocess => {
@@ -35,6 +36,7 @@ const MenuResultados = () => {
           } )}
         </Row>
       </Row>
+      </Layout>
     );
 };
 
