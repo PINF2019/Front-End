@@ -68,3 +68,7 @@ query PastElectionResults {
 mutation votePoll($input: VotePollInput!) {
   voteOnPoll(input: $input)
 }
+
+mutation createElection($input: ){
+  
+}
