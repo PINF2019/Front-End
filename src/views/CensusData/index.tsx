@@ -13,11 +13,11 @@ const CensusData = () => {
     return (
         <Row className = "RowGlo">
         <Row className = "RowGlo2">
-        <Card className = "card">
+        <Row style = {{marginTop: '3%'}}><Card className = "card">
         <Title><Text>Censo de {{data}.data?.election.description}</Text></Title>
          <Text>{'\n'}{{data}.data?.election.start.substring(8,10) + '/' + {data}.data?.election.start.substring(5,7) + '/' + {data}.data?.election.start.substring(0,4) + 
          '-' + {data}.data?.election.end.substring(8,10) + '/' + {data}.data?.election.end.substring(5,7) + '/' + {data}.data?.election.end.substring(0,4)}</Text>
-        </Card>
+        </Card></Row>
          <Row className = "Rowtext">
              <Text strong style={{ fontSize: '30px', paddingTop: '50px' }}>Secretario:</Text>
                 <ul>
