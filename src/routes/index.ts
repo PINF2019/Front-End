@@ -17,12 +17,15 @@ const routes = {
   user: "/user",
   admin: "/admin",
   secretary: "/secretary",
-  menuCrearEleccion: "/secretary/crearProcesoElectoral",
+  menuCrearEleccion: "/secretary/procesoElectoral/crear",
   menuResultados: "/resultados",
   menuCensus: "/census",
+  modificarProcesoElectoral: "/secretary/procesoElectoral/modificar",
+  eliminarProcesoElectoral: "/secretary/procesoElectoral/modificar",
 
-  crearEleccion: "/secretary/crearProcesoElectoral/eleccion",
-  crearVotacion: "/secretary/crearProcesoElectoral/votacion",
+
+  crearEleccion: "/secretary/procesoElectoral/crear/eleccion",
+  crearVotacion: "/secretary/procesoElectoral/crear/votacion",
   
   gestionarUsuarios: "/admin/GestionarUsuarios",
   adduser: '/admin/adduser',

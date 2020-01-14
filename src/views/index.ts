@@ -17,6 +17,9 @@ import MenuButton from "./Menu/MenuButton";
 import MenuCrearEleccion from "./Menu/MenuCrearEleccion";
 import MenuResultados from "./Menu/MenuResultados";
 import Census from "./Menu/Census";
+import MenuModificarElecciones from "./Menu/MenuSecretary/MenuModificarElecciones"
+import MenuEliminarElecciones from "./Menu/MenuSecretary/MenuEliminarElecciones"
+
 
 //Secretario
 import CrearEleccion from "./Secretary/ProcesoElectoral";
@@ -60,6 +63,8 @@ export {
   CrearEleccion,
   CrearVotacion,
   MenuResultados,
+  MenuModificarElecciones,
+  MenuEliminarElecciones,
   Resultados,
   gestionarUsuarios,
   AddUser,
