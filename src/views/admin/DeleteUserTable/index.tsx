@@ -2,29 +2,34 @@ import React from 'react'
 import { Layout, Row, Col, Card, Typography } from 'antd'
 import { isAuthTokenExpired } from '@Utils/auth'
 import { Redirect } from 'react-router-dom'
-import App from './Form'
+import DeleteUserTableForm from './Form'
 import routes from '@Routes'
 import Header from '@Components/Layout/Header'
 
-const DeleteUserTable = () => {
+const { Text } = Typography;
 
+const DeleteUserTable = () => {
+  
   return (
-    <div>
-      <Typography.Title>Eliminar usuario</Typography.Title>
-      <Row type="flex" style={{ minHeight: '100vh' }}>
-        <Col
-          span={24}
-          style={{
+    <Row justify="start" style={{ marginTop: '3%', marginLeft: '3%' }}>
+      <Row className="layout" style={{ marginBottom: '2%' }}>
+        <Card className = "card">
+          <Text strong style={{ fontSize: "30px" }}>
+            Borrar Usuario
+          </Text>
+        </Card>
+      </Row>
+      <Row type="flex" style={{ minHeight: '100vh', marginLeft: '3%', marginRight: '3%'  }}>
+      <Col span={12} style={{
             justifyContent: 'center',
-            
             alignItems: 'center'
           }}>
           <Card> {/*Crea el cuadrado del login*/}
-            <App />
+            <DeleteUserTableForm />
           </Card>
         </Col>
       </Row>
-    </div>
+    </Row>
   )
 }
 

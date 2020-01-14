@@ -15,10 +15,9 @@ const data = {
 const MenuAdmin = () => {
 
   return (
-    <Row justify="center" className="body">
-      <Row className = "body2" style={{marginTop: "20%"}}>
-      <Row style={{ marginTop: "3%", marginBottom: "1%" }}>
-        <Text strong style={{ fontSize: "20px" }}>
+    <Row justify="center" className="body" style={{ marginTop: '3%' }}>
+      <Row className="layout" style={{ marginBottom: '10%' }}>
+        <Text strong style={{ fontSize: "30px" }}>
           Gestionar Procesos Electorales
         </Text>
       </Row>
@@ -27,10 +26,9 @@ const MenuAdmin = () => {
           <MenuButton name={data.name} url={data.url} />
         ))}
       </Row>
-      </Row>
     </Row>
   );
-  
+
 };
 
 export default MenuAdmin;

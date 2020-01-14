@@ -45,7 +45,7 @@ const Login = () => {
               paddingBottom: '100px'
             }}
           >
-            <img src={logo} width="300px" alt="logo" />
+            <img src={logo} width="90%" style={{height:'auto'}} alt="logo" />
           </Row>
           <Row
             style={{

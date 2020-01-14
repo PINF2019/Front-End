@@ -8,10 +8,10 @@ const MenuResultados = () => {
   const { data, error } = usePastElectionResultsQuery();
   if (data) {
     return (
-      <Row justify="center" className="body">
-        <Row style={{ marginTop: "3%", marginBottom: "1%" }}>
-          <Text strong style={{ fontSize: "20px" }}>
-            Votaciones pendientes:
+      <Row justify="center" className="body" style={{ marginTop: '3%' }}>
+        <Row className="layout" style={{ marginBottom: '10%' }}>
+          <Text strong style={{ fontSize: "30px" }}>
+            Seleccione qué resultados quiere conocer
           </Text>
         </Row>
         <Row>
@@ -20,14 +20,14 @@ const MenuResultados = () => {
 
             }
           }*/ (
-            <ElectionButton
-              name={eprocess.description}
-              dateInit={eprocess.start}
-              dateEnd={eprocess.end}
-              id={eprocess.id}
-              href={"resultados"}
-            />
-          ))}
+              <ElectionButton
+                name={eprocess.description}
+                dateInit={eprocess.start}
+                dateEnd={eprocess.end}
+                id={eprocess.id}
+                href={"resultados"}
+              />
+            ))}
         </Row>
       </Row>
     );
