@@ -5,7 +5,7 @@ const { Text } = Typography;
 
 
 type Props = {
-  nif: string;
+  id: string
   name: string;
   lastnames: string;
   sex: string;
@@ -17,8 +17,8 @@ const ModifyButton = (props: Props) => {
 
   return (
     <>
-      <Button onClick={() => 
-        history.push(`/admin/modifyuser/${props.nif}/${props.name}/${props.lastnames}/${props.sex}/${props.rol}`)}>
+      <Button type="primary" onClick={() => 
+        history.push(`/admin/modifyuser/${props.id}/${props.name}/${props.lastnames}/${props.sex}/${props.rol}`)}>
           Modificar
       </Button>
     </>

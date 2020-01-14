@@ -1,0 +1,38 @@
+query users{
+  users{
+        id
+        uid
+        dni
+        firstName
+        lastName
+        roles
+        genre
+        colegiateBody{name}
+  }
+}
+
+mutation deleteUser($id: ID!) {
+  deleteUser(id: $id){
+    uid
+  }
+}
+
+mutation modifyUser($input: UserUpdateInput!, $id: ID!){
+  modifyUser(input: $input, id: $id){
+    uid
+  }
+}
+
+mutation createUser($input: UserInput!){
+  createUser(input: $input){
+    uid
+  }
+}
+
+query collegiateBodies{
+  collegiateBodies{
+    id
+    name
+  }
+}
+

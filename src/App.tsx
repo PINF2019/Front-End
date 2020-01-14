@@ -14,10 +14,13 @@ import {
   MenuSecretary,
   MenuUser,
   MenuButton,
+  MenuModificarElecciones,
+  MenuEliminarElecciones,
   Votacion,
   Success,
   MenuCrearEleccion,
   CrearEleccion,
+  CrearVotacion,
   MenuResultados,
   Resultados,
   gestionarUsuarios,
@@ -66,6 +69,8 @@ const Protected = () => {
 />
 <Route exact path={routes.menuResultados} component={MenuResultados} />
 <Route exact path={routes.menuCensus} component={Census} />
+<Route exact path={routes.modificarProcesoElectoral} component={MenuModificarElecciones} />
+<Route exact path={routes.eliminarProcesoElectoral} component={MenuEliminarElecciones} />
 
 
 
@@ -79,7 +84,11 @@ const Protected = () => {
   path={routes.crearEleccion}
   component={CrearEleccion}
 /> 
-
+<Route
+  exact
+  path={routes.crearVotacion}
+  component={CrearVotacion}
+/> 
 
 
  <Route exact path={routes.gestionarUsuarios} component={gestionarUsuarios}/>

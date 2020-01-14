@@ -64,6 +64,7 @@ export type Election = {
   maxVotes: Scalars["Int"];
   voteWeights: Array<VoteWeight>;
   candidates: Array<Candidate>;
+  secretary: User;
   results: ResultsForElection;
   censuses: Array<Census>;
   delegates: Array<User>;
@@ -213,6 +214,7 @@ export type Poll = {
   options: Array<PollOption>;
   isRealTime: Scalars["Boolean"];
   censuses: Array<Census>;
+  secretary: User;
   results: ResultsForPoll;
   delegates: Array<User>;
 };
@@ -434,6 +436,62 @@ export type VoteWeightInput = {
   weight: Scalars["Float"];
 };
 
+export type UsersQueryVariables = {};
+
+export type UsersQuery = {
+  __typename?: "Query";
+  users: Array<{
+    __typename?: "User";
+    id: string;
+    uid: string;
+    dni: string;
+    firstName: string;
+    lastName: string;
+    roles: Array<Role>;
+    genre: Genre;
+    colegiateBody: Maybe<{ __typename?: "ColegiateBody"; name: string }>;
+  }>;
+};
+
+export type DeleteUserMutationVariables = {
+  id: Scalars["ID"];
+};
+
+export type DeleteUserMutation = {
+  __typename?: "Mutation";
+  deleteUser: { __typename?: "User"; uid: string };
+};
+
+export type ModifyUserMutationVariables = {
+  input: UserUpdateInput;
+  id: Scalars["ID"];
+};
+
+export type ModifyUserMutation = {
+  __typename?: "Mutation";
+  modifyUser: { __typename?: "User"; uid: string };
+};
+
+export type CreateUserMutationVariables = {
+  input: UserInput;
+};
+
+export type CreateUserMutation = {
+  __typename?: "Mutation";
+  createUser: { __typename?: "User"; uid: string };
+};
+
+export type CollegiateBodiesQueryVariables = {};
+
+export type CollegiateBodiesQuery = {
+  __typename?: "Query";
+  collegiateBodies: Array<{
+    __typename?: "ColegiateBody";
+    id: string;
+    name: string;
+  }>;
+};
+
 export type ElectionsQueryVariables = {};
 
 export type ElectionsQuery = {
@@ -486,6 +544,9 @@ export type CensusQuery = {
   election: {
     __typename?: "Election";
     description: string;
+    start: string;
+    end: string;
+    secretary: { __typename?: "User"; firstName: string; lastName: string };
     censuses: Array<{
       __typename?: "Census";
       voters: Array<{
@@ -493,6 +554,11 @@ export type CensusQuery = {
         firstName: string;
         lastName: string;
       }>;
+    }>;
+    delegates: Array<{
+      __typename?: "User";
+      firstName: string;
+      lastName: string;
     }>;
   };
 };
@@ -519,6 +585,12 @@ export type PastElectionResultsQuery = {
   >;
 };
 
+export type VotePollMutationVariables = {
+  input: VotePollInput;
+};
+
+export type VotePollMutation = { __typename?: "Mutation"; voteOnPoll: boolean };
+
 export type LogInMutationVariables = {
   input: LoginInput;
 };
@@ -528,6 +600,186 @@ export type LogInMutation = {
   login: { __typename?: "LoginPayload"; accessToken: string };
 };
 
+export const UsersDocument = gql`
+  query users {
+    users {
+      id
+      uid
+      dni
+      firstName
+      lastName
+      roles
+      genre
+      colegiateBody {
+        name
+      }
+    }
+  }
+`;
+export function useUsersQuery(
+  baseOptions?: ApolloReactHooks.QueryHookOptions<
+    UsersQuery,
+    UsersQueryVariables
+  >
+) {
+  return ApolloReactHooks.useQuery<UsersQuery, UsersQueryVariables>(
+    UsersDocument,
+    baseOptions
+  );
+}
+export function useUsersLazyQuery(
+  baseOptions?: ApolloReactHooks.LazyQueryHookOptions<
+    UsersQuery,
+    UsersQueryVariables
+  >
+) {
+  return ApolloReactHooks.useLazyQuery<UsersQuery, UsersQueryVariables>(
+    UsersDocument,
+    baseOptions
+  );
+}
+export type UsersQueryHookResult = ReturnType<typeof useUsersQuery>;
+export type UsersLazyQueryHookResult = ReturnType<typeof useUsersLazyQuery>;
+export type UsersQueryResult = ApolloReactCommon.QueryResult<
+  UsersQuery,
+  UsersQueryVariables
+>;
+export const DeleteUserDocument = gql`
+  mutation deleteUser($id: ID!) {
+    deleteUser(id: $id) {
+      uid
+    }
+  }
+`;
+export type DeleteUserMutationFn = ApolloReactCommon.MutationFunction<
+  DeleteUserMutation,
+  DeleteUserMutationVariables
+>;
+export function useDeleteUserMutation(
+  baseOptions?: ApolloReactHooks.MutationHookOptions<
+    DeleteUserMutation,
+    DeleteUserMutationVariables
+  >
+) {
+  return ApolloReactHooks.useMutation<
+    DeleteUserMutation,
+    DeleteUserMutationVariables
+  >(DeleteUserDocument, baseOptions);
+}
+export type DeleteUserMutationHookResult = ReturnType<
+  typeof useDeleteUserMutation
+>;
+export type DeleteUserMutationResult = ApolloReactCommon.MutationResult<
+  DeleteUserMutation
+>;
+export type DeleteUserMutationOptions = ApolloReactCommon.BaseMutationOptions<
+  DeleteUserMutation,
+  DeleteUserMutationVariables
+>;
+export const ModifyUserDocument = gql`
+  mutation modifyUser($input: UserUpdateInput!, $id: ID!) {
+    modifyUser(input: $input, id: $id) {
+      uid
+    }
+  }
+`;
+export type ModifyUserMutationFn = ApolloReactCommon.MutationFunction<
+  ModifyUserMutation,
+  ModifyUserMutationVariables
+>;
+export function useModifyUserMutation(
+  baseOptions?: ApolloReactHooks.MutationHookOptions<
+    ModifyUserMutation,
+    ModifyUserMutationVariables
+  >
+) {
+  return ApolloReactHooks.useMutation<
+    ModifyUserMutation,
+    ModifyUserMutationVariables
+  >(ModifyUserDocument, baseOptions);
+}
+export type ModifyUserMutationHookResult = ReturnType<
+  typeof useModifyUserMutation
+>;
+export type ModifyUserMutationResult = ApolloReactCommon.MutationResult<
+  ModifyUserMutation
+>;
+export type ModifyUserMutationOptions = ApolloReactCommon.BaseMutationOptions<
+  ModifyUserMutation,
+  ModifyUserMutationVariables
+>;
+export const CreateUserDocument = gql`
+  mutation createUser($input: UserInput!) {
+    createUser(input: $input) {
+      uid
+    }
+  }
+`;
+export type CreateUserMutationFn = ApolloReactCommon.MutationFunction<
+  CreateUserMutation,
+  CreateUserMutationVariables
+>;
+export function useCreateUserMutation(
+  baseOptions?: ApolloReactHooks.MutationHookOptions<
+    CreateUserMutation,
+    CreateUserMutationVariables
+  >
+) {
+  return ApolloReactHooks.useMutation<
+    CreateUserMutation,
+    CreateUserMutationVariables
+  >(CreateUserDocument, baseOptions);
+}
+export type CreateUserMutationHookResult = ReturnType<
+  typeof useCreateUserMutation
+>;
+export type CreateUserMutationResult = ApolloReactCommon.MutationResult<
+  CreateUserMutation
+>;
+export type CreateUserMutationOptions = ApolloReactCommon.BaseMutationOptions<
+  CreateUserMutation,
+  CreateUserMutationVariables
+>;
+export const CollegiateBodiesDocument = gql`
+  query collegiateBodies {
+    collegiateBodies {
+      id
+      name
+    }
+  }
+`;
+export function useCollegiateBodiesQuery(
+  baseOptions?: ApolloReactHooks.QueryHookOptions<
+    CollegiateBodiesQuery,
+    CollegiateBodiesQueryVariables
+  >
+) {
+  return ApolloReactHooks.useQuery<
+    CollegiateBodiesQuery,
+    CollegiateBodiesQueryVariables
+  >(CollegiateBodiesDocument, baseOptions);
+}
+export function useCollegiateBodiesLazyQuery(
+  baseOptions?: ApolloReactHooks.LazyQueryHookOptions<
+    CollegiateBodiesQuery,
+    CollegiateBodiesQueryVariables
+  >
+) {
+  return ApolloReactHooks.useLazyQuery<
+    CollegiateBodiesQuery,
+    CollegiateBodiesQueryVariables
+  >(CollegiateBodiesDocument, baseOptions);
+}
+export type CollegiateBodiesQueryHookResult = ReturnType<
+  typeof useCollegiateBodiesQuery
+>;
+export type CollegiateBodiesLazyQueryHookResult = ReturnType<
+  typeof useCollegiateBodiesLazyQuery
+>;
+export type CollegiateBodiesQueryResult = ApolloReactCommon.QueryResult<
+  CollegiateBodiesQuery,
+  CollegiateBodiesQueryVariables
+>;
 export const ElectionsDocument = gql`
   query elections {
     pendingElections {
@@ -661,11 +913,21 @@ export const CensusDocument = gql`
   query census($id: ID!) {
     election(id: $id) {
       description
+      start
+      end
+      secretary {
+        firstName
+        lastName
+      }
       censuses {
         voters {
           firstName
           lastName
         }
+      }
+      delegates {
+        firstName
+        lastName
       }
     }
   }
@@ -748,6 +1010,34 @@ export type PastElectionResultsLazyQueryHookResult = ReturnType<
 export type PastElectionResultsQueryResult = ApolloReactCommon.QueryResult<
   PastElectionResultsQuery,
   PastElectionResultsQueryVariables
+>;
+export const VotePollDocument = gql`
+  mutation votePoll($input: VotePollInput!) {
+    voteOnPoll(input: $input)
+  }
+`;
+export type VotePollMutationFn = ApolloReactCommon.MutationFunction<
+  VotePollMutation,
+  VotePollMutationVariables
+>;
+export function useVotePollMutation(
+  baseOptions?: ApolloReactHooks.MutationHookOptions<
+    VotePollMutation,
+    VotePollMutationVariables
+  >
+) {
+  return ApolloReactHooks.useMutation<
+    VotePollMutation,
+    VotePollMutationVariables
+  >(VotePollDocument, baseOptions);
+}
+export type VotePollMutationHookResult = ReturnType<typeof useVotePollMutation>;
+export type VotePollMutationResult = ApolloReactCommon.MutationResult<
+  VotePollMutation
+>;
+export type VotePollMutationOptions = ApolloReactCommon.BaseMutationOptions<
+  VotePollMutation,
+  VotePollMutationVariables
 >;
 export const LogInDocument = gql`
   mutation LogIn($input: LoginInput!) {

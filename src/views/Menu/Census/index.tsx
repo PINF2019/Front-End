@@ -1,5 +1,5 @@
 import React from "react";
-import { Row, Col, Button, Typography } from "antd";
+import { Row, Col, Button, Typography, Layout } from "antd";
 import { MenuButton } from "@Views";
 import "./index.less";
 import CensusButton from "./CensusButton";
@@ -12,24 +12,26 @@ const Census = () => {
   const data = useElectionsQuery();
 
   return (
-    <Row justify="center" className="body">
-      <Row className = "RowTexto">
-        <Text strong className = "textoTitulo">
-          Seleccione que censo quiere conocer:
+    <Layout style = {{height: '100%', width: '100%', backgroundColor: '#ffffff', overflow: 'auto'}} >
+      <Row justify="center" className="body" style={{ marginTop: '3%', backgroundColor: 'white' }}>
+      <Row className="layout" style={{ marginBottom: '10%' }}>
+        <Text strong style={{ fontSize: "30px" }}>
+          Seleccione qué censo quiere conocer
         </Text>
       </Row>
       <Row>
-{
-      data.data?.pendingElections.map( elec => (  
-          <CensusButton
-            name={elec.description}
-            dateInit={elec.start}
-            dateEnd={elec.end}
-            id={elec.id}
-          />
-      ))}
+        {
+          data.data?.pendingElections.map(elec => (
+            <CensusButton
+              name={elec.description}
+              dateInit={elec.start}
+              dateEnd={elec.end}
+              id={elec.id}
+            />
+          ))}
       </Row>
     </Row>
+    </Layout>
   );
   // }
 

@@ -6,17 +6,25 @@ import AddUserForm from './Form'
 import routes from '@Routes'
 import Header from '@Components/Layout/Header'
 
+const { Text } = Typography;
+
 const AddUser = () => {
 
   return (
-    <div>
-      <Typography.Title>Añadir Usuario</Typography.Title>
-      <Row type="flex" style={{ minHeight: '100vh' }}>
+    <Row justify="start" style={{ marginTop: '3%', marginLeft: '3%' }}>
+      <Row className="layout" style={{ marginBottom: '2%' }}>
+        <Card className = "card">
+        <Text strong style={{ fontSize: "30px" }}>
+          Añadir Usuario
+        </Text>
+        </Card>
+      </Row>
+      <Row type="flex" style={{ minHeight: '100vh', marginLeft: '3%' }}>
         <Col
           span={12}
           style={{
             justifyContent: 'center',
-            
+
             alignItems: 'center'
           }}>
           <Card> {/*Crea el cuadrado del login*/}
@@ -26,7 +34,7 @@ const AddUser = () => {
         <Col span={12}>
         </Col>
       </Row>
-    </div>
+    </Row>
   )
 }
 
