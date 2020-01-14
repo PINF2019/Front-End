@@ -13,25 +13,31 @@ const CensusData = () => {
     return (
         <Row className = "RowGlo">
         <Row className = "RowGlo2">
-        <Card className = "card">
+        <Row style = {{marginTop: '3%'}}><Card className = "card">
         <Title><Text>Censo de {{data}.data?.election.description}</Text></Title>
          <Text>{'\n'}{{data}.data?.election.start.substring(8,10) + '/' + {data}.data?.election.start.substring(5,7) + '/' + {data}.data?.election.start.substring(0,4) + 
          '-' + {data}.data?.election.end.substring(8,10) + '/' + {data}.data?.election.end.substring(5,7) + '/' + {data}.data?.election.end.substring(0,4)}</Text>
-        </Card>
+        </Card></Row>
          <Row className = "Rowtext">
-             <Text strong style={{ fontSize: '30px', paddingTop: '50px' }}>Secretarios delegados:</Text>
+             <Text strong style={{ fontSize: '30px', paddingTop: '50px' }}>Secretario:</Text>
+                <ul>
+                <li>{{data}.data?.election.secretary.lastName}, {{data}.data?.election.secretary.firstName }</li>
+
+                </ul>
+             <Text strong style={{ fontSize: '30px', paddingTop: '50px' }}>Subsecretarios:</Text>
                  <ul>
-                     {{data}.data?.election.delegates.map( del => (
+                    <li> {{data}.data?.election.delegates.map( del => (
                          del.lastName, del.firstName
                      )
                      )}
+                     </li>
                  </ul>
              <Text strong style={{ fontSize: '30px', paddingTop: '50px' }}>Votantes:</Text>
              <ul>
                  {{data}.data?.election.censuses.map(elec => (
                      <Row>
                           {elec.voters.map(vot => (
-                             <Text style={{ fontSize: "15px" }}>{vot.lastName + ',' + vot.firstName } </Text>        
+                             <li><Text style={{ fontSize: "15px" }}>{vot.lastName + ',' + vot.firstName } </Text> </li>       
                          ))}
                          
                      </Row>

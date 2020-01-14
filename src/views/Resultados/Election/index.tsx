@@ -4,7 +4,6 @@ import { Bar, Pie } from "ant-design-pro/lib/Charts";
 import "ant-design-pro/dist/ant-design-pro.css";
 import { useResultForElectionQuery } from "@Generated/hooks";
 import { useParams } from "react-router";
-import NumericLabel from "react-pretty-number";
 
 // import { useElectionNameQuery } from '@Generated/hooks'
 

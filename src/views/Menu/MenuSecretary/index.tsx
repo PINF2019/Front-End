@@ -6,9 +6,9 @@ const { Text } = Typography;
 
 const data = {
   data: [
-    { name: "Crear proceso electoral", url: "/secretary/crearProcesoElectoral" },
-    { name: "Modificar proceso electoral", url: "/404" },
-    { name: "Eliminar proceso electoral", url: "/404" }
+    { name: "Crear proceso electoral", url: "/secretary/procesoElectoral/crear" },
+    { name: "Modificar proceso electoral", url: "/secretary/procesoElectoral/modificar" },
+    { name: "Eliminar proceso electoral", url: "/secretary/procesoElectoral/eliminar" }
   ]
 };
 

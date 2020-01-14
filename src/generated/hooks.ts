@@ -556,6 +556,7 @@ export type CensusQuery = {
     description: string;
     start: string;
     end: string;
+    secretary: { __typename?: "User"; firstName: string; lastName: string };
     censuses: Array<{
       __typename?: "Census";
       voters: Array<{
@@ -599,6 +600,23 @@ export type VotePollMutationVariables = {
 };
 
 export type VotePollMutation = { __typename?: "Mutation"; voteOnPoll: boolean };
+
+export type MeQueryVariables = {};
+
+export type MeQuery = {
+  __typename?: "Query";
+  me: {
+    __typename?: "User";
+    id: string;
+    uid: string;
+    dni: string;
+    firstName: string;
+    lastName: string;
+    roles: Array<Role>;
+    genre: Genre;
+    colegiateBody: { __typename?: "ColegiateBody"; id: string; name: string };
+  };
+};
 
 export type LogInMutationVariables = {
   input: LoginInput;
@@ -962,6 +980,10 @@ export const CensusDocument = gql`
       description
       start
       end
+      secretary {
+        firstName
+        lastName
+      }
       censuses {
         voters {
           firstName
@@ -1081,6 +1103,45 @@ export type VotePollMutationResult = ApolloReactCommon.MutationResult<
 export type VotePollMutationOptions = ApolloReactCommon.BaseMutationOptions<
   VotePollMutation,
   VotePollMutationVariables
+>;
+export const MeDocument = gql`
+  query me {
+    me {
+      id
+      uid
+      dni
+      firstName
+      lastName
+      roles
+      genre
+      colegiateBody {
+        id
+        name
+      }
+    }
+  }
+`;
+export function useMeQuery(
+  baseOptions?: ApolloReactHooks.QueryHookOptions<MeQuery, MeQueryVariables>
+) {
+  return ApolloReactHooks.useQuery<MeQuery, MeQueryVariables>(
+    MeDocument,
+    baseOptions
+  );
+}
+export function useMeLazyQuery(
+  baseOptions?: ApolloReactHooks.LazyQueryHookOptions<MeQuery, MeQueryVariables>
+) {
+  return ApolloReactHooks.useLazyQuery<MeQuery, MeQueryVariables>(
+    MeDocument,
+    baseOptions
+  );
+}
+export type MeQueryHookResult = ReturnType<typeof useMeQuery>;
+export type MeLazyQueryHookResult = ReturnType<typeof useMeLazyQuery>;
+export type MeQueryResult = ApolloReactCommon.QueryResult<
+  MeQuery,
+  MeQueryVariables
 >;
 export const LogInDocument = gql`
   mutation LogIn($input: LoginInput!) {

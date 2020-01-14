@@ -10,31 +10,33 @@ const routes = {
   resultados: "/resultados/:id",
   censusData: "/census/:id",
   resultsElection:"/resultados/election/:id",
-  resultsPoll:"/resultados/poll/:id",  
+  resultsPoll:"/resultados/poll/:id",
+  logo: "/pickrole",
   election: "/election/vote", //hay que quitarlo
   menuElection: "/election",
-  
-  
+
   user: "/user",
   admin: "/admin",
   secretary: "/secretary",
-  menuCrearEleccion: "/secretary/crearProcesoElectoral",
+  menuCrearEleccion: "/secretary/procesoElectoral/crear",
   menuResultados: "/resultados",
   menuCensus: "/census",
+  modificarProcesoElectoral: "/secretary/procesoElectoral/modificar",
+  eliminarProcesoElectoral: "/secretary/procesoElectoral/modificar",
 
-  crearEleccion: "/secretary/crearProcesoElectoral/eleccion",
-  crearVotacion: "/secretary/crearProcesoElectoral/votacion",
-  
+  crearEleccion: "/secretary/procesoElectoral/crear/eleccion",
+  crearVotacion: "/secretary/procesoElectoral/crear/votacion",
+
   gestionarUsuarios: "/admin/GestionarUsuarios",
-  adduser: '/admin/adduser',
-  modifyusertable: '/admin/modifyusertable',
-  modifyuser: '/admin/modifyuser/:id/:name/:lastnames/:sex/:rol',
-  deleteusertable: '/admin/deleteusertable',
-  
+  adduser: "/admin/adduser",
+  modifyusertable: "/admin/modifyusertable",
+  modifyuser: "/admin/modifyuser/:id/:name/:lastnames/:sex/:rol",
+  deleteusertable: "/admin/deleteusertable",
+
   success: "/success",
   notFound: "/404",
   //Esto deberian ser pop ups pero por ahora se queda así
-  procesoCreado: "/procesoCreado", 
+  procesoCreado: "/procesoCreado",
   procesoModificado: "/procesoModificado",
   procesoEliminado: "/procesoEliminado",
   seguroEliminadoProceso: "/seguroEliminadoProceso",
@@ -44,8 +46,6 @@ const routes = {
   usuarioEliminado: "/usuarioEliminado",
   usuarioModificado: "/usuarioModificado",
   votoRegistrado: "/votoRegistrado"
-
-
 };
 
 export { PrivateRoute };
