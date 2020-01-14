@@ -1,0 +1,24 @@
+query resultForElection($id: ID!){
+  election(id: $id){
+    start
+    end
+    results {
+        voters
+        votesCast
+        whiteVotes
+    }
+  }
+}
+
+query resultForPoll($id: ID!){
+  poll(id: $id){
+    start
+    end
+    results {
+        voters
+        votesCast
+        whiteVotes
+    }
+  }
+}
+

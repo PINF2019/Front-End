@@ -9,6 +9,8 @@ const routes = {
   votacion: "/votacion/:id",
   resultados: "/resultados/:id",
   censusData: "/census/:id",
+  resultsElection:"/resultados/election/:id",
+  resultsPoll:"/resultados/poll/:id",
   logo: "/pickrole",
   election: "/election/vote", //hay que quitarlo
   menuElection: "/election",

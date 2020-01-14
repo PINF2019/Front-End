@@ -27,7 +27,8 @@ import {
   ProcesoCreadoOverlay,
   ProcesoEliminadoOverlay,
   ProcesoModificadoOverlay,
-  Resultados,
+  ResultsElection,
+  ResultsPoll,
   SeguroEliminadoProcesoOverlay,
   SeguroEliminadoUsuarioOverlay,
   SeguroPublicacionOverlay,
@@ -54,7 +55,8 @@ const Protected = () => {
           path={routes.pickrolesecretary}
           component={PickRoleSecretary}
         />
-        <Route exact path={routes.resultados} component={Resultados} />
+        <Route exact path={routes.resultsElection} component={ResultsElection} />
+        <Route exact path={routes.resultsPoll} component={ResultsPoll} />
         <Route exact path={routes.censusData} component={CensusData} />
         <Route exact path={routes.votacion} component={Votacion} />
         <Route exact path={routes.logo} component={Logo} />

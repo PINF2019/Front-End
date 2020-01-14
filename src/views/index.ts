@@ -1,6 +1,9 @@
 //Raíz
 import AddUser from "./admin/AddUser";
 import DeleteUserTable from "./admin/DeleteUserTable";
+import ResultsElection from "./Resultados/Election"
+import ResultsPoll from "./Resultados/Poll"
+
 //Admin
 import gestionarUsuarios from "./admin/GestionarUsuarios";
 import ModifyUser from "./admin/ModifyUser";
@@ -37,7 +40,6 @@ import {
 } from "./Overlays/VotoRegistrado";
 import PickRoleAdmin from "./PickRole/Admin";
 import PickRoleSecretary from "./PickRole/Secretary";
-import Resultados from "./Resultados";
 //Secretario
 import CrearEleccion from "./Secretary/Crear/ProcesoElectoral";
 import CrearVotacion from "./Secretary/Crear/Votación";
@@ -61,9 +63,10 @@ export {
   CrearEleccion,
   CrearVotacion,
   MenuResultados,
+  ResultsElection,
+  ResultsPoll,
   MenuModificarElecciones,
   MenuEliminarElecciones,
-  Resultados,
   gestionarUsuarios,
   AddUser,
   ModifyUserTable,
