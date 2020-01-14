@@ -79,3 +79,7 @@ mutation votePoll($input: VotePollInput!) {
   voteOnPoll(input: $input)
 }
 
+mutation deleteElection($id: ID!) {
+  deleteElection(id: $id)
+   
+}

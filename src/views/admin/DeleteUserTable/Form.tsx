@@ -1,93 +1,92 @@
-import { useUsersQuery } from '@Generated/hooks'
-import { setAuthToken } from '@Utils/auth'
-import { Table, Divider, Tag, Input, Button, Icon} from 'antd'
-import { Formik, Field } from 'formik'
-import { Form} from 'formik-antd'
-import React from 'react'
-import { useHistory } from 'react-router-dom'
-import * as Yup from 'yup'
-import routes from '@Routes'
-import Highlighter from 'react-highlight-words';
-import ReactDOM from 'react-dom'
-import DeleteButton from './DeleteButton'
+import { useUsersQuery } from "@Generated/hooks";
+import { Table } from "antd";
+import React from "react";
+import DeleteButton from "./DeleteButton";
 
 const columns = [
   {
-    title: 'NIF/NIE',
-    dataIndex: 'nif',
-    key: 'nif',
+    title: "NIF/NIE",
+    dataIndex: "nif",
+    key: "nif"
   },
   {
-    title: 'Nombre',
-    dataIndex: 'name',
-    key: 'name',
+    title: "Nombre",
+    dataIndex: "name",
+    key: "name"
   },
   {
-    title: 'Apellidos',
-    dataIndex: 'lastnames',
-    key: 'lastnames',
+    title: "Apellidos",
+    dataIndex: "lastnames",
+    key: "lastnames"
   },
   {
-    title: 'Sexo',
-    dataIndex: 'sex',
-    key: 'sex',
+    title: "Sexo",
+    dataIndex: "sex",
+    key: "sex"
   },
   {
-    title: 'Rol',
-    dataIndex: 'rol',
-    key: 'rol',
+    title: "Rol",
+    dataIndex: "rol",
+    key: "rol"
   },
   {
-    title: 'Acción',
-    key: 'modify',
+    title: "Acción",
+    key: "modify",
     render: (text: React.ReactNode, record: any) => (
-      <DeleteButton 
-      id={record.id}
-      />
-    ),
-  },
+      <DeleteButton id={record.id} />
+    )
+  }
 ];
 
 const DeleteUserTable = () => {
   /*console.log("data", useUsersQuery());
   const data = useUsersQuery();*/
-  const { data, loading, error } = useUsersQuery()
-// Las variables entre llaves son las cosas que podemos obtener de la query
-  if (loading) { //Loading es un booleano que comprueba si se está realizando la query
-    return <div>Loading...</div>
+  const { data, loading, error } = useUsersQuery();
+  // Las variables entre llaves son las cosas que podemos obtener de la query
+  if (loading) {
+    //Loading es un booleano que comprueba si se está realizando la query
+    return <div>Loading...</div>;
   }
 
-  if (data) { //Data contiene los datos que hemos solicitado y se puede mapear
-	//A la estructura que queramos. En este caso es un map. Nota: index,
-  //Tal y como indica es el índice que lo recorre
-  const ids = data.users.map((user, index) => (user.id))
-  const firstNames = data.users.map((user, index) => (user.firstName))
-  const nifs = data.users.map((user, index) => (user.dni))
-  const lastnames = data.users.map((user, index) => (user.lastName))
-  const sexes = data.users.map((user, index) => (user.genre))
-  const roles = data.users.map((user, index) => (user.roles))
-  let array = new Array(data.users.length)
-  for (let i=0; i<data.users.length; i++){
-    //let rol = ''
-    //roles[i].forEach(element => rol = rol + element || ' ')
-    array[i] = {key: i, id: ids[i],name: firstNames[i], nif: nifs[i], lastnames: lastnames[i], sex: sexes[i], rol: roles[i][0]}
-  }
-  
-  
+  if (data) {
+    //Data contiene los datos que hemos solicitado y se puede mapear
+    //A la estructura que queramos. En este caso es un map. Nota: index,
+    //Tal y como indica es el índice que lo recorre
+    const ids = data.users.map((user, index) => user.id);
+    const firstNames = data.users.map((user, index) => user.firstName);
+    const nifs = data.users.map((user, index) => user.dni);
+    const lastnames = data.users.map((user, index) => user.lastName);
+    const sexes = data.users.map((user, index) => user.genre);
+    const roles = data.users.map((user, index) => user.roles);
+    let array = new Array(data.users.length);
+    for (let i = 0; i < data.users.length; i++) {
+      //let rol = ''
+      //roles[i].forEach(element => rol = rol + element || ' ')
+      array[i] = {
+        key: i,
+        id: ids[i],
+        name: firstNames[i],
+        nif: nifs[i],
+        lastnames: lastnames[i],
+        sex: sexes[i],
+        rol: roles[i][0]
+      };
+    }
+
     return (
       /*<div>
         {data.users.map((user, index) => (
           <div key={index}>{user.firstName}</div>
         ))}
       </div>*/
-      
+
       <Table bordered pagination={false} columns={columns} dataSource={array} />
-    )
+    );
   }
 
-//En caso de que ninguno de los otros ifs funcione, se devolvería la variable de error
-  return <div>{JSON.stringify(error)}</div>
-}
+  //En caso de que ninguno de los otros ifs funcione, se devolvería la variable de error
+  return <div>{JSON.stringify(error)}</div>;
+};
 /*
 class DeleteUserTable extends React.Component {
   
@@ -223,5 +222,4 @@ const data = [
   },
 ];
 */
-export default DeleteUserTable
-
+export default DeleteUserTable;

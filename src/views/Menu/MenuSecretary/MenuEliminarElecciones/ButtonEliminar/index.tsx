@@ -1,8 +1,7 @@
+import { Button, Icon, Row, Typography } from "antd";
 import React from "react";
-import { Row, Col, Button, Icon, Typography } from "antd";
-import { useParams, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 const { Text } = Typography;
-
 
 type Props = {
   name: string;
@@ -25,7 +24,6 @@ const ButtonEliminar = (props: Props) => {
           borderRadius: "12px",
           boxShadow: "0px 3px 3px grey"
         }}
-        onClick={() => history.push(`${props.href}/${props.id}`)}
       >
         <Row
           style={{
@@ -36,7 +34,9 @@ const ButtonEliminar = (props: Props) => {
           }}
         >
           <Text strong style={{ marginTop: "auto", marginBottom: "auto" }}>
-            {props.name}
+            {props.name.length > 30
+              ? props.name.substring(0, 30 - 3) + "..."
+              : props.name}
           </Text>
 
           <Icon
@@ -48,6 +48,18 @@ const ButtonEliminar = (props: Props) => {
               color: "#FFA500",
               marginLeft: "auto"
             }}
+            /*onClick={() => async (id: any, actions: any) => {
+              try {
+                const { data } = await useDeleteElectionMutation({ variables: { id } });
+                if (data) {
+                  console.log({ data, id });
+                  history.replace(routes.);
+                }
+              } catch {
+                const message = "No se pudo borrar el usuario";
+                actions.setErrors({ id: message });
+              }
+            }}*/
           />
         </Row>
       </Button>

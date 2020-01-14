@@ -55,6 +55,10 @@ export type ColegiateBody = {
   name: Scalars["String"];
 };
 
+export type ColegiateBodyInput = {
+  name: Scalars["String"];
+};
+
 export type Election = {
   __typename?: "Election";
   id: Scalars["ID"];
@@ -131,6 +135,7 @@ export type Mutation = {
   createUser: User;
   deleteUser: User;
   login: LoginPayload;
+  createColegiateBody: ColegiateBody;
   deleteCandidate: Candidate;
   createElection: Election;
   voteOnElection: Scalars["Boolean"];
@@ -158,6 +163,10 @@ export type MutationDeleteUserArgs = {
 
 export type MutationLoginArgs = {
   input: LoginInput;
+};
+
+export type MutationCreateColegiateBodyArgs = {
+  input: ColegiateBodyInput;
 };
 
 export type MutationDeleteCandidateArgs = {
@@ -590,6 +599,15 @@ export type VotePollMutationVariables = {
 };
 
 export type VotePollMutation = { __typename?: "Mutation"; voteOnPoll: boolean };
+
+export type DeleteElectionMutationVariables = {
+  id: Scalars["ID"];
+};
+
+export type DeleteElectionMutation = {
+  __typename?: "Mutation";
+  deleteElection: boolean;
+};
 
 export type MeQueryVariables = {};
 
@@ -1059,6 +1077,36 @@ export type VotePollMutationResult = ApolloReactCommon.MutationResult<
 export type VotePollMutationOptions = ApolloReactCommon.BaseMutationOptions<
   VotePollMutation,
   VotePollMutationVariables
+>;
+export const DeleteElectionDocument = gql`
+  mutation deleteElection($id: ID!) {
+    deleteElection(id: $id)
+  }
+`;
+export type DeleteElectionMutationFn = ApolloReactCommon.MutationFunction<
+  DeleteElectionMutation,
+  DeleteElectionMutationVariables
+>;
+export function useDeleteElectionMutation(
+  baseOptions?: ApolloReactHooks.MutationHookOptions<
+    DeleteElectionMutation,
+    DeleteElectionMutationVariables
+  >
+) {
+  return ApolloReactHooks.useMutation<
+    DeleteElectionMutation,
+    DeleteElectionMutationVariables
+  >(DeleteElectionDocument, baseOptions);
+}
+export type DeleteElectionMutationHookResult = ReturnType<
+  typeof useDeleteElectionMutation
+>;
+export type DeleteElectionMutationResult = ApolloReactCommon.MutationResult<
+  DeleteElectionMutation
+>;
+export type DeleteElectionMutationOptions = ApolloReactCommon.BaseMutationOptions<
+  DeleteElectionMutation,
+  DeleteElectionMutationVariables
 >;
 export const MeDocument = gql`
   query me {
