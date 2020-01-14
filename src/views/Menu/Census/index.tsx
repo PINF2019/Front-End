@@ -12,7 +12,7 @@ const Census = () => {
   const data = useElectionsQuery();
 
   return (
-    <Layout style = {{height: '100%', width: '100%', backgroundColor: '#ffffff', overflow: 'scroll'}} >
+    <Layout style = {{height: '100%', width: '100%', backgroundColor: '#ffffff', overflow: 'auto'}} >
       <Row justify="center" className="body" style={{ marginTop: '3%', backgroundColor: 'white' }}>
       <Row className="layout" style={{ marginBottom: '10%' }}>
         <Text strong style={{ fontSize: "30px" }}>
