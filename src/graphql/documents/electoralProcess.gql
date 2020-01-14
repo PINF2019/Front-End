@@ -8,29 +8,31 @@ query elections{
 }
 
 query electoralProcesses{
-  electoralProcesses{
+  pendingElectoralProcesses{
       __typename
   ... on Election{
-    id
-    description
+      id
+      description
+      start
+      end
   }
   ... on Poll{
-    id
-    description
+      id
+      description
+      start
+      end
+    }
   }
-  }
-
 }
 
 query options($id: ID!) {
-  election(id: $id) {
+  poll(id: $id) {
     start
     end
     description
-    candidates {
+    options {
       id
-      firstName
-      lastName
+      text
     }
   }
 }
@@ -75,10 +77,4 @@ query PastElectionResults {
   }
 }
 
-mutation votePoll($input: VotePollInput!) {
-  voteOnPoll(input: $input)
-}
 
-mutation createElection($input: ){
-  
-}
