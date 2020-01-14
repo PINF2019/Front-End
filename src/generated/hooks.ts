@@ -53,6 +53,11 @@ export type ColegiateBody = {
   __typename?: "ColegiateBody";
   id: Scalars["ID"];
   name: Scalars["String"];
+  users: Array<User>;
+};
+
+export type ColegiateBodyInput = {
+  name: Scalars["String"];
 };
 
 export type Election = {
@@ -131,6 +136,7 @@ export type Mutation = {
   createUser: User;
   deleteUser: User;
   login: LoginPayload;
+  createColegiateBody: ColegiateBody;
   deleteCandidate: Candidate;
   createElection: Election;
   voteOnElection: Scalars["Boolean"];
@@ -158,6 +164,10 @@ export type MutationDeleteUserArgs = {
 
 export type MutationLoginArgs = {
   input: LoginInput;
+};
+
+export type MutationCreateColegiateBodyArgs = {
+  input: ColegiateBodyInput;
 };
 
 export type MutationDeleteCandidateArgs = {
@@ -377,7 +387,7 @@ export type User = {
   lastName: Scalars["String"];
   roles: Array<Role>;
   genre: Genre;
-  colegiateBody?: Maybe<ColegiateBody>;
+  colegiateBody: ColegiateBody;
 };
 
 export type UserInput = {
@@ -387,7 +397,7 @@ export type UserInput = {
   firstName: Scalars["String"];
   lastName: Scalars["String"];
   roles?: Maybe<Array<Role>>;
-  collegiateBody?: Maybe<Scalars["ID"]>;
+  collegiateBody: Scalars["ID"];
   genre: Genre;
 };
 
@@ -449,7 +459,7 @@ export type UsersQuery = {
     lastName: string;
     roles: Array<Role>;
     genre: Genre;
-    colegiateBody: Maybe<{ __typename?: "ColegiateBody"; name: string }>;
+    colegiateBody: { __typename?: "ColegiateBody"; name: string };
   }>;
 };
 
@@ -597,6 +607,44 @@ export type LogInMutationVariables = {
 export type LogInMutation = {
   __typename?: "Mutation";
   login: { __typename?: "LoginPayload"; accessToken: string };
+};
+
+export type ResultForElectionQueryVariables = {
+  id: Scalars["ID"];
+};
+
+export type ResultForElectionQuery = {
+  __typename?: "Query";
+  election: {
+    __typename?: "Election";
+    start: string;
+    end: string;
+    results: {
+      __typename?: "ResultsForElection";
+      voters: number;
+      votesCast: number;
+      whiteVotes: number;
+    };
+  };
+};
+
+export type ResultForPollQueryVariables = {
+  id: Scalars["ID"];
+};
+
+export type ResultForPollQuery = {
+  __typename?: "Query";
+  poll: {
+    __typename?: "Poll";
+    start: string;
+    end: string;
+    results: {
+      __typename?: "ResultsForPoll";
+      voters: number;
+      votesCast: number;
+      whiteVotes: number;
+    };
+  };
 };
 
 export const UsersDocument = gql`
@@ -1063,4 +1111,94 @@ export type LogInMutationResult = ApolloReactCommon.MutationResult<
 export type LogInMutationOptions = ApolloReactCommon.BaseMutationOptions<
   LogInMutation,
   LogInMutationVariables
+>;
+export const ResultForElectionDocument = gql`
+  query resultForElection($id: ID!) {
+    election(id: $id) {
+      start
+      end
+      results {
+        voters
+        votesCast
+        whiteVotes
+      }
+    }
+  }
+`;
+export function useResultForElectionQuery(
+  baseOptions?: ApolloReactHooks.QueryHookOptions<
+    ResultForElectionQuery,
+    ResultForElectionQueryVariables
+  >
+) {
+  return ApolloReactHooks.useQuery<
+    ResultForElectionQuery,
+    ResultForElectionQueryVariables
+  >(ResultForElectionDocument, baseOptions);
+}
+export function useResultForElectionLazyQuery(
+  baseOptions?: ApolloReactHooks.LazyQueryHookOptions<
+    ResultForElectionQuery,
+    ResultForElectionQueryVariables
+  >
+) {
+  return ApolloReactHooks.useLazyQuery<
+    ResultForElectionQuery,
+    ResultForElectionQueryVariables
+  >(ResultForElectionDocument, baseOptions);
+}
+export type ResultForElectionQueryHookResult = ReturnType<
+  typeof useResultForElectionQuery
+>;
+export type ResultForElectionLazyQueryHookResult = ReturnType<
+  typeof useResultForElectionLazyQuery
+>;
+export type ResultForElectionQueryResult = ApolloReactCommon.QueryResult<
+  ResultForElectionQuery,
+  ResultForElectionQueryVariables
+>;
+export const ResultForPollDocument = gql`
+  query resultForPoll($id: ID!) {
+    poll(id: $id) {
+      start
+      end
+      results {
+        voters
+        votesCast
+        whiteVotes
+      }
+    }
+  }
+`;
+export function useResultForPollQuery(
+  baseOptions?: ApolloReactHooks.QueryHookOptions<
+    ResultForPollQuery,
+    ResultForPollQueryVariables
+  >
+) {
+  return ApolloReactHooks.useQuery<
+    ResultForPollQuery,
+    ResultForPollQueryVariables
+  >(ResultForPollDocument, baseOptions);
+}
+export function useResultForPollLazyQuery(
+  baseOptions?: ApolloReactHooks.LazyQueryHookOptions<
+    ResultForPollQuery,
+    ResultForPollQueryVariables
+  >
+) {
+  return ApolloReactHooks.useLazyQuery<
+    ResultForPollQuery,
+    ResultForPollQueryVariables
+  >(ResultForPollDocument, baseOptions);
+}
+export type ResultForPollQueryHookResult = ReturnType<
+  typeof useResultForPollQuery
+>;
+export type ResultForPollLazyQueryHookResult = ReturnType<
+  typeof useResultForPollLazyQuery
+>;
+export type ResultForPollQueryResult = ApolloReactCommon.QueryResult<
+  ResultForPollQuery,
+  ResultForPollQueryVariables
 >;

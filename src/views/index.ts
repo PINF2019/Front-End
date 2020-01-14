@@ -2,9 +2,10 @@
 import Home from "./Home";
 import Login from "./Login";
 import PickRoleAdmin from "./PickRole/Admin"; 
-import PickRoleSecretary from "./PickRole/Secretary"
+import PickRoleSecretary from "./PickRole/Secretary";
 import Votacion from "./Votacion";
-import Resultados from "./Resultados";
+import ResultsElection from "./Resultados/Election";
+import ResultsPoll from "./Resultados/Poll";
 import CensusData from "./CensusData";
 
 import Election from "./Election";
@@ -60,7 +61,8 @@ export {
   CrearEleccion,
   CrearVotacion,
   MenuResultados,
-  Resultados,
+  ResultsElection,
+  ResultsPoll,
   gestionarUsuarios,
   AddUser,
   ModifyUserTable,
