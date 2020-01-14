@@ -459,7 +459,7 @@ export type UsersQuery = {
     lastName: string;
     roles: Array<Role>;
     genre: Genre;
-    colegiateBody: { __typename?: "ColegiateBody"; name: string };
+    colegiateBody: { __typename?: "ColegiateBody"; id: string; name: string };
   }>;
 };
 
@@ -685,6 +685,7 @@ export const UsersDocument = gql`
       roles
       genre
       colegiateBody {
+        id
         name
       }
     }

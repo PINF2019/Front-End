@@ -32,9 +32,9 @@ const columns = [
   {
     title: "Acción",
     key: "modify",
-    render: (text: React.ReactNode, record: any) => (
-      <DeleteButton id={record.id} />
-    )
+    render: (text: React.ReactNode, record: any) => {
+      return <DeleteButton id={record.id} />;
+    }
   }
 ];
 

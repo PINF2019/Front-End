@@ -7,7 +7,7 @@ query users{
         lastName
         roles
         genre
-        colegiateBody{name}
+        colegiateBody{id name}
   }
 }
 
