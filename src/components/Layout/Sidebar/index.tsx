@@ -3,7 +3,7 @@ import React from 'react'
 import { removeAuthToken } from '@Utils/auth'
 import { useHistory, Link } from 'react-router-dom'
 import routes from '@Routes'
-
+import {useMeQuery} from '@Generated/hooks'
 const { Text } = Typography
 
 const data = {
@@ -19,6 +19,7 @@ const response = {
 
 const Sidebar = (prop: { collapse: boolean }) => {
 
+  //const {me} = useMeQuery()
     
      
   const history = useHistory()
@@ -91,16 +92,16 @@ const Sidebar = (prop: { collapse: boolean }) => {
           </Col>
           <Col style={{ width: '50%' }}>
             <Row style={{ paddingBottom: '10px' }}>
-              <Text>{data.secondName}</Text>
+              <Text></Text>
             </Row>
             <Row style={{ paddingBottom: '10px' }}>
-              <Text>{data.name}</Text>
+              <Text>{/*{me.name}*/}</Text>
             </Row>
             <Row style={{ paddingBottom: '10px' }}>
-              <Text>{data.NIF}</Text>
+              <Text>{/*{me.NIF}*/}</Text>
             </Row>
             <Row style={{ paddingBottom: '10px' }}>
-              <Text>{data.role}</Text>
+              <Text>{/*{me.role}*/}</Text>
             </Row>
           </Col>
         </Row>
