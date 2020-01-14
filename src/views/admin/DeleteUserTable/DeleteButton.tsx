@@ -19,7 +19,7 @@ const DeleteButton = ({ id }: Props) => {
         try {
           const { data } = await deleteUser({ variables: { id } });
           if (data) {
-            history.push(routes.deleteusertable);
+            history.replace(routes.usuarioEliminado);
           }
         } catch {
           console.log("Errors");

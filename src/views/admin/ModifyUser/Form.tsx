@@ -10,19 +10,8 @@ import routes from '@Routes'
 import { OmitProps } from 'antd/lib/transfer/renderListBody'
 
 const { Text } = Typography;
-const initialValues = {
-  uid: '',
-  password: ''
-  /*password: '',
-  name: '',
-  lastname: '',
-  rol: '',
-  org: '',
-  sex: ''*/
-}
 /*Validacion de los datos del formulario, cadena, quitar espacios, expresion regular, mensaje*/
 const validationSchema = Yup.object().shape({
-  dni: Yup.string().required("NIF/NIE requerido."),
   firstName: Yup.string().required("Nombre requerido."),
   lastName: Yup.string().required("Apellidos requerido.")
 })
@@ -38,7 +27,6 @@ type Props = {
 /*Para indicar que input/datos vamos a mandarle al servidor y que nos devuelve usamos "useLogInMutation()", solo hay que crear /src/graphql/documents/<nombre-pag>.gql, login.gql tiene comentarios*/
 const ModifyUserForm = (props: Props) => {
   const [modifyUser] = useModifyUserMutation()
-  const [logIn] = useLogInMutation()
   const history = useHistory()
   const { data, loading, error } = useCollegiateBodiesQuery()
 
@@ -62,11 +50,11 @@ const ModifyUserForm = (props: Props) => {
         try {
           const { data } = await modifyUser({ variables: { input, id }})
           if (data) {
-            history.replace(routes.base)
+            history.replace(routes.usuarioModificado)
           }
         } catch {
-          const message = 'Usuario Incorrectos'
-          actions.setErrors({ name: message })
+          /*const message = 'Usuario Incorrectos'
+          actions.setErrors({ name: message })*/
         }
       }}>
       {/*

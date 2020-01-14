@@ -22,7 +22,7 @@ const DeleteUserTable = () => {
         style={{ minHeight: "100vh", marginLeft: "3%", marginRight: "3%" }}
       >
         <Col
-          span={12}
+          span={24}
           style={{
             justifyContent: "center",
             alignItems: "center"
