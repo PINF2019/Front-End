@@ -55,6 +55,10 @@ export type ColegiateBody = {
   name: Scalars["String"];
 };
 
+export type ColegiateBodyInput = {
+  name: Scalars["String"];
+};
+
 export type Election = {
   __typename?: "Election";
   id: Scalars["ID"];
@@ -131,6 +135,7 @@ export type Mutation = {
   createUser: User;
   deleteUser: User;
   login: LoginPayload;
+  createColegiateBody: ColegiateBody;
   deleteCandidate: Candidate;
   createElection: Election;
   voteOnElection: Scalars["Boolean"];
@@ -158,6 +163,10 @@ export type MutationDeleteUserArgs = {
 
 export type MutationLoginArgs = {
   input: LoginInput;
+};
+
+export type MutationCreateColegiateBodyArgs = {
+  input: ColegiateBodyInput;
 };
 
 export type MutationDeleteCandidateArgs = {

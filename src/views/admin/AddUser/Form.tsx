@@ -2,7 +2,7 @@ import { useCreateUserMutation ,useLogInMutation, useCollegiateBodiesQuery } fro
 import { setAuthToken } from '@Utils/auth'
 import { Button, Typography, Card } from 'antd'
 import { Formik, Field } from 'formik'
-import { Form, Input } from 'formik-antd'
+import { Form, Input, SubmitButton } from 'formik-antd'
 import React from 'react'
 import { useHistory } from 'react-router-dom'
 import * as Yup from 'yup'
@@ -26,6 +26,7 @@ const initialValues = {
 /*Validacion de los datos del formulario, cadena, quitar espacios, expresion regular, mensaje*/
 const validationSchema = Yup.object().shape({
   uid: Yup.string().trim().matches(/^u(?:[0-9]{8}|[xyz][0-9]{7})$/, "Formato erroneo.").required(),
+  password: Yup.string().required(),
   dni: Yup.string().required(),
   firstName: Yup.string().required(),
   lastName: Yup.string().required()
@@ -103,9 +104,9 @@ const AddUserForm = () => {
           </Form.Item>
           <Form.Item name="genre">
             <p style={{ fontSize: "20px" }}><strong>Género</strong><Field as="select" name="genre">
-              <option value='1'>Masculino</option>
-              <option value='2'>Femenino</option>
-              <option value='3'>Otro</option>
+              <option value='MASCULINO'>Masculino</option>
+              <option value='FEMENINO'>Femenino</option>
+              <option value='OTHER'>Otro</option>
             </Field></p>
           </Form.Item>
           {/**<Form.Item name="email">
@@ -113,9 +114,9 @@ const AddUserForm = () => {
               </Form.Item>*/}
           <Form.Item name="roles">
             <p style={{ fontSize: "20px" }}><strong>Rol</strong><Field as="select" name="roles">
-              <option value='3'>Elector</option>
-              <option value='2'>Secretario</option>
-              <option value='1'>Administrador</option>
+              <option value='VOTER'>Elector</option>
+              <option value='SECRETARY'>Secretario</option>
+              <option value='ADMIN'>Administrador</option>
             </Field></p>
           </Form.Item>
           <Form.Item name="collegiateBody">
@@ -130,9 +131,9 @@ const AddUserForm = () => {
             <Button >
               <a href="/admin">Cancelar</a>
             </Button>
-            <Button htmlType="submit" type="primary">
+            <SubmitButton htmlType="submit" type="primary" block>
               Añadir usuario
-            </Button>
+            </SubmitButton>
           </Form.Item>
         </Form>
       )
