@@ -39,8 +39,8 @@ import PickRoleAdmin from "./PickRole/Admin";
 import PickRoleSecretary from "./PickRole/Secretary";
 import Resultados from "./Resultados";
 //Secretario
-import CrearEleccion from "./Secretary/ProcesoElectoral";
-import CrearVotacion from "./Secretary/Votación";
+import CrearEleccion from "./Secretary/Crear/ProcesoElectoral";
+import CrearVotacion from "./Secretary/Crear/Votación";
 import Votacion from "./Votacion";
 
 export {
