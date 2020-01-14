@@ -1,57 +1,54 @@
-import React from "react";
-import { Row, Col, Layout, Typography, Button, Avatar } from "antd";
-import "./index.less";
-import logo from "@Assets/logo.png";
-import Sidebar from "../Sidebar";
-import { statement } from "@babel/template";
-import { Icon } from "antd";
-const { Text } = Typography;
+import logo from '@Assets/logo.png'
+import { Button, Col, Icon, Layout, Row, Typography } from 'antd'
+import React from 'react'
+import './index.less'
 
-const Header = (props: { onClick: () => void }) => {
+const { Text } = Typography
+const Header = ({ onClick }: { onClick: () => void }) => {
   return (
-    //autocorregido el ()
+    // autocorregido el ()
     <Layout.Header className="header">
       <Row
         style={{
-          display: "flex",
-          width: "100%",
-          flex: "1"
+          display: 'flex',
+          width: '100%',
+          flex: '1',
         }}
       >
-        <Col style={{ marginRight: "auto", display: "flex" }}>
+        <Col style={{ marginRight: 'auto', display: 'flex' }}>
           <a href="/pickroleadmin">
-            <img src={logo} width="150px"></img>
+            <img src={logo} width="150px" alt="logo" />
           </a>
         </Col>
-        <Col style={{ marginLeft: "auto", display: "flex" }}>
+        <Col style={{ marginLeft: 'auto', display: 'flex' }}>
           <Button type="link" href="/home">
-            <Text style={{ fontSize: "20px" }} strong>
+            <Text style={{ fontSize: '20px' }} strong>
               Inicio
             </Text>
           </Button>
           <Button type="link" href="/Resultados">
-            <Text style={{ fontSize: "20px" }} strong>
+            <Text style={{ fontSize: '20px' }} strong>
               Resultados
             </Text>
           </Button>
           <Button type="link" href="/Census">
-            <Text style={{ fontSize: "20px" }} strong>
+            <Text style={{ fontSize: '20px' }} strong>
               Censos
             </Text>
           </Button>
           <Button
             type="primary"
             shape="circle"
-            size={"large"}
-            style={{ marginLeft: "10px" }}
-            onClick={props.onClick}
+            size="large"
+            style={{ marginLeft: '10px' }}
+            onClick={onClick}
           >
-            <Icon type="user" style={{ fontSize: "30px" }} />
+            <Icon type="user" style={{ fontSize: '30px' }} />
           </Button>
         </Col>
       </Row>
     </Layout.Header>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

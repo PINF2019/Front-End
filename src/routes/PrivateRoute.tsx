@@ -1,7 +1,7 @@
 import { isAuthTokenExpired } from '@Utils/auth'
 import React from 'react'
 import { Redirect, Route } from 'react-router-dom'
-import routes from '@Routes'
+import routes from './definitions'
 
 const PrivateRoute = ({ component: Component, ...rest }: any) => {
   return (

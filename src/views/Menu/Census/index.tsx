@@ -1,27 +1,35 @@
-import React from "react";
-import { Row, Col, Button, Typography, Layout } from "antd";
-import { MenuButton } from "@Views";
-import "./index.less";
-import CensusButton from "./CensusButton";
-import { useElectionsQuery } from "@Generated/hooks";
+import { useElectionsQuery } from '@Generated/hooks'
+import { Layout, Row, Typography } from 'antd'
+import React from 'react'
+import CensusButton from './CensusButton'
+import './index.less'
 
-const { Text } = Typography;
+const { Text } = Typography
 
 const Census = () => {
-
-  const data = useElectionsQuery();
+  const data = useElectionsQuery()
 
   return (
-    <Layout style = {{height: '100%', width: '100%', backgroundColor: '#ffffff', overflow: 'auto'}} >
-      <Row justify="center" className="body" style={{ marginTop: '3%', backgroundColor: 'white' }}>
-      <Row className="layout" style={{ marginBottom: '10%' }}>
-        <Text strong style={{ fontSize: "30px" }}>
-          Seleccione qué censo quiere conocer
-        </Text>
-      </Row>
-      <Row>
-        {
-          data.data?.pendingElections.map(elec => (
+    <Layout
+      style={{
+        height: '100%',
+        width: '100%',
+        backgroundColor: '#ffffff',
+        overflow: 'auto',
+      }}
+    >
+      <Row
+        justify="center"
+        className="body"
+        style={{ marginTop: '3%', backgroundColor: 'white' }}
+      >
+        <Row className="layout" style={{ marginBottom: '10%' }}>
+          <Text strong style={{ fontSize: '30px' }}>
+            Seleccione qué censo quiere conocer
+          </Text>
+        </Row>
+        <Row>
+          {data.data?.pendingElections.map(elec => (
             <CensusButton
               name={elec.description}
               dateInit={elec.start}
@@ -29,13 +37,13 @@ const Census = () => {
               id={elec.id}
             />
           ))}
+        </Row>
       </Row>
-    </Row>
     </Layout>
-  );
+  )
   // }
 
-  //return <div>{JSON.stringify(error)}</div>
-};
+  // return <div>{JSON.stringify(error)}</div>
+}
 
-export default Census;
+export default Census

@@ -1,25 +1,25 @@
-import React from "react";
-import { Row, Col, Button, Typography } from "antd";
-import { MenuButton } from "@Views";
-//import { useElectionNameQuery } from '@Generated/hooks'
-const { Text } = Typography;
+import { MenuButton } from '@Views'
+import { Row, Typography } from 'antd'
+import React from 'react'
+// import { useElectionNameQuery } from '@Generated/hooks'
+const { Text } = Typography
 
 const data = {
   data: [
-    { name: "Eleccion", url: "/secretary/procesoElectoral/crear/eleccion" },
-    { name: "Votacion", url: "/secretary/procesoElectoral/crear/votacion" }
-  ]
-};
+    { name: 'Eleccion', url: '/secretary/procesoElectoral/crear/eleccion' },
+    { name: 'Votacion', url: '/secretary/procesoElectoral/crear/votacion' },
+  ],
+}
 
 const MenuCrearEleccion = () => {
-  //https://es.reactjs.org/docs/lists-and-keys.html
+  // https://es.reactjs.org/docs/lists-and-keys.html
   // <Header />
-  //const { data, error } = useElectionNameQuery()
-  //if (data) {
+  // const { data, error } = useElectionNameQuery()
+  // if (data) {
   return (
     <Row justify="center" className="body">
-      <Row style={{ marginTop: "3%", marginBottom: "1%" }}>
-        <Text strong style={{ fontSize: "20px" }}>
+      <Row style={{ marginTop: '3%', marginBottom: '1%' }}>
+        <Text strong style={{ fontSize: '20px' }}>
           Crear proceso electoral
         </Text>
       </Row>
@@ -29,10 +29,10 @@ const MenuCrearEleccion = () => {
         ))}
       </Row>
     </Row>
-  );
+  )
   // }
 
-  //return <div>{JSON.stringify(error)}</div>
-};
+  // return <div>{JSON.stringify(error)}</div>
+}
 
-export default MenuCrearEleccion;
+export default MenuCrearEleccion

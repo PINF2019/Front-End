@@ -1,24 +1,27 @@
-import { useElectionsQuery } from "@Generated/hooks";
-import { Row, Typography, Layout } from "antd";
-import React from "react";
-import ElectionButton from "../Election/election";
+import { useElectionsQuery } from '@Generated/hooks'
+import { Layout, Row, Typography } from 'antd'
+import React from 'react'
 import Background from '../../../assets/Wallpaper.png'
-const { Text } = Typography;
-//la interrogacion comprueba que no sea nulo
+import ElectionButton from '../Election/election'
+
+const { Text } = Typography
+// la interrogacion comprueba que no sea nulo
 const MenuUser = () => {
-  const { data, error } = useElectionsQuery();
+  const { data, error } = useElectionsQuery()
   if (data) {
     return (
-      <Layout style={{
-        backgroundImage: 'url(' + Background + ')',
-        height: '100%',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: 'cover'
-      }}>
+      <Layout
+        style={{
+          backgroundImage: `url(${Background})`,
+          height: '100%',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: 'cover',
+        }}
+      >
         <Row justify="center" className="body" style={{ marginTop: '3%' }}>
           <Row className="layout" style={{ marginBottom: '10%' }}>
-            <Text strong style={{ fontSize: "30px" }}>
+            <Text strong style={{ fontSize: '30px' }}>
               Votaciones pendientes
             </Text>
           </Row>
@@ -29,14 +32,15 @@ const MenuUser = () => {
                 dateInit={eprocess.start}
                 dateEnd={eprocess.end}
                 id={eprocess.id}
-                href={"votacion"}
+                href="votacion"
               />
             ))}
           </Row>
         </Row>
       </Layout>
-    );
-  } else return <div>{JSON.stringify(error)}</div>;
-};
+    )
+  }
+  return <div>{JSON.stringify(error)}</div>
+}
 
-export default MenuUser;
+export default MenuUser

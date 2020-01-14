@@ -2,26 +2,26 @@ import React from 'react'
 import { Layout, Row, Col, Card, Typography } from 'antd'
 import { isAuthTokenExpired } from '@Utils/auth'
 import { Redirect } from 'react-router-dom'
-import LoginForm from './Form'
 import routes from '@Routes'
-import Background from '../../assets/Wallpaper.png'
 import logo from '@Assets/logo.png'
+import LoginForm from './Form'
+import Background from '../../assets/Wallpaper.png'
+
 const { Text } = Typography
 
 const Login = () => {
   if (!isAuthTokenExpired()) {
     return <Redirect to={routes.pickroleadmin} />
   }
-  console.log(isAuthTokenExpired())
 
   return (
     <Layout
       style={{
-        backgroundImage: 'url(' + Background + ')',
+        backgroundImage: `url(${Background})`,
         height: '100%',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
-        backgroundSize: 'cover'
+        backgroundSize: 'cover',
       }}
     >
       <Row type="flex" style={{ minHeight: '100vh' }}>
@@ -32,29 +32,29 @@ const Login = () => {
             justifyContent: 'center',
             alignItems: 'center',
             width: '50%',
-            flexDirection: 'column'
+            flexDirection: 'column',
           }}
         >
           <Row
             style={{
               display: 'flex',
               justifyContent: 'center',
-              //alignItems: 'center',
-              //marginTop: '20%',
+              // alignItems: 'center',
+              // marginTop: '20%',
               width: '50%',
-              paddingBottom: '100px'
+              paddingBottom: '100px',
             }}
           >
-            <img src={logo} width="90%" style={{height:'auto'}} alt="logo" />
+            <img src={logo} width="90%" style={{ height: 'auto' }} alt="logo" />
           </Row>
           <Row
             style={{
               display: 'flex',
               justifyContent: 'center',
-              //alignItems: 'center',
-              //marginTop: '20%',
+              // alignItems: 'center',
+              // marginTop: '20%',
               width: '50%',
-              textAlign: 'center'
+              textAlign: 'center',
             }}
           >
             <Text style={{ fontSize: '50px', lineHeight: '130%' }}>
@@ -69,7 +69,7 @@ const Login = () => {
             display: 'flex',
             alignItems: 'center',
             width: '50%',
-            backgroundColor: '#ffffff'
+            backgroundColor: '#ffffff',
           }}
         >
           <Card
@@ -78,9 +78,9 @@ const Login = () => {
               width: '60%',
               height: 'auto',
               borderRadius: '20px',
-              //marginTop: '20%',
-              //marginBottom: 'auto'
-              backgroundColor: '#f0f0f0'
+              // marginTop: '20%',
+              // marginBottom: 'auto'
+              backgroundColor: '#f0f0f0',
             }}
           >
             <LoginForm />

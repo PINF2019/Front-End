@@ -1,23 +1,23 @@
-import React from "react";
-import { Button, Radio } from "antd";
+import { Button, Radio } from 'antd'
+import React from 'react'
 
 type Props = {
-  name: string;
-  index: number;
-};
+  name: string
+  index: number
+}
 const radioStyle = {
-  display: "block",
-  height: "30px",
-  lineHeight: "30px"
-};
+  display: 'block',
+  height: '30px',
+  lineHeight: '30px',
+}
 
-const ElectionButton2 = (props: Props) => {
+const ElectionButton2 = ({ name, index }: Props) => {
   return (
-    <Button className="button" style={{ marginTop: "5%" }}>
-      <Radio style={radioStyle} value={props.index}>
-        {props.name}
+    <Button className="button" style={{ marginTop: '5%' }}>
+      <Radio style={radioStyle} value={index}>
+        {name}
       </Radio>
     </Button>
-  );
-};
-export default ElectionButton2;
+  )
+}
+export default ElectionButton2

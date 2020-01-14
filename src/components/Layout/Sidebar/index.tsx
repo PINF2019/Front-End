@@ -1,8 +1,8 @@
+import routes from '@Routes'
+import { removeAuthToken } from '@Utils/auth'
 import { Avatar, Col, Divider, Icon, Layout, Row, Typography } from 'antd'
 import React from 'react'
-import { removeAuthToken } from '@Utils/auth'
-import { useHistory, Link } from 'react-router-dom'
-import routes from '@Routes'
+import { useHistory } from 'react-router-dom'
 
 const { Text } = Typography
 
@@ -11,16 +11,9 @@ const data = {
   name: 'Carmen',
   secondName: 'Ruiz de Celis',
   NIF: '123456789',
-  role: 'Elector'
+  role: 'Elector',
 }
-const response = {
-  file: 'http://releases.ubuntu.com/12.04.5/ubuntu-12.04.5-alternate-amd64.iso',
-};
-
 const Sidebar = (prop: { collapse: boolean }) => {
-
-    
-     
   const history = useHistory()
   return (
     <Layout.Sider
@@ -33,7 +26,7 @@ const Sidebar = (prop: { collapse: boolean }) => {
         backgroundColor: '#f0f0f0',
         display: 'flex',
         flex: '1',
-        flexDirection: 'column'
+        flexDirection: 'column',
       }}
     >
       <Row
@@ -43,7 +36,7 @@ const Sidebar = (prop: { collapse: boolean }) => {
           marginTop: '15%',
           display: 'flex',
           flex: '1',
-          flexDirection: 'column'
+          flexDirection: 'column',
         }}
       >
         <Row
@@ -52,7 +45,7 @@ const Sidebar = (prop: { collapse: boolean }) => {
             marginLeft: '10%',
             justifyContent: 'center',
             width: '40%',
-            display: 'flex'
+            display: 'flex',
           }}
         >
           <Avatar size={90} style={{ backgroundColor: '#FFA500' }}>
@@ -72,7 +65,7 @@ const Sidebar = (prop: { collapse: boolean }) => {
             justifyContent: 'center',
             marginTop: '10%',
             fontSize: '15px',
-            flex: '1'
+            flex: '1',
           }}
         >
           <Col style={{ width: '40%', marginLeft: '10%' }}>
@@ -107,10 +100,12 @@ const Sidebar = (prop: { collapse: boolean }) => {
 
         <Row type="flex" style={{ flexDirection: 'column', display: 'flex' }}>
           <Row>
-            <a href="https://si.ua.es/es/documentos/documentacion/pdf-s/mozilla12-pdf.pdf"> <Text style={{ color: '#FFA500', marginLeft: '10%' }} strong >
-              Ayuda
-            </Text></a>
-           
+            <a href="https://si.ua.es/es/documentos/documentacion/pdf-s/mozilla12-pdf.pdf">
+              {' '}
+              <Text style={{ color: '#FFA500', marginLeft: '10%' }} strong>
+                Ayuda
+              </Text>
+            </a>
           </Row>
           <Row>
             <Text style={{ color: '#FFA500', marginLeft: '10%' }} strong>
@@ -119,17 +114,17 @@ const Sidebar = (prop: { collapse: boolean }) => {
           </Row>
           <Divider />
           <Row>
-            <div
+            <Row
               onClick={() => {
                 removeAuthToken()
                 history.replace(routes.login)
               }}
               style={{ marginLeft: '10%' }}
             >
-              <Text style={{ color: '#FC3F32', cursor: 'pointer' }}  strong>
+              <Text style={{ color: '#FC3F32', cursor: 'pointer' }} strong>
                 Cerrar Sesión
               </Text>
-            </div>
+            </Row>
           </Row>
         </Row>
       </Row>

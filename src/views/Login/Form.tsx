@@ -10,12 +10,12 @@ import './index.less'
 
 const initialValues = {
   uid: '',
-  password: ''
+  password: '',
 }
 
 const validationSchema = Yup.object().shape({
   uid: Yup.string().required(),
-  password: Yup.string().required()
+  password: Yup.string().required(),
 })
 
 const LoginForm = () => {
@@ -31,7 +31,6 @@ const LoginForm = () => {
           const { data } = await logIn({ variables: { input } })
           if (data) {
             setAuthToken(data.login.accessToken)
-            console.log({ data, input })
             history.replace(routes.pickroleadmin)
           }
         } catch {

@@ -1,35 +1,37 @@
-import React from "react";
-import { Row, Col, Button, Icon, Typography } from "antd";
-import { useParams, useHistory } from "react-router-dom";
-import "./index.less";
-const { Text } = Typography;
+import { Button, Icon, Row, Typography } from 'antd'
+import React from 'react'
+import { useHistory } from 'react-router-dom'
+import './index.less'
 
+const { Text } = Typography
 
 type Props = {
-  name: string;
-  dateInit: string;
-  dateEnd: string;
-  id: string;
-
-};
+  name: string
+  dateInit: string
+  dateEnd: string
+  id: string
+}
 
 const CensusButton = (props: Props) => {
-  const history = useHistory();
+  const history = useHistory()
 
   return (
     <>
       <Button
-        className = "button"
+        className="button"
         onClick={() => history.push(`census/${props.id}`)}
       >
-        <Row className = "RowCensusButton" >
-          <Text strong style={{ marginTop: "auto", marginBottom: "auto" }}>
-            {((props.name).length > 30) ? (((props.name).substring(0,30-3)) + '...') : props.name}
+        <Row className="RowCensusButton">
+          <Text strong style={{ marginTop: 'auto', marginBottom: 'auto' }}>
+            {props.name.length > 30
+              ? `${props.name.substring(0, 30 - 3)}...`
+              : props.name}
           </Text>
 
-          <Text style={{ textAlign: "center", margin: "auto" }}>
-            {props.dateInit.substring(8,10)}{'/'}{props.dateInit.substring(5,7)}{'/'}{props.dateInit.substring(0,4)} {"-"}
-            {props.dateEnd.substring(8,10)}{'/'}{props.dateEnd.substring(5,7)}{'/'}{props.dateEnd.substring(0,4)}
+          <Text style={{ textAlign: 'center', margin: 'auto' }}>
+            {props.dateInit.substring(8, 10)}/{props.dateInit.substring(5, 7)}/
+            {props.dateInit.substring(0, 4)} -{props.dateEnd.substring(8, 10)}/
+            {props.dateEnd.substring(5, 7)}/{props.dateEnd.substring(0, 4)}
           </Text>
 
           <Icon
@@ -39,14 +41,14 @@ const CensusButton = (props: Props) => {
               verticalAlign: 'middle',
               fontSize: '50px',
               color: '#FFA500',
-              marginLeft: 'auto'
+              marginLeft: 'auto',
             }}
           />
         </Row>
       </Button>
 
-      <br></br>
+      <br />
     </>
-  );
-};
-export default CensusButton;
+  )
+}
+export default CensusButton

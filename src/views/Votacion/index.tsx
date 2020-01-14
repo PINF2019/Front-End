@@ -1,35 +1,32 @@
-import { Typography, Button, Row, Col, Layout } from "antd";
-import React,{useState} from "react";
-import { Input } from "antd";
-import "./index.less";
-import {useOptionsQuery, useVotePollMutation} from "@Generated/hooks"
-import wallpaper from "../../assets/Wallpaper2.png";
-import { useParams } from "react-router-dom";
-import * as Yup from "yup";
-import {Formik} from 'formik';
-import {Form, Radio, SubmitButton, FormikDebug, Checkbox} from 'formik-antd'
+import { useOptionsQuery, useVotePollMutation } from '@Generated/hooks'
+import { Typography } from 'antd'
+import { Formik } from 'formik'
+import { Checkbox, Form, FormikDebug, Radio, SubmitButton } from 'formik-antd'
+import React, { useState } from 'react'
+import { useParams } from 'react-router-dom'
+import * as Yup from 'yup'
+import './index.less'
 
-
-const { Text } = Typography;
+const { Text } = Typography
 type Props = {
-  id: string;
-};
+  id: string
+}
 
 type VotePollInput = {
-  options: string;
-  poll: string;
-  }
+  options: string
+  poll: string
+}
 
-  const vote = {
-    VotePollInput: {
-      options: "",
-      poll: ""
-    }
-  }
+const vote = {
+  VotePollInput: {
+    options: '',
+    poll: '',
+  },
+}
 
 const schema = Yup.object().shape({
   validate: Yup.boolean().oneOf([true]),
-  election: Yup.string().required()
+  election: Yup.string().required(),
 })
 
 const Votacion = () => {
@@ -45,7 +42,7 @@ const Votacion = () => {
           // await vote({variables: { input: { elections: [values.election], poll:id }}})
         }}
         initialValues={{ validate: false, election: '' }}
-        initialErrors={{validate:"", election:""}}
+        initialErrors={{ validate: '', election: '' }}
         validateOnBlur={false}
         validationSchema={schema}
       >
@@ -81,13 +78,12 @@ const Votacion = () => {
 //   const {id:poll} = useParams<{id:string}>();
 //   const {data} = useOptionsQuery({variables:{id:poll}});
 //   const [vote] = useVotePollMutation();
-   
+
 //       const radioStyle = {
 //         display: "block",
 //         height: "30px",
 //         lineHeight: "30px"
 //       };
-
 
 //       return (
 //         <Row
@@ -109,7 +105,7 @@ const Votacion = () => {
 //                 backgroundImage: "url(" + wallpaper + ")"
 //               }}
 //             >
-             
+
 //             <Row
 //                 type="flex"
 //                 justify="center"
@@ -117,13 +113,12 @@ const Votacion = () => {
 //                 style={{
 //                   marginTop: "25%"
 //                 }}
-//               > 
+//               >
 //               <Text strong style={{ fontSize: "30px", lineHeight: "100%" }}>
-//                   Votación <br></br> {data?.election.description.substring(0, 100-3) + '...'} 
+//                   Votación <br></br> {data?.election.description.substring(0, 100-3) + '...'}
 //                 </Text>
 //               </Row>
-        
-               
+
 //             </Layout>
 //           </Col>
 //           <Col
@@ -160,7 +155,6 @@ const Votacion = () => {
 //                     </Radio></Row>
 //                   </Button>))}
 
-               
 //                 </Col>
 //                 <Row
 //                   style={{
@@ -177,7 +171,7 @@ const Votacion = () => {
 //                     }}
 //                   >
 //                     <Checkbox /*onChange={
-                      
+
 //                       }*/>
 //                       <Text style={{ color: "#FFFFFF" }}>
 //                         Validar mi elección
@@ -195,9 +189,5 @@ const Votacion = () => {
 //         </Row>
 //       );
 //     }
-  
 
-
-
-
-export default Votacion;
+export default Votacion

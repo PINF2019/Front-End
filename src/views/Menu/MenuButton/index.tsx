@@ -1,5 +1,6 @@
+import { Button, Icon, Row, Typography } from 'antd'
 import React from 'react'
-import { Row, Col, Button, Icon, Typography } from 'antd'
+
 const { Text } = Typography
 
 type Props = {
@@ -18,17 +19,25 @@ const MenuButton = (props: Props) => {
           minWidth: '100%',
           minHeight: '63px',
           borderRadius: '12px',
-          boxShadow: '0px 3px 3px grey'
-        }}>
+          boxShadow: '0px 3px 3px grey',
+        }}
+      >
         <Row
           style={{
             width: '100%',
             height: '100%',
             display: 'flex',
-            alignContent: 'space-between'
+            alignContent: 'space-between',
           }}
         >
-          <Text strong style={{ marginTop: 'auto', marginBottom: 'auto', fontSize: '20px' }}>
+          <Text
+            strong
+            style={{
+              marginTop: 'auto',
+              marginBottom: 'auto',
+              fontSize: '20px',
+            }}
+          >
             {props.name}
           </Text>
 
@@ -39,15 +48,14 @@ const MenuButton = (props: Props) => {
               fontSize: '50px',
               color: '#FFA500',
               marginLeft: 'auto',
-              marginTop: '1.1%', //MODIFICAR
-              borderRadius: '50px'
+              marginTop: '1.1%', // MODIFICAR
+              borderRadius: '50px',
             }}
           />
         </Row>
-
       </Button>
 
-      <br></br>
+      <br />
     </>
   )
 }

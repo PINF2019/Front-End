@@ -1,27 +1,31 @@
-import React from "react";
-import { Row, Col, Button, Icon, Typography } from "antd";
-import { useParams, useHistory } from "react-router-dom";
-const { Text } = Typography;
-
+import { Button } from 'antd'
+import React from 'react'
+import { useHistory } from 'react-router-dom'
 
 type Props = {
   id: string
-  name: string;
-  lastnames: string;
-  sex: string;
-  rol: string;
-};
+  name: string
+  lastnames: string
+  sex: string
+  rol: string
+}
 
 const ModifyButton = (props: Props) => {
-  const history = useHistory();
+  const history = useHistory()
 
   return (
     <>
-      <Button type="primary" onClick={() => 
-        history.push(`/admin/modifyuser/${props.id}/${props.name}/${props.lastnames}/${props.sex}/${props.rol}`)}>
-          Modificar
+      <Button
+        type="primary"
+        onClick={() =>
+          history.push(
+            `/admin/modifyuser/${props.id}/${props.name}/${props.lastnames}/${props.sex}/${props.rol}`
+          )
+        }
+      >
+        Modificar
       </Button>
     </>
-  );
-};
-export default ModifyButton;
+  )
+}
+export default ModifyButton

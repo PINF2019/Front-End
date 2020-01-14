@@ -1,10 +1,9 @@
-import React, { useState } from 'react'
 import { Layout as AntdLayout } from 'antd'
+import React, { useState } from 'react'
 import Header from './Header'
-import Sidebar from './Sidebar'
-import wallpaper from '@Assets/Wallpaper.png'
 import './index.less'
-// style={{backgroundImage: 'url(${wallpaper})'}}
+import Sidebar from './Sidebar'
+
 type LayoutProps = {
   children: React.ReactNode
 }
