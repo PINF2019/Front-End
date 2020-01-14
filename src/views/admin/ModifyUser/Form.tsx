@@ -22,19 +22,17 @@ const initialValues = {
 }
 /*Validacion de los datos del formulario, cadena, quitar espacios, expresion regular, mensaje*/
 const validationSchema = Yup.object().shape({
+  dni: Yup.string().required("NIF/NIE requerido."),
+  firstName: Yup.string().required("Nombre requerido."),
+  lastName: Yup.string().required("Apellidos requerido.")
 })
-/*password: String
-  firstName: String
-  lastName: String
-  roles: [Role!]
-  colegiateBody: ID
-  genre: Genre */
 type Props = {
   id: string;
   name: string;
   lastnames: string;
   sex: string;
   rol: string;
+  colegiateBody: string;
 };
 
 /*Para indicar que input/datos vamos a mandarle al servidor y que nos devuelve usamos "useLogInMutation()", solo hay que crear /src/graphql/documents/<nombre-pag>.gql, login.gql tiene comentarios*/
@@ -46,11 +44,10 @@ const ModifyUserForm = (props: Props) => {
 
 
   const initialValues = {
-    password: '',
     firstName: props.name,
     lastName: props.lastnames,
     roles: props.rol,
-    colegiateBody: '',
+    colegiateBody: props.colegiateBody,
     genre: props.sex
   }
 
@@ -93,9 +90,6 @@ const ModifyUserForm = (props: Props) => {
               Datos
           </Text>
           </Card>
-          <Form.Item name="password">
-          <p style={{ fontSize: "20px" }}><strong>Contraseña</strong><Input.Password name="password" autoComplete="password"  /></p>
-          </Form.Item>
           <Form.Item name="firstName">
           <p style={{ fontSize: "20px" }}><strong>Nombre</strong><Input name="firstName" autoComplete="nombre" placeholder={props.name} /></p>
           </Form.Item>
@@ -120,7 +114,7 @@ const ModifyUserForm = (props: Props) => {
             </Field></p>
           </Form.Item>
           <Form.Item name="colegiateBody">
-          <p style={{ fontSize: "20px" }}><strong>Órgano colegiado</strong><Field as="select" name="colegiateBody">
+          <p style={{ fontSize: "20px" }}><strong>Órgano colegiado</strong><Field as="select" placeholder = {props.colegiateBody} name="colegiateBody">
               {data?.collegiateBodies.map (elec => (
               <option value = {elec.id} >{elec.name}</option>
               ))}

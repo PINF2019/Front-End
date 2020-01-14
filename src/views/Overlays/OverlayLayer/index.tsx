@@ -20,7 +20,7 @@ const OverlayLayer = (props: Props) => {
         <Result
           title={props.title}
           extra={
-            <Button type="primary" href="/user">
+            <Button type="primary" href="/home">
               Aceptar
             </Button>
           }
