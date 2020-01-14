@@ -15,6 +15,9 @@ import {
   Col,
   Row
 } from 'antd'
+import {Formik} from 'formik';
+import {Form, Radio, SubmitButton, FormikDebug, Checkbox} from 'formik-antd'
+import * as Yup from "yup";
 import Selector from './select';
 //import { useElectionNameQuery } from '@Generated/hooks'
 const { Text } = Typography
@@ -55,6 +58,11 @@ function comprobarinicio(currentDate: any) {
   return f.valueOf() > currentDate.valueOf()
 }
 
+const schema = Yup.object().shape({
+  validate: Yup.boolean().oneOf([true]),
+  election: Yup.string().required()
+})
+
 
 
 function organo(value:any) {
@@ -75,10 +83,21 @@ const CrearEleccion = () => {
       <Tabs defaultActiveKey="1">
         <TabPane tab="Eleccion de representantes" key="1">
           <form>
-
-          <Select defaultValue="Organo colectivo" 
+          <Formik
+        onSubmit={values => {
+          console.log(values)
+          // await vote({variables: { input: { elections: [values.election], poll:id }}})
+        }}
+        initialValues={{ validate: false, election: '', organo: '', selector: '', inputNumber: 0 }}
+        initialErrors={{validate:"", election:""}}
+        validateOnBlur={false}
+        validationSchema={schema}
+      >
+        {() => (
+        <Col> 
+         <Select defaultValue="Organo colectivo" 
           style={{ width: "30%" }} 
-          onChange={organo}
+          name="organo"
           >
             <Option value="PAS">PDVP</Option>
             <Option value="PDI">PNDVP</Option>
@@ -86,34 +105,30 @@ const CrearEleccion = () => {
             <Option value="alumnos">PAS</Option>
             <Option value="alumnos">ALU</Option>
           </Select>
+       
+            <Selector name="selector"/>
 
-          <br></br>
-          <br></br>
-            <Selector/>
-
-            
-            
-            <br></br>
-            <br></br>
             <InputNumber
               min={1}
               max={10}
               placeholder="Número máximo de votaciones"
-              onChange={numerovotaciones}
+              name= 'inputNumber'
               />
-            <br></br>
-            <br></br>
+
             <Text style={{ fontSize: '20px' }}>Duración:</Text>
-            <br></br>
+          
             <RangePicker
               disabledDate={comprobarinicio}
-              onChange={changefecha}
+              name= "rangePicker"
               />
             <br></br>
             <br></br>
-            <Button style={{ background: '#206489',color:'#FFFFFF' }}>Enviar</Button>
-            <Button style={{ background: '#FFA500' }}>Cancelar</Button>
-          </form>
+            <SubmitButton style={{ background: '#206489',color:'#FFFFFF' }}>Enviar</SubmitButton>
+            <Button style={{ background: '#FFA500' }}>Cancelar</Button>*/
+            </Col>
+            )}
+          </Formik>
+            </form>
         </TabPane>
 
 

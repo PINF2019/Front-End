@@ -19,7 +19,7 @@ const response = {
 
 const Sidebar = (prop: { collapse: boolean }) => {
 
-  //const {me} = useMeQuery()
+  const {me} = useMeQuery()
     
      
   const history = useHistory()

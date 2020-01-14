@@ -143,7 +143,7 @@ const Votacion = (props: any) => {
               <Formik
         onSubmit={values => {
           console.log(values)
-          // await vote({variables: { input: { elections: [values.election], poll:id }}})
+          //await vote({variables: { input: { elections: [values.election], poll:id }}})
         }}
         initialValues={{ validate: false, election: '' }}
         initialErrors={{validate:"", election:""}}
