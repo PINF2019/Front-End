@@ -40,6 +40,10 @@ query census($id: ID!) {
     description
     start
     end
+    secretary {
+      firstName
+      lastName
+    }
     censuses {
       voters {
         firstName
@@ -49,7 +53,6 @@ query census($id: ID!) {
     delegates {
       firstName
       lastName
-      
     }
   }
 }

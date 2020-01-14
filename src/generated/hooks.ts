@@ -546,6 +546,7 @@ export type CensusQuery = {
     description: string;
     start: string;
     end: string;
+    secretary: { __typename?: "User"; firstName: string; lastName: string };
     censuses: Array<{
       __typename?: "Census";
       voters: Array<{
@@ -914,6 +915,10 @@ export const CensusDocument = gql`
       description
       start
       end
+      secretary {
+        firstName
+        lastName
+      }
       censuses {
         voters {
           firstName
