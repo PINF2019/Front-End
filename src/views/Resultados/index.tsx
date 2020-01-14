@@ -2,8 +2,9 @@ import React from "react";
 import { Divider, Row, Typography, Table, Col, Card } from "antd";
 import { Bar, Pie } from "ant-design-pro/lib/Charts";
 import "ant-design-pro/dist/ant-design-pro.css";
-
-// import { useElectionNameQuery } from '@Generated/hooks'
+import { useParams } from "react-router-dom";
+import { usePastElectionResultsQuery } from "@Generated/hooks";
+import Title from "antd/lib/typography/Title";
 
 const { Text } = Typography;
 
@@ -87,13 +88,16 @@ const datatable = [
   }
 ];
 
-const data = [
+const datos = [
   { x: "López Cala, kevin   ", y: 5300 },
   { x: "Escribano Corrales, Raúl   ", y: 3000 },
   { x: "Soriano Roldán, Claudia   ", y: 1800 }
 ];
 
 const Resultados = () => {
+  const {id} = useParams<{id:string}>();
+  const {data} = usePastElectionResultsQuery({variables: {id}});
+  const elecciones = data && data.electoralProcesses;
   return (
     <section id="target-pacing">
       <Row
@@ -119,15 +123,28 @@ const Resultados = () => {
                 backgroundColor: "#206489"
               }}
             >
+              
               <Row style={{ width: "500%" }}>
-                <Text strong style={{ fontSize: "20px" }}>
-                  Resultados de la elección de Delegados/as
-                </Text>
+              {elecciones?.map(e => {
+                if(e.__typename == "Election"){
+                  return(
+                  <Row style = {{marginTop: '3%'}}><Card className = "card">
+                  <Title><Text>Resultados de {e.description}</Text></Title>
+                   <Text>{'\n'}{e.start.substring(8,10) + '/' + e.start.substring(5,7) + '/' + e.start.substring(0,4) + 
+                   '-' + e.end.substring(8,10) + '/' + e.end.substring(5,7) + '/' + e.end.substring(0,4)}</Text>
+                  </Card></Row>)
+                }else{
+                  return(
+                  <Row style = {{marginTop: '3%'}}><Card className = "card">
+                  <Title><Text>Resultados de {e.description}</Text></Title>
+                   <Text>{'\n'}{e.start.substring(8,10) + '/' + e.start.substring(5,7) + '/' + e.start.substring(0,4) + 
+                   '-' + e.end.substring(8,10) + '/' + e.end.substring(5,7) + '/' + e.end.substring(0,4)}</Text>
+                  </Card></Row>)
+                }
+              })}
 
                 <Text style={{ textAlign: "center", margin: "auto" }}>
-                  <br />
-                  {new Date().toLocaleDateString()} -
-                  {new Date().toLocaleDateString()}
+
                 </Text>
               </Row>
             </Divider>
@@ -247,14 +264,14 @@ const Resultados = () => {
                     total={() => (
                       <span
                         dangerouslySetInnerHTML={{
-                          __html: data.reduce(
+                          __html: datos.reduce(
                             (pre: any, now: { y: any }) => now.y + pre,
                             0
                           )
                         }}
                       />
                     )}
-                    data={data}
+                    data={datos}
                     valueFormat={val => (
                       <span dangerouslySetInnerHTML={{ __html: val }} />
                     )}
@@ -285,7 +302,7 @@ const Resultados = () => {
                   </Row>
                 </Divider>
                 <Row style={{ marginTop: "5%" }}>
-                  <Bar style={{}} height={300} title="" data={data} />
+                  <Bar style={{}} height={300} title="" data={datos} />
                 </Row>
               </Col>
             </Col>
