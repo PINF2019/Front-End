@@ -5,7 +5,8 @@ const routes = {
   pickroleadmin: '/pickroleadmin',
   pickrolesecretary: '/pickrolesecretary',
   votacion: '/votacion/:id',
-  resultados: '/resultados/:id',
+  resultsElection:'/resultados/election/:id',
+  resultsPoll:'/resultados/poll/:id',
   censusData: '/census/:id',
 
   election: '/election/vote', // hay que quitarlo
