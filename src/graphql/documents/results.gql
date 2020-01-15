@@ -6,6 +6,17 @@ query resultForElection($id: ID!){
         voters
         votesCast
         whiteVotes
+        results
+        {
+          votes
+          group
+          candidate
+          {
+            id
+            firstName
+            lastName
+          }
+        }
     }
   }
 }
@@ -18,6 +29,15 @@ query resultForPoll($id: ID!){
         voters
         votesCast
         whiteVotes
+         results
+        {
+          votes
+          group
+          option
+          {
+            text
+          }
+        }
     }
   }
 }
