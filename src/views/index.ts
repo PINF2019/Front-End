@@ -36,7 +36,9 @@ import {
 } from './Overlays/VotoRegistrado'
 import PickRoleAdmin from './PickRole/Admin'
 import PickRoleSecretary from './PickRole/Secretary'
-import Resultados from './Resultados'
+import ResultsElection from "./Resultados/Election"
+import ResultsPoll from "./Resultados/Poll"
+
 // Secretario
 import CrearEleccion from './Secretary/ProcesoElectoral'
 import CrearVotacion from './Secretary/Votación'
@@ -61,7 +63,8 @@ export {
   MenuResultados,
   MenuModificarElecciones,
   MenuEliminarElecciones,
-  Resultados,
+  ResultsElection,
+  ResultsPoll,
   gestionarUsuarios,
   AddUser,
   ModifyUserTable,
