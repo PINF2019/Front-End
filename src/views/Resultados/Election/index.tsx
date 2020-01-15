@@ -89,12 +89,6 @@ const datatable = [
   }
 ];
 
-const datas = [
-  { x: "López Cala, kevin   ", y: 5300 },
-  { x: "Escribano Corrales, Raúl   ", y: 3000 },
-  { x: "Soriano Roldán, Claudia   ", y: 1800 }
-];
-
 const ResultsElection = () => {
   const { id } = useParams<{ id: string }>();
   const { data, error } = useResultForElectionQuery({ variables: { id } })
@@ -246,14 +240,22 @@ const ResultsElection = () => {
                       total={() => (
                         <span
                           dangerouslySetInnerHTML={{
-                            __html: datas.reduce(
+                            __html: data.election.results.results.map(({ votes,candidate }) => ({
+                              x: `${candidate.lastName}, ${candidate.firstName}`,
+                              y: votes,
+                            })
+                            ).reduce(
                               (pre: any, now: { y: any }) => now.y + pre,
                               0
                             )
                           }}
                         />
                       )}
-                      data={datas}
+                      data={data.election.results.results.map(({ votes,candidate }) => ({
+                        x: `${candidate.lastName}, ${candidate.firstName}`,
+                        y: votes,
+                      })
+                      )}
                       valueFormat={val => (
                         <span dangerouslySetInnerHTML={{ __html: val }} />
                       )}
@@ -284,7 +286,11 @@ const ResultsElection = () => {
                     </Row>
                   </Divider>
                   <Row style={{ marginTop: "5%" }}>
-                    <Bar style={{}} height={300} title="" data={datas} />
+                    <Bar style={{}} height={300} title="" data={data.election.results.results.map(({ votes,candidate }) => ({
+                    x: `${candidate.lastName}, ${candidate.firstName}`,
+                    y: votes,
+                  })
+                  )} />
                   </Row>
                 </Col>
               </Col>
