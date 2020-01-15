@@ -24,7 +24,7 @@ const MenuResultados = () => {
                 dateInit={eprocess.start}
                 dateEnd={eprocess.end}
                 id={eprocess.id}
-                href="resultados"
+                href="resultados/election"
               />
             )
           }
@@ -34,7 +34,7 @@ const MenuResultados = () => {
               dateInit={eprocess.start}
               dateEnd={eprocess.end}
               id={eprocess.id}
-              href="resultados"
+              href="resultados/poll"
             />
           )
         })}
