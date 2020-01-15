@@ -1,6 +1,7 @@
 import React from "react";
-import { Row, Col, Button, Typography } from "antd";
+import { Row, Col, Button, Typography, Layout } from "antd";
 import { MenuButton } from "@Views";
+import Background from '../../../assets/Wallpaper.png'
 //import { useElectionNameQuery } from '@Generated/hooks'
 const { Text } = Typography;
 
@@ -17,18 +18,26 @@ const MenuCrearEleccion = () => {
   //const { data, error } = useElectionNameQuery()
   //if (data) {
   return (
-    <Row justify="center" className="body">
-      <Row style={{ marginTop: "3%", marginBottom: "1%" }}>
-        <Text strong style={{ fontSize: "20px" }}>
-          Crear proceso electoral
+    <Layout style={{
+      backgroundImage: 'url(' + Background + ')',
+      height: '100%',
+      backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat',
+      backgroundSize: 'cover'
+    }}>
+      <Row justify="center" className="body" style={{ marginTop: '3%' }}>
+        <Row className="layout" style={{ marginBottom: '10%' }}>
+          <Text strong style={{ fontSize: "30px" }}>
+            Crear Proceso Electoral
         </Text>
+        </Row>
+        <Row>
+          {data.data.map((data, index) => (
+            <MenuButton name={data.name} url={data.url} />
+          ))}
+        </Row>
       </Row>
-      <Row>
-        {data.data.map((data, index) => (
-          <MenuButton name={data.name} url={data.url} />
-        ))}
-      </Row>
-    </Row>
+    </Layout>
   );
   // }
 

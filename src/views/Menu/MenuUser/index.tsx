@@ -19,7 +19,7 @@ const MenuUser = () => {
         <Row justify="center" className="body" style={{ marginTop: '3%' }}>
           <Row className="layout" style={{ marginBottom: '10%' }}>
             <Text strong style={{ fontSize: "30px" }}>
-              Votaciones pendientes
+              Procesos Electorales pendientes
             </Text>
           </Row>
           <Row>

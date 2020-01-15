@@ -26,7 +26,7 @@ const PickRoleAdmin = () => {
       >
         <Row
           type="flex"
-          justify="space-between"
+          justify="space-around"
           style={{ paddingTop: '100px', width: '70%' }}
         >
           <Col style={{ textAlign: 'center', marginBottom: '30px' }}>
