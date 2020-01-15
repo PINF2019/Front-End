@@ -88,12 +88,6 @@ const datatable = [
   }
 ];
 
-const datas = [
-  { x: "López Cala, kevin   ", y: 5300 },
-  { x: "Escribano Corrales, Raúl   ", y: 3000 },
-  { x: "Soriano Roldán, Claudia   ", y: 1800 }
-];
-
 const ResultsPoll = () => {
   const { id } = useParams<{ id: string }>();
   const { data, error } = useResultForPollQuery({ variables: { id } })
@@ -245,14 +239,22 @@ const ResultsPoll = () => {
                       total={() => (
                         <span
                           dangerouslySetInnerHTML={{
-                            __html: datas.reduce(
+                            __html: data.poll.results.results.map(({ votes,option }) => ({
+                              x: option.text,
+                              y: votes,
+                            })
+                            ).reduce(
                               (pre: any, now: { y: any }) => now.y + pre,
                               0
                             )
                           }}
                         />
                       )}
-                      data={datas}
+                      data={data.poll.results.results.map(({ votes,option }) => ({
+                        x: option.text,
+                        y: votes,
+                      })
+                      )}
                       valueFormat={val => (
                         <span dangerouslySetInnerHTML={{ __html: val }} />
                       )}
@@ -283,7 +285,11 @@ const ResultsPoll = () => {
                     </Row>
                   </Divider>
                   <Row style={{ marginTop: "5%" }}>
-                    <Bar style={{}} height={300} title="" data={datas} />
+                    <Bar style={{}} height={300} title="" data={data.poll.results.results.map(({ votes,option }) => ({
+                        x: option.text,
+                        y: votes,
+                      })
+                      )} />
                   </Row>
                 </Col>
               </Col>
