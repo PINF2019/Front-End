@@ -19,12 +19,14 @@ const Success = () => {
         <Result
           title="¿Está seguro que quiere publicar este proceso electoral?"
           icon={<Icon type="mail" theme="twoTone" />}
-          extra={[
-            <Button type="primary" href="/user">
-              Cancelar
-            </Button>,
-            <Button href="/user">Publicar</Button>,
-          ]}
+          extra={
+            <>
+              <Button type="primary" href="/user">
+                Cancelar
+              </Button>
+              <Button href="/user">Publicar</Button>
+            </>
+          }
         />
       </Row>
     </Row>

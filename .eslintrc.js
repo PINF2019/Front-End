@@ -74,5 +74,6 @@ module.exports = {
     'import/no-unresolved': 'error',
     'no-console': ['error', { allow: ['warn', 'error'] }],
     'react/display-name': 'off',
+    'no-plusplus':'off'
   },
 }

@@ -10,19 +10,21 @@ import {
   Tabs,
   Typography,
 } from 'antd'
+import { Formik } from 'formik'
+import { SubmitButton } from 'formik-antd'
 import React from 'react'
+import * as Yup from 'yup'
 import './index.less'
 import Selector from './select'
 // import { useElectionNameQuery } from '@Generated/hooks'
 const { Text } = Typography
 const { TabPane } = Tabs
-const { RangePicker, MonthPicker } = DatePicker
+const { RangePicker } = DatePicker
 const f = new Date()
-const format = 'HH:mm'
-const { Option, OptGroup } = Select
+
+const { Option } = Select
 
 const targetkeys: string[] = []
-const selectedkeys: any[] = []
 
 const children: any[] = []
 for (let i = 10; i < 36; i++) {
@@ -38,11 +40,6 @@ for (let i = 10; i < 36; i++) {
   children.push(data)
 }
 
-function numerovotaciones(value: any) {
-  console.log(`selected ${value}`)
-  console.log('LAS TARGET LOKO', targetkeys)
-}
-
 function changefecha(value: any, fechas: any) {
   const start = new Date(value[0].valueOf())
   const end = new Date(value[1].valueOf())
@@ -51,6 +48,11 @@ function changefecha(value: any, fechas: any) {
 function comprobarinicio(currentDate: any) {
   return f.valueOf() > currentDate.valueOf()
 }
+
+const schema = Yup.object().shape({
+  validate: Yup.boolean().oneOf([true]),
+  election: Yup.string().required(),
+})
 
 function organo(value: any) {
   console.log('hola')
@@ -68,44 +70,59 @@ const CrearEleccion = () => {
         <Tabs defaultActiveKey="1">
           <TabPane tab="Eleccion de representantes" key="1">
             <form>
-              <Select
-                defaultValue="Organo colectivo"
-                style={{ width: '30%' }}
-                onChange={organo}
+              <Formik
+                onSubmit={values => {
+                  console.log(values)
+                  // await vote({variables: { input: { elections: [values.election], poll:id }}})
+                }}
+                initialValues={{
+                  validate: false,
+                  election: '',
+                  organo: '',
+                  selector: '',
+                  inputNumber: 0,
+                }}
+                initialErrors={{ validate: '', election: '' }}
+                validateOnBlur={false}
+                validationSchema={schema}
               >
-                <Option value="PAS">PDVP</Option>
-                <Option value="PDI">PNDVP</Option>
-                <Option value="alumnos">PDINVP</Option>
-                <Option value="alumnos">PAS</Option>
-                <Option value="alumnos">ALU</Option>
-              </Select>
-
-              <br />
-              <br />
-              <Selector />
-
-              <br />
-              <br />
-              <InputNumber
-                min={1}
-                max={10}
-                placeholder="Número máximo de votaciones"
-                onChange={numerovotaciones}
-              />
-              <br />
-              <br />
-              <Text style={{ fontSize: '20px' }}>Duración:</Text>
-              <br />
-              <RangePicker
-                disabledDate={comprobarinicio}
-                onChange={changefecha}
-              />
-              <br />
-              <br />
-              <Button style={{ background: '#206489', color: '#FFFFFF' }}>
-                Enviar
-              </Button>
-              <Button style={{ background: '#FFA500' }}>Cancelar</Button>
+                {() => (
+                  <Col>
+                    <Select
+                      defaultValue="Organo colectivo"
+                      style={{ width: '30%' }}
+                      // name="organo"
+                    >
+                      <Option value="PAS">PDVP</Option>
+                      <Option value="PDI">PNDVP</Option>
+                      <Option value="alumnos">PDINVP</Option>
+                      <Option value="alumnos">PAS</Option>
+                      <Option value="alumnos">ALU</Option>
+                    </Select>
+                    <Selector /* name="selector" */ />
+                    <InputNumber
+                      min={1}
+                      max={10}
+                      placeholder="Número máximo de votaciones"
+                      name="inputNumber"
+                    />
+                    <Text style={{ fontSize: '20px' }}>Duración:</Text>
+                    <RangePicker
+                      disabledDate={comprobarinicio}
+                      name="rangePicker"
+                    />
+                    <br />
+                    <br />
+                    <SubmitButton
+                      style={{ background: '#206489', color: '#FFFFFF' }}
+                    >
+                      Enviar
+                    </SubmitButton>
+                    <Button style={{ background: '#FFA500' }}>Cancelar</Button>
+                    */
+                  </Col>
+                )}
+              </Formik>
             </form>
           </TabPane>
 

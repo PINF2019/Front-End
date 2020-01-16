@@ -8,6 +8,7 @@ type Props = {
   lastnames: string
   sex: string
   rol: string
+  colegiateBody: string
 }
 
 const ModifyButton = (props: Props) => {
@@ -19,7 +20,7 @@ const ModifyButton = (props: Props) => {
         type="primary"
         onClick={() =>
           history.push(
-            `/admin/modifyuser/${props.id}/${props.name}/${props.lastnames}/${props.sex}/${props.rol}`
+            `/admin/modifyuser/${props.id}/${props.name}/${props.lastnames}/${props.sex}/${props.rol}/${props.colegiateBody}`
           )
         }
       >

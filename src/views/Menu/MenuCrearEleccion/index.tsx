@@ -1,38 +1,40 @@
-import { MenuButton } from '@Views'
-import { Row, Typography } from 'antd'
+import { Layout, Row, Typography } from 'antd'
 import React from 'react'
-// import { useElectionNameQuery } from '@Generated/hooks'
+import Background from '../../../assets/Wallpaper.png'
+import MenuButton from '../MenuButton'
+
 const { Text } = Typography
 
-const data = {
-  data: [
-    { name: 'Eleccion', url: '/secretary/procesoElectoral/crear/eleccion' },
-    { name: 'Votacion', url: '/secretary/procesoElectoral/crear/votacion' },
-  ],
-}
+const secretaryRoutes = [
+  { name: 'Eleccion', url: '/secretary/procesoElectoral/crear/eleccion' },
+  { name: 'Votacion', url: '/secretary/procesoElectoral/crear/votacion' },
+]
 
 const MenuCrearEleccion = () => {
-  // https://es.reactjs.org/docs/lists-and-keys.html
-  // <Header />
-  // const { data, error } = useElectionNameQuery()
-  // if (data) {
   return (
-    <Row justify="center" className="body">
-      <Row style={{ marginTop: '3%', marginBottom: '1%' }}>
-        <Text strong style={{ fontSize: '20px' }}>
-          Crear proceso electoral
-        </Text>
+    <Layout
+      style={{
+        backgroundImage: `url(${Background})`,
+        height: '100%',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
+      }}
+    >
+      <Row justify="center" className="body" style={{ marginTop: '3%' }}>
+        <Row className="layout" style={{ marginBottom: '10%' }}>
+          <Text strong style={{ fontSize: '30px' }}>
+            Crear Proceso Electoral
+          </Text>
+        </Row>
+        <Row>
+          {secretaryRoutes.map(data => (
+            <MenuButton name={data.name} url={data.url} key={data.name} />
+          ))}
+        </Row>
       </Row>
-      <Row>
-        {data.data.map((data, index) => (
-          <MenuButton name={data.name} url={data.url} />
-        ))}
-      </Row>
-    </Row>
+    </Layout>
   )
-  // }
-
-  // return <div>{JSON.stringify(error)}</div>
 }
 
 export default MenuCrearEleccion

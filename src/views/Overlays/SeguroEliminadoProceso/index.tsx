@@ -19,12 +19,16 @@ const SeguroEliminadoProcesoOverlay = () => {
         <Result
           title="¿Está seguro de que quiere eliminar este proceso electoral?"
           icon={<Icon type="mail" theme="twoTone" />}
-          extra={[
-            <Button type="primary" href="/user">
-              Cancelar
-            </Button>,
-            <Button href="/user">Publicar</Button>,
-          ]}
+          extra={
+            <>
+              <Button type="primary" href="/user" key="cancelar">
+                Cancelar
+              </Button>
+              <Button href="/user" key="publicar">
+                Publicar
+              </Button>
+            </>
+          }
         />
       </Row>
     </Row>

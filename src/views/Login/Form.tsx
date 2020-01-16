@@ -31,7 +31,7 @@ const LoginForm = () => {
           const { data } = await logIn({ variables: { input } })
           if (data) {
             setAuthToken(data.login.accessToken)
-            history.replace(routes.pickroleadmin)
+            history.replace(routes.logo)
           }
         } catch {
           const message = 'Usuario o Contraseña Incorrectos'

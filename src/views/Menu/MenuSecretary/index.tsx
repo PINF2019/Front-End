@@ -1,40 +1,49 @@
-import { MenuButton } from '@Views'
-import { Row, Typography } from 'antd'
+import { Layout, Row, Typography } from 'antd'
 import React from 'react'
+import Background from '../../../assets/Wallpaper.png'
+import MenuButton from '../MenuButton'
 
 const { Text } = Typography
 
-const data = {
-  data: [
-    {
-      name: 'Crear proceso electoral',
-      url: '/secretary/procesoElectoral/crear',
-    },
-    {
-      name: 'Modificar proceso electoral',
-      url: '/secretary/procesoElectoral/modificar',
-    },
-    {
-      name: 'Eliminar proceso electoral',
-      url: '/secretary/procesoElectoral/eliminar',
-    },
-  ],
-}
+const secretaryRoutes = [
+  {
+    name: 'Crear proceso electoral',
+    url: '/secretary/procesoElectoral/crear',
+  },
+  {
+    name: 'Modificar proceso electoral',
+    url: '/secretary/procesoElectoral/modificar',
+  },
+  {
+    name: 'Eliminar proceso electoral',
+    url: '/secretary/procesoElectoral/eliminar',
+  },
+]
 
 const MenuAdmin = () => {
   return (
-    <Row justify="center" className="body" style={{ marginTop: '3%' }}>
-      <Row className="layout" style={{ marginBottom: '10%' }}>
-        <Text strong style={{ fontSize: '30px' }}>
-          Gestionar Procesos Electorales
-        </Text>
+    <Layout
+      style={{
+        backgroundImage: `url(${Background})`,
+        height: '100%',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
+      }}
+    >
+      <Row justify="center" className="body" style={{ marginTop: '3%' }}>
+        <Row className="layout" style={{ marginBottom: '10%' }}>
+          <Text strong style={{ fontSize: '30px' }}>
+            Gestionar Procesos Electorales
+          </Text>
+        </Row>
+        <Row>
+          {secretaryRoutes.map(({ name, url }) => (
+            <MenuButton name={name} url={url} key={name} />
+          ))}
+        </Row>
       </Row>
-      <Row>
-        {data.data.map((data, index) => (
-          <MenuButton name={data.name} url={data.url} />
-        ))}
-      </Row>
-    </Row>
+    </Layout>
   )
 }
 

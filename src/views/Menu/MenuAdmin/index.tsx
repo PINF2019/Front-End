@@ -1,33 +1,40 @@
-import { MenuButton } from '@Views'
-import { Row, Typography } from 'antd'
+import { Layout, Row, Typography } from 'antd'
 import React from 'react'
+import Background from '../../../assets/Wallpaper.png'
+import MenuButton from '../MenuButton'
 
 const { Text } = Typography
 
-const data = {
-  data: [
-    { name: 'Añadir usuario', url: '/admin/adduser' },
-    { name: 'Modificar usuario', url: '/admin/modifyusertable' },
-    { name: 'Eliminar usuario', url: '/admin/deleteusertable' },
-  ],
-}
+const adminRoutes = [
+  { name: 'Añadir usuario', url: '/admin/adduser' },
+  { name: 'Modificar usuario', url: '/admin/modifyusertable' },
+  { name: 'Eliminar usuario', url: '/admin/deleteusertable' },
+]
 
 const MenuAdmin = () => {
   return (
-    <Row justify="center" className="body">
-      <Row className="body2" style={{ marginTop: '20%' }}>
-        <Row className="body2">
-          <Text strong style={{ fontSize: '20px' }}>
-            Gestionar usuarios
+    <Layout
+      style={{
+        backgroundImage: `url(${Background})`,
+        height: '100%',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
+      }}
+    >
+      <Row justify="center" className="body" style={{ marginTop: '3%' }}>
+        <Row className="layout" style={{ marginBottom: '10%' }}>
+          <Text strong style={{ fontSize: '30px' }}>
+            Gestionar Usuarios
           </Text>
         </Row>
         <Row>
-          {data.data.map((data, index) => (
-            <MenuButton name={data.name} url={data.url} />
+          {adminRoutes.map(data => (
+            <MenuButton name={data.name} url={data.url} key={data.name} />
           ))}
         </Row>
       </Row>
-    </Row>
+    </Layout>
   )
 }
 

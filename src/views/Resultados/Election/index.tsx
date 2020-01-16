@@ -1,132 +1,136 @@
-import React from "react";
-import { Divider, Row, Typography, Table, Col, Card } from "antd";
-import { Bar, Pie } from "ant-design-pro/lib/Charts";
-import "ant-design-pro/dist/ant-design-pro.css";
-import { useResultForElectionQuery } from "@Generated/hooks";
-import { useParams } from "react-router";
+import { useResultForElectionQuery } from '@Generated/hooks'
+import 'ant-design-pro/dist/ant-design-pro.css'
+import { Bar, Pie } from 'ant-design-pro/lib/Charts'
+import { Col, Divider, Row, Table, Typography } from 'antd'
+import React from 'react'
+import { useParams } from 'react-router'
 
 // import { useElectionNameQuery } from '@Generated/hooks'
 
-const { Text } = Typography;
+const { Text } = Typography
 
 const columns = [
   {
-    headerStyle: { textAlign: "center" },
-    title: "CANDIDATO",
-    dataIndex: "candidato",
-    key: "candidato"
+    headerStyle: { textAlign: 'center' },
+    title: 'CANDIDATO',
+    dataIndex: 'candidato',
+    key: 'candidato',
   },
   {
-    title: "PDVP",
-    dataIndex: "pdvp",
-    key: "pdvp"
+    title: 'PDVP',
+    dataIndex: 'pdvp',
+    key: 'pdvp',
   },
   {
-    title: "PNDVP",
-    dataIndex: "pndvp",
-    key: "pndvp"
+    title: 'PNDVP',
+    dataIndex: 'pndvp',
+    key: 'pndvp',
   },
   {
-    title: "PDINVP",
-    key: "pdnivp",
-    dataIndex: "pdnivp"
+    title: 'PDINVP',
+    key: 'pdnivp',
+    dataIndex: 'pdnivp',
   },
   {
-    title: "PAS",
-    key: "pas",
-    dataIndex: "pas"
+    title: 'PAS',
+    key: 'pas',
+    dataIndex: 'pas',
   },
   {
-    title: "ALU",
-    key: "alu",
-    dataIndex: "alu"
+    title: 'ALU',
+    key: 'alu',
+    dataIndex: 'alu',
   },
   {
-    title: "TOTAL",
-    key: "total",
-    dataIndex: "total"
+    title: 'TOTAL',
+    key: 'total',
+    dataIndex: 'total',
   },
   {
-    title: "% FINAL",
-    key: "final",
-    dataIndex: "final"
-  }
-];
+    title: '% FINAL',
+    key: 'final',
+    dataIndex: 'final',
+  },
+]
 
 const datatable = [
   {
-    key: "1",
-    candidato: "López Cala, Kevin ",
-    pdvp: "x",
-    pndvp: "y",
-    pdnivp: "z",
-    pas: "w",
-    alu: "ñ",
-    total: "m",
-    final: "52,48%"
+    key: '1',
+    candidato: 'López Cala, Kevin ',
+    pdvp: 'x',
+    pndvp: 'y',
+    pdnivp: 'z',
+    pas: 'w',
+    alu: 'ñ',
+    total: 'm',
+    final: '52,48%',
   },
   {
-    key: "2",
-    candidato: "Escribano Corrales, Raúl",
-    pdvp: "x",
-    pndvp: "y",
-    pdnivp: "z",
-    pas: "w",
-    alu: "ñ",
-    total: "m",
-    final: "29,70%"
+    key: '2',
+    candidato: 'Escribano Corrales, Raúl',
+    pdvp: 'x',
+    pndvp: 'y',
+    pdnivp: 'z',
+    pas: 'w',
+    alu: 'ñ',
+    total: 'm',
+    final: '29,70%',
   },
   {
-    key: "3",
-    candidato: "Soriano Roldán, Claudia",
-    pdvp: "x",
-    pndvp: "y",
-    pdnivp: "z",
-    pas: "w",
-    alu: "ñ",
-    total: "m",
-    final: "17,82%"
-  }
-];
+    key: '3',
+    candidato: 'Soriano Roldán, Claudia',
+    pdvp: 'x',
+    pndvp: 'y',
+    pdnivp: 'z',
+    pas: 'w',
+    alu: 'ñ',
+    total: 'm',
+    final: '17,82%',
+  },
+]
 
 const ResultsElection = () => {
-  const { id } = useParams<{ id: string }>();
+  const { id } = useParams<{ id: string }>()
   const { data, error } = useResultForElectionQuery({ variables: { id } })
   if (data) {
     return (
       <section id="target-pacing">
         <Row
           style={{
-            height: "100%",
-            backgroundColor: "#ffffff"
+            height: '100%',
+            backgroundColor: '#ffffff',
           }}
         >
           <Row
             style={{
-              height: "100%",
-              backgroundColor: "#ffffff",
-              marginLeft: "3%"
+              height: '100%',
+              backgroundColor: '#ffffff',
+              marginLeft: '3%',
             }}
           >
-            <Row style={{ marginTop: "4%", marginBottom: "3%", width: "100%" }}>
+            <Row style={{ marginTop: '4%', marginBottom: '3%', width: '100%' }}>
               <Divider
                 type="vertical"
                 style={{
-                  height: "50%",
-                  width: "0.2%",
-                  borderRadius: "20%",
-                  backgroundColor: "#206489"
+                  height: '50%',
+                  width: '0.2%',
+                  borderRadius: '20%',
+                  backgroundColor: '#206489',
                 }}
               >
-                <Row style={{ width: "500%" }}>
-                  <Text strong style={{ fontSize: "20px" }}>
+                <Row style={{ width: '500%' }}>
+                  <Text strong style={{ fontSize: '20px' }}>
                     Resultados de la elección de Delegados/as
-                </Text>
+                  </Text>
 
-                  <Text style={{ textAlign: "center", margin: "auto" }}>
+                  <Text style={{ textAlign: 'center', margin: 'auto' }}>
                     <br />
-                    {data.election.start.substring(8, 10)}{'/'}{data.election.start.substring(5, 7)}{'/'}{data.election.start.substring(0, 4)} {"-"}
-                    {data.election.end.substring(8, 10)}{'/'}{data.election.end.substring(5, 7)}{'/'}{data.election.end.substring(0, 4)}
+                    {data.election.start.substring(8, 10)}/
+                    {data.election.start.substring(5, 7)}/
+                    {data.election.start.substring(0, 4)} -
+                    {data.election.end.substring(8, 10)}/
+                    {data.election.end.substring(5, 7)}/
+                    {data.election.end.substring(0, 4)}
                   </Text>
                 </Row>
               </Divider>
@@ -134,21 +138,21 @@ const ResultsElection = () => {
             <Divider
               type="vertical"
               style={{
-                height: "3%",
-                width: "0.2%",
-                borderRadius: "20%",
-                backgroundColor: "#FFA500"
-                //marginLeft: "2%"
+                height: '3%',
+                width: '0.2%',
+                borderRadius: '20%',
+                backgroundColor: '#FFA500',
+                // marginLeft: "2%"
               }}
             >
-              <Row style={{ width: "500%" }}>
-                <Text strong style={{ fontSize: "18px", position: "static" }}>
+              <Row style={{ width: '500%' }}>
+                <Text strong style={{ fontSize: '18px', position: 'static' }}>
                   Datos globales <br />
                 </Text>
               </Row>
             </Divider>
             <br />
-            <div style={{ marginTop: "1%", marginLeft: "2%" }}>
+            <div style={{ marginTop: '1%', marginLeft: '2%' }}>
               <Row align="middle">
                 <Col span={4}>
                   <Text strong>Número total de electores:</Text>
@@ -171,31 +175,45 @@ const ResultsElection = () => {
                 <Col span={4}>
                   <Text strong>Votos totales válidos:</Text>
                 </Col>
-                <Col span={4}>{data.election.results.votesCast - data.election.results.whiteVotes}</Col>
+                <Col span={4}>
+                  {data.election.results.votesCast -
+                    data.election.results.whiteVotes}
+                </Col>
               </Row>
               <Row>
                 <Col span={4}>
                   <Text strong>Participación:</Text>
                 </Col>
-                <Col span={4}> {(data.election.results.votesCast * 100) / data.election.results.voters}%</Col>
+                <Col span={4}>
+                  {' '}
+                  {(data.election.results.votesCast * 100) /
+                    data.election.results.voters}
+                  %
+                </Col>
               </Row>
               <Row>
                 <Col span={4}>
                   <Text strong>Abstención:</Text>
                 </Col>
-                <Col span={4}>{((data.election.results.voters - data.election.results.votesCast) * 100) / data.election.results.voters}%</Col>
+                <Col span={4}>
+                  {((data.election.results.voters -
+                    data.election.results.votesCast) *
+                    100) /
+                    data.election.results.voters}
+                  %
+                </Col>
               </Row>
             </div>
             <Row
               style={{
-                marginTop: "6%",
-                marginBottom: "8%"
+                marginTop: '6%',
+                marginBottom: '8%',
               }}
             >
               <Table
                 style={{
-                  width: "93%",
-                  marginLeft: "2%"
+                  width: '93%',
+                  marginLeft: '2%',
                 }}
                 columns={columns}
                 dataSource={datatable}
@@ -204,35 +222,35 @@ const ResultsElection = () => {
               />
             </Row>
 
-            <Row justify="center" style={{ marginBottom: "4%" }}>
+            <Row justify="center" style={{ marginBottom: '4%' }}>
               <Col
                 span={12}
                 style={{
-                  justifyContent: "center",
-                  width: "45%"
+                  justifyContent: 'center',
+                  width: '45%',
                 }}
               >
                 <Col
                   style={{
-                    width: "90%"
+                    width: '90%',
                   }}
                 >
                   <Divider
                     type="vertical"
                     style={{
-                      height: "3%",
-                      width: "0.4%",
-                      borderRadius: "20%",
-                      backgroundColor: "#FFA500"
+                      height: '3%',
+                      width: '0.4%',
+                      borderRadius: '20%',
+                      backgroundColor: '#FFA500',
                     }}
                   >
-                    <Row style={{ width: "500%" }}>
-                      <Text strong style={{ fontSize: "18px" }}>
+                    <Row style={{ width: '500%' }}>
+                      <Text strong style={{ fontSize: '18px' }}>
                         Porcentaje de votos
-                    </Text>
+                      </Text>
                     </Row>
                   </Divider>
-                  <Row style={{ marginTop: "5%" }}>
+                  <Row style={{ marginTop: '5%' }}>
                     <Pie
                       hasLegend
                       title="Votos"
@@ -240,21 +258,23 @@ const ResultsElection = () => {
                       total={() => (
                         <span
                           dangerouslySetInnerHTML={{
-                            __html: data.election.results.results.map(({ votes,candidate }) => ({
-                              x: `${candidate.lastName}, ${candidate.firstName}`,
-                              y: votes,
-                            })
-                            ).reduce(
-                              (pre: any, now: { y: any }) => now.y + pre,
-                              0
-                            )
+                            __html: data.election.results.results
+                              .map(({ votes, candidate }) => ({
+                                x: `${candidate.lastName}, ${candidate.firstName}`,
+                                y: votes,
+                              }))
+                              .reduce(
+                                (pre: any, now: { y: any }) => now.y + pre,
+                                0
+                              ),
                           }}
                         />
                       )}
-                      data={data.election.results.results.map(({ votes,candidate }) => ({
-                        x: `${candidate.lastName}, ${candidate.firstName}`,
-                        y: votes,
-                      })
+                      data={data.election.results.results.map(
+                        ({ votes, candidate }) => ({
+                          x: `${candidate.lastName}, ${candidate.firstName}`,
+                          y: votes,
+                        })
                       )}
                       valueFormat={val => (
                         <span dangerouslySetInnerHTML={{ __html: val }} />
@@ -264,33 +284,39 @@ const ResultsElection = () => {
                   </Row>
                 </Col>
               </Col>
-              <Col span={12} style={{ width: "45%", marginLeft: "10%" }}>
+              <Col span={12} style={{ width: '45%', marginLeft: '10%' }}>
                 <Col
                   style={{
-                    width: "90%"
+                    width: '90%',
                   }}
                 >
                   <Divider
                     type="vertical"
                     style={{
-                      height: "3%",
-                      width: "0.3%",
-                      borderRadius: "20%",
-                      backgroundColor: "#FFA500"
+                      height: '3%',
+                      width: '0.3%',
+                      borderRadius: '20%',
+                      backgroundColor: '#FFA500',
                     }}
                   >
-                    <Row style={{ width: "500%" }}>
-                      <Text strong style={{ fontSize: "18px" }}>
+                    <Row style={{ width: '500%' }}>
+                      <Text strong style={{ fontSize: '18px' }}>
                         Total de votos
-                    </Text>
+                      </Text>
                     </Row>
                   </Divider>
-                  <Row style={{ marginTop: "5%" }}>
-                    <Bar style={{}} height={300} title="" data={data.election.results.results.map(({ votes,candidate }) => ({
-                    x: `${candidate.lastName}, ${candidate.firstName}`,
-                    y: votes,
-                  })
-                  )} />
+                  <Row style={{ marginTop: '5%' }}>
+                    <Bar
+                      style={{}}
+                      height={300}
+                      title=""
+                      data={data.election.results.results.map(
+                        ({ votes, candidate }) => ({
+                          x: `${candidate.lastName}, ${candidate.firstName}`,
+                          y: votes,
+                        })
+                      )}
+                    />
                   </Row>
                 </Col>
               </Col>
@@ -298,9 +324,9 @@ const ResultsElection = () => {
           </Row>
         </Row>
       </section>
-    );
+    )
   }
   return <div>{JSON.stringify(error)}</div>
-};
+}
 
-export default ResultsElection;
+export default ResultsElection

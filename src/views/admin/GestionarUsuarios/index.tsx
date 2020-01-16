@@ -3,10 +3,6 @@ import React from 'react'
 import UserForm from './Form'
 
 const gestionarUsuarios = () => {
-  /* if (!isAuthTokenExpired()) {
-      return <Redirect to={routes.base} />
-    } */
-
   return (
     // <Layout>
     <Row>

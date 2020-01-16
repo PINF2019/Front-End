@@ -1,81 +1,67 @@
-import { useLogInMutation } from '@Generated/hooks'
-import routes from '@Routes'
-import { setAuthToken } from '@Utils/auth'
+import {
+  useCollegiateBodiesQuery,
+  useModifyUserMutation,
+} from '@Generated/hooks'
 import { Button, Card, Typography } from 'antd'
 import { Field, Formik } from 'formik'
-import { Form, Input } from 'formik-antd'
+import { Form, Input, SubmitButton } from 'formik-antd'
 import React from 'react'
 import { useHistory } from 'react-router-dom'
 import * as Yup from 'yup'
+import routes from '@Routes'
 
 const { Text } = Typography
-const initialValues = {
-  uid: '',
-  password: '',
-  /* password: '',
-  name: '',
-  lastname: '',
-  rol: '',
-  org: '',
-  sex: '' */
-}
-/* Validacion de los datos del formulario, cadena, quitar espacios, expresion regular, mensaje */
+
 const validationSchema = Yup.object().shape({
-  uid: Yup.string()
-    .trim()
-    .matches(/^u(?:[0-9]{8}|[xyz][0-9]{7})$/, 'Formato erroneo.')
-    .required(),
+  firstName: Yup.string().required('Nombre requerido.'),
+  lastName: Yup.string().required('Apellidos requerido.'),
 })
-/* password: String
-  firstName: String
-  lastName: String
-  roles: [Role!]
-  colegiateBody: ID
-  genre: Genre */
+
 type Props = {
   id: string
   name: string
   lastnames: string
   sex: string
   rol: string
+  colegiateBody: string
 }
 
-/* Para indicar que input/datos vamos a mandarle al servidor y que nos devuelve usamos "useLogInMutation()", solo hay que crear /src/graphql/documents/<nombre-pag>.gql, login.gql tiene comentarios */
-const ModifyUserForm = (props: Props) => {
-  // const [modifyUser] = useModifyUserMutation()
-  const [logIn] = useLogInMutation()
+const ModifyUserForm = ({
+  name,
+  lastnames,
+  rol,
+  colegiateBody,
+  sex,
+  id,
+}: Props) => {
+  const [modifyUser] = useModifyUserMutation()
   const history = useHistory()
+  const { data } = useCollegiateBodiesQuery()
+
+  const initialValues = {
+    firstName: name,
+    lastName: lastnames,
+    roles: rol,
+    colegiateBody,
+    genre: sex,
+  }
 
   return (
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
-      onSubmit={async (input, actions) => {
+      onSubmit={async (input: any) => {
         try {
-          const { data } = await logIn({ variables: { input } })
-          if (data) {
-            setAuthToken(data.login.accessToken)
-            history.replace(routes.base)
+          const { data: res } = await modifyUser({ variables: { input, id } })
+          if (res) {
+            history.replace(routes.usuarioModificado)
           }
         } catch {
-          const message = 'Usuario Incorrectos'
-          actions.setErrors({ uid: message, password: message })
+          /* const message = 'Usuario Incorrectos'
+          actions.setErrors({ name: message }) */
         }
       }}
     >
-      {/*
-      onSubmit={async (input: any, id: any, actions: any) => {
-        try {
-          const { data } = await modifyUser({ variables: { input, id } })
-          if (data) { 
-            history.replace(routes.base) 
-          }
-        } catch {
-          const message = 'No se pudo modificar el usuario'
-          actions.setErrors({ password: message })
-        }
-      }} */}
-
       {() => (
         <Form>
           <Card className="card2">
@@ -83,45 +69,30 @@ const ModifyUserForm = (props: Props) => {
               Datos
             </Text>
           </Card>
-          {/* <Form.Item name="nif">
-          <p style={{ fontSize: "20px" }}><strong >NIF/NIE</strong><Input name="nif" value={props.nif} autoComplete="NIF/NIE" placeholder="NIF/NIE" /></p>
-          </Form.Item> */}
-          <Form.Item name="password">
-            <p style={{ fontSize: '20px' }}>
-              <strong>Contraseña</strong>
-              <Input.Password
-                name="password"
-                autoComplete="current-password"
-                placeholder="Contraseña"
-              />
-            </p>
-          </Form.Item>
-          <Form.Item name="name">
+          <Form.Item name="firstName">
             <p style={{ fontSize: '20px' }}>
               <strong>Nombre</strong>
               <Input
-                name="name"
-                value={props.name}
+                name="firstName"
                 autoComplete="nombre"
-                placeholder="Nombre"
+                placeholder={name}
               />
             </p>
           </Form.Item>
-          <Form.Item name="lastnames">
+          <Form.Item name="lastName">
             <p style={{ fontSize: '20px' }}>
               <strong>Apellidos</strong>
               <Input
-                name="lastnames"
-                value={props.lastnames}
-                autoComplete="lastnames"
-                placeholder="Apellidos"
+                name="lastName"
+                autoComplete="lastName"
+                placeholder={lastnames}
               />
             </p>
           </Form.Item>
-          <Form.Item name="sex">
+          <Form.Item name="genre">
             <p style={{ fontSize: '20px' }}>
               <strong>Género</strong>
-              <Field as="select" value={props.sex} name="sex">
+              <Field as="select" placeholder={sex} name="genre">
                 <option value="MALE">Masculino</option>
                 <option value="FEMALE">Femenino</option>
                 <option value="OTHER">Otro</option>
@@ -131,23 +102,27 @@ const ModifyUserForm = (props: Props) => {
           {/* <Form.Item name="email">
             <p>Correo electrónico<Input name="email" autoComplete="useremail" placeholder="Correo electrónico" /></p>
             </Form.Item> */}
-          <Form.Item name="rol">
+          <Form.Item name="roles">
             <p style={{ fontSize: '20px' }}>
               <strong>Rol</strong>
-              <Field as="select" value={props.rol} name="rol">
+              <Field as="select" placeholder={rol} name="roles">
                 <option value="VOTER">Elector</option>
                 <option value="SECRETARY">Secretario</option>
                 <option value="ADMIN">Administrador</option>
               </Field>
             </p>
           </Form.Item>
-          <Form.Item name="org">
+          <Form.Item name="colegiateBody">
             <p style={{ fontSize: '20px' }}>
               <strong>Órgano colegiado</strong>
-              <Field as="select" name="org">
-                <option value="opcion1">opcion1</option>
-                <option value="opcion2">opcion2</option>
-                <option value="opcion3">opcion3</option>
+              <Field
+                as="select"
+                placeholder={colegiateBody}
+                name="colegiateBody"
+              >
+                {data?.collegiateBodies.map(elec => (
+                  <option value={elec.id}>{elec.name}</option>
+                ))}
               </Field>
             </p>
           </Form.Item>
@@ -155,9 +130,9 @@ const ModifyUserForm = (props: Props) => {
             <Button>
               <a href="/admin">Cancelar</a>
             </Button>
-            <Button htmlType="submit" type="primary">
+            <SubmitButton htmlType="submit" type="primary">
               Modificar usuario
-            </Button>
+            </SubmitButton>
           </Form.Item>
         </Form>
       )}

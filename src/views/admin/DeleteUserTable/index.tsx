@@ -6,7 +6,10 @@ const { Text } = Typography
 
 const DeleteUserTable = () => {
   return (
-    <Row justify="start" style={{ marginTop: '3%', marginLeft: '3%' }}>
+    <Row
+      justify="start"
+      style={{ marginTop: '3%', marginLeft: '3%', overflow: 'auto' }}
+    >
       <Row className="layout" style={{ marginBottom: '2%' }}>
         <Card className="card">
           <Text strong style={{ fontSize: '30px' }}>
@@ -19,15 +22,13 @@ const DeleteUserTable = () => {
         style={{ minHeight: '100vh', marginLeft: '3%', marginRight: '3%' }}
       >
         <Col
-          span={12}
+          span={24}
           style={{
             justifyContent: 'center',
             alignItems: 'center',
           }}
         >
           <Card>
-            {' '}
-            {/* Crea el cuadrado del login */}
             <DeleteUserTableForm />
           </Card>
         </Col>

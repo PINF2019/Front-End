@@ -1,13 +1,7 @@
-import routes from '@Routes'
-import { isAuthTokenExpired } from '@Utils/auth'
 import { Button, Icon, Result, Row } from 'antd'
 import React from 'react'
-import { Redirect } from 'react-router'
 
 const Success = () => {
-  if (!isAuthTokenExpired()) {
-    return <Redirect to={routes.success} />
-  }
   return (
     <Row
       type="flex"

@@ -5,7 +5,7 @@ type Props = {
   title: string
 }
 
-const OverlayLayer = (props: Props) => {
+const OverlayLayer = ({ title }: Props) => {
   return (
     <Row
       type="flex"
@@ -15,9 +15,9 @@ const OverlayLayer = (props: Props) => {
     >
       <Row style={{ marginTop: '-200px' }}>
         <Result
-          title={props.title}
+          title={title}
           extra={
-            <Button type="primary" href="/user">
+            <Button type="primary" href="/home">
               Aceptar
             </Button>
           }

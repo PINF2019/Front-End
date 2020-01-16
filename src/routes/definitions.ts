@@ -5,10 +5,11 @@ const routes = {
   pickroleadmin: '/pickroleadmin',
   pickrolesecretary: '/pickrolesecretary',
   votacion: '/votacion/:id',
-  resultsElection:'/resultados/election/:id',
-  resultsPoll:'/resultados/poll/:id',
+  resultados: '/resultados/:id',
   censusData: '/census/:id',
-
+  resultsElection: '/resultados/election/:id',
+  resultsPoll: '/resultados/poll/:id',
+  logo: '/pickrole',
   election: '/election/vote', // hay que quitarlo
   menuElection: '/election',
 
@@ -27,7 +28,7 @@ const routes = {
   gestionarUsuarios: '/admin/GestionarUsuarios',
   adduser: '/admin/adduser',
   modifyusertable: '/admin/modifyusertable',
-  modifyuser: '/admin/modifyuser/:id/:name/:lastnames/:sex/:rol',
+  modifyuser: '/admin/modifyuser/:id/:name/:lastnames/:sex/:rol/:colegiateBody',
   deleteusertable: '/admin/deleteusertable',
 
   success: '/success',

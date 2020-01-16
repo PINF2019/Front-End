@@ -1,3 +1,4 @@
+import { useMeQuery } from '@Generated/hooks'
 import routes from '@Routes'
 import { removeAuthToken } from '@Utils/auth'
 import { Avatar, Col, Divider, Icon, Layout, Row, Typography } from 'antd'
@@ -6,15 +7,10 @@ import { useHistory } from 'react-router-dom'
 
 const { Text } = Typography
 
-const data = {
-  email: 'carmen.ruizdecelis@alum.uca.es',
-  name: 'Carmen',
-  secondName: 'Ruiz de Celis',
-  NIF: '123456789',
-  role: 'Elector',
-}
 const Sidebar = (prop: { collapse: boolean }) => {
+  const data = useMeQuery()
   const history = useHistory()
+
   return (
     <Layout.Sider
       collapsed={prop.collapse}
@@ -49,13 +45,8 @@ const Sidebar = (prop: { collapse: boolean }) => {
           }}
         >
           <Avatar size={90} style={{ backgroundColor: '#FFA500' }}>
-            <Icon type="user" style={{ fontSize: '80px', margin: 'auto' }} />
+            <Icon type="user" style={{ fontSize: '80px' }} />
           </Avatar>
-        </Row>
-        <Row type="flex" style={{ paddingTop: '20px', display: 'flex' }}>
-          <Text strong style={{ fontSize: '15px', marginLeft: '10%' }}>
-            {data.email}
-          </Text>
         </Row>
 
         <Row
@@ -68,8 +59,10 @@ const Sidebar = (prop: { collapse: boolean }) => {
             flex: '1',
           }}
         >
-          <Col style={{ width: '40%', marginLeft: '10%' }}>
-            <Row style={{ paddingBottom: '10px' }}>
+          <Col
+            style={{ width: '40%', marginLeft: '10%', justifyItems: 'center' }}
+          >
+            <Row style={{ paddingBottom: '10px', fontSize: '15px' }}>
               <Text strong>Apellido</Text>
             </Row>
             <Row style={{ paddingBottom: '10px' }}>
@@ -83,32 +76,39 @@ const Sidebar = (prop: { collapse: boolean }) => {
             </Row>
           </Col>
           <Col style={{ width: '50%' }}>
-            <Row style={{ paddingBottom: '10px' }}>
-              <Text>{data.secondName}</Text>
+            <Row style={{ paddingBottom: '10px', fontSize: '15px' }}>
+              <Text>{data.data?.me.firstName}</Text>
             </Row>
             <Row style={{ paddingBottom: '10px' }}>
-              <Text>{data.name}</Text>
+              <Text>{data.data?.me.lastName}</Text>
             </Row>
             <Row style={{ paddingBottom: '10px' }}>
-              <Text>{data.NIF}</Text>
+              <Text>{data.data?.me.dni}</Text>
             </Row>
-            <Row style={{ paddingBottom: '10px' }}>
-              <Text>{data.role}</Text>
-            </Row>
+            <Row style={{ paddingBottom: '10px' }}>{data.data?.me.roles}</Row>
           </Col>
         </Row>
 
         <Row type="flex" style={{ flexDirection: 'column', display: 'flex' }}>
           <Row>
             <a href="https://si.ua.es/es/documentos/documentacion/pdf-s/mozilla12-pdf.pdf">
-              {' '}
-              <Text style={{ color: '#FFA500', marginLeft: '10%' }} strong>
+              <Text
+                style={{
+                  color: '#FFA500',
+                  marginLeft: '10%',
+                  fontSize: '15px',
+                }}
+                strong
+              >
                 Ayuda
               </Text>
             </a>
           </Row>
           <Row>
-            <Text style={{ color: '#FFA500', marginLeft: '10%' }} strong>
+            <Text
+              style={{ color: '#FFA500', marginLeft: '10%', fontSize: '15px' }}
+              strong
+            >
               Contacto
             </Text>
           </Row>
@@ -121,7 +121,14 @@ const Sidebar = (prop: { collapse: boolean }) => {
               }}
               style={{ marginLeft: '10%' }}
             >
-              <Text style={{ color: '#FC3F32', cursor: 'pointer' }} strong>
+              <Text
+                style={{
+                  color: '#FC3F32',
+                  cursor: 'pointer',
+                  fontSize: '15px',
+                }}
+                strong
+              >
                 Cerrar Sesión
               </Text>
             </Row>

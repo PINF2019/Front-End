@@ -1,0 +1,15 @@
+query me {
+  me {
+    id
+    uid
+    dni
+    firstName
+    lastName
+    roles
+    genre
+    colegiateBody {
+      id
+      name
+    }
+  }
+}

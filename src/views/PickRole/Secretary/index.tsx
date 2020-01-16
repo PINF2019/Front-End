@@ -1,4 +1,4 @@
-import rol2 from '@Assets/secretario1.png'
+import rol2 from '@Assets/rol1.png'
 import rol3 from '@Assets/usuario1.png'
 import { Avatar, Col, Row, Typography } from 'antd'
 import React from 'react'
@@ -27,7 +27,7 @@ const PickRoleSecretary = () => {
       >
         <Row
           type="flex"
-          justify="space-between"
+          justify="space-around"
           style={{ paddingTop: '100px', width: '70%' }}
         >
           <Col style={{ textAlign: 'center', marginBottom: '30px' }}>

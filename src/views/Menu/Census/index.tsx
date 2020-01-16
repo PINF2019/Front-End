@@ -41,9 +41,6 @@ const Census = () => {
       </Row>
     </Layout>
   )
-  // }
-
-  // return <div>{JSON.stringify(error)}</div>
 }
 
 export default Census

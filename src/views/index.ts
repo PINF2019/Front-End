@@ -1,6 +1,9 @@
 // Raíz
 import AddUser from './admin/AddUser'
 import DeleteUserTable from './admin/DeleteUserTable'
+import ResultsElection from './Resultados/Election'
+import ResultsPoll from './Resultados/Poll'
+
 // Admin
 import gestionarUsuarios from './admin/GestionarUsuarios'
 import ModifyUser from './admin/ModifyUser'
@@ -9,6 +12,7 @@ import CensusData from './CensusData'
 import Election from './Election'
 import Home from './Home'
 import Login from './Login'
+import Logo from './Logo'
 import Census from './Menu/Census'
 import MenuAdmin from './Menu/MenuAdmin'
 import MenuButton from './Menu/MenuButton'
@@ -30,22 +34,18 @@ import UsuarioCreadoOverlay from './Overlays/UsuarioCreado'
 import UsuarioEliminadoOverlay from './Overlays/UsuarioEliminado'
 import UsuarioModificadoOverlay from './Overlays/UsuarioModificado'
 // Overlays
-import {
-  default as Success,
-  default as VotoRegistradoOverlay,
-} from './Overlays/VotoRegistrado'
+import Success from './Overlays/VotoRegistrado'
 import PickRoleAdmin from './PickRole/Admin'
 import PickRoleSecretary from './PickRole/Secretary'
-import ResultsElection from "./Resultados/Election"
-import ResultsPoll from "./Resultados/Poll"
-
 // Secretario
-import CrearEleccion from './Secretary/ProcesoElectoral'
-import CrearVotacion from './Secretary/Votación'
+import CrearEleccion from './Secretary/Crear/ProcesoElectoral'
+import CrearVotacion from './Secretary/Crear/Votacion'
 import Votacion from './Votacion'
 
+const VotoRegistradoOverlay = Success
 export {
   Login,
+  Logo,
   Home,
   Election,
   PickRoleAdmin,
@@ -61,10 +61,10 @@ export {
   CrearEleccion,
   CrearVotacion,
   MenuResultados,
-  MenuModificarElecciones,
-  MenuEliminarElecciones,
   ResultsElection,
   ResultsPoll,
+  MenuModificarElecciones,
+  MenuEliminarElecciones,
   gestionarUsuarios,
   AddUser,
   ModifyUserTable,

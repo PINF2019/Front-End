@@ -8,11 +8,11 @@ type Props = {
   url: string
 }
 
-const MenuButton = (props: Props) => {
+const MenuButton = ({ url, name }: Props) => {
   return (
     <>
       <Button
-        href={props.url}
+        href={url}
         style={{
           backgroundColor: '#F0F0F0',
           marginTop: '2%',
@@ -38,7 +38,7 @@ const MenuButton = (props: Props) => {
               fontSize: '20px',
             }}
           >
-            {props.name}
+            {name}
           </Text>
 
           <Icon

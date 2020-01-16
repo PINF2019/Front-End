@@ -11,6 +11,7 @@ import {
   gestionarUsuarios,
   Home,
   Login,
+  Logo,
   MenuAdmin,
   MenuCrearEleccion,
   MenuEliminarElecciones,
@@ -41,23 +42,26 @@ import {
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 
-//        <Route exact path={routes.user} component={MenuUser} />
-
 const Protected = () => {
   return (
     <Layout>
       <Switch>
-        <Route exact path={routes.base} component={Home} />
+        <Route exact path={routes.home} component={Home} />
         <Route exact path={routes.pickroleadmin} component={PickRoleAdmin} />
         <Route
           exact
           path={routes.pickrolesecretary}
           component={PickRoleSecretary}
         />
-        <Route exact path={routes.resultsElection} component={ResultsElection} />
+        <Route
+          exact
+          path={routes.resultsElection}
+          component={ResultsElection}
+        />
         <Route exact path={routes.resultsPoll} component={ResultsPoll} />
         <Route exact path={routes.censusData} component={CensusData} />
         <Route exact path={routes.votacion} component={Votacion} />
+        <Route exact path={routes.logo} component={Logo} />
 
         <Route exact path={routes.user} component={MenuUser} />
         <Route exact path={routes.admin} component={MenuAdmin} />

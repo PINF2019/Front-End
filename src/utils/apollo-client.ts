@@ -2,7 +2,7 @@ import {
   ApolloClient,
   concat,
   createHttpLink,
-  InMemoryCache
+  InMemoryCache,
 } from '@apollo/client'
 import resolvers from '@Graphql/client/resolvers'
 import { authLink } from './auth'
@@ -18,7 +18,7 @@ cache.writeData({ data })
 const client = new ApolloClient({
   link: concat(authLink, httpLink),
   cache,
-  resolvers
+  resolvers,
 })
 
 client.onResetStore(async () => cache.writeData({ data }))

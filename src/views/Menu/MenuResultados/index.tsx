@@ -4,15 +4,15 @@ import React from 'react'
 import ElectionButton from '../Election/election'
 
 const { Text } = Typography
-// la interrogacion comprueba que no sea nulo
+
 const MenuResultados = () => {
   const data = usePastElectionResultsQuery()
 
   return (
-    <Row justify="center" className="body">
-      <Row style={{ marginTop: '3%', marginBottom: '1%' }}>
-        <Text strong style={{ fontSize: '20px' }}>
-          Votaciones finalizadas:
+    <Row justify="center" className="body" style={{ marginTop: '3%' }}>
+      <Row className="layout" style={{ marginBottom: '10%' }}>
+        <Text strong style={{ fontSize: '30px' }}>
+          Procesos Electorales finalizados
         </Text>
       </Row>
       <Row>

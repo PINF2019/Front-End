@@ -16,7 +16,7 @@ const Header = ({ onClick }: { onClick: () => void }) => {
         }}
       >
         <Col style={{ marginRight: 'auto', display: 'flex' }}>
-          <a href="/pickroleadmin">
+          <a href="/pickrole">
             <img src={logo} width="150px" alt="logo" />
           </a>
         </Col>

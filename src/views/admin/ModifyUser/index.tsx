@@ -6,9 +6,12 @@ import MofifyUserForm from './Form'
 const { Text } = Typography
 
 const ModifyUser = () => {
-  const { id, name, lastnames, sex, rol } = useParams()
+  const { id, name, lastnames, sex, rol, colegiateBody } = useParams()
   return (
-    <Row justify="start" style={{ marginTop: '3%', marginLeft: '3%' }}>
+    <Row
+      justify="start"
+      style={{ marginTop: '3%', marginLeft: '3%', overflow: 'auto' }}
+    >
       <Row className="layout" style={{ marginBottom: '2%' }}>
         <Card className="card">
           <Text strong style={{ fontSize: '30px' }}>
@@ -31,6 +34,7 @@ const ModifyUser = () => {
               lastnames={lastnames || ''}
               sex={sex || ''}
               rol={rol || ''}
+              colegiateBody={colegiateBody || ''}
             />
           </Card>
         </Col>

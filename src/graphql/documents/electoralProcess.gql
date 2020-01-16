@@ -1,22 +1,22 @@
-query elections{
-    pendingElections{
-        start
-      	end
-      	description
-        id
-    }
+query elections {
+  pendingElections {
+    start
+    end
+    description
+    id
+  }
 }
 
-query electoralProcesses{
-  pendingElectoralProcesses{
-      __typename
-  ... on Election{
+query electoralProcesses {
+  pendingElectoralProcesses {
+    __typename
+    ... on Election {
       id
       description
       start
       end
-  }
-  ... on Poll{
+    }
+    ... on Poll {
       id
       description
       start
@@ -77,4 +77,6 @@ query PastElectionResults {
   }
 }
 
-
+mutation deleteElection($id: ID!) {
+  deleteElection(id: $id)
+}
