@@ -62,7 +62,7 @@ const ModifyUserTable = () => {
     const lastnames = data.users.map(user => user.lastName)
     const sexes = data.users.map(user => user.genre)
     const roles = data.users.map(user => user.roles)
-    const colegiateBodys = data.users.map(user => user.colegiateBody)
+    const colegiateBodys = data.users.map(user => user.colegiateBody.id)
 
     const array = new Array(data.users.length)
     for (let i = 0; i < data.users.length; ++i) {
