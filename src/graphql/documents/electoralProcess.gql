@@ -79,4 +79,46 @@ query PastElectionResults {
 
 mutation deleteElection($id: ID!) {
   deleteElection(id: $id)
+    
+  
+}
+
+mutation deletePoll($id: ID!) {
+  deletePoll(id: $id)
+    
+  
+}
+
+
+query getElectoralProcess($id: ID!){
+  electoralProcess(id: $id){
+      __typename
+    ... on Election {
+      id
+      description
+      start
+      end
+    }
+    ... on Poll {
+      id
+      description
+      start
+      end
+    }
+  }
+}
+
+query colegios{
+  collegiateBodies{
+    id
+    name
+  }
+  users{
+    id
+    firstName
+    lastName
+    colegiateBody{
+      id
+    }
+  }
 }

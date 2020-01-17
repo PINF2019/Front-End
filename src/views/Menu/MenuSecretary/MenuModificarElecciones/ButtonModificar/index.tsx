@@ -1,7 +1,7 @@
+import { useGetElectoralProcessQuery } from '@Generated/hooks'
 import { Button, Icon, Row, Typography } from 'antd'
 import React from 'react'
 import { useHistory } from 'react-router-dom'
-
 const { Text } = Typography
 
 type Props = {
@@ -11,6 +11,9 @@ type Props = {
 }
 
 const ElectionButtonModificar = (props: Props) => {
+  const history = useHistory()
+  const {data} = useGetElectoralProcessQuery({ variables: {props.id}})
+
   return (
     <>
       <Button
@@ -47,39 +50,27 @@ const ElectionButtonModificar = (props: Props) => {
                 color: '#FFA500',
                 marginLeft: 'auto',
               }}
-              /* onClick={() => {async (input: any, actions) => {
-        try {
-          const { data } = await modify({ variables: { input, id }})
-          if (data) {
-            history.replace(routes.base)
-          }
-        } catch {
-          const message = 'Usuario Incorrectos'
-          actions.setErrors({ name: message })
-        }
-      }} */
-            />
-            <Icon
-              type="vertical-align-top"
-              style={{
-                marginTop: '1.1%',
-                verticalAlign: 'middle',
-                fontSize: '50px',
-                color: '#FFA500',
-                marginLeft: 'auto',
-              }}
-              /* onClick={() => async (id: any, actions: any) => {
-        try {
-          const { data } = await useDeleteElectionMutation({ variables: { id } });
-          if (data) {
-            console.log({ data, id });
-            history.replace(routes.home);
-          }
-        } catch {
-          const message = "No se pudo borrar el usuario";
-          actions.setErrors({ id: message });
-        }
-      }} */
+              onClick={() =>{
+                try {
+                  if(data){
+                     if(data.__typename === 'Election'){
+                      history.push(
+                        `/secretary/procesoElectoral/modificar/election/${props.id}`
+                      )
+                     }
+                     else{
+                      history.push(
+                        `/secretary/procesoElectoral/modificar/poll/${props.id}`
+                      )
+                     }
+                  }
+                } catch {
+                  console.warn('Errors')
+                }
+              }
+              }
+               
+
             />
           </Row>
         </Row>
