@@ -657,32 +657,30 @@ export type ResultForElectionQuery = {
       voters: number
       votesCast: number
       whiteVotes: number
-      results: Array<{
-        __typename?: 'ElectionResults'
-        votes: number
-        group: Maybe<string>
-        candidate: {
-          __typename?: 'Candidate'
-          id: string
-          firstName: string
-          lastName: string
-        }
-      }>
+      results: Array<
+        { __typename?: 'ElectionResults' } & ElectionResultsFragment
+      >
     }
     resultsByGroup: {
       __typename?: 'ResultsForElection'
-      results: Array<{
-        __typename?: 'ElectionResults'
-        votes: number
-        group: Maybe<string>
-        candidate: {
-          __typename?: 'Candidate'
-          id: string
-          firstName: string
-          lastName: string
-        }
-      }>
+      results: Array<
+        {
+          __typename?: 'ElectionResults'
+          group: Maybe<string>
+        } & ElectionResultsFragment
+      >
     }
+  }
+}
+
+export type ElectionResultsFragment = {
+  __typename?: 'ElectionResults'
+  votes: number
+  candidate: {
+    __typename?: 'Candidate'
+    id: string
+    firstName: string
+    lastName: string
   }
 }
 
@@ -705,7 +703,7 @@ export type ResultForPollQuery = {
         __typename?: 'PollResults'
         votes: number
         group: Maybe<string>
-        option: { __typename?: 'PollOption'; text: string }
+        option: { __typename?: 'PollOption'; id: string; text: string }
       }>
     }
   }
@@ -717,6 +715,16 @@ export type VotePollMutationVariables = {
 
 export type VotePollMutation = { __typename?: 'Mutation'; voteOnPoll: boolean }
 
+export const ElectionResultsFragmentDoc = gql`
+  fragment electionResults on ElectionResults {
+    votes
+    candidate {
+      id
+      firstName
+      lastName
+    }
+  }
+`
 export const UsersDocument = gql`
   query users {
     users {
@@ -1245,28 +1253,18 @@ export const ResultForElectionDocument = gql`
         votesCast
         whiteVotes
         results {
-          votes
-          group
-          candidate {
-            id
-            firstName
-            lastName
-          }
+          ...electionResults
         }
       }
       resultsByGroup: results(filter: { group: true }) {
         results {
-          votes
           group
-          candidate {
-            id
-            firstName
-            lastName
-          }
+          ...electionResults
         }
       }
     }
   }
+  ${ElectionResultsFragmentDoc}
 `
 export function useResultForElectionQuery(
   baseOptions?: ApolloReactHooks.QueryHookOptions<
@@ -1313,6 +1311,7 @@ export const ResultForPollDocument = gql`
           votes
           group
           option {
+            id
             text
           }
         }

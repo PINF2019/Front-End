@@ -1,62 +1,99 @@
+/* eslint-disable react/no-danger */
 import { useResultForElectionQuery } from '@Generated/hooks'
 import 'ant-design-pro/dist/ant-design-pro.css'
 import { Bar, Pie } from 'ant-design-pro/lib/Charts'
 import { Col, Divider, Row, Table, Typography } from 'antd'
 import React from 'react'
 import { useParams } from 'react-router'
+import _ from 'lodash'
 
+import moment from 'moment'
+import { ColumnProps } from 'antd/lib/table'
 
 const { Text } = Typography
 
-const columns = [
+const columns = (voteWeights: {
+  [key: string]: number
+}): ColumnProps<any>[] => [
   {
-    headerStyle: { textAlign: 'center' },
     title: 'CANDIDATO',
-    dataIndex: 'candidato',
-    key: 'candidato',
+    dataIndex: 'candidate',
+    key: 'candidate',
+    render: candidate => `${candidate.firstName} ${candidate.lastName}`,
   },
   {
-    title: 'PDVP',
-    dataIndex: 'pdvp',
-    key: 'pdvp',
+    title: `PDVP (${voteWeights.PDVP} %)`,
+    dataIndex: 'PDVP',
+    key: 'PDVP',
   },
   {
-    title: 'PNDVP',
-    dataIndex: 'pndvp',
-    key: 'pndvp',
+    title: `PNDVP (${voteWeights.PNDVP} %)`,
+    dataIndex: 'PNDVP',
+    key: 'PNDVP',
   },
   {
-    title: 'PDINVP',
-    key: 'pdnivp',
-    dataIndex: 'pdnivp',
+    title: `PDINVP (${voteWeights.PDINVP} %)`,
+    key: 'PDINVP',
+    dataIndex: 'PDINVP',
   },
   {
-    title: 'PAS',
-    key: 'pas',
-    dataIndex: 'pas',
+    title: `PAS (${voteWeights.PAS} %)`,
+    key: 'PAS',
+    dataIndex: 'PAS',
   },
   {
-    title: 'ALU',
-    key: 'alu',
-    dataIndex: 'alu',
+    title: `ALU (${voteWeights.ALU} %)`,
+    key: 'ALU',
+    dataIndex: 'ALU',
   },
   {
     title: 'TOTAL',
-    key: 'total',
-    dataIndex: 'total',
+    render: (_t, record) => {
+      return Object.values<any>(record).reduce(
+        (prev, current) =>
+          typeof current === 'number' ? current + prev : prev,
+        0
+      )
+    },
   },
   {
     title: '% FINAL',
-    key: 'final',
-    dataIndex: 'final',
+    render: (_t, record) =>
+      Object.entries(_.omit(record, ['candidate'])).reduce(
+        (prev, [key, value]) => (voteWeights[key] / 100) * value + prev,
+        0
+      ),
   },
 ]
+
+const votesByColegiate = (results: any[]) => {
+  const grouped = Object.values(
+    _.groupBy(results, result => result.candidate.id)
+  )
+  return grouped.map(inner =>
+    inner.reduce(
+      (prev, current) => ({
+        [current.group]: current.votes,
+        candidate: current.candidate,
+        ...prev,
+      }),
+      {}
+    )
+  )
+}
+
+const voteWeightsToObject = (voteWeights: any[]) =>
+  voteWeights.reduce(
+    (prev, current) => ({ [current.group]: current.weight, ...prev }),
+    {}
+  )
 
 const ResultsElection = () => {
   const { id } = useParams<{ id: string }>()
   const { data, error } = useResultForElectionQuery({ variables: { id } })
 
   if (data) {
+    console.warn(data.election.resultsByGroup.results)
     return (
       <section id="target-pacing">
         <Row
@@ -87,14 +124,15 @@ const ResultsElection = () => {
                     Resultados de la elección de Delegados/as
                   </Text>
 
-                  <Text style={{ textAlign: 'center', margin: 'auto', fontSize: '15px' }}>
-                    <br />
-                    {data.election.start.substring(8, 10)}/
-                    {data.election.start.substring(5, 7)}/
-                    {data.election.start.substring(0, 4)} -
-                    {data.election.end.substring(8, 10)}/
-                    {data.election.end.substring(5, 7)}/
-                    {data.election.end.substring(0, 4)}
+                  <Text
+                    style={{
+                      textAlign: 'center',
+                      margin: 'auto',
+                      fontSize: '15px',
+                    }}
+                  >
+                    {`${moment(data.election.start).format('L')} -
+                      ${moment(data.election.end).format('L')}`}
                   </Text>
                 </Row>
               </Divider>
@@ -115,9 +153,11 @@ const ResultsElection = () => {
                 </Text>
               </Row>
             </Divider>
-           
-            <div style={{ marginTop: '1%', marginLeft: '2%', fontSize: '18px' }}>
-              <Row style={{ marginBottom: '0.5%' }} >
+
+            <div
+              style={{ marginTop: '1%', marginLeft: '2%', fontSize: '18px' }}
+            >
+              <Row style={{ marginBottom: '0.5%' }}>
                 <Col span={4}>
                   <Text strong>Número total de electores:</Text>
                 </Col>
@@ -132,13 +172,13 @@ const ResultsElection = () => {
                     data.election.results.whiteVotes}
                 </Col>
               </Row>
-              <Row style={{ marginBottom: '0.5%' }} >
+              <Row style={{ marginBottom: '0.5%' }}>
                 <Col span={4}>
                   <Text strong>Votos en blanco:</Text>
                 </Col>
                 <Col span={4}>{data.election.results.whiteVotes}</Col>
               </Row>
-              <Row style={{ marginBottom: '0.5%' }} >
+              <Row style={{ marginBottom: '0.5%' }}>
                 <Col span={4}>
                   <Text strong>Votos totales válidos:</Text>
                 </Col>
@@ -149,7 +189,6 @@ const ResultsElection = () => {
                   <Text strong>Participación:</Text>
                 </Col>
                 <Col span={4}>
-                  {' '}
                   {(
                     (data.election.results.votesCast * 100) /
                     data.election.results.voters
@@ -157,7 +196,7 @@ const ResultsElection = () => {
                   %
                 </Col>
               </Row>
-              <Row style={{ marginBottom: '0.5%' }} >
+              <Row style={{ marginBottom: '0.5%' }}>
                 <Col span={4}>
                   <Text strong>Abstención:</Text>
                 </Col>
@@ -183,20 +222,11 @@ const ResultsElection = () => {
                   width: '93%',
                   marginLeft: '2%',
                 }}
-                columns={columns}
-                dataSource={data.election.results.resultsByGroup.map(
-                  ({ votes, candidate}) => ({
-                    key: candidate.id,
-                    candidato: `${candidate.lastName}, ${candidate.firstName}`,
-                    pdvp: data.election.voteWeights[0].weight,
-                    pndvp: data.election.voteWeights[1].weight,
-                    pdnivp: data.election.voteWeights[2].weight,
-                    pas: data.election.voteWeights[3].weight,
-                    alu: data.election.voteWeights[4].weight,
-                    total: votes,
-                    final: `${((votes / (data.election.results.votesCast -
-                    data.election.results.whiteVotes)) * 100).toFixed(2)  }%`,
-                  })
+                columns={columns(
+                  voteWeightsToObject(data.election.voteWeights)
+                )}
+                dataSource={votesByColegiate(
+                  data.election.resultsByGroup.results
                 )}
                 pagination={false}
                 bordered
@@ -258,7 +288,10 @@ const ResultsElection = () => {
                         })
                       )}
                       valueFormat={val => (
-                        <span style={{paddingLeft:"200%"}} dangerouslySetInnerHTML={{ __html: val }} />
+                        <span
+                          style={{ paddingLeft: '200%' }}
+                          dangerouslySetInnerHTML={{ __html: val }}
+                        />
                       )}
                       height={256}
                     />

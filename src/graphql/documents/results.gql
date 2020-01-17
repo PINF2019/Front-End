@@ -2,7 +2,7 @@ query resultForElection($id: ID!) {
   election(id: $id) {
     start
     end
-    voteWeights{
+    voteWeights {
       group
       weight
     }
@@ -11,30 +11,26 @@ query resultForElection($id: ID!) {
       votesCast
       whiteVotes
       results {
-        votes
-        group
-        candidate {
-          id
-          firstName
-          lastName
-        }
+        ...electionResults
       }
     }
-   resultsByGroup: results(filter:{group:true}) {
+    resultsByGroup: results(filter: { group: true }) {
       results {
-        votes
         group
-        candidate {
-          id
-          firstName
-          lastName
-        }
+        ...electionResults
       }
     }
   }
 }
 
-
+fragment electionResults on ElectionResults {
+  votes
+  candidate {
+    id
+    firstName
+    lastName
+  }
+}
 
 query resultForPoll($id: ID!) {
   poll(id: $id) {
@@ -48,6 +44,7 @@ query resultForPoll($id: ID!) {
         votes
         group
         option {
+          id
           text
         }
       }
