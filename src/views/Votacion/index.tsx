@@ -3,10 +3,12 @@ import { Col, Layout, Row, Typography } from 'antd'
 import { Formik } from 'formik'
 import { Checkbox, Form, Radio, SubmitButton } from 'formik-antd'
 import React from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useHistory } from 'react-router-dom'
 import * as Yup from 'yup'
+import routes from '@Routes'
 import wallpaper from '../../assets/Wallpaper2.png'
 import './index.less'
+import Success from '../Overlays/VotoRegistrado'
 
 const { Text } = Typography
 
@@ -19,6 +21,8 @@ const Votacion = () => {
   const { id } = useParams<{ id: string }>()
   const { data, loading } = useOptionsQuery({ variables: { id } })
   const [vote] = useVotePollMutation()
+
+  const history = useHistory()
 
   if (data) {
     return (
@@ -51,6 +55,7 @@ const Votacion = () => {
             >
               <Text strong style={{ fontSize: '30px', lineHeight: '100%' }}>
                 Votación <br />{' '}
+              
                 {`${data?.poll.description.substring(0, 100 - 3)}...`}
               </Text>
             </Row>
@@ -70,9 +75,15 @@ const Votacion = () => {
           >
             <Formik
               onSubmit={async values => {
-                await vote({
+                const {data,errors} = await vote({
                   variables: { input: { options: [values.option], poll: id } },
                 })
+                if (data) {
+                  history.push(routes.success)
+                }
+                if (errors) {
+                  history.push(routes.alreadyvoted)
+                }
               }}
               initialValues={{ validate: false, option: '' }}
               initialErrors={{ validate: '', option: '' }}
@@ -83,12 +94,10 @@ const Votacion = () => {
                 <Col>
                   <Form
                     style={{
-                      // width: "50%",
-                      // fontSize: "20px",
                       marginLeft: '20%',
-                      // height: "100%"
                     }}
                   >
+                    
                     <Radio.Group name="option">
                       {data.poll.options.map(poll => (
                         <Radio name="option" value={poll.id} key={poll.id}>
@@ -103,8 +112,10 @@ const Votacion = () => {
                         <Checkbox name="validate">Validar elección</Checkbox>
                       </Row>
                       <Row>
+
                         <SubmitButton>Votar</SubmitButton>
                       </Row>
+
                     </Row>
                   </Form>
                 </Col>

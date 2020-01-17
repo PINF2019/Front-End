@@ -19,6 +19,11 @@ const client = new ApolloClient({
   link: concat(authLink, httpLink),
   cache,
   resolvers,
+  defaultOptions: {
+    mutate: {
+      errorPolicy: 'all'
+    }
+  }
 })
 
 client.onResetStore(async () => cache.writeData({ data }))

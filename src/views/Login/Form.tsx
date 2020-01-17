@@ -27,13 +27,11 @@ const LoginForm = () => {
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={async (input, actions) => {
-        try {
-          const { data } = await logIn({ variables: { input } })
-          if (data) {
+          const { data, errors } = await logIn({ variables: { input } })
+          if (!errors && data) {
             setAuthToken(data.login.accessToken)
             history.replace(routes.logo)
-          }
-        } catch {
+          } else {
           const message = 'Usuario o Contraseña Incorrectos'
           actions.setErrors({ uid: message, password: message })
         }

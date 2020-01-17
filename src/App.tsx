@@ -38,6 +38,7 @@ import {
   UsuarioModificadoOverlay,
   Votacion,
   VotoRegistradoOverlay,
+  AlreadyVoted
 } from '@Views'
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
@@ -109,6 +110,7 @@ const Protected = () => {
         />
 
         <Route exact path={routes.success} component={Success} />
+        <Route exact path={routes.alreadyvoted} component={AlreadyVoted}/>
         <Route exact path={routes.notFound} component={NotFound} />
         <Route
           exact

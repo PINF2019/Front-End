@@ -33,10 +33,12 @@ import SeguroPublicacionOverlay from './Overlays/SeguroPublicacion'
 import UsuarioCreadoOverlay from './Overlays/UsuarioCreado'
 import UsuarioEliminadoOverlay from './Overlays/UsuarioEliminado'
 import UsuarioModificadoOverlay from './Overlays/UsuarioModificado'
-// Overlays
+import AlreadyVoted from "./Overlays/AlreadyVoted"
 import Success from './Overlays/VotoRegistrado'
+// Overlays
 import PickRoleAdmin from './PickRole/Admin'
 import PickRoleSecretary from './PickRole/Secretary'
+
 // Secretario
 import CrearEleccion from './Secretary/Crear/ProcesoElectoral'
 import CrearVotacion from './Secretary/Crear/Votacion'
@@ -81,5 +83,6 @@ export {
   UsuarioCreadoOverlay,
   UsuarioModificadoOverlay,
   UsuarioEliminadoOverlay,
+  AlreadyVoted,
   VotoRegistradoOverlay,
 }
