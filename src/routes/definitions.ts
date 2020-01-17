@@ -32,6 +32,7 @@ const routes = {
   deleteusertable: '/admin/deleteusertable',
 
   success: '/success',
+  alreadyvoted: '/alreadyvoted',
   notFound: '/404',
   // Esto deberian ser pop ups pero por ahora se queda así
   procesoCreado: '/procesoCreado',
