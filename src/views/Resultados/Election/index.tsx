@@ -53,45 +53,10 @@ const columns = [
   },
 ]
 
-const datatable = [
-  {
-    key: '1',
-    candidato: 'López Cala, Kevin ',
-    pdvp: 'x',
-    pndvp: 'y',
-    pdnivp: 'z',
-    pas: 'w',
-    alu: 'ñ',
-    total: 'm',
-    final: '52,48%',
-  },
-  {
-    key: '2',
-    candidato: 'Escribano Corrales, Raúl',
-    pdvp: 'x',
-    pndvp: 'y',
-    pdnivp: 'z',
-    pas: 'w',
-    alu: 'ñ',
-    total: 'm',
-    final: '29,70%',
-  },
-  {
-    key: '3',
-    candidato: 'Soriano Roldán, Claudia',
-    pdvp: 'x',
-    pndvp: 'y',
-    pdnivp: 'z',
-    pas: 'w',
-    alu: 'ñ',
-    total: 'm',
-    final: '17,82%',
-  },
-]
-
 const ResultsElection = () => {
   const { id } = useParams<{ id: string }>()
   const { data, error } = useResultForElectionQuery({ variables: { id } })
+
   if (data) {
     return (
       <section id="target-pacing">
@@ -163,7 +128,10 @@ const ResultsElection = () => {
                 <Col span={4}>
                   <Text strong>Votos a candidaturas:</Text>
                 </Col>
-                <Col span={4}>{data.election.results.votesCast}</Col>
+                <Col span={4}>
+                  {data.election.results.votesCast -
+                    data.election.results.whiteVotes}
+                </Col>
               </Row>
               <Row>
                 <Col span={4}>
@@ -175,10 +143,7 @@ const ResultsElection = () => {
                 <Col span={4}>
                   <Text strong>Votos totales válidos:</Text>
                 </Col>
-                <Col span={4}>
-                  {data.election.results.votesCast -
-                    data.election.results.whiteVotes}
-                </Col>
+                <Col span={4}>{data.election.results.votesCast}</Col>
               </Row>
               <Row>
                 <Col span={4}>
@@ -186,8 +151,10 @@ const ResultsElection = () => {
                 </Col>
                 <Col span={4}>
                   {' '}
-                  {(data.election.results.votesCast * 100) /
-                    data.election.results.voters}
+                  {(
+                    (data.election.results.votesCast * 100) /
+                    data.election.results.voters
+                  ).toFixed(2)}
                   %
                 </Col>
               </Row>
@@ -196,10 +163,12 @@ const ResultsElection = () => {
                   <Text strong>Abstención:</Text>
                 </Col>
                 <Col span={4}>
-                  {((data.election.results.voters -
-                    data.election.results.votesCast) *
-                    100) /
-                    data.election.results.voters}
+                  {(
+                    ((data.election.results.voters -
+                      data.election.results.votesCast) *
+                      100) /
+                    data.election.results.voters
+                  ).toFixed(2)}
                   %
                 </Col>
               </Row>
@@ -216,7 +185,20 @@ const ResultsElection = () => {
                   marginLeft: '2%',
                 }}
                 columns={columns}
-                dataSource={datatable}
+                dataSource={data.election.results.results.map(
+                  ({ votes, candidate }) => ({
+                    key: candidate.id,
+                    candidato: `${candidate.lastName}, ${candidate.firstName}`,
+                    pdvp: 'x',
+                    pndvp: 'y',
+                    pdnivp: 'z',
+                    pas: 'w',
+                    alu: 'ñ',
+                    total: votes,
+                    final: `${((votes / (data.election.results.votesCast -
+                    data.election.results.whiteVotes)) * 100).toFixed(2)  }%`,
+                  })
+                )}
                 pagination={false}
                 bordered
               />
@@ -277,7 +259,7 @@ const ResultsElection = () => {
                         })
                       )}
                       valueFormat={val => (
-                        <span dangerouslySetInnerHTML={{ __html: val }} />
+                        <span style={{paddingLeft:"200%"}} dangerouslySetInnerHTML={{ __html: val }} />
                       )}
                       height={256}
                     />
