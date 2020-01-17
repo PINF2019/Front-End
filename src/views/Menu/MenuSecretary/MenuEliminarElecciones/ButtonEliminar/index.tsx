@@ -1,7 +1,7 @@
-import { useDeleteElectionMutation, useDeletePollMutation, useGetElectoralProcessQuery } from '@Generated/hooks'
+import { useDeleteElectoralProcessMutation } from '@Generated/hooks'
 import routes from '@Routes'
-import { Button, Icon, Popconfirm, Row, Typography } from 'antd'
-import React from 'react'
+import { Button, Icon, Popconfirm, Row, Typography, message } from 'antd'
+import React, { useCallback } from 'react'
 import { useHistory } from 'react-router-dom'
 
 const { Text } = Typography
@@ -9,18 +9,31 @@ const { Text } = Typography
 type Props = {
   name: string
   id: string
-  href: string
+  type: string
 }
 
-const ButtonEliminar = (props: Props) => {
-  const [deleteElection] = useDeleteElectionMutation()
-  const [deletePoll] = useDeletePollMutation()
+const ButtonEliminar = ({ id, name, type }: Props) => {
+  const [deleteElectoralProcess] = useDeleteElectoralProcessMutation()
   const history = useHistory()
-  const {data} = useGetElectoralProcessQuery({ variables: {props.id}})
+
+  const onConfirm = useCallback(async () => {
+    const variables = { election: false, poll: false, id }
+    if (type === 'Election') {
+      variables.election = true
+    } else {
+      variables.poll = true
+    }
+    const { errors } = await deleteElectoralProcess({ variables })
+    if (errors) {
+      message.error('Unable to delete')
+    } else {
+      history.push(routes.procesoEliminado)
+    }
+  }, [deleteElectoralProcess, history, id, type])
+
   return (
     <>
       <Button
-        // href={props.url}
         style={{
           backgroundColor: '#F0F0F0',
           marginTop: '2%',
@@ -55,21 +68,7 @@ const ButtonEliminar = (props: Props) => {
                 }}
               />
             }
-            onConfirm={async () => {
-              try {
-                if(data){
-                   if(data.__typename === 'Election'){
-                    const { data:data2 } = await deleteElection({ variables: { props.id } })
-                   }
-                   else{
-                    const { data:data3 } = await deletePoll({ variables: { props.id } })
-                   }
-                   history.replace(routes.procesoEliminado)
-                }
-              } catch {
-                console.warn('Errors')
-              }
-            }}
+            onConfirm={onConfirm}
             okText="Yes"
             cancelText="No"
           >
@@ -77,7 +76,6 @@ const ButtonEliminar = (props: Props) => {
           </Popconfirm>
         </Row>
       </Button>
-      <br />
     </>
   )
 }

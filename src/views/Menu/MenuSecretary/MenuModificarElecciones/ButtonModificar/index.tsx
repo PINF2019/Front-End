@@ -2,6 +2,7 @@ import { useGetElectoralProcessQuery } from '@Generated/hooks'
 import { Button, Icon, Row, Typography } from 'antd'
 import React from 'react'
 import { useHistory } from 'react-router-dom'
+
 const { Text } = Typography
 
 type Props = {
@@ -10,14 +11,14 @@ type Props = {
   href: string
 }
 
-const ElectionButtonModificar = (props: Props) => {
+const ElectionButtonModificar = ({ id, name, href }: Props) => {
   const history = useHistory()
-  const {data} = useGetElectoralProcessQuery({ variables: {props.id}})
+  const { data } = useGetElectoralProcessQuery({ variables: { id } })
 
   return (
     <>
       <Button
-        // href={props.url}
+        // href={url}
         style={{
           backgroundColor: '#F0F0F0',
           marginTop: '2%',
@@ -36,9 +37,7 @@ const ElectionButtonModificar = (props: Props) => {
           }}
         >
           <Text strong style={{ marginTop: 'auto', marginBottom: 'auto' }}>
-            {props.name.length > 30
-              ? `${props.name.substring(0, 30 - 3)}...`
-              : props.name}
+            {name.length > 30 ? `${name.substring(0, 30 - 3)}...` : name}
           </Text>
           <Row>
             <Icon
@@ -50,27 +49,23 @@ const ElectionButtonModificar = (props: Props) => {
                 color: '#FFA500',
                 marginLeft: 'auto',
               }}
-              onClick={() =>{
+              onClick={() => {
                 try {
-                  if(data){
-                     if(data.__typename === 'Election'){
+                  if (data) {
+                    if (data.electoralProcess.__typename === 'Election') {
                       history.push(
-                        `/secretary/procesoElectoral/modificar/election/${props.id}`
+                        `/secretary/procesoElectoral/modificar/election/${id}`
                       )
-                     }
-                     else{
+                    } else {
                       history.push(
-                        `/secretary/procesoElectoral/modificar/poll/${props.id}`
+                        `/secretary/procesoElectoral/modificar/poll/${id}`
                       )
-                     }
+                    }
                   }
                 } catch {
                   console.warn('Errors')
                 }
-              }
-              }
-               
-
+              }}
             />
           </Row>
         </Row>
