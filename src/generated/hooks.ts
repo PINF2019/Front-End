@@ -325,9 +325,9 @@ export type QueryPollArgs = {
 }
 
 export type ResultsFilter = {
-  group: Scalars['Boolean']
-  location: Scalars['Boolean']
-  genre: Scalars['Boolean']
+  group?: Maybe<Scalars['Boolean']>
+  location?: Maybe<Scalars['Boolean']>
+  genre?: Maybe<Scalars['Boolean']>
 }
 
 export type ResultsForElection = {
@@ -397,7 +397,7 @@ export type UserInput = {
   firstName: Scalars['String']
   lastName: Scalars['String']
   roles?: Maybe<Array<Role>>
-  collegiateBody: Scalars['ID']
+  colegiateBody: Scalars['ID']
   genre: Genre
 }
 
@@ -647,11 +647,30 @@ export type ResultForElectionQuery = {
     __typename?: 'Election'
     start: string
     end: string
+    voteWeights: Array<{
+      __typename?: 'VoteWeight'
+      group: string
+      weight: number
+    }>
     results: {
       __typename?: 'ResultsForElection'
       voters: number
       votesCast: number
       whiteVotes: number
+      results: Array<{
+        __typename?: 'ElectionResults'
+        votes: number
+        group: Maybe<string>
+        candidate: {
+          __typename?: 'Candidate'
+          id: string
+          firstName: string
+          lastName: string
+        }
+      }>
+    }
+    resultsByGroup: {
+      __typename?: 'ResultsForElection'
       results: Array<{
         __typename?: 'ElectionResults'
         votes: number
@@ -1217,10 +1236,25 @@ export const ResultForElectionDocument = gql`
     election(id: $id) {
       start
       end
+      voteWeights {
+        group
+        weight
+      }
       results {
         voters
         votesCast
         whiteVotes
+        results {
+          votes
+          group
+          candidate {
+            id
+            firstName
+            lastName
+          }
+        }
+      }
+      resultsByGroup: results(filter: { group: true }) {
         results {
           votes
           group

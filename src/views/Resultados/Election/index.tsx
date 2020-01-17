@@ -5,7 +5,6 @@ import { Col, Divider, Row, Table, Typography } from 'antd'
 import React from 'react'
 import { useParams } from 'react-router'
 
-// import { useElectionNameQuery } from '@Generated/hooks'
 
 const { Text } = Typography
 
@@ -84,11 +83,11 @@ const ResultsElection = () => {
                 }}
               >
                 <Row style={{ width: '500%' }}>
-                  <Text strong style={{ fontSize: '20px' }}>
+                  <Text strong style={{ fontSize: '25px' }}>
                     Resultados de la elección de Delegados/as
                   </Text>
 
-                  <Text style={{ textAlign: 'center', margin: 'auto' }}>
+                  <Text style={{ textAlign: 'center', margin: 'auto', fontSize: '15px' }}>
                     <br />
                     {data.election.start.substring(8, 10)}/
                     {data.election.start.substring(5, 7)}/
@@ -111,20 +110,20 @@ const ResultsElection = () => {
               }}
             >
               <Row style={{ width: '500%' }}>
-                <Text strong style={{ fontSize: '18px', position: 'static' }}>
-                  Datos globales <br />
+                <Text strong style={{ fontSize: '20px', position: 'static' }}>
+                  Datos globales
                 </Text>
               </Row>
             </Divider>
-            <br />
-            <div style={{ marginTop: '1%', marginLeft: '2%' }}>
-              <Row align="middle">
+           
+            <div style={{ marginTop: '1%', marginLeft: '2%', fontSize: '18px' }}>
+              <Row style={{ marginBottom: '0.5%' }} >
                 <Col span={4}>
                   <Text strong>Número total de electores:</Text>
                 </Col>
                 <Col span={4}>{data.election.results.voters}</Col>
               </Row>
-              <Row>
+              <Row style={{ marginBottom: '0.5%' }}>
                 <Col span={4}>
                   <Text strong>Votos a candidaturas:</Text>
                 </Col>
@@ -133,19 +132,19 @@ const ResultsElection = () => {
                     data.election.results.whiteVotes}
                 </Col>
               </Row>
-              <Row>
+              <Row style={{ marginBottom: '0.5%' }} >
                 <Col span={4}>
                   <Text strong>Votos en blanco:</Text>
                 </Col>
                 <Col span={4}>{data.election.results.whiteVotes}</Col>
               </Row>
-              <Row>
+              <Row style={{ marginBottom: '0.5%' }} >
                 <Col span={4}>
                   <Text strong>Votos totales válidos:</Text>
                 </Col>
                 <Col span={4}>{data.election.results.votesCast}</Col>
               </Row>
-              <Row>
+              <Row style={{ marginBottom: '0.5%' }}>
                 <Col span={4}>
                   <Text strong>Participación:</Text>
                 </Col>
@@ -158,7 +157,7 @@ const ResultsElection = () => {
                   %
                 </Col>
               </Row>
-              <Row>
+              <Row style={{ marginBottom: '0.5%' }} >
                 <Col span={4}>
                   <Text strong>Abstención:</Text>
                 </Col>
@@ -185,15 +184,15 @@ const ResultsElection = () => {
                   marginLeft: '2%',
                 }}
                 columns={columns}
-                dataSource={data.election.results.results.map(
-                  ({ votes, candidate }) => ({
+                dataSource={data.election.results.resultsByGroup.map(
+                  ({ votes, candidate}) => ({
                     key: candidate.id,
                     candidato: `${candidate.lastName}, ${candidate.firstName}`,
-                    pdvp: 'x',
-                    pndvp: 'y',
-                    pdnivp: 'z',
-                    pas: 'w',
-                    alu: 'ñ',
+                    pdvp: data.election.voteWeights[0].weight,
+                    pndvp: data.election.voteWeights[1].weight,
+                    pdnivp: data.election.voteWeights[2].weight,
+                    pas: data.election.voteWeights[3].weight,
+                    alu: data.election.voteWeights[4].weight,
                     total: votes,
                     final: `${((votes / (data.election.results.votesCast -
                     data.election.results.whiteVotes)) * 100).toFixed(2)  }%`,

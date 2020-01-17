@@ -2,6 +2,10 @@ query resultForElection($id: ID!) {
   election(id: $id) {
     start
     end
+    voteWeights{
+      group
+      weight
+    }
     results {
       voters
       votesCast
@@ -16,8 +20,21 @@ query resultForElection($id: ID!) {
         }
       }
     }
+   resultsByGroup: results(filter:{group:true}) {
+      results {
+        votes
+        group
+        candidate {
+          id
+          firstName
+          lastName
+        }
+      }
+    }
   }
 }
+
+
 
 query resultForPoll($id: ID!) {
   poll(id: $id) {

@@ -161,7 +161,8 @@ const ResultsPoll = () => {
                 <Col span={4}>
                   <Text strong>Votos a candidaturas:</Text>
                 </Col>
-                <Col span={4}>{data.poll.results.votesCast}</Col>
+                <Col span={4}> {data.poll.results.votesCast -
+                    data.poll.results.whiteVotes}</Col>
               </Row>
               <Row>
                 <Col span={4}>
@@ -174,7 +175,7 @@ const ResultsPoll = () => {
                   <Text strong>Votos totales válidos:</Text>
                 </Col>
                 <Col span={4}>
-                  {data.poll.results.votesCast - data.poll.results.whiteVotes}
+                  {data.poll.results.votesCast}
                 </Col>
               </Row>
               <Row>
@@ -182,8 +183,8 @@ const ResultsPoll = () => {
                   <Text strong>Participación:</Text>
                 </Col>
                 <Col span={4}>
-                  {(data.poll.results.votesCast * 100) /
-                    data.poll.results.voters}
+                  {((data.poll.results.votesCast * 100) /
+                    data.poll.results.voters).toFixed(2)}
                   %
                 </Col>
               </Row>
@@ -192,9 +193,9 @@ const ResultsPoll = () => {
                   <Text strong>Abstención:</Text>
                 </Col>
                 <Col span={4}>
-                  {((data.poll.results.voters - data.poll.results.votesCast) *
+                  {(((data.poll.results.voters - data.poll.results.votesCast) *
                     100) /
-                    data.poll.results.voters}
+                    data.poll.results.voters).toFixed(2)}
                   %
                 </Col>
               </Row>
@@ -272,7 +273,7 @@ const ResultsPoll = () => {
                         })
                       )}
                       valueFormat={val => (
-                        <span dangerouslySetInnerHTML={{ __html: val }} />
+                        <span style={{paddingLeft:"200%"}} dangerouslySetInnerHTML={{ __html: val }} />
                       )}
                       height={256}
                     />
