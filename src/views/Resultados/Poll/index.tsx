@@ -1,91 +1,82 @@
+/* eslint-disable react/no-danger */
 import { useResultForPollQuery } from '@Generated/hooks'
 import 'ant-design-pro/dist/ant-design-pro.css'
 import { Bar, Pie } from 'ant-design-pro/lib/Charts'
 import { Col, Divider, Row, Table, Typography } from 'antd'
 import React from 'react'
 import { useParams } from 'react-router'
+import _ from 'lodash'
+import moment from 'moment'
+import { ColumnProps } from 'antd/lib/table'
 
 const { Text } = Typography
 
-const columns = [
+const columns = (totalVotes: number): ColumnProps<any>[] => [
   {
-    headerStyle: { textAlign: 'center' },
     title: 'CANDIDATO',
-    dataIndex: 'candidato',
-    key: 'candidato',
+    dataIndex: 'candidate',
+    key: 'candidate',
+    render: candidate => `${candidate.firstName} ${candidate.lastName}`,
   },
   {
-    title: 'PDVP',
-    dataIndex: 'pdvp',
-    key: 'pdvp',
+    title: `PDVP`,
+    dataIndex: 'PDVP',
+    key: 'PDVP',
   },
   {
-    title: 'PNDVP',
-    dataIndex: 'pndvp',
-    key: 'pndvp',
+    title: `PNDVP`,
+    dataIndex: 'PNDVP',
+    key: 'PNDVP',
   },
   {
-    title: 'PDINVP',
-    key: 'pdnivp',
-    dataIndex: 'pdnivp',
+    title: `PDINVP`,
+    key: 'PDINVP',
+    dataIndex: 'PDINVP',
   },
   {
-    title: 'PAS',
-    key: 'pas',
-    dataIndex: 'pas',
+    title: `PAS`,
+    key: 'PAS',
+    dataIndex: 'PAS',
   },
   {
-    title: 'ALU',
-    key: 'alu',
-    dataIndex: 'alu',
+    title: `ALU`,
+    key: 'ALU',
+    dataIndex: 'ALU',
   },
   {
     title: 'TOTAL',
-    key: 'total',
-    dataIndex: 'total',
+    render: (_t, record) => {
+      return Object.values<any>(record).reduce(
+        (prev, current) =>
+          typeof current === 'number' ? current + prev : prev,
+        0
+      )
+    },
   },
   {
     title: '% FINAL',
-    key: 'final',
-    dataIndex: 'final',
+    render: (_t, record) =>
+      `${Object.values<any>(_.omit(record, ['candidate']))
+        .reduce((prev, value) => (value / totalVotes) * 100 + prev, 0)
+        .toFixed(2)}%`,
   },
 ]
 
-const datatable = [
-  {
-    key: '1',
-    candidato: 'López Cala, Kevin ',
-    pdvp: 'x',
-    pndvp: 'y',
-    pdnivp: 'z',
-    pas: 'w',
-    alu: 'ñ',
-    total: 'm',
-    final: '52,48%',
-  },
-  {
-    key: '2',
-    candidato: 'Escribano Corrales, Raúl',
-    pdvp: 'x',
-    pndvp: 'y',
-    pdnivp: 'z',
-    pas: 'w',
-    alu: 'ñ',
-    total: 'm',
-    final: '29,70%',
-  },
-  {
-    key: '3',
-    candidato: 'Soriano Roldán, Claudia',
-    pdvp: 'x',
-    pndvp: 'y',
-    pdnivp: 'z',
-    pas: 'w',
-    alu: 'ñ',
-    total: 'm',
-    final: '17,82%',
-  },
-]
+const votesByOption = (results: any[]) => {
+  const grouped = Object.values(
+    _.groupBy(results, result => result.candidate.id)
+  )
+  return grouped.map(inner =>
+    inner.reduce(
+      (prev, current) => ({
+        [current.group]: current.votes,
+        candidate: current.candidate,
+        ...prev,
+      }),
+      {}
+    )
+  )
+}
 
 const ResultsPoll = () => {
   const { id } = useParams<{ id: string }>()
@@ -117,19 +108,22 @@ const ResultsPoll = () => {
                 }}
               >
                 <Row style={{ width: '500%' }}>
-                  <Text strong style={{ fontSize: '20px' }}>
+                  <Text strong style={{ fontSize: '25px' }}>
                     Resultados de la elección de Delegados/as
                   </Text>
-
-                  <Text style={{ textAlign: 'center', margin: 'auto' }}>
-                    <br />
-                    {data.poll.start.substring(8, 10)}/
-                    {data.poll.start.substring(5, 7)}/
-                    {data.poll.start.substring(0, 4)} -
-                    {data.poll.end.substring(8, 10)}/
-                    {data.poll.end.substring(5, 7)}/
-                    {data.poll.end.substring(0, 4)}
-                  </Text>
+                  <Row>
+                    <Text
+                      style={{
+                        textAlign: 'center',
+                        margin: 'auto',
+                        fontSize: '15px',
+                      }}
+                    >
+                      {`${moment(data.poll.start).format('L')} - ${moment(
+                        data.poll.end
+                      ).format('L')}`}
+                    </Text>
+                  </Row>
                 </Row>
               </Divider>
             </Row>
@@ -140,16 +134,15 @@ const ResultsPoll = () => {
                 width: '0.2%',
                 borderRadius: '20%',
                 backgroundColor: '#FFA500',
-                // marginLeft: "2%"
               }}
             >
               <Row style={{ width: '500%' }}>
                 <Text strong style={{ fontSize: '18px', position: 'static' }}>
-                  Datos globales <br />
+                  Datos globales
                 </Text>
               </Row>
             </Divider>
-            <br />
+
             <div style={{ marginTop: '1%', marginLeft: '2%' }}>
               <Row align="middle">
                 <Col span={4}>
@@ -161,8 +154,10 @@ const ResultsPoll = () => {
                 <Col span={4}>
                   <Text strong>Votos a candidaturas:</Text>
                 </Col>
-                <Col span={4}> {data.poll.results.votesCast -
-                    data.poll.results.whiteVotes}</Col>
+                <Col span={4}>
+                  {' '}
+                  {data.poll.results.votesCast - data.poll.results.whiteVotes}
+                </Col>
               </Row>
               <Row>
                 <Col span={4}>
@@ -174,17 +169,17 @@ const ResultsPoll = () => {
                 <Col span={4}>
                   <Text strong>Votos totales válidos:</Text>
                 </Col>
-                <Col span={4}>
-                  {data.poll.results.votesCast}
-                </Col>
+                <Col span={4}>{data.poll.results.votesCast}</Col>
               </Row>
               <Row>
                 <Col span={4}>
                   <Text strong>Participación:</Text>
                 </Col>
                 <Col span={4}>
-                  {((data.poll.results.votesCast * 100) /
-                    data.poll.results.voters).toFixed(2)}
+                  {(
+                    (data.poll.results.votesCast * 100) /
+                    data.poll.results.voters
+                  ).toFixed(2)}
                   %
                 </Col>
               </Row>
@@ -193,26 +188,47 @@ const ResultsPoll = () => {
                   <Text strong>Abstención:</Text>
                 </Col>
                 <Col span={4}>
-                  {(((data.poll.results.voters - data.poll.results.votesCast) *
-                    100) /
-                    data.poll.results.voters).toFixed(2)}
+                  {(
+                    ((data.poll.results.voters - data.poll.results.votesCast) *
+                      100) /
+                    data.poll.results.voters
+                  ).toFixed(2)}
                   %
                 </Col>
               </Row>
             </div>
+
             <Row
               style={{
                 marginTop: '6%',
                 marginBottom: '8%',
               }}
             >
+              <Divider
+                type="vertical"
+                style={{
+                  height: '3%',
+                  width: '0.2%',
+                  borderRadius: '20%',
+                  backgroundColor: '#FFA500',
+                }}
+              >
+                <Row style={{ width: '500%' }}>
+                  <Text strong style={{ fontSize: '20px' }}>
+                    Votos totales
+                  </Text>
+                </Row>
+              </Divider>
               <Table
                 style={{
                   width: '93%',
                   marginLeft: '2%',
+                  marginTop: '2%',
                 }}
-                columns={columns}
-                dataSource={datatable}
+                columns={columns(
+                  data.poll.results.votesCast - data.poll.results.whiteVotes
+                )}
+                dataSource={votesByOption(data.poll.resultsByGroup.results)}
                 pagination={false}
                 bordered
               />
@@ -273,7 +289,10 @@ const ResultsPoll = () => {
                         })
                       )}
                       valueFormat={val => (
-                        <span style={{paddingLeft:"200%"}} dangerouslySetInnerHTML={{ __html: val }} />
+                        <span
+                          style={{ paddingLeft: '200%' }}
+                          dangerouslySetInnerHTML={{ __html: val }}
+                        />
                       )}
                       height={256}
                     />
@@ -290,7 +309,7 @@ const ResultsPoll = () => {
                     type="vertical"
                     style={{
                       height: '3%',
-                      width: '0.3%',
+                      width: '0.4%',
                       borderRadius: '20%',
                       backgroundColor: '#FFA500',
                     }}

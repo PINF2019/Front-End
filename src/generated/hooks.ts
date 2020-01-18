@@ -699,14 +699,24 @@ export type ResultForPollQuery = {
       voters: number
       votesCast: number
       whiteVotes: number
-      results: Array<{
-        __typename?: 'PollResults'
-        votes: number
-        group: Maybe<string>
-        option: { __typename?: 'PollOption'; id: string; text: string }
-      }>
+      results: Array<{ __typename?: 'PollResults' } & PollResultsFragment>
+    }
+    resultsByGroup: {
+      __typename?: 'ResultsForPoll'
+      results: Array<
+        {
+          __typename?: 'PollResults'
+          group: Maybe<string>
+        } & PollResultsFragment
+      >
     }
   }
+}
+
+export type PollResultsFragment = {
+  __typename?: 'PollResults'
+  votes: number
+  option: { __typename?: 'PollOption'; id: string; text: string }
 }
 
 export type VotePollMutationVariables = {
@@ -722,6 +732,15 @@ export const ElectionResultsFragmentDoc = gql`
       id
       firstName
       lastName
+    }
+  }
+`
+export const PollResultsFragmentDoc = gql`
+  fragment pollResults on PollResults {
+    votes
+    option {
+      id
+      text
     }
   }
 `
@@ -1308,16 +1327,18 @@ export const ResultForPollDocument = gql`
         votesCast
         whiteVotes
         results {
-          votes
+          ...pollResults
+        }
+      }
+      resultsByGroup: results(filter: { group: true }) {
+        results {
           group
-          option {
-            id
-            text
-          }
+          ...pollResults
         }
       }
     }
   }
+  ${PollResultsFragmentDoc}
 `
 export function useResultForPollQuery(
   baseOptions?: ApolloReactHooks.QueryHookOptions<
