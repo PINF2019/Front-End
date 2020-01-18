@@ -19,39 +19,41 @@ const CensusData = () => {
             <Title>
               <Text>Censo de {data?.election.description}</Text>
             </Title>
-            <Text>{`${moment(data?.election.start).format('L')} ${moment(
+            <Text style={{ fontSize: "20px" }}>{`${moment(data?.election.start).format('L')} - ${moment(
               data?.election.end
             ).format('L')}`}</Text>
           </Card>
         </Row>
         <Row className="Rowtext">
-          <Text strong style={{ fontSize: '30px', paddingTop: '50px' }}>
+          <Text strong style={{ fontSize: '30px', paddingTop: '10%', marginBottom: "2%" }}>
             Secretario:
           </Text>
           <ul>
-            <li>
+            <li style={{ fontSize: "20px" }}>
               {data?.election.secretary.lastName},{' '}
               {data?.election.secretary.firstName}
             </li>
           </ul>
-          <Text strong style={{ fontSize: '30px', paddingTop: '50px' }}>
+          <Text strong style={{ fontSize: '30px', paddingTop: '5%' }}>
             Subsecretarios:
           </Text>
           <ul>
             {data?.election.delegates.map(({ firstName, lastName }) => (
-              <li>{`${firstName} ${lastName}`}</li>
+              <li style={{ fontSize: "20px", paddingTop: "5%" }}>
+                {`${firstName}, ${lastName}`}
+              </li>
             ))}
           </ul>
-          <Text strong style={{ fontSize: '30px', paddingTop: '50px' }}>
+          <Text strong style={{ fontSize: '30px', paddingTop: '1%' }}>
             Votantes:
           </Text>
-          <ul>
+          <ul style={{ paddingTop: "5%" }}>
             {data?.election.censuses.map(elec => (
               <Row>
                 {elec.voters.map(vot => (
                   <li key={vot.firstName}>
-                    <Text style={{ fontSize: '15px' }}>
-                      {`${vot.lastName},${vot.firstName}`}
+                    <Text style={{ fontSize: '20px' }}>
+                      {`${vot.lastName}, ${vot.firstName}`}
                     </Text>
                   </li>
                 ))}

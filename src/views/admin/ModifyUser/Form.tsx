@@ -2,7 +2,7 @@ import {
   useCollegiateBodiesQuery,
   useModifyUserMutation,
 } from '@Generated/hooks'
-import { Button, Card, Typography } from 'antd'
+import { Button, Card, Typography, Row } from 'antd'
 import { Field, Formik } from 'formik'
 import { Form, Input, SubmitButton } from 'formik-antd'
 import React from 'react'
@@ -70,28 +70,38 @@ const ModifyUserForm = ({
             </Text>
           </Card>
           <Form.Item name="firstName">
-            <p style={{ fontSize: '20px' }}>
-              <strong>Nombre</strong>
-              <Input
-                name="firstName"
-                autoComplete="nombre"
-                placeholder={name}
-              />
+            <p style={{ fontSize: '20px', marginTop: "5%" }}>
+              <Row>
+                <strong>Nombre</strong>
+              </Row>
+              <Row>
+                <Input
+                  name="firstName"
+                  autoComplete="nombre"
+                  placeholder={name}
+                  style={{ width: "50%" }}
+                />
+              </Row>
             </p>
           </Form.Item>
           <Form.Item name="lastName">
             <p style={{ fontSize: '20px' }}>
-              <strong>Apellidos</strong>
-              <Input
-                name="lastName"
-                autoComplete="lastName"
-                placeholder={lastnames}
-              />
+              <Row>
+                <strong>Apellidos</strong>
+              </Row>
+              <Row>
+                <Input
+                  name="lastName"
+                  autoComplete="lastName"
+                  placeholder={lastnames}
+                  style={{ width: "50%" }}
+                />
+              </Row>
             </p>
           </Form.Item>
           <Form.Item name="genre">
             <p style={{ fontSize: '20px' }}>
-              <strong>Género</strong>
+              <strong style={{ marginRight: "5%" }}>Género:</strong>
               <Field as="select" placeholder={sex} name="genre">
                 <option value="MALE">Masculino</option>
                 <option value="FEMALE">Femenino</option>
@@ -99,12 +109,9 @@ const ModifyUserForm = ({
               </Field>
             </p>
           </Form.Item>
-          {/* <Form.Item name="email">
-            <p>Correo electrónico<Input name="email" autoComplete="useremail" placeholder="Correo electrónico" /></p>
-            </Form.Item> */}
           <Form.Item name="roles">
             <p style={{ fontSize: '20px' }}>
-              <strong>Rol</strong>
+              <strong style={{ marginRight: "5%" }}>Rol:</strong>
               <Field as="select" placeholder={rol} name="roles">
                 <option value="VOTER">Elector</option>
                 <option value="SECRETARY">Secretario</option>
@@ -114,7 +121,7 @@ const ModifyUserForm = ({
           </Form.Item>
           <Form.Item name="colegiateBody">
             <p style={{ fontSize: '20px' }}>
-              <strong>Órgano colegiado</strong>
+              <strong style={{ marginRight: "5%" }}>Órgano colegiado:</strong>
               <Field
                 as="select"
                 placeholder={colegiateBody}

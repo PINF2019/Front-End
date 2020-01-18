@@ -1,6 +1,7 @@
 import { useElectionsQuery } from '@Generated/hooks'
 import { Layout, Row, Typography } from 'antd'
 import React from 'react'
+import Background from '../../../assets/Wallpaper.png'
 import CensusButton from './CensusButton'
 import './index.less'
 
@@ -12,16 +13,17 @@ const Census = () => {
   return (
     <Layout
       style={{
+        backgroundImage: `url(${Background})`,
         height: '100%',
-        width: '100%',
-        backgroundColor: '#ffffff',
-        overflow: 'auto',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
       }}
     >
       <Row
         justify="center"
         className="body"
-        style={{ marginTop: '3%', backgroundColor: 'white' }}
+        style={{ marginTop: '3%' }}
       >
         <Row className="layout" style={{ marginBottom: '10%' }}>
           <Text strong style={{ fontSize: '30px' }}>

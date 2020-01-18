@@ -13,7 +13,7 @@ const DeleteButton = ({ id }: Props) => {
 
   return (
     <Popconfirm
-      title="Are you sure delete this task?"
+      title="¿Está seguro que quiere eliminar a este usuario?"
       onConfirm={async () => {
         try {
           const { data } = await deleteUser({ variables: { id } })
@@ -24,10 +24,10 @@ const DeleteButton = ({ id }: Props) => {
           console.warn('Errors')
         }
       }}
-      okText="Yes"
-      cancelText="No"
+      okText="Aceptar"
+      cancelText="Cancelar"
     >
-      Eliminar
+      <p style={{ color: "#ff2a00" }}>Eliminar</p>
     </Popconfirm>
   )
 }

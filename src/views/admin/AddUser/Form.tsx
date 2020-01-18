@@ -2,7 +2,7 @@ import {
   useCreateUserMutation,
   useCollegiateBodiesQuery,
 } from '@Generated/hooks'
-import { Button, Typography, Card } from 'antd'
+import { Button, Typography, Card, Row } from 'antd'
 import { Formik, Field } from 'formik'
 import { Form, Input, SubmitButton } from 'formik-antd'
 import React from 'react'
@@ -57,61 +57,85 @@ const AddUserForm = () => {
         }}
       >
         {() => (
-          <Form>
+          <Form style={{ width: "100%" }}>
             <Card className="card2">
               <Text strong style={{ fontSize: '25px' }}>
                 Datos
               </Text>
             </Card>
             <Form.Item name="uid">
-              <p style={{ fontSize: '20px' }}>
-                <strong>Usuario</strong>{' '}
-                <Input name="uid" autoComplete="uid" placeholder="Usuario" />
+              <p style={{ fontSize: '20px', marginTop: "2%" }}>
+                <Row>
+                  <strong>Usuario</strong>{' '}
+                </Row>
+                <Row>
+                  <Input name="uid" autoComplete="uid" placeholder="Usuario" style={{ width: "50%" }} />
+                </Row>
               </p>
             </Form.Item>
             <Form.Item name="password">
               <p style={{ fontSize: '20px' }}>
-                <strong>Contraseña</strong>
-                <Input.Password
-                  name="password"
-                  autoComplete="current-password"
-                  placeholder="Contraseña"
-                />
+                <Row>
+                  <strong>Contraseña</strong>
+                </Row>
+                <Row>
+                  <Input.Password
+                    name="password"
+                    autoComplete="current-password"
+                    placeholder="Contraseña"
+                    style={{ width: "50%" }}
+                  />
+                </Row>
               </p>
             </Form.Item>
             <Form.Item name="dni">
               <p style={{ fontSize: '20px' }}>
-                <strong>NIF/NIE</strong>{' '}
-                <Input
-                  name="dni"
-                  autoComplete="NIF/NIE"
-                  placeholder="NIF/NIE"
-                />
+                <Row>
+                  <strong>NIF/NIE</strong>{' '}
+                </Row>
+                <Row>
+                  <Input
+                    name="dni"
+                    autoComplete="NIF/NIE"
+                    placeholder="NIF/NIE"
+                    style={{ width: "50%" }}
+                  />
+                </Row>
               </p>
             </Form.Item>
             <Form.Item name="firstName">
               <p style={{ fontSize: '20px' }}>
-                <strong>Nombre</strong>{' '}
-                <Input
-                  name="firstName"
-                  autoComplete="username"
-                  placeholder="Nombre"
-                />
+                <Row>
+                  <strong>Nombre</strong>{' '}
+                </Row>
+                <Row>
+                  <Input
+                    name="firstName"
+                    autoComplete="username"
+                    placeholder="Nombre"
+                    style={{ width: "50%" }}
+                  />
+                </Row>
               </p>
             </Form.Item>
             <Form.Item name="lastName">
               <p style={{ fontSize: '20px' }}>
-                <strong>Apellidos</strong>{' '}
-                <Input
-                  name="lastName"
-                  autoComplete="lastnames"
-                  placeholder="Apellidos"
-                />
+                <Row>
+                  <strong>Apellidos</strong>{' '}
+                </Row>
+                <Row>
+                  <Input
+                    name="lastName"
+                    autoComplete="lastnames"
+                    placeholder="Apellidos"
+                    style={{ width: "50%" }}
+                  />
+                </Row>
               </p>
             </Form.Item>
             <Form.Item name="genre">
               <p style={{ fontSize: '20px' }}>
-                <strong>Género</strong>
+                <strong style={{ marginRight: "5%" }}>Género:</strong>
                 <Field as="select" placeholder="MALE" name="genre">
                   <option value="MALE">Masculino</option>
                   <option value="FEMALE">Femenino</option>
@@ -121,7 +145,7 @@ const AddUserForm = () => {
             </Form.Item>
             <Form.Item name="roles">
               <p style={{ fontSize: '20px' }}>
-                <strong>Rol</strong>
+                <strong style={{ marginRight: "5%" }}>Rol:</strong>
                 <Field as="select" placeholder="VOTER" name="roles">
                   <option value="VOTER">Elector</option>
                   <option value="SECRETARY">Secretario</option>
@@ -131,7 +155,7 @@ const AddUserForm = () => {
             </Form.Item>
             <Form.Item name="collegiateBody">
               <p style={{ fontSize: '20px' }}>
-                <strong>Órgano colegiado</strong>
+                <strong style={{ marginRight: "5%" }}>Órgano colegiado:</strong>
                 <Field as="select" name="collegiateBody">
                   {data?.collegiateBodies.map(elec => (
                     <option value={elec.id}>{elec.name}</option>

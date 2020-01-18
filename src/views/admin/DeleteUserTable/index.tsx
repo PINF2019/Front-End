@@ -13,7 +13,7 @@ const DeleteUserTable = () => {
       <Row className="layout" style={{ marginBottom: '2%' }}>
         <Card className="card">
           <Text strong style={{ fontSize: '30px' }}>
-            Borrar Usuario
+            Eliminar Usuario
           </Text>
         </Card>
       </Row>
