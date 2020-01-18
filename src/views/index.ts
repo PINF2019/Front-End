@@ -1,9 +1,6 @@
 // Raíz
 import AddUser from './admin/AddUser'
 import DeleteUserTable from './admin/DeleteUserTable'
-import ResultsElection from './Resultados/Election'
-import ResultsPoll from './Resultados/Poll'
-
 // Admin
 import gestionarUsuarios from './admin/GestionarUsuarios'
 import ModifyUser from './admin/ModifyUser'
@@ -38,7 +35,8 @@ import Success from './Overlays/VotoRegistrado'
 // Overlays
 import PickRoleAdmin from './PickRole/Admin'
 import PickRoleSecretary from './PickRole/Secretary'
-
+import ResultsElection from './Resultados/Election'
+import ResultsPoll from './Resultados/Poll'
 // Secretario
 import CrearEleccion from './Secretary/Crear/ProcesoElectoral'
 import CrearVotacion from './Secretary/Crear/Votacion'
@@ -49,7 +47,6 @@ export {
   Login,
   Logo,
   Home,
-  Election,
   PickRoleAdmin,
   PickRoleSecretary,
   Census,
@@ -58,6 +55,7 @@ export {
   MenuUser,
   MenuButton,
   Votacion,
+  Election,
   Success,
   MenuCrearEleccion,
   CrearEleccion,

@@ -20,7 +20,7 @@ const MenuEliminarElecciones = () => {
             <ButtonEliminar
               name={d.description}
               id={d.id}
-              href="eliminar"
+              type={d.__typename}
               key={d.id}
             />
           ))}

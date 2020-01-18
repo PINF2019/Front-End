@@ -31,7 +31,9 @@ const MenuUser = () => {
                 dateInit={eprocess.start}
                 dateEnd={eprocess.end}
                 id={eprocess.id}
-                href={eprocess.__typename === "Election"?"election":"votacion"}
+                href={
+                  eprocess.__typename === 'Election' ? 'election' : 'votacion'
+                }
                 key={eprocess.id}
               />
             ))}

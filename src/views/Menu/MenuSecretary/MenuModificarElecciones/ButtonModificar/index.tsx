@@ -1,3 +1,4 @@
+import { useGetElectoralProcessQuery } from '@Generated/hooks'
 import { Button, Icon, Row, Typography } from 'antd'
 import React from 'react'
 import { useHistory } from 'react-router-dom'
@@ -10,11 +11,14 @@ type Props = {
   href: string
 }
 
-const ElectionButtonModificar = (props: Props) => {
+const ElectionButtonModificar = ({ id, name, href }: Props) => {
+  const history = useHistory()
+  const { data } = useGetElectoralProcessQuery({ variables: { id } })
+
   return (
     <>
       <Button
-        // href={props.url}
+        // href={url}
         style={{
           backgroundColor: '#F0F0F0',
           marginTop: '2%',
@@ -33,9 +37,7 @@ const ElectionButtonModificar = (props: Props) => {
           }}
         >
           <Text strong style={{ marginTop: 'auto', marginBottom: 'auto' }}>
-            {props.name.length > 30
-              ? `${props.name.substring(0, 30 - 3)}...`
-              : props.name}
+            {name.length > 30 ? `${name.substring(0, 30 - 3)}...` : name}
           </Text>
           <Row>
             <Icon
@@ -47,39 +49,23 @@ const ElectionButtonModificar = (props: Props) => {
                 color: '#FFA500',
                 marginLeft: 'auto',
               }}
-              /* onClick={() => {async (input: any, actions) => {
-        try {
-          const { data } = await modify({ variables: { input, id }})
-          if (data) {
-            history.replace(routes.base)
-          }
-        } catch {
-          const message = 'Usuario Incorrectos'
-          actions.setErrors({ name: message })
-        }
-      }} */
-            />
-            <Icon
-              type="vertical-align-top"
-              style={{
-                marginTop: '1.1%',
-                verticalAlign: 'middle',
-                fontSize: '50px',
-                color: '#FFA500',
-                marginLeft: 'auto',
+              onClick={() => {
+                try {
+                  if (data) {
+                    if (data.electoralProcess.__typename === 'Election') {
+                      history.push(
+                        `/secretary/procesoElectoral/modificar/election/${id}`
+                      )
+                    } else {
+                      history.push(
+                        `/secretary/procesoElectoral/modificar/poll/${id}`
+                      )
+                    }
+                  }
+                } catch {
+                  console.warn('Errors')
+                }
               }}
-              /* onClick={() => async (id: any, actions: any) => {
-        try {
-          const { data } = await useDeleteElectionMutation({ variables: { id } });
-          if (data) {
-            console.log({ data, id });
-            history.replace(routes.home);
-          }
-        } catch {
-          const message = "No se pudo borrar el usuario";
-          actions.setErrors({ id: message });
-        }
-      }} */
             />
           </Row>
         </Row>

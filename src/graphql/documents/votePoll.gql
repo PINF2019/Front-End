@@ -1,3 +1,7 @@
 mutation votePoll($input: VotePollInput!) {
   voteOnPoll(input: $input)
 }
+
+mutation voteElection($input: VoteElectionInput!) {
+  voteOnElection(input: $input)
+}
