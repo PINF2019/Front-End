@@ -41,13 +41,22 @@ query resultForPoll($id: ID!) {
       votesCast
       whiteVotes
       results {
-        votes
-        group
-        option {
-          id
-          text
-        }
+        ...pollResults
       }
     }
+    resultsByGroup: results(filter: { group: true }) {
+      results {
+        group
+        ...pollResults
+      }
+    }
+  }
+}
+
+fragment pollResults on PollResults {
+  votes
+  option {
+    id
+    text
   }
 }
