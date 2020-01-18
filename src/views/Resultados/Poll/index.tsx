@@ -109,7 +109,7 @@ const ResultsPoll = () => {
               >
                 <Row style={{ width: '500%' }}>
                   <Text strong style={{ fontSize: '25px' }}>
-                    Resultados de la elección de Delegados/as
+                    {data.poll.description}
                   </Text>
                   <Row>
                     <Text

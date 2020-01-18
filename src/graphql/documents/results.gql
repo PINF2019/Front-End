@@ -2,6 +2,7 @@ query resultForElection($id: ID!) {
   election(id: $id) {
     start
     end
+    description
     voteWeights {
       group
       weight
@@ -36,6 +37,7 @@ query resultForPoll($id: ID!) {
   poll(id: $id) {
     start
     end
+    description
     results {
       voters
       votesCast

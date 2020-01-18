@@ -114,6 +114,7 @@ const columnsPond = (voteWeights: {
       ).reduce((prev, current) => current + prev, 0)
       // eslint-disable-next-line no-console
       console.log(totalVotes)
+
       return `${Object.values<any>(_.omit(record, ['candidate']))
         .reduce((prev, value) => (value / totalVotes) * 100 + prev, 0)
         .toFixed(2)}%`
@@ -144,7 +145,7 @@ const votesByColegiatePond = (results: any[], voteWeights: any[]) => {
   return grouped.map(inner =>
     inner.reduce(
       (prev, current) => ({
-        [current.group]: current.votes * voteWeights[current.group],
+        [current.group]: (current.votes * voteWeights[current.group]) / 100,
         candidate: current.candidate,
         ...prev,
       }),
@@ -191,7 +192,7 @@ const ResultsElection = () => {
               >
                 <Row style={{ width: '500%' }}>
                   <Text strong style={{ fontSize: '25px' }}>
-                    Resultados de la elección de Delegados/as
+                    {data.election.description}
                   </Text>
                   <Row>
                     <Text

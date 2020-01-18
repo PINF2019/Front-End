@@ -647,6 +647,7 @@ export type ResultForElectionQuery = {
     __typename?: 'Election'
     start: string
     end: string
+    description: string
     voteWeights: Array<{
       __typename?: 'VoteWeight'
       group: string
@@ -694,6 +695,7 @@ export type ResultForPollQuery = {
     __typename?: 'Poll'
     start: string
     end: string
+    description: string
     results: {
       __typename?: 'ResultsForPoll'
       voters: number
@@ -1263,6 +1265,7 @@ export const ResultForElectionDocument = gql`
     election(id: $id) {
       start
       end
+      description
       voteWeights {
         group
         weight
@@ -1322,6 +1325,7 @@ export const ResultForPollDocument = gql`
     poll(id: $id) {
       start
       end
+      description
       results {
         voters
         votesCast
