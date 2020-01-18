@@ -13,10 +13,10 @@ const { Text } = Typography
 
 const columns = (totalVotes: number): ColumnProps<any>[] => [
   {
-    title: 'CANDIDATO',
-    dataIndex: 'candidate',
-    key: 'candidate',
-    render: candidate => `${candidate.firstName} ${candidate.lastName}`,
+    title: 'VOTACIÓN',
+    dataIndex: 'option',
+    key: 'option',
+    render: option => `${option.text}`,
   },
   {
     title: `PDVP`,
@@ -56,21 +56,19 @@ const columns = (totalVotes: number): ColumnProps<any>[] => [
   {
     title: '% FINAL',
     render: (_t, record) =>
-      `${Object.values<any>(_.omit(record, ['candidate']))
+      `${Object.values<any>(_.omit(record, ['option']))
         .reduce((prev, value) => (value / totalVotes) * 100 + prev, 0)
         .toFixed(2)}%`,
   },
 ]
 
 const votesByOption = (results: any[]) => {
-  const grouped = Object.values(
-    _.groupBy(results, result => result.candidate.id)
-  )
+  const grouped = Object.values(_.groupBy(results, result => result.option.id))
   return grouped.map(inner =>
     inner.reduce(
       (prev, current) => ({
         [current.group]: current.votes,
-        candidate: current.candidate,
+        option: current.option,
         ...prev,
       }),
       {}
@@ -137,41 +135,42 @@ const ResultsPoll = () => {
               }}
             >
               <Row style={{ width: '500%' }}>
-                <Text strong style={{ fontSize: '18px', position: 'static' }}>
+                <Text strong style={{ fontSize: '20px', position: 'static' }}>
                   Datos globales
                 </Text>
               </Row>
             </Divider>
 
-            <div style={{ marginTop: '1%', marginLeft: '2%' }}>
-              <Row align="middle">
+            <div
+              style={{ marginTop: '1%', marginLeft: '2%', fontSize: '18px' }}
+            >
+              <Row style={{ marginBottom: '0.5%' }}>
                 <Col span={4}>
                   <Text strong>Número total de electores:</Text>
                 </Col>
                 <Col span={4}>{data.poll.results.voters}</Col>
               </Row>
-              <Row>
+              <Row style={{ marginBottom: '0.5%' }}>
                 <Col span={4}>
                   <Text strong>Votos a candidaturas:</Text>
                 </Col>
                 <Col span={4}>
-                  {' '}
                   {data.poll.results.votesCast - data.poll.results.whiteVotes}
                 </Col>
               </Row>
-              <Row>
+              <Row style={{ marginBottom: '0.5%' }}>
                 <Col span={4}>
                   <Text strong>Votos en blanco:</Text>
                 </Col>
                 <Col span={4}>{data.poll.results.whiteVotes}</Col>
               </Row>
-              <Row>
+              <Row style={{ marginBottom: '0.5%' }}>
                 <Col span={4}>
                   <Text strong>Votos totales válidos:</Text>
                 </Col>
                 <Col span={4}>{data.poll.results.votesCast}</Col>
               </Row>
-              <Row>
+              <Row style={{ marginBottom: '0.5%' }}>
                 <Col span={4}>
                   <Text strong>Participación:</Text>
                 </Col>
@@ -183,7 +182,7 @@ const ResultsPoll = () => {
                   %
                 </Col>
               </Row>
-              <Row>
+              <Row style={{ marginBottom: '0.5%' }}>
                 <Col span={4}>
                   <Text strong>Abstención:</Text>
                 </Col>
