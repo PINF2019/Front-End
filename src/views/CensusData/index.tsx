@@ -47,7 +47,7 @@ const CensusData = () => {
           <Text strong style={{ fontSize: '30px', paddingTop: '1%' }}>
             Votantes:
           </Text>
-          <ul style={{ paddingTop: "5%" }}>
+          <ul style={{ marginTop: "1%", marginBottom: "3%" }}>
             {data?.election.censuses.map(elec => (
               <Row>
                 {elec.voters.map(vot => (
