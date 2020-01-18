@@ -673,6 +673,26 @@ export type DeleteElectoralProcessMutation = {
   deleteElection: boolean
 }
 
+export type OptionsElectionQueryVariables = {
+  id: Scalars['ID']
+}
+
+export type OptionsElectionQuery = {
+  __typename?: 'Query'
+  election: {
+    __typename?: 'Election'
+    start: string
+    end: string
+    description: string
+    candidates: Array<{
+      __typename?: 'Candidate'
+      id: string
+      firstName: string
+      lastName: string
+    }>
+  }
+}
+
 export type MeQueryVariables = {}
 
 export type MeQuery = {
@@ -759,6 +779,15 @@ export type VotePollMutationVariables = {
 }
 
 export type VotePollMutation = { __typename?: 'Mutation'; voteOnPoll: boolean }
+
+export type VoteElectionMutationVariables = {
+  input: VoteElectionInput
+}
+
+export type VoteElectionMutation = {
+  __typename?: 'Mutation'
+  voteOnElection: boolean
+}
 
 export const UsersDocument = gql`
   query users {
@@ -1367,6 +1396,52 @@ export type DeleteElectoralProcessMutationOptions = ApolloReactCommon.BaseMutati
   DeleteElectoralProcessMutation,
   DeleteElectoralProcessMutationVariables
 >
+export const OptionsElectionDocument = gql`
+  query optionsElection($id: ID!) {
+    election(id: $id) {
+      start
+      end
+      description
+      candidates {
+        id
+        firstName
+        lastName
+      }
+    }
+  }
+`
+export function useOptionsElectionQuery(
+  baseOptions?: ApolloReactHooks.QueryHookOptions<
+    OptionsElectionQuery,
+    OptionsElectionQueryVariables
+  >
+) {
+  return ApolloReactHooks.useQuery<
+    OptionsElectionQuery,
+    OptionsElectionQueryVariables
+  >(OptionsElectionDocument, baseOptions)
+}
+export function useOptionsElectionLazyQuery(
+  baseOptions?: ApolloReactHooks.LazyQueryHookOptions<
+    OptionsElectionQuery,
+    OptionsElectionQueryVariables
+  >
+) {
+  return ApolloReactHooks.useLazyQuery<
+    OptionsElectionQuery,
+    OptionsElectionQueryVariables
+  >(OptionsElectionDocument, baseOptions)
+}
+export type OptionsElectionQueryHookResult = ReturnType<
+  typeof useOptionsElectionQuery
+>
+export type OptionsElectionLazyQueryHookResult = ReturnType<
+  typeof useOptionsElectionLazyQuery
+>
+export type OptionsElectionQueryResult = ApolloReactCommon.QueryResult<
+  OptionsElectionQuery,
+  OptionsElectionQueryVariables
+>
 export const MeDocument = gql`
   query me {
     me {
@@ -1569,4 +1644,34 @@ export type VotePollMutationResult = ApolloReactCommon.MutationResult<
 export type VotePollMutationOptions = ApolloReactCommon.BaseMutationOptions<
   VotePollMutation,
   VotePollMutationVariables
+>
+export const VoteElectionDocument = gql`
+  mutation voteElection($input: VoteElectionInput!) {
+    voteOnElection(input: $input)
+  }
+`
+export type VoteElectionMutationFn = ApolloReactCommon.MutationFunction<
+  VoteElectionMutation,
+  VoteElectionMutationVariables
+>
+export function useVoteElectionMutation(
+  baseOptions?: ApolloReactHooks.MutationHookOptions<
+    VoteElectionMutation,
+    VoteElectionMutationVariables
+  >
+) {
+  return ApolloReactHooks.useMutation<
+    VoteElectionMutation,
+    VoteElectionMutationVariables
+  >(VoteElectionDocument, baseOptions)
+}
+export type VoteElectionMutationHookResult = ReturnType<
+  typeof useVoteElectionMutation
+>
+export type VoteElectionMutationResult = ApolloReactCommon.MutationResult<
+  VoteElectionMutation
+>
+export type VoteElectionMutationOptions = ApolloReactCommon.BaseMutationOptions<
+  VoteElectionMutation,
+  VoteElectionMutationVariables
 >

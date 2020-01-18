@@ -1,4 +1,4 @@
-import { useElectionsQuery } from '@Generated/hooks'
+import { useElectoralProcessesQuery } from '@Generated/hooks'
 import { Layout, Row, Typography } from 'antd'
 import React from 'react'
 import Background from '../../../assets/Wallpaper.png'
@@ -6,7 +6,7 @@ import ElectionButton from '../Election/election'
 
 const { Text } = Typography
 const MenuUser = () => {
-  const { data, error } = useElectionsQuery()
+  const { data, error } = useElectoralProcessesQuery()
   if (data) {
     return (
       <Layout
@@ -25,13 +25,15 @@ const MenuUser = () => {
             </Text>
           </Row>
           <Row>
-            {data.pendingElections.map(eprocess => (
+            {data.pendingElectoralProcesses.map(eprocess => (
               <ElectionButton
                 name={eprocess.description}
                 dateInit={eprocess.start}
                 dateEnd={eprocess.end}
                 id={eprocess.id}
-                href="votacion"
+                href={
+                  eprocess.__typename === 'Election' ? 'election' : 'votacion'
+                }
                 key={eprocess.id}
               />
             ))}

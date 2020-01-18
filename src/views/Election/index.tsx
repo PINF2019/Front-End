@@ -1,103 +1,133 @@
-import { Button, Checkbox, Col, Layout, Radio, Row, Typography } from 'antd'
+import {
+  useOptionsElectionQuery,
+  useVoteElectionMutation,
+} from '@Generated/hooks'
+import { Col, Layout, Row, Typography } from 'antd'
+import { Formik } from 'formik'
+import { Checkbox, Form, Radio, SubmitButton } from 'formik-antd'
 import React from 'react'
-import wallpaper from '../../assets/Wallpaper.png'
-import ElectionButton from './button'
+import { useParams } from 'react-router-dom'
+import * as Yup from 'yup'
+import wallpaper from '../../assets/Wallpaper2.png'
 import './index.less'
 
 const { Text } = Typography
 
-const data = [
-  { name: 'Raúl Escribano Corrales' },
-  { name: 'Claudia Soriano' },
-  { name: 'Kevin López Cala' },
-]
+const schema = Yup.object().shape({
+  validate: Yup.boolean().oneOf([true]),
+  candidate: Yup.string().required(),
+})
 
 const Election = () => {
-  return (
-    <Row type="flex" justify="center" align="middle" style={{ height: '100%' }}>
-      <Col
-        style={{
-          width: '50%',
-          height: '100%',
-          textAlign: 'center',
-          backgroundColor: '#f7f7f7',
-        }}
+  const { id } = useParams<{ id: string }>()
+  const { data, loading } = useOptionsElectionQuery({ variables: { id } })
+  const [vote] = useVoteElectionMutation()
+
+  if (data) {
+    return (
+      <Row
+        type="flex"
+        justify="center"
+        align="middle"
+        style={{ height: '100%' }}
       >
-        <Layout
+        <Col
           style={{
+            width: '50%',
             height: '100%',
-            backgroundImage: `url(${wallpaper})`,
+            textAlign: 'center',
+          }}
+        >
+          <Layout
+            style={{
+              height: '100%',
+              backgroundImage: `url(${wallpaper})`,
+            }}
+          >
+            <Row
+              type="flex"
+              justify="center"
+              // align="middle"
+              style={{
+                marginTop: '25%',
+              }}
+            >
+              <Text strong style={{ fontSize: '30px', lineHeight: '100%' }}>
+                Votación <br />{' '}
+                {`${data?.election.description.substring(0, 100 - 3)}...`}
+              </Text>
+            </Row>
+          </Layout>
+        </Col>
+        <Col
+          style={{
+            width: '50%',
+            height: '100%',
           }}
         >
           <Row
             type="flex"
             justify="center"
-            // align="middle"
-            style={{
-              marginTop: '25%',
-            }}
+            align="middle"
+            style={{ height: '100%' }}
           >
-            <Text strong style={{ fontSize: '40px', lineHeight: '100%' }}>
-              Elecciones <br />
-              Delegado de Ing. Informática
-            </Text>
-          </Row>
-        </Layout>
-      </Col>
-      <Col
-        style={{
-          width: '50%',
-          height: '100%',
-        }}
-      >
-        <Row
-          type="flex"
-          justify="center"
-          align="middle"
-          style={{ height: '100%' }}
-        >
-          <Radio.Group>
-            <Col>
-              <Text strong style={{ fontSize: '22px' }}>
-                Su voto:
-              </Text>
-              <br />
-              {data.map((candidate, index) => (
-                <ElectionButton
-                  name={candidate.name}
-                  index={index}
-                  key={candidate.name}
-                />
-              ))}
-            </Col>
-            <Row
-              style={{
-                display: 'flex',
-                alignContent: 'space-between',
-                width: '100%',
+            <Formik
+              onSubmit={async values => {
+                await vote({
+                  variables: {
+                    input: { candidates: [values.candidate], election: id },
+                  },
+                })
               }}
+              initialValues={{ validate: false, candidate: '' }}
+              initialErrors={{ validate: '', candidate: '' }}
+              validateOnBlur={false}
+              validationSchema={schema}
             >
-              <Button
-                style={{
-                  backgroundColor: '#206489',
-                  width: '70%',
-                  marginRight: 'auto',
-                }}
-              >
-                <Checkbox>
-                  <Text style={{ color: '#FFFFFF' }}>Validar mi elección</Text>
-                </Checkbox>
-              </Button>
+              {() => (
+                <Col>
+                  <Form
+                    style={{
+                      // width: "50%",
+                      // fontSize: "20px",
+                      marginLeft: '20%',
+                      // height: "100%"
+                    }}
+                  >
+                    <Radio.Group name="candidate">
+                      {data.election.candidates.map(election => (
+                        <Radio
+                          name="candidate"
+                          value={election.id}
+                          key={election.id}
+                        >
+                          {election.firstName} {election.lastName}
+                        </Radio>
+                      ))}
+                    </Radio.Group>
+                    <br />
 
-              <Button href="/success" type="primary">
-                Vota!
-              </Button>
-            </Row>
-          </Radio.Group>
-        </Row>
-      </Col>
-    </Row>
-  )
+                    <Row type="flex" style={{ flexDirection: 'column' }}>
+                      <Row>
+                        <Checkbox name="validate">Validar elección</Checkbox>
+                      </Row>
+                      <Row>
+                        <SubmitButton>Votar</SubmitButton>
+                      </Row>
+                    </Row>
+                  </Form>
+                </Col>
+              )}
+            </Formik>
+          </Row>
+        </Col>
+      </Row>
+    )
+  }
+  if (loading) {
+    return <div>Cargando...</div>
+  }
+  return <div>Error...</div>
 }
 
 export default Election

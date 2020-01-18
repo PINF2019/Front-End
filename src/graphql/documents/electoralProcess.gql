@@ -126,3 +126,16 @@ mutation deleteElectoralProcess(
   deletePoll(id: $id) @include(if: $poll)
   deleteElection(id: $id) @include(if: $election)
 }
+
+query optionsElection($id: ID!) {
+  election(id: $id) {
+    start
+    end
+    description
+    candidates {
+      id
+      firstName
+      lastName
+    }
+  }
+}
