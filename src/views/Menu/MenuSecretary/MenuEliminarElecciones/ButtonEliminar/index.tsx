@@ -1,6 +1,6 @@
 import { useDeleteElectoralProcessMutation } from '@Generated/hooks'
 import routes from '@Routes'
-import { Button, Icon, Popconfirm, Row, Typography, message } from 'antd'
+import { Button, Icon, message, Popconfirm, Row, Typography } from 'antd'
 import React, { useCallback } from 'react'
 import { useHistory } from 'react-router-dom'
 
@@ -33,24 +33,8 @@ const ButtonEliminar = ({ id, name, type }: Props) => {
 
   return (
     <>
-      <Button
-        style={{
-          backgroundColor: '#F0F0F0',
-          marginTop: '2%',
-          minWidth: '32%',
-          minHeight: '63px',
-          borderRadius: '12px',
-          boxShadow: '0px 3px 3px grey',
-        }}
-      >
-        <Row
-          style={{
-            width: '100%',
-            height: '100%',
-            display: 'flex',
-            alignContent: 'space-between',
-          }}
-        >
+      <Button className="button">
+        <Row className="RowCensusButton">
           <Text strong style={{ marginTop: 'auto', marginBottom: 'auto' }}>
             {name.length > 30 ? `${name.substring(0, 30 - 3)}...` : name}
           </Text>
@@ -76,6 +60,7 @@ const ButtonEliminar = ({ id, name, type }: Props) => {
           </Popconfirm>
         </Row>
       </Button>
+      <br />
     </>
   )
 }

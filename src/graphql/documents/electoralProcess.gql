@@ -34,6 +34,25 @@ query electoralProcesses {
   }
 }
 
+query electoralProcessesCRUD
+{
+  electoralProcesses(open: true) {
+    __typename
+    ... on Election {
+      id
+      end
+      start
+      description
+    }
+    ... on Poll {
+      id
+      end
+      start
+      description
+    }
+  }
+}
+
 query options($id: ID!) {
   poll(id: $id) {
     start

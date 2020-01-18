@@ -1,14 +1,13 @@
 import { useOptionsQuery, useVotePollMutation } from '@Generated/hooks'
+import routes from '@Routes'
 import { Col, Layout, Row, Typography } from 'antd'
 import { Formik } from 'formik'
 import { Checkbox, Form, Radio, SubmitButton } from 'formik-antd'
 import React from 'react'
-import { useParams, useHistory } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 import * as Yup from 'yup'
-import routes from '@Routes'
 import wallpaper from '../../assets/Wallpaper2.png'
 import './index.less'
-import Success from '../Overlays/VotoRegistrado'
 
 const { Text } = Typography
 
@@ -55,7 +54,6 @@ const Votacion = () => {
             >
               <Text strong style={{ fontSize: '30px', lineHeight: '100%' }}>
                 Votación <br />{' '}
-              
                 {`${data?.poll.description.substring(0, 100 - 3)}...`}
               </Text>
             </Row>
@@ -75,10 +73,10 @@ const Votacion = () => {
           >
             <Formik
               onSubmit={async values => {
-                const {data,errors} = await vote({
+                const { data: data2, errors } = await vote({
                   variables: { input: { options: [values.option], poll: id } },
                 })
-                if (data) {
+                if (data2) {
                   history.push(routes.success)
                 }
                 if (errors) {
@@ -97,7 +95,6 @@ const Votacion = () => {
                       marginLeft: '20%',
                     }}
                   >
-                    
                     <Radio.Group name="option">
                       {data.poll.options.map(poll => (
                         <Radio name="option" value={poll.id} key={poll.id}>
@@ -112,10 +109,8 @@ const Votacion = () => {
                         <Checkbox name="validate">Validar elección</Checkbox>
                       </Row>
                       <Row>
-
                         <SubmitButton>Votar</SubmitButton>
                       </Row>
-
                     </Row>
                   </Form>
                 </Col>

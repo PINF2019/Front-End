@@ -109,7 +109,7 @@ const Election = () => {
 
                     <Row type="flex" style={{ flexDirection: 'column' }}>
                       <Row>
-                        <Checkbox name="validate">Validar elección</Checkbox>
+                        <Checkbox name="validate">Validar</Checkbox>
                       </Row>
                       <Row>
                         <SubmitButton>Votar</SubmitButton>

@@ -8,10 +8,10 @@ const { Text } = Typography
 type Props = {
   id: string
   name: string
-  href: string
+  type: string
 }
 
-const ElectionButtonModificar = ({ id, name, href }: Props) => {
+const ElectionButtonModificar = ({ id, name, type }: Props) => {
   const history = useHistory()
   const { data } = useGetElectoralProcessQuery({ variables: { id } })
 
@@ -52,7 +52,7 @@ const ElectionButtonModificar = ({ id, name, href }: Props) => {
               onClick={() => {
                 try {
                   if (data) {
-                    if (data.electoralProcess.__typename === 'Election') {
+                    if (type === 'Election') {
                       history.push(
                         `/secretary/procesoElectoral/modificar/election/${id}`
                       )

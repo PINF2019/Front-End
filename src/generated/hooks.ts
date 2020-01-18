@@ -550,6 +550,28 @@ export type ElectoralProcessesQuery = {
   >
 }
 
+export type ElectoralProcessesCrudQueryVariables = {}
+
+export type ElectoralProcessesCrudQuery = {
+  __typename?: 'Query'
+  electoralProcesses: Array<
+    | {
+        __typename: 'Election'
+        id: string
+        end: string
+        start: string
+        description: string
+      }
+    | {
+        __typename: 'Poll'
+        id: string
+        end: string
+        start: string
+        description: string
+      }
+  >
+}
+
 export type OptionsQueryVariables = {
   id: Scalars['ID']
 }
@@ -1180,6 +1202,57 @@ export type ElectoralProcessesLazyQueryHookResult = ReturnType<
 export type ElectoralProcessesQueryResult = ApolloReactCommon.QueryResult<
   ElectoralProcessesQuery,
   ElectoralProcessesQueryVariables
+>
+export const ElectoralProcessesCrudDocument = gql`
+  query electoralProcessesCRUD {
+    electoralProcesses(open: true) {
+      __typename
+      ... on Election {
+        id
+        end
+        start
+        description
+      }
+      ... on Poll {
+        id
+        end
+        start
+        description
+      }
+    }
+  }
+`
+export function useElectoralProcessesCrudQuery(
+  baseOptions?: ApolloReactHooks.QueryHookOptions<
+    ElectoralProcessesCrudQuery,
+    ElectoralProcessesCrudQueryVariables
+  >
+) {
+  return ApolloReactHooks.useQuery<
+    ElectoralProcessesCrudQuery,
+    ElectoralProcessesCrudQueryVariables
+  >(ElectoralProcessesCrudDocument, baseOptions)
+}
+export function useElectoralProcessesCrudLazyQuery(
+  baseOptions?: ApolloReactHooks.LazyQueryHookOptions<
+    ElectoralProcessesCrudQuery,
+    ElectoralProcessesCrudQueryVariables
+  >
+) {
+  return ApolloReactHooks.useLazyQuery<
+    ElectoralProcessesCrudQuery,
+    ElectoralProcessesCrudQueryVariables
+  >(ElectoralProcessesCrudDocument, baseOptions)
+}
+export type ElectoralProcessesCrudQueryHookResult = ReturnType<
+  typeof useElectoralProcessesCrudQuery
+>
+export type ElectoralProcessesCrudLazyQueryHookResult = ReturnType<
+  typeof useElectoralProcessesCrudLazyQuery
+>
+export type ElectoralProcessesCrudQueryResult = ApolloReactCommon.QueryResult<
+  ElectoralProcessesCrudQuery,
+  ElectoralProcessesCrudQueryVariables
 >
 export const OptionsDocument = gql`
   query options($id: ID!) {

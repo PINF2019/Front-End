@@ -1,4 +1,4 @@
-import { useElectoralProcessesQuery } from '@Generated/hooks'
+import { useElectoralProcessesCrudQuery } from '@Generated/hooks'
 import { Row, Typography } from 'antd'
 import React from 'react'
 import ButtonModificar from './ButtonModificar'
@@ -6,7 +6,7 @@ import ButtonModificar from './ButtonModificar'
 const { Text } = Typography
 
 const MenuModificarElecciones = () => {
-  const { data, error } = useElectoralProcessesQuery()
+  const { data, error } = useElectoralProcessesCrudQuery()
   if (data) {
     return (
       <Row justify="center" className="body">
@@ -16,11 +16,11 @@ const MenuModificarElecciones = () => {
           </Text>
         </Row>
         <Row>
-          {data.pendingElectoralProcesses.map(d => (
+          {data.electoralProcesses.map(d => (
             <ButtonModificar
               name={d.description}
               id={d.id}
-              href="modificar"
+              type={d.__typename}
               key={d.id}
             />
           ))}
