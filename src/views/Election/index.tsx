@@ -53,7 +53,7 @@ const Election = () => {
               }}
             >
               <Text strong style={{ fontSize: '30px', lineHeight: '100%' }}>
-                Votación <br />{' '}
+                Elección <br />{' '}
                 {`${data?.election.description.substring(0, 100 - 3)}...`}
               </Text>
             </Row>

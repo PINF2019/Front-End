@@ -10,7 +10,7 @@ const routes = {
   resultsElection: '/resultados/election/:id',
   resultsPoll: '/resultados/poll/:id',
   logo: '/pickrole',
-  election: '/election/vote', // hay que quitarlo
+  election: '/election/:id', // hay que quitarlo
   menuElection: '/election',
 
   user: '/user',
