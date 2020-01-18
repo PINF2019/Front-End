@@ -7,10 +7,6 @@ query elections {
   }
 }
 
-query userelection{
-  
-}
-
 query electoralProcesses {
   pendingElectoralProcesses {
     __typename
