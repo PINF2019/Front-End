@@ -9,18 +9,19 @@ import moment from 'moment'
 const { Title, Text } = Typography
 
 const CensusData = () => {
-  const { id } = useParams<{ id: string }>()
+  const { id } = useParams<{ id: string, type: string }>()
   const { data } = useCensusQuery({ variables: { id } })
+
   return (
     <Row className="RowGlo">
       <Row className="RowGlo2">
         <Row style={{ marginTop: '3%' }}>
           <Card className="card">
             <Title>
-              <Text>Censo de {data?.election.description}</Text>
+              <Text>Censo de {data?.electoralProcess.description}</Text>
             </Title>
-            <Text style={{ fontSize: "20px" }}>{`${moment(data?.election.start).format('L')} - ${moment(
-              data?.election.end
+            <Text style={{ fontSize: "20px" }}>{`${moment(data?.electoralProcess.start).format('L')} - ${moment(
+              data?.electoralProcess.end
             ).format('L')}`}</Text>
           </Card>
         </Row>
@@ -30,15 +31,15 @@ const CensusData = () => {
           </Text>
           <ul>
             <li style={{ fontSize: "20px" }}>
-              {data?.election.secretary.lastName},{' '}
-              {data?.election.secretary.firstName}
+              {data?.electoralProcess.secretary.lastName},{' '}
+              {data?.electoralProcess.secretary.firstName}
             </li>
           </ul>
           <Text strong style={{ fontSize: '30px', paddingTop: '5%' }}>
             Subsecretarios:
           </Text>
           <ul>
-            {data?.election.delegates.map(({ firstName, lastName }) => (
+            {data?.electoralProcess.delegates.map(({ firstName, lastName }) => (
               <li style={{ fontSize: "20px", paddingTop: "5%" }}>
                 {`${firstName}, ${lastName}`}
               </li>
@@ -48,7 +49,7 @@ const CensusData = () => {
             Votantes:
           </Text>
           <ul style={{ marginTop: "1%", marginBottom: "3%" }}>
-            {data?.election.censuses.map(elec => (
+            {data?.electoralProcess.censuses.map(elec => (
               <Row>
                 {elec.voters.map(vot => (
                   <li key={vot.firstName}>

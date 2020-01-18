@@ -515,6 +515,19 @@ export type ElectionsQuery = {
   }>
 }
 
+export type PollsQueryVariables = {}
+
+export type PollsQuery = {
+  __typename?: 'Query'
+  polls: Array<{
+    __typename?: 'Poll'
+    id: string
+    start: string
+    end: string
+    description: string
+  }>
+}
+
 export type ElectoralProcessesQueryVariables = {}
 
 export type ElectoralProcessesQuery = {
@@ -558,26 +571,47 @@ export type CensusQueryVariables = {
 
 export type CensusQuery = {
   __typename?: 'Query'
-  election: {
-    __typename?: 'Election'
-    description: string
-    start: string
-    end: string
-    secretary: { __typename?: 'User'; firstName: string; lastName: string }
-    censuses: Array<{
-      __typename?: 'Census'
-      voters: Array<{
-        __typename?: 'Voter'
-        firstName: string
-        lastName: string
-      }>
-    }>
-    delegates: Array<{
-      __typename?: 'User'
-      firstName: string
-      lastName: string
-    }>
-  }
+  electoralProcess:
+    | {
+        __typename: 'Election'
+        description: string
+        start: string
+        end: string
+        secretary: { __typename?: 'User'; firstName: string; lastName: string }
+        censuses: Array<{
+          __typename?: 'Census'
+          voters: Array<{
+            __typename?: 'Voter'
+            firstName: string
+            lastName: string
+          }>
+        }>
+        delegates: Array<{
+          __typename?: 'User'
+          firstName: string
+          lastName: string
+        }>
+      }
+    | {
+        __typename: 'Poll'
+        description: string
+        start: string
+        end: string
+        secretary: { __typename?: 'User'; firstName: string; lastName: string }
+        censuses: Array<{
+          __typename?: 'Census'
+          voters: Array<{
+            __typename?: 'Voter'
+            firstName: string
+            lastName: string
+          }>
+        }>
+        delegates: Array<{
+          __typename?: 'User'
+          firstName: string
+          lastName: string
+        }>
+      }
 }
 
 export type PastElectionResultsQueryVariables = {}
@@ -1058,6 +1092,44 @@ export type ElectionsQueryResult = ApolloReactCommon.QueryResult<
   ElectionsQuery,
   ElectionsQueryVariables
 >
+export const PollsDocument = gql`
+  query polls {
+    polls {
+      id
+      start
+      end
+      description
+    }
+  }
+`
+export function usePollsQuery(
+  baseOptions?: ApolloReactHooks.QueryHookOptions<
+    PollsQuery,
+    PollsQueryVariables
+  >
+) {
+  return ApolloReactHooks.useQuery<PollsQuery, PollsQueryVariables>(
+    PollsDocument,
+    baseOptions
+  )
+}
+export function usePollsLazyQuery(
+  baseOptions?: ApolloReactHooks.LazyQueryHookOptions<
+    PollsQuery,
+    PollsQueryVariables
+  >
+) {
+  return ApolloReactHooks.useLazyQuery<PollsQuery, PollsQueryVariables>(
+    PollsDocument,
+    baseOptions
+  )
+}
+export type PollsQueryHookResult = ReturnType<typeof usePollsQuery>
+export type PollsLazyQueryHookResult = ReturnType<typeof usePollsLazyQuery>
+export type PollsQueryResult = ApolloReactCommon.QueryResult<
+  PollsQuery,
+  PollsQueryVariables
+>
 export const ElectoralProcessesDocument = gql`
   query electoralProcesses {
     pendingElectoralProcesses {
@@ -1152,23 +1224,46 @@ export type OptionsQueryResult = ApolloReactCommon.QueryResult<
 >
 export const CensusDocument = gql`
   query census($id: ID!) {
-    election(id: $id) {
-      description
-      start
-      end
-      secretary {
-        firstName
-        lastName
-      }
-      censuses {
-        voters {
+    electoralProcess(id: $id) {
+      __typename
+      ... on Election {
+        description
+        start
+        end
+        secretary {
+          firstName
+          lastName
+        }
+        censuses {
+          voters {
+            firstName
+            lastName
+          }
+        }
+        delegates {
           firstName
           lastName
         }
       }
-      delegates {
-        firstName
-        lastName
+      __typename
+      ... on Poll {
+        description
+        start
+        end
+        secretary {
+          firstName
+          lastName
+        }
+        censuses {
+          voters {
+            firstName
+            lastName
+          }
+        }
+        delegates {
+          firstName
+          lastName
+        }
       }
     }
   }

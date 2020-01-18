@@ -1,4 +1,4 @@
-import { useElectionsQuery } from '@Generated/hooks'
+import { useElectionsQuery, usePollsQuery } from '@Generated/hooks'
 import { Layout, Row, Typography } from 'antd'
 import React from 'react'
 import Background from '../../../assets/Wallpaper.png'
@@ -9,6 +9,7 @@ const { Text } = Typography
 
 const Census = () => {
   const data = useElectionsQuery()
+  const data2 = usePollsQuery()
 
   return (
     <Layout
@@ -18,6 +19,7 @@ const Census = () => {
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
+        overflow: 'auto'
       }}
     >
       <Row
@@ -39,6 +41,18 @@ const Census = () => {
               id={elec.id}
             />
           ))}
+          {
+            data2.data?.polls.map(vot => (
+              <CensusButton
+                name = {vot.description}
+                dateInit = {vot.start}
+                dateEnd = {vot.end}
+                id = {vot.id} 
+              />            
+              )
+
+            )
+          }
         </Row>
       </Row>
     </Layout>

@@ -7,6 +7,15 @@ query elections {
   }
 }
 
+query polls {
+  polls {
+    id
+    start
+    end
+    description
+  }
+}
+
 query electoralProcesses {
   pendingElectoralProcesses {
     __typename
@@ -38,7 +47,9 @@ query options($id: ID!) {
 }
 
 query census($id: ID!) {
-  election(id: $id) {
+  electoralProcess(id: $id) {
+    __typename
+    ... on Election {
     description
     start
     end
@@ -55,6 +66,28 @@ query census($id: ID!) {
     delegates {
       firstName
       lastName
+    }
+    }
+
+    __typename
+    ... on Poll {
+      description
+      start
+      end
+      secretary {
+        firstName
+        lastName
+      }
+      censuses {
+        voters {
+          firstName
+          lastName
+        }
+      }
+      delegates {
+        firstName
+        lastName
+      }
     }
   }
 }
