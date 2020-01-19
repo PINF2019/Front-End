@@ -32,36 +32,30 @@ const ButtonEliminar = ({ id, name, type }: Props) => {
   }, [deleteElectoralProcess, history, id, type])
 
   return (
-    <>
-      <Button className="button">
-        <Row className="RowCensusButton">
-          <Text strong style={{ marginTop: 'auto', marginBottom: 'auto' }}>
-            {name.length > 30 ? `${name.substring(0, 30 - 3)}...` : name}
-          </Text>
-          <Popconfirm
-            title="Are you sure delete this task?"
-            icon={
-              <Icon
-                type="delete"
-                style={{
-                  marginTop: '1.1%',
-                  verticalAlign: 'middle',
-                  fontSize: '50px',
-                  color: '#FFA500',
-                  marginLeft: 'auto',
-                }}
-              />
-            }
-            onConfirm={onConfirm}
-            okText="Yes"
-            cancelText="No"
-          >
-            Eliminar
-          </Popconfirm>
-        </Row>
-      </Button>
-      <br />
-    </>
+    <Button className="button">
+      <Row className="RowCensusButton">
+        <Text strong style={{ marginTop: 'auto', marginBottom: 'auto', width: "100%" }}>
+          {name.length > 30 ? `${name.substring(0, 30 - 3)}...` : name}
+        </Text>
+        <Popconfirm
+          title="¿Está seguro de que quiere borrar este proceso?"
+
+          onConfirm={onConfirm}
+          okText="Si"
+          cancelText="No"
+        >
+          <Icon
+            type="delete"
+            style={{
+              marginTop: '1.1%',
+              verticalAlign: 'middle',
+              fontSize: '50px',
+              color: '#FFA500'
+            }}
+          />
+        </Popconfirm>
+      </Row>
+    </Button >
   )
 }
 export default ButtonEliminar

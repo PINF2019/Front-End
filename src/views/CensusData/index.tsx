@@ -35,12 +35,12 @@ const CensusData = () => {
               {data?.electoralProcess.secretary.firstName}
             </li>
           </ul>
-          <Text strong style={{ fontSize: '30px', paddingTop: '5%' }}>
+          <Text strong style={{ fontSize: '30px', paddingTop: '1%' }}>
             Subsecretarios:
           </Text>
-          <ul>
+          <ul style={{ marginTop: "1%", marginBottom: "3%" }}>
             {data?.electoralProcess.delegates.map(({ firstName, lastName }) => (
-              <li style={{ fontSize: "20px", paddingTop: "5%" }}>
+              <li style={{ fontSize: "20px" }}>
                 {`${firstName}, ${lastName}`}
               </li>
             ))}
