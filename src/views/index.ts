@@ -16,6 +16,7 @@ import MenuButton from './Menu/MenuButton'
 import MenuCrearEleccion from './Menu/MenuCrearEleccion'
 import MenuResultados from './Menu/MenuResultados'
 import MenuSecretary from './Menu/MenuSecretary'
+import MenuEliminarElecciones from './Menu/MenuSecretary/MenuEliminarElecciones'
 // Menu
 import MenuUser from './Menu/MenuUser'
 import AlreadyVoted from './Overlays/AlreadyVoted'
@@ -61,6 +62,7 @@ export {
   MenuResultados,
   ResultsElection,
   ResultsPoll,
+  MenuEliminarElecciones,
   gestionarUsuarios,
   AddUser,
   ModifyUserTable,

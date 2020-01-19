@@ -15,6 +15,7 @@ import {
   Logo,
   MenuAdmin,
   MenuCrearEleccion,
+  MenuEliminarElecciones,
   MenuResultados,
   MenuSecretary,
   MenuUser,
@@ -72,6 +73,12 @@ const Protected = () => {
         />
         <Route exact path={routes.menuResultados} component={MenuResultados} />
         <Route exact path={routes.menuCensus} component={Census} />
+
+        <Route
+          exact
+          path={routes.eliminarProcesoElectoral}
+          component={MenuEliminarElecciones}
+        />
 
         <Route exact path={routes.election} component={Election} />
         <Route exact path={routes.notFound} component={NotFound} />

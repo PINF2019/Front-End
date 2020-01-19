@@ -19,7 +19,6 @@ const routes = {
   menuCrearEleccion: '/secretary/procesoElectoral/crear',
   menuResultados: '/resultados',
   menuCensus: '/census',
-  modificarProcesoElectoral: '/secretary/procesoElectoral/modificar',
   eliminarProcesoElectoral: '/secretary/procesoElectoral/eliminar',
 
   crearEleccion: '/secretary/procesoElectoral/crear/eleccion',
