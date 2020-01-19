@@ -502,6 +502,42 @@ export type CollegiateBodiesQuery = {
   }>
 }
 
+export type ColegiosyusuariosQueryVariables = {}
+
+export type ColegiosyusuariosQuery = {
+  __typename?: 'Query'
+  collegiateBodies: Array<{
+    __typename?: 'ColegiateBody'
+    id: string
+    name: string
+  }>
+  users: Array<{
+    __typename?: 'User'
+    uid: string
+    firstName: string
+    lastName: string
+    colegiateBody: { __typename?: 'ColegiateBody'; id: string }
+  }>
+}
+
+export type CreateElectionMutationVariables = {
+  input: ElectionInput
+}
+
+export type CreateElectionMutation = {
+  __typename?: 'Mutation'
+  createElection: { __typename?: 'Election'; id: string }
+}
+
+export type CrearPollMutationVariables = {
+  input: PollInput
+}
+
+export type CrearPollMutation = {
+  __typename?: 'Mutation'
+  createPoll: { __typename?: 'Poll'; id: string }
+}
+
 export type ElectionsQueryVariables = {}
 
 export type ElectionsQuery = {
@@ -1073,6 +1109,118 @@ export type CollegiateBodiesLazyQueryHookResult = ReturnType<
 export type CollegiateBodiesQueryResult = ApolloReactCommon.QueryResult<
   CollegiateBodiesQuery,
   CollegiateBodiesQueryVariables
+>
+export const ColegiosyusuariosDocument = gql`
+  query colegiosyusuarios {
+    collegiateBodies {
+      id
+      name
+    }
+    users {
+      uid
+      firstName
+      lastName
+      colegiateBody {
+        id
+      }
+    }
+  }
+`
+export function useColegiosyusuariosQuery(
+  baseOptions?: ApolloReactHooks.QueryHookOptions<
+    ColegiosyusuariosQuery,
+    ColegiosyusuariosQueryVariables
+  >
+) {
+  return ApolloReactHooks.useQuery<
+    ColegiosyusuariosQuery,
+    ColegiosyusuariosQueryVariables
+  >(ColegiosyusuariosDocument, baseOptions)
+}
+export function useColegiosyusuariosLazyQuery(
+  baseOptions?: ApolloReactHooks.LazyQueryHookOptions<
+    ColegiosyusuariosQuery,
+    ColegiosyusuariosQueryVariables
+  >
+) {
+  return ApolloReactHooks.useLazyQuery<
+    ColegiosyusuariosQuery,
+    ColegiosyusuariosQueryVariables
+  >(ColegiosyusuariosDocument, baseOptions)
+}
+export type ColegiosyusuariosQueryHookResult = ReturnType<
+  typeof useColegiosyusuariosQuery
+>
+export type ColegiosyusuariosLazyQueryHookResult = ReturnType<
+  typeof useColegiosyusuariosLazyQuery
+>
+export type ColegiosyusuariosQueryResult = ApolloReactCommon.QueryResult<
+  ColegiosyusuariosQuery,
+  ColegiosyusuariosQueryVariables
+>
+export const CreateElectionDocument = gql`
+  mutation createElection($input: ElectionInput!) {
+    createElection(input: $input) {
+      id
+    }
+  }
+`
+export type CreateElectionMutationFn = ApolloReactCommon.MutationFunction<
+  CreateElectionMutation,
+  CreateElectionMutationVariables
+>
+export function useCreateElectionMutation(
+  baseOptions?: ApolloReactHooks.MutationHookOptions<
+    CreateElectionMutation,
+    CreateElectionMutationVariables
+  >
+) {
+  return ApolloReactHooks.useMutation<
+    CreateElectionMutation,
+    CreateElectionMutationVariables
+  >(CreateElectionDocument, baseOptions)
+}
+export type CreateElectionMutationHookResult = ReturnType<
+  typeof useCreateElectionMutation
+>
+export type CreateElectionMutationResult = ApolloReactCommon.MutationResult<
+  CreateElectionMutation
+>
+export type CreateElectionMutationOptions = ApolloReactCommon.BaseMutationOptions<
+  CreateElectionMutation,
+  CreateElectionMutationVariables
+>
+export const CrearPollDocument = gql`
+  mutation CrearPoll($input: PollInput!) {
+    createPoll(input: $input) {
+      id
+    }
+  }
+`
+export type CrearPollMutationFn = ApolloReactCommon.MutationFunction<
+  CrearPollMutation,
+  CrearPollMutationVariables
+>
+export function useCrearPollMutation(
+  baseOptions?: ApolloReactHooks.MutationHookOptions<
+    CrearPollMutation,
+    CrearPollMutationVariables
+  >
+) {
+  return ApolloReactHooks.useMutation<
+    CrearPollMutation,
+    CrearPollMutationVariables
+  >(CrearPollDocument, baseOptions)
+}
+export type CrearPollMutationHookResult = ReturnType<
+  typeof useCrearPollMutation
+>
+export type CrearPollMutationResult = ApolloReactCommon.MutationResult<
+  CrearPollMutation
+>
+export type CrearPollMutationOptions = ApolloReactCommon.BaseMutationOptions<
+  CrearPollMutation,
+  CrearPollMutationVariables
 >
 export const ElectionsDocument = gql`
   query elections {

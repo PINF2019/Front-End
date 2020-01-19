@@ -72,27 +72,27 @@ const columnsPond = (voteWeights: {
     render: candidate => `${candidate.firstName} ${candidate.lastName}`,
   },
   {
-    title: `PDVP (${voteWeights.PDVP} %)`,
+    title: `PDVP ( ${voteWeights.PDVP}% )`,
     dataIndex: 'PDVP',
     key: 'PDVP',
   },
   {
-    title: `PNDVP (${voteWeights.PNDVP} %)`,
+    title: `PNDVP ( ${voteWeights.PNDVP}% )`,
     dataIndex: 'PNDVP',
     key: 'PNDVP',
   },
   {
-    title: `PDINVP  (${voteWeights.PDINVP} %)`,
+    title: `PDINVP ( ${voteWeights.PDINVP}% )`,
     key: 'PDINVP',
     dataIndex: 'PDINVP',
   },
   {
-    title: `PAS(${voteWeights.PAS} %)`,
+    title: `PAS ( ${voteWeights.PAS}% )`,
     key: 'PAS',
     dataIndex: 'PAS',
   },
   {
-    title: `ALU (${voteWeights.ALU} %)`,
+    title: `ALU ( ${voteWeights.ALU}% )`,
     key: 'ALU',
     dataIndex: 'ALU',
   },
@@ -105,7 +105,23 @@ const columnsPond = (voteWeights: {
         0
       )
     },
+<<<<<<< HEAD
   }
+=======
+  },
+  {
+    title: '% FINAL',
+    render: (_t, record) => {
+      const totalVotes = Object.values<any>(
+        _.omit(record, ['candidate'])
+      ).reduce((prev, current) => current + prev, 0)
+
+      return `${Object.values<any>(_.omit(record, ['candidate']))
+        .reduce((prev, value) => (value / totalVotes) * 100 + prev, 0)
+        .toFixed(2)}%`
+    },
+  },
+>>>>>>> 73b2c8f29253e853520ee08e3286638695591f73
 ]
 
 const votesByColegiate = (results: any[]) => {
