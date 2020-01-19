@@ -47,9 +47,9 @@ const Votacion = () => {
             <Row
               type="flex"
               justify="center"
-              // align="middle"
               style={{
-                marginTop: '25%',
+                height: "100%",
+                alignContent: "center"
               }}
             >
               <Text strong style={{ fontSize: '30px', lineHeight: '100%' }}>
@@ -89,27 +89,30 @@ const Votacion = () => {
               validationSchema={schema}
             >
               {() => (
-                <Col>
+                <Col style={{ width: "100%" }}>
                   <Form
                     style={{
                       marginLeft: '20%',
+                      width: "50%"
                     }}
                   >
                     <Radio.Group name="option">
                       {data.poll.options.map(poll => (
-                        <Radio name="option" value={poll.id} key={poll.id}>
+                        <Radio
+                          name="option"
+                          style={{ fontSize: "20px" }}
+                          value={poll.id}
+                          key={poll.id}>
                           {poll.text}
                         </Radio>
                       ))}
                     </Radio.Group>
                     <br />
 
-                    <Row type="flex" style={{ flexDirection: 'column' }}>
+                    <Row type="flex" style={{ flexDirection: 'row', marginTop: "5%" }}>
                       <Row>
-                        <Checkbox name="validate">Validar elección</Checkbox>
-                      </Row>
-                      <Row>
-                        <SubmitButton>Votar</SubmitButton>
+                        <Checkbox name="validate" style={{ fontSize: "15px" }}>Validar elección</Checkbox>
+                        <SubmitButton style={{ fontSize: "15px" }}>Votar</SubmitButton>
                       </Row>
                     </Row>
                   </Form>

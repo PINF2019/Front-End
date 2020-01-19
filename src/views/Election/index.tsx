@@ -47,14 +47,14 @@ const Election = () => {
             <Row
               type="flex"
               justify="center"
-              // align="middle"
               style={{
-                marginTop: '25%',
+                height: "100%",
+                alignContent: "center"
               }}
             >
               <Text strong style={{ fontSize: '30px', lineHeight: '100%' }}>
                 Elección <br />{' '}
-                {`${data?.election.description.substring(0, 100 - 3)}...`}
+                {`${data?.election.description.substring(0, 100 - 3)}`}
               </Text>
             </Row>
           </Layout>
@@ -85,13 +85,11 @@ const Election = () => {
               validationSchema={schema}
             >
               {() => (
-                <Col>
+                <Col style={{ width: "100%" }}>
                   <Form
                     style={{
-                      // width: "50%",
-                      // fontSize: "20px",
                       marginLeft: '20%',
-                      // height: "100%"
+                      width: "50%"
                     }}
                   >
                     <Radio.Group name="candidate">
@@ -100,19 +98,17 @@ const Election = () => {
                           name="candidate"
                           value={election.id}
                           key={election.id}
+                          style={{ fontSize: "20px" }}
                         >
                           {election.firstName} {election.lastName}
                         </Radio>
                       ))}
                     </Radio.Group>
-                    <br />
 
-                    <Row type="flex" style={{ flexDirection: 'column' }}>
-                      <Row>
-                        <Checkbox name="validate">Validar</Checkbox>
-                      </Row>
-                      <Row>
-                        <SubmitButton>Votar</SubmitButton>
+                    <Row type="flex" style={{ flexDirection: 'row', marginTop: "5%" }}>
+                      <Row >
+                        <Checkbox name="validate" style={{ fontSize: "15px" }}>Validar elección</Checkbox>
+                        <SubmitButton style={{ fontSize: "15px" }}>Votar</SubmitButton>
                       </Row>
                     </Row>
                   </Form>

@@ -18,7 +18,6 @@ const ElectionButtonModificar = ({ id, name, type }: Props) => {
   return (
     <>
       <Button
-        // href={url}
         style={{
           backgroundColor: '#F0F0F0',
           marginTop: '2%',
@@ -36,7 +35,7 @@ const ElectionButtonModificar = ({ id, name, type }: Props) => {
             alignItems: 'space-between',
           }}
         >
-          <Text strong style={{ marginTop: 'auto', marginBottom: 'auto' }}>
+          <Text strong style={{ marginTop: 'auto', marginBottom: 'auto', width: "100%" }}>
             {name.length > 30 ? `${name.substring(0, 30 - 3)}...` : name}
           </Text>
           <Row>
@@ -46,8 +45,7 @@ const ElectionButtonModificar = ({ id, name, type }: Props) => {
                 marginTop: '1.1%',
                 verticalAlign: 'middle',
                 fontSize: '50px',
-                color: '#FFA500',
-                marginLeft: 'auto',
+                color: '#FFA500'
               }}
               onClick={() => {
                 try {
