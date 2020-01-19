@@ -16,10 +16,9 @@ import MenuButton from './Menu/MenuButton'
 import MenuCrearEleccion from './Menu/MenuCrearEleccion'
 import MenuResultados from './Menu/MenuResultados'
 import MenuSecretary from './Menu/MenuSecretary'
-import MenuEliminarElecciones from './Menu/MenuSecretary/MenuEliminarElecciones'
-import MenuModificarElecciones from './Menu/MenuSecretary/MenuModificarElecciones'
 // Menu
 import MenuUser from './Menu/MenuUser'
+import AlreadyVoted from './Overlays/AlreadyVoted'
 import NotFound from './Overlays/NotFound'
 import ProcesoCreadoOverlay from './Overlays/ProcesoCreado'
 import ProcesoEliminadoOverlay from './Overlays/ProcesoEliminado'
@@ -30,7 +29,6 @@ import SeguroPublicacionOverlay from './Overlays/SeguroPublicacion'
 import UsuarioCreadoOverlay from './Overlays/UsuarioCreado'
 import UsuarioEliminadoOverlay from './Overlays/UsuarioEliminado'
 import UsuarioModificadoOverlay from './Overlays/UsuarioModificado'
-import AlreadyVoted from "./Overlays/AlreadyVoted"
 import Success from './Overlays/VotoRegistrado'
 // Overlays
 import PickRoleAdmin from './PickRole/Admin'
@@ -63,8 +61,6 @@ export {
   MenuResultados,
   ResultsElection,
   ResultsPoll,
-  MenuModificarElecciones,
-  MenuEliminarElecciones,
   gestionarUsuarios,
   AddUser,
   ModifyUserTable,

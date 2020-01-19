@@ -11,10 +11,6 @@ const secretaryRoutes = [
     url: '/secretary/procesoElectoral/crear',
   },
   {
-    name: 'Modificar proceso electoral',
-    url: '/secretary/procesoElectoral/modificar',
-  },
-  {
     name: 'Eliminar proceso electoral',
     url: '/secretary/procesoElectoral/eliminar',
   },

@@ -2,6 +2,7 @@ import Layout from '@Components/Layout'
 import routes, { PrivateRoute } from '@Routes'
 import {
   AddUser,
+  AlreadyVoted,
   Census,
   CensusData,
   CrearEleccion,
@@ -14,8 +15,6 @@ import {
   Logo,
   MenuAdmin,
   MenuCrearEleccion,
-  MenuEliminarElecciones,
-  MenuModificarElecciones,
   MenuResultados,
   MenuSecretary,
   MenuUser,
@@ -38,7 +37,6 @@ import {
   UsuarioModificadoOverlay,
   Votacion,
   VotoRegistradoOverlay,
-  AlreadyVoted
 } from '@Views'
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
@@ -74,16 +72,6 @@ const Protected = () => {
         />
         <Route exact path={routes.menuResultados} component={MenuResultados} />
         <Route exact path={routes.menuCensus} component={Census} />
-        <Route
-          exact
-          path={routes.modificarProcesoElectoral}
-          component={MenuModificarElecciones}
-        />
-        <Route
-          exact
-          path={routes.eliminarProcesoElectoral}
-          component={MenuEliminarElecciones}
-        />
 
         <Route exact path={routes.election} component={Election} />
         <Route exact path={routes.notFound} component={NotFound} />
@@ -110,7 +98,7 @@ const Protected = () => {
         />
 
         <Route exact path={routes.success} component={Success} />
-        <Route exact path={routes.alreadyvoted} component={AlreadyVoted}/>
+        <Route exact path={routes.alreadyvoted} component={AlreadyVoted} />
         <Route exact path={routes.notFound} component={NotFound} />
         <Route
           exact
