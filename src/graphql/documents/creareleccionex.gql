@@ -1,0 +1,30 @@
+query colegiosyusuarios{
+    collegiateBodies{
+      id
+      name
+    }
+  
+  	users{
+      uid
+      firstName
+      lastName
+      colegiateBody{
+        id
+      }
+    }
+}
+
+
+
+mutation createElection($input: ElectionInput!) {
+  createElection(input: $input) {
+    id
+  }
+}
+
+mutation CrearPoll($input: PollInput!) {
+  createPoll(input: $input) {
+    id
+  }
+}
+

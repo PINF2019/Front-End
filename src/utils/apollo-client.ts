@@ -7,7 +7,7 @@ import {
 import resolvers from '@Graphql/client/resolvers'
 import { authLink } from './auth'
 
-const httpLink = createHttpLink({ uri: 'http://votuca.krosf.com:7000/graphql' })
+const httpLink = createHttpLink({ uri: 'http://178.128.243.119:7000/graphql' })
 
 const cache = new InMemoryCache()
 
@@ -21,9 +21,9 @@ const client = new ApolloClient({
   resolvers,
   defaultOptions: {
     mutate: {
-      errorPolicy: 'all'
-    }
-  }
+      errorPolicy: 'all',
+    },
+  },
 })
 
 client.onResetStore(async () => cache.writeData({ data }))

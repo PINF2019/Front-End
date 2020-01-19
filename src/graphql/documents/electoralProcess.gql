@@ -34,8 +34,7 @@ query electoralProcesses {
   }
 }
 
-query electoralProcessesCRUD
-{
+query electoralProcessesCRUD {
   electoralProcesses(open: true) {
     __typename
     ... on Election {
@@ -69,23 +68,23 @@ query census($id: ID!) {
   electoralProcess(id: $id) {
     __typename
     ... on Election {
-    description
-    start
-    end
-    secretary {
-      firstName
-      lastName
-    }
-    censuses {
-      voters {
+      description
+      start
+      end
+      secretary {
         firstName
         lastName
       }
-    }
-    delegates {
-      firstName
-      lastName
-    }
+      censuses {
+        voters {
+          firstName
+          lastName
+        }
+      }
+      delegates {
+        firstName
+        lastName
+      }
     }
 
     __typename
