@@ -91,7 +91,7 @@ const Sidebar = (prop: { collapse: boolean }) => {
 
         <Row type="flex" style={{ flexDirection: 'column', display: 'flex' }}>
           <Row>
-            <a href="https://si.ua.es/es/documentos/documentacion/pdf-s/mozilla12-pdf.pdf">
+            <a href="https://drive.google.com/file/d/1oz09mabAKpRajVoVveZy73mHLWeOmUwQ/view">
               <Text
                 style={{
                   color: '#FFA500',
