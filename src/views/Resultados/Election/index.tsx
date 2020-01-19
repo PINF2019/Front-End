@@ -105,21 +105,7 @@ const columnsPond = (voteWeights: {
         0
       )
     },
-  },
-  {
-    title: '% FINAL',
-    render: (_t, record) => {
-      const totalVotes = Object.values<any>(
-        _.omit(record, ['candidate'])
-      ).reduce((prev, current) => current + prev, 0)
-      // eslint-disable-next-line no-console
-      console.log(totalVotes)
-
-      return `${Object.values<any>(_.omit(record, ['candidate']))
-        .reduce((prev, value) => (value / totalVotes) * 100 + prev, 0)
-        .toFixed(2)}%`
-    },
-  },
+  }
 ]
 
 const votesByColegiate = (results: any[]) => {
