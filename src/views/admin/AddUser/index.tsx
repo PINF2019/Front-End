@@ -10,7 +10,7 @@ const AddUser = () => {
       justify="start"
       style={{ marginTop: '3%', marginLeft: '3%', overflow: 'auto' }}
     >
-      <Row className="layout" style={{ marginBottom: '2%' }}>
+      <Row style={{ marginBottom: '2%' }}>
         <Card className="card">
           <Text strong style={{ fontSize: '30px' }}>
             Añadir Usuario
