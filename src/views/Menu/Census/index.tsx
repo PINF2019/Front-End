@@ -27,7 +27,7 @@ const Census = () => {
         className="body"
         style={{ marginTop: '3%' }}
       >
-        <Row className="layout" style={{ marginBottom: '10%' }}>
+        <Row style={{ marginBottom: '10%' }}>
           <Text strong style={{ fontSize: '30px' }}>
             Seleccione qué censo quiere conocer
           </Text>
