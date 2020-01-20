@@ -1,6 +1,6 @@
 {
-  "name": "@votuca/votucaweb",
-  "version": "0.1.1",
+  "name": "@votuca/front-end",
+  "version": "0.1.2",
   "private": true,
   "dependencies": {
     "@apollo/client": "^3.0.0-beta.11",
@@ -36,7 +36,7 @@
     "docker:push": "cross-conf-env docker push $npm_package_config_image:$npm_package_version"
   },
   "config": {
-    "image": "docker.pkg.github.com/votuca/votucaweb/web"
+    "image": "docker.pkg.github.com/votuca/front-end/web"
   },
   "eslintConfig": {
     "extends": "react-app"
