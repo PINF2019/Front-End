@@ -28,7 +28,7 @@ const MenuAdmin = () => {
       }}
     >
       <Row justify="center" className="body" style={{ marginTop: '3%' }}>
-        <Row className="layout" style={{ marginBottom: '10%' }}>
+        <Row style={{ marginBottom: '10%' }}>
           <Text strong style={{ fontSize: '30px' }}>
             Gestionar Procesos Electorales
           </Text>
